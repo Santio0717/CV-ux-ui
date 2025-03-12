@@ -1,109 +1,57 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta name="description" content="MediaWeb Studio - Diseño gráfico, edición de videos y desarrollo web. Potenciamos tu marca con creatividad e innovación digital.">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MediaWeb Studio - Creatividad Digital</title>
-
-    <!-- Favicon en alta resolución -->
-    <link rel="icon" type="image/png" href="assets/MediaWeb_Studio.png" sizes="512x512">
-    <link rel="icon" type="image/x-icon" href="assets/MediaWeb_Studio.png"> <!-- Opción para mayor compatibilidad -->
-
-    <!-- Enlace al CSS -->
-    <link rel="stylesheet" href="styles.css">
-
-    <!-- Fuente personalizada -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap">
-    
-    <!-- Scripts -->
-    <script defer src="assets/script.js"></script>
-    <script defer src="assets/security.js"></script> <!-- 🔒 Seguridad -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MediaWeb Studio</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="security.js" defer></script>
 </head>
 <body>
 
-    <!-- Logo en la esquina superior derecha -->
-    <div class="logo-container">
-        <img src="assets/MediaWeb_Studio.png" alt="Logo MediaWeb Studio">
+  <!-- Banner principal con video del CV UX -->
+  <header class="banner">
+    <video autoplay muted loop class="video-banner">
+      <source src="mi_video_cv.mp4" type="video/mp4">
+      Tu navegador no soporta el video.
+    </video>
+    <div class="overlay">
+      <h1>Bienvenidos a MediaWeb Studio 🚀</h1>
+      <p>Transformamos ideas en experiencias digitales impactantes.</p>
     </div>
+  </header>
 
-    <!-- Hero Section -->
-    <header class="hero">
-        <div class="hero-content">
-            <h1>Bienvenidos a <span>MediaWeb Studio</span> 🚀</h1>
-            <p>Innovamos, creamos y transformamos ideas en experiencias digitales impactantes.</p>
-            <a href="#contacto" class="btn">Contáctanos</a>
-        </div>
-    </header>
-
-    <!-- Sobre Nosotros -->
-    <section id="about" class="scroll-effect">
-        <h2>✨ ¿Qué hacemos?</h2>
-        <p>
-            En <strong>MediaWeb Studio</strong>, damos vida a tus ideas con proyectos visuales y digitales que generan impacto.  
-            Diseñamos contenido innovador, optimizamos experiencias digitales y desarrollamos soluciones tecnológicas personalizadas  
-            para que tu marca destaque en un mundo cada vez más visual y conectado.
-        </p>
-        
-        <p>
-            Nos especializamos en <strong>edición de video, diseño gráfico, branding y diferentes lenguajes de programación</strong> para potenciar la identidad de las marcas.  
-            Además, creamos interfaces atractivas y funcionales, modelamos conceptos en 3D y desarrollamos sitios web con tecnologías modernas  
-            que garantizan una experiencia digital sólida y memorable.
-        </p>
-
-        <h3>🎥 "Cada proyecto cuenta una historia, ¡hagámosla inolvidable!"</h3>
-        <p>
-            Desde la idea inicial hasta la ejecución final, cuidamos cada detalle para que tu visión cobre vida.  
-            <strong>Tu creatividad + nuestra experiencia = el éxito asegurado.</strong>
-        </p>
+  <!-- Secciones del proyecto -->
+  <main>
+    <section class="seccion">
+      <h2>📜 Certificados</h2>
+      <p>Explora los logros académicos y profesionales obtenidos.</p>
     </section>
 
-    <!-- Servicios -->
-    <section id="servicios" class="scroll-effect">
-        <h2>🛠 Nuestros Servicios</h2>
-        <p><span>Recuerda que el precio de cada servicio varía según tus necesidades y la complejidad del proyecto en cada área en la que trabajamos.</span></p>
-        <p><span>¡Cuéntanos tu idea y encontraremos la mejor solución para ti!</span></p>
-        <div class="servicios-container">
-            <div class="servicio">
-                <h3>🎬 Edición de videos e imágenes</h3>
-                <p>Producción visual de alta calidad para redes y proyectos.</p>
-            </div>
-            <div class="servicio">
-                <h3>🔥 Creación de logos</h3>
-                <p>Diseños que transmiten la esencia de tu marca.</p>
-            </div>
-            <div class="servicio">
-                <h3>💻 Desarrollo web</h3>
-                <p>Construcción de sitios optimizados y responsivos.</p>
-            </div>
-            <div class="servicio">
-                <h3>🖥 Modelado 3D</h3>
-                <p>Diseño y animación de modelos en Blender.</p>
-            </div>
-            <div class="servicio">
-                <h3>📱 Diseño UI/UX</h3>
-                <p>Interfaces intuitivas y atractivas en Figma.</p>
-            </div>
-        
-        <div class="servicio portafolio-box">
-            <h3>📂 Nuestro Portafolio</h3>
-            <p>Explora nuestros proyectos destacados y descubre lo que podemos hacer por ti.</p>
-            <a href="portafolio.html" class="btn-portafolio">Ver Portafolio</a>
-        </div>
-    </div>
+    <section class="seccion">
+      <h2>📊 Proyectos Google Colab</h2>
+      <p>Proyectos de análisis y visualización de datos en Google Colab.</p>
     </section>
 
-    <!-- Contacto -->
-    <section id="contacto" class="scroll-effect">
-        <h2>📩 Contáctanos</h2>
-        <p>¿Listo para llevar tu idea al siguiente nivel? ¡Hablemos! Contáctanos en nuestras redes sociales para más información.</p>
-        <a href="https://linktr.ee/MediaWebStudio" class="btn">Síguenos en redes</a>
+    <section class="seccion">
+      <h2>🎮 Animaciones / Juegos</h2>
+      <p>Proyectos creativos interactivos con animaciones y juegos.</p>
     </section>
 
-    <footer>
-        <p>© 2025 MediaWeb Studio - Todos los derechos reservados.</p>
-    </footer>
-</div>
+    <section class="seccion">
+      <h2>🎨 Diseños UX/UI</h2>
+      <p>Interfaces intuitivas, atractivas y funcionales para usuarios.</p>
+    </section>
+
+    <section class="seccion">
+      <h2>⚙️ Proyectos Tinker Cad</h2>
+      <p>Diseños y prototipos realizados en TinkerCad.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 MediaWeb Studio</p>
+  </footer>
 
 </body>
 </html>
