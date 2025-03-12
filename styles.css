@@ -1,1 +1,95 @@
+/* Reset general */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* Banner con video */
+.banner {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.video-banner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.overlay {
+  position: relative;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  text-align: center;
+  padding: 4rem 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  position: absolute;
+  width: 100%;
+}
+
+/* Botón de ingreso */
+.btn-ingresar {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #ffffff;
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-ingresar:hover {
+  background-color: #e0e0e0;
+}
+
+/* Estilos de secciones */
+main {
+  padding: 2rem;
+}
+
+.seccion {
+  background-color: #ffffff;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.seccion h2 {
+  margin-bottom: 0.5rem;
+  color: #222;
+  font-size: 1.4rem;
+}
+
+.seccion p {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #222;
+  color: white;
+  font-size: 0.9rem;
+}
 
