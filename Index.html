@@ -56,7 +56,7 @@
 
   <!-- Video cargando al final, después de todas las secciones -->
   <section class="video-container">
-    <div class="video-banner-container" style="display: none;">
+    <div class="video-banner-container">
       <video class="video-banner" id="videoBanner" loop playsinline muted>
         <source src="Cv-UX.mp4" type="video/mp4">
         Tu navegador no soporta la reproducción de video.
@@ -70,37 +70,26 @@
 
   <!-- Script para manejar el video -->
   <script>
-    // Función para verificar si el video está visible en pantalla
+    const video = document.getElementById('videoBanner');
+    const videoContainer = document.querySelector('.video-banner-container');
+    
+    // Detecta cuando el video está visible en pantalla
     function checkVideoVisibility() {
-      const rect = video.getBoundingClientRect();
-      if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
-        // Si el video es visible, reproducirlo
-        if (video.paused) {
-          video.play();
-        }
+      const rect = videoContainer.getBoundingClientRect();
+      if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+        // Si el video es visible, lo muestra y lo reproduce
+        videoContainer.style.display = 'block';
+        video.play();
       } else {
-        // Si no es visible, detenerlo
-        if (!video.paused) {
-          video.pause();
-        }
+        // Si no está visible, se detiene
+        video.pause();
       }
     }
 
-    // Cargar video cuando se llegue al final de la página
+    // Llamar a la función de visibilidad cuando se haga scroll
     window.addEventListener('scroll', checkVideoVisibility);
-    checkVideoVisibility(); // Llamada inicial en caso de que el video ya esté visible
-
-    // Mostrar el video después de que el usuario haya visto las secciones
-    window.addEventListener('scroll', function () {
-      const videoContainer = document.querySelector('.video-banner-container');
-      const rect = videoContainer.getBoundingClientRect();
-      if (rect.top <= window.innerHeight && rect.bottom >= 0) {
-        videoContainer.style.display = 'block';
-      }
-    });
+    checkVideoVisibility(); // Llamada inicial cuando la página se carga
   </script>
 
 </body>
 </html>
-
-
