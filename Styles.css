@@ -30,9 +30,8 @@ body, html {
   z-index: 1;
 }
 
-/* Texto debajo del video */
+/* Texto debajo del video (sin bloque visual) */
 .intro-text {
-  background-color: #1e1e1e;
   padding: 2rem;
   text-align: center;
   font-size: 1.2rem;
