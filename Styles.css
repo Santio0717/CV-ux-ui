@@ -29,20 +29,26 @@ body, html {
   z-index: 1;
 }
 
-.overlay {
-  position: relative;
-  z-index: 2;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: #fff;
+/* Texto debajo del video */
+.intro-text {
+  background-color: #ffffff;
+  padding: 2rem;
   text-align: center;
-  padding: 4rem 2rem;
-  top: 50%;
-  transform: translateY(-50%);
-  position: absolute;
-  width: 100%;
+  font-size: 1.2rem;
+  color: #222;
 }
 
-/* Botón de ingreso */
+.intro-text h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.intro-text p {
+  font-size: 1.1rem;
+  color: #444;
+}
+
+/* Botón (opcional) */
 .btn-ingresar {
   display: inline-block;
   margin-top: 1.5rem;
@@ -93,3 +99,7 @@ footer {
   font-size: 0.9rem;
 }
 
+footer a {
+  color: #fff;
+  text-decoration: underline;
+}
