@@ -34,28 +34,41 @@ body, html {
   font-weight: 300;
 }
 
-/* Secciones principales */
-main {
-  padding: 4rem 2rem;
+/* Íconos */
+.icono {
+  font-size: 1.6rem;
+  display: inline-block;
 }
 
+/* Secciones organizadas en cuadrícula */
+.grid-secciones {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Estilo general para las tarjetas */
 .seccion-link {
   text-decoration: none;
   color: inherit;
   display: block;
-  transition: all 0.3s ease;
-}
-
-.seccion-link:hover {
-  filter: brightness(1.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .seccion {
   background-color: #1c1c1c;
   border: 1px solid rgba(255, 255, 255, 0.05);
-  margin-bottom: 3rem;
   padding: 2rem;
   border-radius: 20px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -66,24 +79,15 @@ main {
 }
 
 .seccion h2 {
-  font-size: 1.8rem;
-  margin-bottom: 0.8rem;
+  font-size: 1.5rem;
+  margin-bottom: 0.6rem;
   font-weight: 600;
   color: #ffffff;
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
 }
 
 .seccion p {
   font-size: 1rem;
   color: #bbbbbb;
-}
-
-/* Íconos */
-.icono {
-  font-size: 1.6rem;
-  display: inline-block;
 }
 
 /* Video banner */
@@ -120,7 +124,7 @@ main {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
-/* Controles modernos */
+/* Controles modernos tipo YouTube */
 .video-controls-overlay {
   position: absolute;
   bottom: 0;
@@ -139,7 +143,7 @@ main {
 
 .video-controls-overlay button,
 .video-controls-overlay select {
-  background-color: #333;  /* Color neutro */
+  background-color: #333;
   color: white;
   border: none;
   padding: 6px 10px;
@@ -159,51 +163,4 @@ main {
   height: 6px;
   border-radius: 5px;
   background-color: #ddd;
-  cursor: pointer;
-  appearance: none;
-}
-
-#progressBar::-webkit-slider-thumb {
-  appearance: none;
-  height: 12px;
-  width: 12px;
-  background: #ffffff;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-}
-
-#volumeControl {
-  width: 80px;
-  height: 6px;
-  cursor: pointer;
-}
-
-#volumeControl::-webkit-slider-thumb {
-  appearance: none;
-  height: 12px;
-  width: 12px;
-  background: #ffffff;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-}
-
-#currentTime, #duration {
-  font-size: 0.85rem;
-  color: #ffffff;
-}
-
-/* Footer */
-footer {
-  text-align: center;
-  padding: 2rem 1rem;
-  background-color: #000000;
-  color: #f5f5f5;
-  font-size: 0.9rem;
-}
-
-footer a {
-  color: #00bfff;
-  text-decoration: underline;
-}
+  cursor
