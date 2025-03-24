@@ -19,19 +19,21 @@ function checkVideoVisibility() {
 // Función para alternar la reproducción y la pausa
 function togglePlayPause() {
   const video = document.getElementById('videoBanner');
-  const button = document.getElementById('playPauseButton');
   
   if (video.paused) {
-    video.play();
-    button.textContent = 'Pausar';
+    video.play();  // Reproducir el video
   } else {
-    video.pause();
-    button.textContent = 'Reproducir';
+    video.pause();  // Pausar el video
   }
 }
 
-// Asignar el evento de clic al botón
-document.getElementById('playPauseButton').addEventListener('click', togglePlayPause);
+// Detectar cuando se presiona la tecla Espacio
+window.addEventListener('keydown', function(event) {
+  if (event.code === 'Space') {  // Si la tecla presionada es "Space"
+    event.preventDefault();  // Prevenir el comportamiento predeterminado (hacer scroll)
+    togglePlayPause();  // Alternar entre pausar y reproducir
+  }
+});
 
 // Llamar a la función de visibilidad cuando se haga scroll
 window.addEventListener('scroll', checkVideoVisibility);
