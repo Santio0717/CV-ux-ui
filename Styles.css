@@ -5,10 +5,11 @@
   box-sizing: border-box;
 }
 
+/* Estilo general en modo oscuro */
 body, html {
   font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
-  color: #333;
+  background-color: #121212; /* Fondo negro elegante */
+  color: #f5f5f5; /* Texto claro */
 }
 
 /* Banner con video */
@@ -31,21 +32,46 @@ body, html {
 
 /* Texto debajo del video */
 .intro-text {
-  background-color: #ffffff;
+  background-color: #1e1e1e;
   padding: 2rem;
   text-align: center;
   font-size: 1.2rem;
-  color: #222;
+  color: #f5f5f5;
 }
 
 .intro-text h1 {
   font-size: 2rem;
   margin-bottom: 0.5rem;
+  color: #ffffff;
 }
 
 .intro-text p {
   font-size: 1.1rem;
-  color: #444;
+  color: #cccccc;
+}
+
+/* Estilos de secciones */
+main {
+  padding: 2rem;
+}
+
+.seccion {
+  background-color: #1e1e1e;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.seccion h2 {
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+  font-size: 1.4rem;
+}
+
+.seccion p {
+  font-size: 1rem;
+  color: #cccccc;
 }
 
 /* Botón (opcional) */
@@ -54,7 +80,7 @@ body, html {
   margin-top: 1.5rem;
   padding: 0.75rem 1.5rem;
   background-color: #ffffff;
-  color: #000;
+  color: #000000;
   font-weight: bold;
   text-decoration: none;
   border-radius: 10px;
@@ -66,40 +92,16 @@ body, html {
   background-color: #e0e0e0;
 }
 
-/* Estilos de secciones */
-main {
-  padding: 2rem;
-}
-
-.seccion {
-  background-color: #ffffff;
-  margin-bottom: 2rem;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.seccion h2 {
-  margin-bottom: 0.5rem;
-  color: #222;
-  font-size: 1.4rem;
-}
-
-.seccion p {
-  font-size: 1rem;
-  color: #555;
-}
-
 /* Footer */
 footer {
   text-align: center;
   padding: 1rem;
-  background-color: #222;
-  color: white;
+  background-color: #000000;
+  color: #f5f5f5;
   font-size: 0.9rem;
 }
 
 footer a {
-  color: #fff;
+  color: #f5f5f5;
   text-decoration: underline;
 }
