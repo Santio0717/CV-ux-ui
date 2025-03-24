@@ -16,19 +16,15 @@
     <p>Explora mi trayectoria, habilidades y proyectos destacados.</p>
   </section>
 
-  <!-- Botón para cargar el video (si se desea ver) -->
-  <section id="video-container" class="video-container">
-    <button id="play-video" class="play-video-btn">▶️ Reproducir Video</button>
-    <div class="video-banner-container" style="display: none;">
-      <video class="video-banner" id="videoBanner" loop playsinline controls>
-        <source src="Cv-UX.mp4" type="video/mp4">
-        Tu navegador no soporta la reproducción de video.
-      </video>
-    </div>
-  </section>
-
   <!-- Secciones organizadas por relevancia UX -->
   <main>
+    <a href="Certificados.html" class="seccion-link">
+      <section class="seccion" id="certificados">
+        <h2>📜 Certificados</h2>
+        <p>Explora mis logros académicos y profesionales.</p>
+      </section>
+    </a>
+
     <a href="Ux.html" class="seccion-link">
       <section class="seccion" id="uxui">
         <h2>🎨 Proyectos UX/UI</h2>
@@ -43,16 +39,9 @@
       </section>
     </a>
 
-    <a href="Certificados.html" class="seccion-link">
-      <section class="seccion" id="certificados">
-        <h2>📜 Certificados</h2>
-        <p>Explora mis logros académicos y profesionales.</p>
-      </section>
-    </a>
-
     <a href="Juegos.html" class="seccion-link">
       <section class="seccion" id="juegos">
-        <h2>🎮 Animaciones y Juegos</h2>
+        <h2>🎮 Animaciones / Demos Juegos</h2>
         <p>Animaciones y videojuegos desarrollados en diferentes plataformas.</p>
       </section>
     </a>
@@ -65,17 +54,43 @@
     </a>
   </main>
 
+  <!-- Video que se reproduce automáticamente y se detiene cuando no está visible -->
+  <section class="video-container">
+    <video class="video-banner" id="videoBanner" loop playsinline muted>
+      <source src="Cv-UX.mp4" type="video/mp4">
+      Tu navegador no soporta la reproducción de video.
+    </video>
+  </section>
+
   <footer>
     <p>&copy; 2025 Santiago Murillo | <a href="mailto:santiagomr2003@gmail.com">Contáctame</a></p>
   </footer>
 
-  <!-- Script para manejar la reproducción del video -->
+  <!-- Script para manejar el video -->
   <script>
-    document.getElementById('play-video').addEventListener('click', function() {
-      document.getElementById('video-container').style.display = 'none';
-      document.querySelector('.video-banner-container').style.display = 'block';
-      document.getElementById('videoBanner').play();
-    });
+    const video = document.getElementById('videoBanner');
+    
+    // Función para verificar si el video está visible en pantalla
+    function checkVideoVisibility() {
+      const rect = video.getBoundingClientRect();
+      if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+        // Si el video es visible, reproducirlo
+        if (video.paused) {
+          video.play();
+        }
+      } else {
+        // Si no es visible, detenerlo
+        if (!video.paused) {
+          video.pause();
+        }
+      }
+    }
+
+    // Detectar el scroll y verificar la visibilidad del video
+    window.addEventListener('scroll', checkVideoVisibility);
+    checkVideoVisibility(); // Llamada inicial en caso de que el video ya esté visible
   </script>
+
 </body>
 </html>
+
