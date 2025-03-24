@@ -40,7 +40,7 @@ body, html {
   display: inline-block;
 }
 
-/* Secciones organizadas en cuadrícula */
+/* Secciones organizadas en cuadrícula tipo tarjetas */
 .grid-secciones {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -48,14 +48,16 @@ body, html {
   padding: 4rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  justify-content: center;
 }
 
-/* Estilo general para las tarjetas */
+/* Estilo general para cada tarjeta */
 .seccion-link {
+  display: block;
+  width: 100%;
+  height: 100%;
   text-decoration: none;
   color: inherit;
-  display: block;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .seccion {
@@ -63,7 +65,6 @@ body, html {
   border: 1px solid rgba(255, 255, 255, 0.05);
   padding: 2rem;
   border-radius: 20px;
-  height: 250px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -71,6 +72,7 @@ body, html {
   text-align: center;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 250px;
 }
 
 .seccion:hover {
@@ -163,4 +165,27 @@ body, html {
   height: 6px;
   border-radius: 5px;
   background-color: #ddd;
-  cursor
+  cursor: pointer;
+  appearance: none;
+}
+
+#progressBar::-webkit-slider-thumb {
+  appearance: none;
+  height: 12px;
+  width: 12px;
+  background: #ffffff;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+
+#volumeControl {
+  width: 80px;
+  height: 6px;
+  cursor: pointer;
+}
+
+#volumeControl::-webkit-slider-thumb {
+  appearance: none;
+  height: 12px;
+  width:
