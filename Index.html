@@ -10,26 +10,29 @@
 </head>
 <body>
 
-  <!-- Banner con video -->
-  <header class="banner">
-    <video class="video-banner" id="videoBanner" loop playsinline controls>
-      <source src="Cv-UX.mp4" type="video/mp4">
-      Tu navegador no soporta la reproducción de video.
-    </video>
-  </header>
-
-  <!-- Texto principal debajo del video -->
+  <!-- Texto principal de bienvenida (ahora aparece primero) -->
   <section class="intro-text">
     <h1>Bienvenido a mi CV como Diseñador UX</h1>
     <p>Explora mi trayectoria, habilidades y proyectos destacados.</p>
   </section>
 
-  <!-- Secciones clickeables -->
+  <!-- Botón para cargar el video (si se desea ver) -->
+  <section id="video-container" class="video-container">
+    <button id="play-video" class="play-video-btn">▶️ Reproducir Video</button>
+    <div class="video-banner-container" style="display: none;">
+      <video class="video-banner" id="videoBanner" loop playsinline controls>
+        <source src="Cv-UX.mp4" type="video/mp4">
+        Tu navegador no soporta la reproducción de video.
+      </video>
+    </div>
+  </section>
+
+  <!-- Secciones organizadas por relevancia UX -->
   <main>
-    <a href="Certificados.html" class="seccion-link">
-      <section class="seccion" id="certificados">
-        <h2>📜 Certificados</h2>
-        <p>Explora mis logros académicos y profesionales.</p>
+    <a href="Ux.html" class="seccion-link">
+      <section class="seccion" id="uxui">
+        <h2>🎨 Proyectos UX/UI</h2>
+        <p>Interfaces intuitivas, atractivas y funcionales pensadas para los usuarios.</p>
       </section>
     </a>
 
@@ -40,17 +43,17 @@
       </section>
     </a>
 
+    <a href="Certificados.html" class="seccion-link">
+      <section class="seccion" id="certificados">
+        <h2>📜 Certificados</h2>
+        <p>Explora mis logros académicos y profesionales.</p>
+      </section>
+    </a>
+
     <a href="Juegos.html" class="seccion-link">
       <section class="seccion" id="juegos">
         <h2>🎮 Animaciones y Juegos</h2>
         <p>Animaciones y videojuegos desarrollados en diferentes plataformas.</p>
-      </section>
-    </a>
-
-    <a href="Ux.html" class="seccion-link">
-      <section class="seccion" id="uxui">
-        <h2>🎨 Diseños UX</h2>
-        <p>Interfaces intuitivas, atractivas y funcionales pensadas para los usuarios.</p>
       </section>
     </a>
 
@@ -66,5 +69,13 @@
     <p>&copy; 2025 Santiago Murillo | <a href="mailto:santiagomr2003@gmail.com">Contáctame</a></p>
   </footer>
 
+  <!-- Script para manejar la reproducción del video -->
+  <script>
+    document.getElementById('play-video').addEventListener('click', function() {
+      document.getElementById('video-container').style.display = 'none';
+      document.querySelector('.video-banner-container').style.display = 'block';
+      document.getElementById('videoBanner').play();
+    });
+  </script>
 </body>
 </html>
