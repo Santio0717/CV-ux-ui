@@ -96,7 +96,7 @@ main {
   padding: 3rem 0;
   position: relative;
   margin-top: 3rem;
-  background-color: #000000; /* fondo negro absoluto */
+  background-color: #000000;
 }
 
 .video-banner-container {
@@ -104,6 +104,14 @@ main {
   max-width: 1200px;
   margin: 0 auto;
   background-color: #000000;
+}
+
+/* Video con superposición de controles */
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  overflow: hidden;
 }
 
 .video-banner {
@@ -115,53 +123,54 @@ main {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
-/* Controles del video */
-.video-controls {
+/* Controles del video superpuestos tipo YouTube */
+.video-controls-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 0.5rem 1rem;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  margin-top: 1rem;
-  padding: 0 1rem;
-  background-color: transparent;
+  box-sizing: border-box;
+  z-index: 10;
 }
 
-#playPauseBtn {
+.video-controls-overlay button {
   background-color: #ff0080;
   color: white;
-  padding: 8px 16px;
+  padding: 6px 12px;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-#playPauseBtn:hover {
+.video-controls-overlay button:hover {
   background-color: #e60073;
 }
 
-#progressBar {
-  width: 60%;
+.video-controls-overlay input[type="range"] {
+  flex: 1;
   height: 6px;
-  border-radius: 5px;
-  background-color: #ddd;
+  border-radius: 4px;
+  background-color: #ccc;
   cursor: pointer;
   appearance: none;
 }
 
-#progressBar::-webkit-slider-thumb {
+.video-controls-overlay input[type="range"]::-webkit-slider-thumb {
   appearance: none;
-  height: 14px;
-  width: 14px;
+  height: 12px;
+  width: 12px;
   background: #ff0080;
   border-radius: 50%;
-  cursor: pointer;
   border: none;
-}
-
-#progressBar:focus {
-  outline: none;
+  cursor: pointer;
 }
 
 /* Footer */
