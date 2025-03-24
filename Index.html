@@ -54,18 +54,20 @@
     </a>
   </main>
 
-  <!-- Video final con fondo negro y controles personalizados -->
+  <!-- Video con controles tipo YouTube superpuestos -->
   <section class="video-container">
     <div class="video-banner-container">
-      <video class="video-banner" id="videoBanner" loop playsinline>
-        <source src="Cv-UX.mp4" type="video/mp4">
-        Tu navegador no soporta la reproducción de video.
-      </video>
+      <div class="video-wrapper">
+        <video class="video-banner" id="videoBanner" loop playsinline>
+          <source src="Cv-UX.mp4" type="video/mp4">
+          Tu navegador no soporta la reproducción de video.
+        </video>
 
-      <!-- Controles personalizados -->
-      <div class="video-controls">
-        <button id="playPauseBtn">▶️</button>
-        <input type="range" id="progressBar" value="0" min="0" max="100">
+        <!-- Controles superpuestos -->
+        <div class="video-controls-overlay">
+          <button id="playPauseBtn">▶️</button>
+          <input type="range" id="progressBar" value="0" min="0" max="100">
+        </div>
       </div>
     </div>
   </section>
