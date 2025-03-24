@@ -57,7 +57,7 @@
   <!-- Video cargando al final, después de todas las secciones -->
   <section class="video-container">
     <div class="video-banner-container">
-      <video class="video-banner" id="videoBanner" loop playsinline muted>
+      <video class="video-banner" id="videoBanner" loop playsinline>
         <source src="Cv-UX.mp4" type="video/mp4">
         Tu navegador no soporta la reproducción de video.
       </video>
@@ -68,28 +68,6 @@
     <p>&copy; 2025 Santiago Murillo | <a href="mailto:santiagomr2003@gmail.com">Contáctame</a></p>
   </footer>
 
-  <!-- Script para manejar el video -->
-  <script>
-    const video = document.getElementById('videoBanner');
-    const videoContainer = document.querySelector('.video-banner-container');
-    
-    // Detecta cuando el video está visible en pantalla
-    function checkVideoVisibility() {
-      const rect = videoContainer.getBoundingClientRect();
-      if (rect.top <= window.innerHeight && rect.bottom >= 0) {
-        // Si el video es visible, lo muestra y lo reproduce
-        videoContainer.style.display = 'block';
-        video.play();
-      } else {
-        // Si no está visible, se detiene
-        video.pause();
-      }
-    }
-
-    // Llamar a la función de visibilidad cuando se haga scroll
-    window.addEventListener('scroll', checkVideoVisibility);
-    checkVideoVisibility(); // Llamada inicial cuando la página se carga
-  </script>
-
 </body>
 </html>
+
