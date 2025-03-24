@@ -10,7 +10,7 @@
 </head>
 <body>
 
-  <!-- Texto principal de bienvenida (ahora aparece primero) -->
+  <!-- Texto principal de bienvenida -->
   <section class="intro-text">
     <h1>Bienvenido a mi CV como Diseñador UX</h1>
     <p>Explora mi trayectoria, habilidades y proyectos destacados.</p>
@@ -54,12 +54,14 @@
     </a>
   </main>
 
-  <!-- Video que se reproduce automáticamente y se detiene cuando no está visible -->
+  <!-- Video cargando al final, después de todas las secciones -->
   <section class="video-container">
-    <video class="video-banner" id="videoBanner" loop playsinline muted>
-      <source src="Cv-UX.mp4" type="video/mp4">
-      Tu navegador no soporta la reproducción de video.
-    </video>
+    <div class="video-banner-container" style="display: none;">
+      <video class="video-banner" id="videoBanner" loop playsinline muted>
+        <source src="Cv-UX.mp4" type="video/mp4">
+        Tu navegador no soporta la reproducción de video.
+      </video>
+    </div>
   </section>
 
   <footer>
@@ -68,8 +70,6 @@
 
   <!-- Script para manejar el video -->
   <script>
-    const video = document.getElementById('videoBanner');
-    
     // Función para verificar si el video está visible en pantalla
     function checkVideoVisibility() {
       const rect = video.getBoundingClientRect();
@@ -86,11 +86,21 @@
       }
     }
 
-    // Detectar el scroll y verificar la visibilidad del video
+    // Cargar video cuando se llegue al final de la página
     window.addEventListener('scroll', checkVideoVisibility);
     checkVideoVisibility(); // Llamada inicial en caso de que el video ya esté visible
+
+    // Mostrar el video después de que el usuario haya visto las secciones
+    window.addEventListener('scroll', function () {
+      const videoContainer = document.querySelector('.video-banner-container');
+      const rect = videoContainer.getBoundingClientRect();
+      if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+        videoContainer.style.display = 'block';
+      }
+    });
   </script>
 
 </body>
 </html>
+
 
