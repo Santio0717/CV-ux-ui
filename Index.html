@@ -54,7 +54,7 @@
     </a>
   </main>
 
-  <!-- Video con controles tipo YouTube superpuestos -->
+  <!-- Video con controles modernos personalizados -->
   <section class="video-container">
     <div class="video-banner-container">
       <div class="video-wrapper">
@@ -63,10 +63,21 @@
           Tu navegador no soporta la reproducción de video.
         </video>
 
-        <!-- Controles superpuestos -->
+        <!-- Controles modernos tipo YouTube -->
         <div class="video-controls-overlay">
           <button id="playPauseBtn">▶️</button>
+          <span id="currentTime">0:00</span> /
+          <span id="duration">0:00</span>
           <input type="range" id="progressBar" value="0" min="0" max="100">
+          <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="1" title="Volumen">
+          <select id="speedControl" title="Velocidad">
+            <option value="0.5">0.5x</option>
+            <option value="1" selected>1x</option>
+            <option value="1.25">1.25x</option>
+            <option value="1.5">1.5x</option>
+            <option value="2">2x</option>
+          </select>
+          <button id="fullscreenBtn">⛶</button>
         </div>
       </div>
     </div>
