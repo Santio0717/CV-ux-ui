@@ -36,7 +36,4 @@ window.addEventListener('keydown', function(event) {
 window.addEventListener('scroll', checkVideoVisibility);
 checkVideoVisibility(); // Llamada inicial cuando la página se carga
 
-// Llamar a la función de visibilidad cuando se haga scroll
-window.addEventListener('scroll', checkVideoVisibility);
-checkVideoVisibility(); // Llamada inicial cuando la página se carga
 
