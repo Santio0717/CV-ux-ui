@@ -139,7 +139,7 @@ main {
 
 .video-controls-overlay button,
 .video-controls-overlay select {
-  background-color: #ff0080;
+  background-color: #333;  /* Color neutro */
   color: white;
   border: none;
   padding: 6px 10px;
@@ -151,7 +151,7 @@ main {
 
 .video-controls-overlay button:hover,
 .video-controls-overlay select:hover {
-  background-color: #e60073;
+  background-color: #555;
 }
 
 #progressBar {
@@ -167,7 +167,7 @@ main {
   appearance: none;
   height: 12px;
   width: 12px;
-  background: #ff0080;
+  background: #ffffff;
   border-radius: 50%;
   border: none;
   cursor: pointer;
@@ -176,6 +176,16 @@ main {
 #volumeControl {
   width: 80px;
   height: 6px;
+  cursor: pointer;
+}
+
+#volumeControl::-webkit-slider-thumb {
+  appearance: none;
+  height: 12px;
+  width: 12px;
+  background: #ffffff;
+  border-radius: 50%;
+  border: none;
   cursor: pointer;
 }
 
