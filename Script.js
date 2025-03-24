@@ -1,18 +1,15 @@
 // Función para verificar si el video está visible
 function checkVideoVisibility() {
-  const videoContainer = document.querySelector('.video-banner-container');
   const video = document.getElementById('videoBanner');
+  const rect = video.getBoundingClientRect();
   
-  const rect = videoContainer.getBoundingClientRect();
+  // Verificar si el video está visible
   if (rect.top <= window.innerHeight && rect.bottom >= 0) {
-    // Si el video es visible, lo muestra y lo reproduce
-    videoContainer.style.display = 'block';
     if (video.paused) {
-      video.play();  // Reproduce el video si está visible
+      video.play();  // Reproduce el video cuando es visible
     }
   } else {
-    // Si no está visible, lo pausa
-    video.pause();
+    video.pause();  // Pausa el video cuando ya no es visible
   }
 }
 
@@ -33,6 +30,11 @@ window.addEventListener('keydown', function(event) {
     event.preventDefault();  // Prevenir el comportamiento predeterminado (hacer scroll)
     togglePlayPause();  // Alternar entre pausar y reproducir
   }
+});
+
+// Llamar a la función de visibilidad cuando se haga scroll
+window.addEventListener('scroll', checkVideoVisibility);
+checkVideoVisibility(); // Llamada inicial cuando la página se carga
 });
 
 // Llamar a la función de visibilidad cuando se haga scroll
