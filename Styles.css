@@ -14,21 +14,25 @@ body, html {
 }
 
 /* Banner con video */
-.banner {
+.video-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 0;
   position: relative;
+  margin-top: 3rem;
+}
+
+.video-banner-container {
+  display: none; /* Inicialmente oculto */
   width: 100%;
-  height: 100vh;
-  overflow: hidden;
+  max-width: 1200px; /* Limitar el ancho del video */
+  margin: 0 auto; /* Centrar video */
 }
 
 .video-banner {
-  position: absolute;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  top: 0;
-  left: 0;
-  z-index: 1;
+  height: auto; /* Mantener la relación de aspecto */
 }
 
 /* Texto principal */
@@ -140,3 +144,4 @@ footer a {
   color: #00bfff;
   text-decoration: underline;
 }
+
