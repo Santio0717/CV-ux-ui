@@ -16,6 +16,23 @@ function checkVideoVisibility() {
   }
 }
 
+// Función para alternar la reproducción y la pausa
+function togglePlayPause() {
+  const video = document.getElementById('videoBanner');
+  const button = document.getElementById('playPauseButton');
+  
+  if (video.paused) {
+    video.play();
+    button.textContent = 'Pausar';
+  } else {
+    video.pause();
+    button.textContent = 'Reproducir';
+  }
+}
+
+// Asignar el evento de clic al botón
+document.getElementById('playPauseButton').addEventListener('click', togglePlayPause);
+
 // Llamar a la función de visibilidad cuando se haga scroll
 window.addEventListener('scroll', checkVideoVisibility);
 checkVideoVisibility(); // Llamada inicial cuando la página se carga
