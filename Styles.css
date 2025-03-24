@@ -150,9 +150,11 @@ footer a {
 .video-controls {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 10px;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 500px;
+  margin: 15px auto;
+  padding: 5px;
 }
 
 .video-controls button {
