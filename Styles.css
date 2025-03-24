@@ -5,7 +5,7 @@
   box-sizing: border-box;
 }
 
-/* Estilo general en modo oscuro */
+/* Estilo general modo oscuro */
 body, html {
   font-family: Arial, sans-serif;
   background-color: #121212; /* Fondo negro elegante */
@@ -30,7 +30,7 @@ body, html {
   z-index: 1;
 }
 
-/* Texto debajo del video (sin bloque visual) */
+/* Texto debajo del video */
 .intro-text {
   padding: 2rem;
   text-align: center;
@@ -49,7 +49,14 @@ body, html {
   color: #cccccc;
 }
 
-/* Estilos de secciones */
+/* Estilo de enlaces a secciones (clickeables) */
+.seccion-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* Estilo de secciones */
 main {
   padding: 2rem;
 }
@@ -60,6 +67,12 @@ main {
   padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.seccion:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
 }
 
 .seccion h2 {
@@ -73,7 +86,7 @@ main {
   color: #cccccc;
 }
 
-/* Botón (opcional) */
+/* Botón (opcional si lo usas en otras páginas) */
 .btn-ingresar {
   display: inline-block;
   margin-top: 1.5rem;
