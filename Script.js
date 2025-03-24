@@ -24,6 +24,7 @@ const speedControl = document.getElementById('speedControl');
 const currentTimeEl = document.getElementById('currentTime');
 const durationEl = document.getElementById('duration');
 const fullscreenBtn = document.getElementById('fullscreenBtn');
+const videoWrapper = document.querySelector('.video-wrapper'); // contenedor para fullscreen
 
 // Actualiza botón
 function updatePlayBtn() {
@@ -76,17 +77,36 @@ document.addEventListener('keydown', (e) => {
   const tag = document.activeElement.tagName.toLowerCase();
   if (tag !== 'input' && tag !== 'select' && e.code === 'Space') {
     e.preventDefault();
-    if (video.paused) video.play();
-    else video.pause();
+    if (video.paused) {
+      video.play();
+    } else {
+      video.pause();
+    }
     updatePlayBtn();
   }
 });
 
-// Pantalla completa
+// Pantalla completa con compatibilidad
 fullscreenBtn.addEventListener('click', () => {
   if (!document.fullscreenElement) {
-    video.requestFullscreen();
+    if (videoWrapper.requestFullscreen) {
+      videoWrapper.requestFullscreen();
+    } else if (videoWrapper.webkitRequestFullscreen) {
+      videoWrapper.webkitRequestFullscreen();
+    } else if (videoWrapper.mozRequestFullScreen) {
+      videoWrapper.mozRequestFullScreen();
+    } else if (videoWrapper.msRequestFullscreen) {
+      videoWrapper.msRequestFullscreen();
+    }
   } else {
-    document.exitFullscreen();
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+      document.mozCancelFullScreen();
+    } else if (document.msExitFullscreen) {
+      document.msExitFullscreen();
+    }
   }
 });
