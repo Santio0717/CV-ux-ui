@@ -6,19 +6,6 @@
   <title>Certificados - Santiago Murillo</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="Styles.css">
-
-  <script>
-    // Función para mostrar/ocultar la sección de certificados
-    function toggleCertificados() {
-      var certificadosContainer = document.getElementById('certificadosContainer');
-      // Alternar la visibilidad de la sección
-      if (certificadosContainer.style.display === "none" || certificadosContainer.style.display === "") {
-        certificadosContainer.style.display = "block";
-      } else {
-        certificadosContainer.style.display = "none";
-      }
-    }
-  </script>
 </head>
 <body>
 
@@ -28,11 +15,8 @@
     <p>Estos son los hitos que han marcado mi camino.</p>
   </section>
 
-  <!-- Botón para mostrar los certificados -->
-  <button onclick="toggleCertificados()" class="boton-certificados">Ver Certificados</button>
-
-  <!-- Botones certificados (inicialmente ocultos) -->
-  <section class="certificados-container" id="certificadosContainer" style="display: none;">
+  <!-- Botones certificados -->
+  <section class="certificados-container">
     <button onclick="window.open('EF SET Certificate.pdf', '_blank');" class="boton-certificado">
       📄 CERTIFICADO EF SET Inglés
     </button>
