@@ -238,4 +238,6 @@ body, html {
 
 .certificados-container button {
   margin: 10px;
+  width: 300px; /* Aseguramos que los botones tengan un tamaño adecuado */
+  text-align: center;
 }
