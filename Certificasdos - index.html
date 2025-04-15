@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Certificados - Santiago Murillo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Styles.css">
+
+  <script>
+    // Función para mostrar/ocultar la sección de certificados
+    function toggleCertificados() {
+      var certificadosContainer = document.getElementById('certificadosContainer');
+      // Alternar la visibilidad de la sección
+      if (certificadosContainer.style.display === "none" || certificadosContainer.style.display === "") {
+        certificadosContainer.style.display = "block";
+      } else {
+        certificadosContainer.style.display = "none";
+      }
+    }
+  </script>
+</head>
+<body>
+
+  <!-- Texto principal de sección -->
+  <section class="intro-text">
+    <h1>📜 Certificados</h1>
+    <p>Estos son los hitos que han marcado mi camino.</p>
+  </section>
+
+  <!-- Botón para mostrar los certificados -->
+  <button onclick="toggleCertificados()" class="boton-certificados">Ver Certificados</button>
+
+  <!-- Botones certificados (inicialmente ocultos) -->
+  <section class="certificados-container" id="certificadosContainer" style="display: none;">
+    <button onclick="window.open('EF SET Certificate.pdf', '_blank');" class="boton-certificado">
+      📄 CERTIFICADO EF SET Inglés
+    </button>
+
+    <button onclick="window.open('Semillero Departamental de investigación.jpeg', '_blank');" class="boton-certificado">
+      🧠 ENCUENTRO DEPARTAMENTAL SEMILLEROS DE INVESTIGACIÓN
+    </button>
+
+    <button onclick="window.open('Fundamentos de prograpación.jpeg', '_blank');" class="boton-certificado">
+      💻 FUNDAMENTOS DE PROGRAMACIÓN
+    </button>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Santiago Murillo | <a href="mailto:santiagomr2003@gmail.com">Contáctame</a></p>
+  </footer>
+
+</body>
+</html>
