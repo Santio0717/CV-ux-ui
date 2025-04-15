@@ -43,7 +43,7 @@ body, html {
 /* Secciones organizadas en cuadrícula tipo tarjetas */
 .grid-secciones {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Ajuste flexible de las tarjetas */
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Ajusta el tamaño de las columnas */
   gap: 2rem;
   padding: 4rem 2rem;
   max-width: 1200px;
@@ -241,4 +241,6 @@ body, html {
 
 .certificados-container button {
   margin: 10px;
+  width: 300px; /* Aseguramos que los botones tengan un tamaño adecuado */
+  text-align: center;
 }
