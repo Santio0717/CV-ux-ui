@@ -43,7 +43,7 @@ body, html {
 /* Secciones organizadas en cuadrícula tipo tarjetas */
 .grid-secciones {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Ajuste flexible de las tarjetas */
   gap: 2rem;
   padding: 4rem 2rem;
   max-width: 1200px;
@@ -188,4 +188,57 @@ body, html {
 #volumeControl::-webkit-slider-thumb {
   appearance: none;
   height: 12px;
-  width:
+  width: 12px;
+  background: #ffffff;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+
+/* Estilos para los botones de los certificados */
+.boton-certificado {
+  display: inline-block;
+  padding: 15px 30px;
+  margin: 10px;
+  background-color: #2a2a2a;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  width: 100%; /* Hacer que los botones ocupen el 100% del ancho del contenedor */
+  max-width: 300px; /* Establecer un tamaño máximo para que no sean demasiado grandes */
+}
+
+.boton-certificado:hover {
+  background-color: #1a1a1a;
+  border-color: #ff6f61;
+  transform: scale(1.05);
+}
+
+.boton-certificado:active {
+  transform: scale(1);
+}
+
+/* Estilo para los botones al hacer clic */
+.boton-certificado:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(255, 111, 97, 0.8);
+}
+
+/* Contenedor de botones */
+.certificados-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 20px; /* Aumentar el espacio entre los botones */
+}
+
+.certificados-container button {
+  margin: 10px;
+}
