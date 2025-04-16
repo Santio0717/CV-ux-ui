@@ -86,28 +86,31 @@ body, html {
 .regresar-button {
   background-color: transparent; /* Fondo transparente */
   color: #ffffff; /* Texto blanco */
-  padding: 1rem 2rem; /* Mismo padding que las tarjetas */
-  font-size: 1.5rem; /* Igual al tamaño de fuente de las tarjetas */
+  padding: 0.5rem 1rem; /* Tamaño adecuado solo para el emoji */
+  font-size: 2rem; /* Tamaño grande para el emoji */
   border: none; /* Elimina el borde */
-  border-radius: 20px; /* Redondeado igual al de las tarjetas */
+  border-radius: 50%; /* Redondeo completo para el botón circular */
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   margin: 0 auto; /* Centrado */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .regresar-button:hover {
-  transform: translateY(-6px); /* Efecto de elevación */
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.7); /* Aumento de la sombra al pasar el cursor */
+  transform: none; /* Elimina la elevación */
+  box-shadow: none; /* Elimina la sombra al pasar el cursor */
 }
 
 /* Ajustes para pantallas más pequeñas */
 @media (max-width: 768px) {
-  .grid-secciones {
-    grid-template-columns: 1fr; /* Una sola columna en pantallas pequeñas */
+  .regresar-button {
+    font-size: 2rem; /* Mantén el tamaño del emoji para pantallas pequeñas */
+    padding: 1rem; /* Ajusta el padding */
   }
+}
 
-  .seccion {
-    height: auto;
   }
 
   .regresar-button {
