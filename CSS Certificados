@@ -34,15 +34,15 @@ body, html {
   gap: 1rem; /* Reducido el espacio entre las filas */
   padding: 1rem 2rem;
   max-width: 1200px;
-  margin: 0 auto;
-  justify-content: center;
+  margin: 0 auto; /* Asegura que el contenido esté centrado en la pantalla */
+  justify-content: center; /* Centra la cuadrícula dentro del contenedor */
   text-align: center;
 }
 
 /* Cada fila con dos botones */
 .row {
   display: flex;
-  justify-content: center;
+  justify-content: center; /* Centra los botones de la fila */
   gap: 1rem; /* Reducido el espacio entre botones */
   margin-bottom: 1rem; /* Espacio entre filas */
 }
