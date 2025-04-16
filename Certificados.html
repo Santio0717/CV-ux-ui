@@ -15,9 +15,19 @@
     <p>Estos son los hitos que han marcado mi camino.</p>
   </section>
 
-  <!-- Sección sin botones (vacía) -->
+  <!-- Sección principal con el botón para mostrar más -->
   <section class="certificados-container">
-    <p>Pronto podrás ver más detalles sobre mis certificados aquí.</p>
+    <!-- Botón que al hacer click muestra los otros certificados -->
+    <button id="mostrar-certificados" class="seccion-link">
+      Mostrar certificados
+    </button>
+    
+    <!-- Botones adicionales (inicialmente ocultos) -->
+    <div id="certificados-extras" class="extra-buttons">
+      <button class="certificado-item">🇺🇸 Certificado EF SET</button>
+      <button class="certificado-item">👨‍💻 Fundamentos de programación</button>
+      <button class="certificado-item">🔬 Semillero Departamento de Investigación</button>
+    </div>
   </section>
 
   <!-- Footer -->
@@ -25,6 +35,17 @@
     <p>&copy; 2025 Santiago Murillo | <a href="mailto:santiagomr2003@gmail.com">Contáctame</a></p>
   </footer>
 
+  <!-- Script para mostrar los botones adicionales -->
+  <script>
+    document.getElementById('mostrar-certificados').addEventListener('click', function() {
+      var extraButtons = document.getElementById('certificados-extras');
+      if (extraButtons.style.display === 'none' || extraButtons.style.display === '') {
+        extraButtons.style.display = 'grid'; // Muestra los botones
+      } else {
+        extraButtons.style.display = 'none'; // Oculta los botones
+      }
+    });
+  </script>
+
 </body>
 </html>
-
