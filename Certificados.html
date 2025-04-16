@@ -17,17 +17,27 @@
 
   <!-- Sección con los botones que se mostrarán al hacer clic -->
   <section class="certificados-container">
-    <!-- Botones adicionales (inicialmente ocultos) -->
-    <div id="certificados-extras" class="extra-buttons">
-      <!-- Los botones de los certificados con sus enlaces -->
-      <a href="EF SET Certificate.pdf" class="certificado-item" target="_blank">
-        🗽 Certificado EF SET
+    <!-- Los botones de los certificados con sus enlaces -->
+    <div class="grid-secciones">
+      <a href="EF SET Certificate.pdf" class="seccion-link">
+        <section class="seccion">
+          <h2>🗽 Certificado EF SET</h2>
+          <p>Accede al certificado EF SET.</p>
+        </section>
       </a>
-      <a href="Fundamentos de programación.jpeg" class="certificado-item" target="_blank">
-        👨‍💻 Fundamentos de programación
+      
+      <a href="Fundamentos de programación.jpeg" class="seccion-link">
+        <section class="seccion">
+          <h2>👨‍💻 Fundamentos de programación</h2>
+          <p>Accede al certificado de Fundamentos de programación.</p>
+        </section>
       </a>
-      <a href="Semillero Departamental de investigación jpeg.jpeg" class="certificado-item" target="_blank">
-        🔬 Semillero Departamento de Investigación
+      
+      <a href="Semillero Departamental de investigación jpeg.jpeg" class="seccion-link">
+        <section class="seccion">
+          <h2>🔬 Semillero Departamento de Investigación</h2>
+          <p>Accede al certificado del Semillero Departamental.</p>
+        </section>
       </a>
     </div>
   </section>
@@ -37,17 +47,6 @@
     <p>&copy; 2025 Santiago Murillo | <a href="mailto:santiagomr2003@gmail.com">Contáctame</a></p>
   </footer>
 
-  <!-- Script para mostrar los botones adicionales -->
-  <script>
-    document.getElementById('mostrar-certificados').addEventListener('click', function() {
-      var extraButtons = document.getElementById('certificados-extras');
-      if (extraButtons.style.display === 'none' || extraButtons.style.display === '') {
-        extraButtons.style.display = 'grid'; // Muestra los botones
-      } else {
-        extraButtons.style.display = 'none'; // Oculta los botones
-      }
-    });
-  </script>
-
 </body>
 </html>
+
