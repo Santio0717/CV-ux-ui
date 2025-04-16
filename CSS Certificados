@@ -23,12 +23,19 @@ body, html {
 /* Secciones organizadas en cuadrícula tipo tarjetas */
 .grid-secciones {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Ajusta el tamaño de las columnas */
+  grid-template-columns: repeat(2, 1fr); /* Dos columnas */
   gap: 2rem;
   padding: 4rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
   justify-content: center;
+}
+
+/* Cada fila con dos botones */
+.row {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
 }
 
 /* Estilo general para cada tarjeta */
@@ -96,6 +103,10 @@ body, html {
 
 /* Ajustes para pantallas más pequeñas */
 @media (max-width: 768px) {
+  .grid-secciones {
+    grid-template-columns: 1fr; /* Una sola columna */
+  }
+
   .seccion {
     height: auto;
   }
