@@ -20,48 +20,61 @@ body, html {
   padding: 2rem;
 }
 
-/* Estilo para los botones de certificados */
-.extra-buttons {
-  display: grid; /* Muestra los botones como una cuadrícula */
-  gap: 1rem;
+/* Secciones organizadas en cuadrícula tipo tarjetas */
+.grid-secciones {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Ajusta el tamaño de las columnas */
+  gap: 2rem;
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
   justify-content: center;
-  margin-top: 2rem;
 }
 
-.certificado-item {
+/* Estilo general para cada tarjeta */
+.seccion-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+.seccion {
   background-color: #1c1c1c;
-  color: #ffffff;
-  padding: 12px;
-  font-size: 1.2rem;
-  text-align: center;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 2rem;
+  border-radius: 20px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  width: 250px;
-  margin: 0 auto;
-  text-decoration: none;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 250px;
 }
 
-.certificado-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+.seccion:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.7);
 }
 
-.certificado-item .icono {
-  font-size: 1.6rem;
+.seccion h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.6rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.seccion p {
+  font-size: 1rem;
+  color: #bbbbbb;
 }
 
 /* Ajustes para pantallas más pequeñas */
 @media (max-width: 768px) {
-  .certificado-item {
-    font-size: 1rem;
-    padding: 10px;
-    width: 100%;
+  .seccion {
+    height: auto;
   }
 }
