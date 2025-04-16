@@ -47,7 +47,7 @@ body, html {
   margin-bottom: 1rem; /* Espacio entre filas */
 }
 
-/* Estilo general para cada tarjeta */
+/* Estilo general para cada tarjeta (botón) */
 .seccion-link {
   display: block;
   width: 100%;
@@ -57,39 +57,39 @@ body, html {
 }
 
 .seccion {
-  background-color: #1c1c1c;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background-color: #1c1c1c; /* Fondo oscuro */
+  border: 1px solid rgba(255, 255, 255, 0.05); /* Borde sutil */
   padding: 2rem;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); /* Sombra sutil */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición al pasar el cursor */
   height: 250px;
 }
 
 .seccion:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.7);
+  transform: translateY(-6px); /* Efecto de elevación */
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.7); /* Aumento de la sombra al pasar el cursor */
 }
 
 .seccion h2 {
   font-size: 1.5rem;
   margin-bottom: 0.6rem;
   font-weight: 600;
-  color: #ffffff;
+  color: #ffffff; /* Texto blanco */
 }
 
-* Estilo para el botón regresar */
+/* Estilo para el botón regresar */
 .regresar-container {
   text-align: center;
   margin-top: 3rem;
 }
 
 .regresar-button {
-  background-color: #1c1c1c; /* Fondo oscuro similar al de las tarjetas */
+  background-color: #1c1c1c; /* Fondo oscuro */
   color: #ffffff; /* Texto blanco */
   padding: 2rem; /* Mismo padding que las tarjetas */
   font-size: 1.5rem; /* Igual al tamaño de fuente de las tarjetas */
@@ -101,8 +101,8 @@ body, html {
 }
 
 .regresar-button:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.7); /* Efecto de hover similar al de las tarjetas */
+  transform: translateY(-6px); /* Efecto de elevación */
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.7); /* Aumento de la sombra al pasar el cursor */
 }
 
 /* Ajustes para pantallas más pequeñas */
@@ -117,6 +117,6 @@ body, html {
 
   .regresar-button {
     font-size: 1rem; /* Ajuste del tamaño de fuente */
-    padding: 1rem; /* Ajuste del padding */
+    padding: 10px; /* Ajuste del padding */
   }
 }
