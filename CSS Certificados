@@ -1,0 +1,99 @@
+/* Reset general */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Tipografía y base */
+body, html {
+  font-family: 'Poppins', sans-serif;
+  background-color: #000000;
+  color: #f5f5f5;
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+/* Estilo general de la sección de Certificados */
+.certificados-container {
+  text-align: center;
+  padding: 2rem;
+}
+
+.certificados-container p {
+  font-size: 1.2rem;
+  color: #ffffff;
+  font-weight: 300;
+  margin-top: 20px;
+}
+
+/* Estilo del botón "Mostrar certificados" */
+#mostrar-certificados {
+  background-color: #1c1c1c;
+  color: #ffffff;
+  padding: 12px;
+  font-size: 1.2rem;
+  text-align: center;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-top: 2rem;
+}
+
+#mostrar-certificados:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* Estilo para los botones extra de certificados (ocultos inicialmente) */
+.extra-buttons {
+  display: none; /* Los botones están ocultos inicialmente */
+  margin-top: 2rem;
+  display: grid;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* Estilo para cada botón adicional */
+.certificado-item {
+  background-color: #1c1c1c;
+  color: #ffffff;
+  padding: 12px;
+  font-size: 1.2rem;
+  text-align: center;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.certificado-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* Estilos generales para el texto de los certificados */
+.certificado-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 250px;
+  margin: 0 auto;
+}
+
+/* Ajustes para pantallas más pequeñas */
+@media (max-width: 768px) {
+  #mostrar-certificados {
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  .certificado-item {
+    font-size: 1rem;
+    padding: 10px;
+    width: 100%;
+  }
+}
