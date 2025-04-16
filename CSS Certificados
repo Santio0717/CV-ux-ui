@@ -20,14 +20,7 @@ body, html {
   padding: 2rem;
 }
 
-.certificados-container p {
-  font-size: 1.2rem;
-  color: #ffffff;
-  font-weight: 300;
-  margin-top: 20px;
-}
-
-/* Estilo del botón "Mostrar certificados" */
+/* Botón para mostrar certificados */
 #mostrar-certificados {
   background-color: #1c1c1c;
   color: #ffffff;
@@ -67,21 +60,17 @@ body, html {
   cursor: pointer;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 250px;
+  margin: 0 auto;
 }
 
 .certificado-item:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-}
-
-/* Estilos generales para el texto de los certificados */
-.certificado-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  width: 250px;
-  margin: 0 auto;
 }
 
 /* Ajustes para pantallas más pequeñas */
