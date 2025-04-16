@@ -14,7 +14,8 @@ body, html {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center; /* Centra todo el contenido */
+  align-items: center; /* Centra todo el contenido */
   min-height: 100vh;
 }
 
@@ -22,18 +23,20 @@ body, html {
 .certificados-container {
   text-align: center;
   padding: 2rem;
-  flex-grow: 1; /* Hace que esta sección ocupe el espacio disponible */
+  margin-top: 20px;
+  width: 100%;
 }
 
 /* Secciones organizadas en cuadrícula tipo tarjetas */
 .grid-secciones {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* Dos columnas */
-  gap: 1rem;
-  padding: 2rem 2rem;
+  gap: 2rem;
+  padding: 1rem 1rem;
   max-width: 1200px;
   margin: 0 auto;
   justify-content: center;
+  text-align: center;
 }
 
 /* Cada fila con dos botones */
@@ -61,7 +64,6 @@ body, html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   height: 250px;
@@ -94,7 +96,6 @@ body, html {
   border-radius: 8px;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  margin: 0 auto;
 }
 
 .regresar-button:hover {
