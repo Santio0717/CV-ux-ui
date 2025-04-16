@@ -1,53 +1,67 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Certificados - Santiago Murillo</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="Styles.css">
-</head>
-<body>
+/* Reset general */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  <!-- Texto principal de sección -->
-  <section class="intro-text">
-    <h1>📜 Certificados</h1>
-    <p>Estos son los hitos que han marcado mi camino.</p>
-  </section>
+/* Tipografía y base */
+body, html {
+  font-family: 'Poppins', sans-serif;
+  background-color: #000000;
+  color: #f5f5f5;
+  scroll-behavior: smooth;
+  height: 100%;
+}
 
-  <!-- Sección con los botones que se mostrarán al hacer clic -->
-  <section class="certificados-container">
-    <!-- Botones adicionales (inicialmente ocultos) -->
-    <div id="certificados-extras" class="extra-buttons">
-      <!-- Los botones de los certificados con sus enlaces -->
-      <a href="EF SET Certificate.pdf" class="certificado-item" target="_blank">
-        🗽 Certificado EF SET
-      </a>
-      <a href="Fundamentos de programación.jpeg" class="certificado-item" target="_blank">
-        👨‍💻 Fundamentos de programación
-      </a>
-      <a href="Semillero Departamental de investigación jpeg.jpeg" class="certificado-item" target="_blank">
-        🔬 Semillero Departamento de Investigación
-      </a>
-    </div>
-  </section>
+/* Estilo general de la sección de Certificados */
+.certificados-container {
+  text-align: center;
+  padding: 2rem;
+}
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 Santiago Murillo | <a href="mailto:santiagomr2003@gmail.com">Contáctame</a></p>
-  </footer>
+/* Estilo para los botones de certificados */
+.extra-buttons {
+  display: grid; /* Muestra los botones como una cuadrícula */
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
 
-  <!-- Script para mostrar los botones adicionales -->
-  <script>
-    document.getElementById('mostrar-certificados').addEventListener('click', function() {
-      var extraButtons = document.getElementById('certificados-extras');
-      if (extraButtons.style.display === 'none' || extraButtons.style.display === '') {
-        extraButtons.style.display = 'grid'; // Muestra los botones
-      } else {
-        extraButtons.style.display = 'none'; // Oculta los botones
-      }
-    });
-  </script>
+.certificado-item {
+  background-color: #1c1c1c;
+  color: #ffffff;
+  padding: 12px;
+  font-size: 1.2rem;
+  text-align: center;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 250px;
+  margin: 0 auto;
+  text-decoration: none;
+}
 
-</body>
-</html>
+.certificado-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.certificado-item .icono {
+  font-size: 1.6rem;
+}
+
+/* Ajustes para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .certificado-item {
+    font-size: 1rem;
+    padding: 10px;
+    width: 100%;
+  }
+}
