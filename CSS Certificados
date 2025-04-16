@@ -20,35 +20,14 @@ body, html {
   padding: 2rem;
 }
 
-/* Botón para mostrar certificados */
-#mostrar-certificados {
-  background-color: #1c1c1c;
-  color: #ffffff;
-  padding: 12px;
-  font-size: 1.2rem;
-  text-align: center;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  margin-top: 2rem;
-}
-
-#mostrar-certificados:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-}
-
-/* Estilo para los botones extra de certificados (ocultos inicialmente) */
+/* Estilo para los botones de certificados */
 .extra-buttons {
-  display: none; /* Los botones están ocultos inicialmente */
-  margin-top: 2rem;
-  display: grid;
+  display: grid; /* Muestra los botones como una cuadrícula */
   gap: 1rem;
   justify-content: center;
+  margin-top: 2rem;
 }
 
-/* Estilo para cada botón adicional */
 .certificado-item {
   background-color: #1c1c1c;
   color: #ffffff;
@@ -66,6 +45,7 @@ body, html {
   gap: 10px;
   width: 250px;
   margin: 0 auto;
+  text-decoration: none;
 }
 
 .certificado-item:hover {
@@ -73,13 +53,12 @@ body, html {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
+.certificado-item .icono {
+  font-size: 1.6rem;
+}
+
 /* Ajustes para pantallas más pequeñas */
 @media (max-width: 768px) {
-  #mostrar-certificados {
-    font-size: 1rem;
-    padding: 10px;
-  }
-
   .certificado-item {
     font-size: 1rem;
     padding: 10px;
