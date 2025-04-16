@@ -83,11 +83,6 @@ body, html {
 }
 
 /* Estilo para el botón regresar */
-.regresar-container {
-  text-align: center;
-  margin-top: 3rem;
-}
-
 .regresar-button {
   background-color: #1c1c1c; /* Fondo oscuro */
   color: #ffffff; /* Texto blanco */
