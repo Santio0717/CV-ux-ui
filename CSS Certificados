@@ -84,11 +84,11 @@ body, html {
 
 /* Estilo para el botón regresar */
 .regresar-button {
-  background-color: #1c1c1c; /* Fondo oscuro */
+  background-color: transparent; /* Fondo transparente */
   color: #ffffff; /* Texto blanco */
-  padding: 2rem; /* Mismo padding que las tarjetas */
+  padding: 1rem 2rem; /* Mismo padding que las tarjetas */
   font-size: 1.5rem; /* Igual al tamaño de fuente de las tarjetas */
-  border: 1px solid rgba(255, 255, 255, 0.05); /* Borde sutil */
+  border: none; /* Elimina el borde */
   border-radius: 20px; /* Redondeado igual al de las tarjetas */
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
