@@ -31,7 +31,7 @@ body, html {
 .grid-secciones {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* Dos columnas */
-  gap: 1rem;
+  gap: 1rem; /* Reducido el espacio entre las filas */
   padding: 2rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
@@ -43,7 +43,8 @@ body, html {
 .row {
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  gap: 1rem; /* Reducido el espacio entre botones */
+  margin-bottom: 1rem; /* Espacio entre filas */
 }
 
 /* Estilo general para cada tarjeta */
