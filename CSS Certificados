@@ -31,8 +31,8 @@ body, html {
 .grid-secciones {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* Dos columnas */
-  gap: 2rem;
-  padding: 1rem 1rem;
+  gap: 1rem;
+  padding: 2rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
   justify-content: center;
@@ -96,6 +96,7 @@ body, html {
   border-radius: 8px;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 0 auto;
 }
 
 .regresar-button:hover {
