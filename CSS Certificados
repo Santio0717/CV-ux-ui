@@ -32,7 +32,7 @@ body, html {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* Dos columnas */
   gap: 1rem; /* Reducido el espacio entre las filas */
-  padding: 2rem 2rem;
+  padding: 1rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
   justify-content: center;
@@ -82,27 +82,27 @@ body, html {
   color: #ffffff;
 }
 
-/* Estilo para el botón regresar */
+* Estilo para el botón regresar */
 .regresar-container {
   text-align: center;
   margin-top: 3rem;
 }
 
 .regresar-button {
-  background-color: #1c1c1c;
-  color: #ffffff;
-  padding: 12px;
-  font-size: 1.2rem;
-  border: none;
-  border-radius: 8px;
+  background-color: #1c1c1c; /* Fondo oscuro similar al de las tarjetas */
+  color: #ffffff; /* Texto blanco */
+  padding: 2rem; /* Mismo padding que las tarjetas */
+  font-size: 1.5rem; /* Igual al tamaño de fuente de las tarjetas */
+  border: 1px solid rgba(255, 255, 255, 0.05); /* Borde sutil */
+  border-radius: 20px; /* Redondeado igual al de las tarjetas */
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  margin: 0 auto;
+  margin: 0 auto; /* Centrado */
 }
 
 .regresar-button:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  transform: translateY(-6px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.7); /* Efecto de hover similar al de las tarjetas */
 }
 
 /* Ajustes para pantallas más pequeñas */
@@ -116,7 +116,7 @@ body, html {
   }
 
   .regresar-button {
-    font-size: 1rem;
-    padding: 10px;
+    font-size: 1rem; /* Ajuste del tamaño de fuente */
+    padding: 1rem; /* Ajuste del padding */
   }
 }
