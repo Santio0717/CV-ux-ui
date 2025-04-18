@@ -1,120 +1,37 @@
-/* Reset general */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* Tipografía y base */
-body, html {
-  font-family: 'Poppins', sans-serif;
-  background-color: #000000;
-  color: #f5f5f5;
-  scroll-behavior: smooth;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* Centra todo el contenido */
-  align-items: center; /* Centra todo el contenido */
-  min-height: 100vh;
-}
-
-/* Estilo general de la sección de Certificados */
-.certificados-container {
-  text-align: center;
-  padding: 2rem;
-  margin-top: 20px;
-  width: 100%;
-}
-
-/* Secciones organizadas en cuadrícula tipo tarjetas */
-.grid-secciones {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Dos columnas */
-  gap: 1rem; /* Reducido el espacio entre las filas */
-  padding: 1rem 2rem;
-  max-width: 1200px;
-  margin: 0 auto; /* Asegura que el contenido esté centrado en la pantalla */
-  justify-content: center; /* Centra la cuadrícula dentro del contenedor */
-  text-align: center;
-}
-
-/* Cada fila con dos botones */
-.row {
-  display: flex;
-  justify-content: center; /* Centra los botones de la fila */
-  gap: 1rem; /* Reducido el espacio entre botones */
-  margin-bottom: 1rem; /* Espacio entre filas */
-}
-
-/* Estilo general para cada tarjeta (botón) */
-.seccion-link {
-  display: block;
-  width: 100%;
-  height: 100%;
-  text-decoration: none;
-  color: inherit;
-}
-
-.seccion {
-  background-color: #1c1c1c; /* Fondo oscuro */
-  border: 1px solid rgba(255, 255, 255, 0.05); /* Borde sutil */
-  padding: 2rem;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); /* Sombra sutil */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición al pasar el cursor */
-  height: 250px;
-}
-
-.seccion:hover {
-  transform: translateY(-6px); /* Efecto de elevación */
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.7); /* Aumento de la sombra al pasar el cursor */
-}
-
-.seccion h2 {
-  font-size: 1.5rem;
-  margin-bottom: 0.6rem;
-  font-weight: 600;
-  color: #ffffff; /* Texto blanco */
-}
-
 /* Estilo para el botón regresar */
 .regresar-button {
-  background-color: transparent; /* Fondo transparente */
+  background-color: #1c1c1c; /* Fondo oscuro similar al de las tarjetas */
   color: #ffffff; /* Texto blanco */
-  padding: 0.5rem 1rem; /* Tamaño adecuado solo para el emoji */
-  font-size: 2rem; /* Tamaño grande para el emoji */
+  padding: 0.8rem 2rem; /* Espaciado alrededor del emoji y el texto */
+  font-size: 1.5rem; /* Tamaño de la fuente para el texto */
   border: none; /* Elimina el borde */
-  border-radius: 50%; /* Redondeo completo para el botón circular */
+  border-radius: 20px; /* Redondeo para el botón */
+  display: flex;
+  justify-content: center; /* Centra el contenido horizontalmente */
+  align-items: center; /* Centra el contenido verticalmente */
+  gap: 1rem; /* Espacio entre el emoji y el texto */
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   margin: 0 auto; /* Centrado */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+}
+
+.regresar-button .emoji {
+  font-size: 2.5rem; /* Aumenta el tamaño del emoji */
 }
 
 .regresar-button:hover {
-  transform: none; /* Elimina la elevación */
-  box-shadow: none; /* Elimina la sombra al pasar el cursor */
+  transform: translateY(-6px); /* Efecto de elevación */
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.7); /* Sombra al pasar el cursor */
 }
 
 /* Ajustes para pantallas más pequeñas */
 @media (max-width: 768px) {
   .regresar-button {
-    font-size: 2rem; /* Mantén el tamaño del emoji para pantallas pequeñas */
-    padding: 1rem; /* Ajusta el padding */
-  }
-}
-
-  }
-
-  .regresar-button {
     font-size: 1rem; /* Ajuste del tamaño de fuente */
-    padding: 10px; /* Ajuste del padding */
+    padding: 0.5rem 1rem; /* Ajuste del padding */
+  }
+
+  .regresar-button .emoji {
+    font-size: 2rem; /* Ajuste del tamaño del emoji */
   }
 }
