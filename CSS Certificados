@@ -1,37 +1,68 @@
+/* Estilo general para cada tarjeta (botón) */
+.seccion-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+.seccion {
+  background-color: #1c1c1c; /* Fondo oscuro */
+  border: 1px solid rgba(255, 255, 255, 0.05); /* Borde sutil */
+  padding: 2rem;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); /* Sombra sutil */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición al pasar el cursor */
+  height: 250px;
+}
+
+.seccion:hover {
+  transform: translateY(-6px); /* Efecto de elevación */
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.7); /* Aumento de la sombra al pasar el cursor */
+}
+
+.seccion h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.6rem;
+  font-weight: 600;
+  color: #ffffff; /* Texto blanco */
+}
+
 /* Estilo para el botón regresar */
 .regresar-button {
-  background-color: transparent; /* Fondo transparente */
+  background-color: #1c1c1c; /* Fondo oscuro */
   color: #ffffff; /* Texto blanco */
-  padding: 0.5rem 2rem; /* Ajusta el padding alrededor del emoji y el texto */
-  font-size: 1.5rem; /* Tamaño de la fuente para el texto */
-  border: none; /* Elimina el borde */
-  border-radius: 20px; /* Redondeado para el botón */
-  display: flex;
-  flex-direction: column; /* Coloca el emoji encima del texto */
-  justify-content: center; /* Centra el contenido verticalmente */
-  align-items: center; /* Centra el contenido horizontalmente */
-  gap: 0.5rem; /* Espacio entre el emoji y el texto */
-  cursor: pointer; /* Cambia el cursor a manito cuando se pasa el mouse sobre el botón */
+  padding: 2rem; /* Mismo padding que las tarjetas */
+  font-size: 1.5rem; /* Igual al tamaño de fuente de las tarjetas */
+  border: 1px solid rgba(255, 255, 255, 0.05); /* Borde sutil */
+  border-radius: 20px; /* Redondeado igual al de las tarjetas */
+  cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   margin: 0 auto; /* Centrado */
 }
 
-.regresar-button .emoji {
-  font-size: 3rem; /* Tamaño grande del emoji */
-}
-
 .regresar-button:hover {
   transform: translateY(-6px); /* Efecto de elevación */
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.7); /* Aumento de la sombra al pasar el cursor */
 }
 
 /* Ajustes para pantallas más pequeñas */
 @media (max-width: 768px) {
-  .regresar-button {
-    font-size: 1rem; /* Ajuste del tamaño de fuente */
-    padding: 0.8rem 1.5rem; /* Ajuste del padding */
+  .grid-secciones {
+    grid-template-columns: 1fr; /* Una sola columna en pantallas pequeñas */
   }
 
-  .regresar-button .emoji {
-    font-size: 2.5rem; /* Ajuste del tamaño del emoji */
+  .seccion {
+    height: auto;
+  }
+
+  .regresar-button {
+    font-size: 1rem; /* Ajuste del tamaño de fuente */
+    padding: 1rem; /* Ajuste del padding */
   }
 }
