@@ -11,13 +11,14 @@
   justify-content: center; /* Centra el contenido verticalmente */
   align-items: center; /* Centra el contenido horizontalmente */
   gap: 0.5rem; /* Espacio entre el emoji y el texto */
-  cursor: pointer;
+  cursor: pointer; /* Cambia el cursor a manito cuando se pasa el mouse sobre el botón */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   margin: 0 auto; /* Centrado */
 }
 
 .regresar-button .emoji {
   font-size: 3rem; /* Tamaño grande del emoji */
+  cursor: pointer; /* Cambia el cursor a manito sobre el emoji */
 }
 
 .regresar-button:hover {
@@ -36,3 +37,4 @@
     font-size: 2.5rem; /* Ajuste del tamaño del emoji */
   }
 }
+
