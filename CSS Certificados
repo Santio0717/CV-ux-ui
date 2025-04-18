@@ -18,12 +18,10 @@
 
 .regresar-button .emoji {
   font-size: 3rem; /* Tamaño grande del emoji */
-  cursor: pointer; /* Cambia el cursor a manito sobre el emoji */
 }
 
 .regresar-button:hover {
   transform: translateY(-6px); /* Efecto de elevación */
-  box-shadow: none; /* Elimina la sombra al pasar el cursor */
 }
 
 /* Ajustes para pantallas más pequeñas */
