@@ -51,7 +51,7 @@ body, html {
   justify-content: center;
 }
 
-/* Estilo general para cada tarjeta */
+/* Estilo general para cada tarjeta (botón) */
 .seccion-link {
   display: block;
   width: 100%;
@@ -61,8 +61,8 @@ body, html {
 }
 
 .seccion {
-  background-color: #1c1c1c;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background-color: #1c1c1c; /* Fondo oscuro */
+  border: 1px solid rgba(255, 255, 255, 0.05); /* Borde sutil */
   padding: 2rem;
   border-radius: 20px;
   display: flex;
@@ -76,15 +76,15 @@ body, html {
 }
 
 .seccion:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.7);
+  transform: translateY(-6px); /* Efecto de elevación */
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.7); /* Aumento de la sombra al pasar el cursor */
 }
 
 .seccion h2 {
   font-size: 1.5rem;
   margin-bottom: 0.6rem;
   font-weight: 600;
-  color: #ffffff;
+  color: #ffffff; /* Texto blanco */
 }
 
 .seccion p {
@@ -92,56 +92,67 @@ body, html {
   color: #bbbbbb;
 }
 
-/* Video banner */
-.video-container {
+/* Estilo para el botón regresar */
+.regresar-button {
+  background-color: #1c1c1c; /* Fondo oscuro */
+  color: #ffffff; /* Texto blanco */
+  padding: 2rem; /* Mismo padding que las tarjetas */
+  font-size: 1.5rem; /* Igual al tamaño de fuente de las tarjetas */
+  border: 1px solid rgba(255, 255, 255, 0.05); /* Borde sutil */
+  border-radius: 20px; /* Redondeado igual al de las tarjetas */
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 0 auto; /* Centrado */
+  text-align: center;
   display: flex;
+  flex-direction: column; /* Coloca el emoji encima del texto */
   justify-content: center;
   align-items: center;
-  padding: 3rem 0;
-  position: relative;
-  margin-top: 3rem;
-  background-color: #000000;
 }
 
-.video-banner-container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  background-color: #000000;
+.regresar-button .emoji {
+  font-size: 3rem; /* Tamaño grande del emoji */
 }
 
-.video-wrapper {
-  position: relative;
-  width: 100%;
-  max-width: 1200px;
-  overflow: hidden;
+.regresar-button:hover {
+  transform: translateY(-6px); /* Efecto de elevación */
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.7); /* Aumento de la sombra al pasar el cursor */
 }
 
-.video-banner {
-  width: 100%;
-  height: auto;
-  display: block;
-  background-color: #000000;
-  border-radius: 0;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+.regresar-button span {
+  margin-top: 0.5rem;
+  font-size: 1rem;
 }
 
-/* Controles modernos tipo YouTube */
-.video-controls-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  padding: 0.5rem 1rem;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 0.8rem;
-  box-sizing: border-box;
-  z-index: 10;
-  font-size: 0.9rem;
+/* Ajustes para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .grid-secciones {
+    grid-template-columns: 1fr; /* Una sola columna en pantallas pequeñas */
+  }
+
+  .seccion {
+    height: auto;
+  }
+
+  .regresar-button {
+    font-size: 1rem; /* Ajuste del tamaño de fuente */
+    padding: 1rem; /* Ajuste del padding */
+  }
 }
+
+/* Estilos para la página de Certificados sin los botones */
+.certificados-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.certificados-container p {
+  font-size: 1.2rem;
+  color: #ffffff;
+  font-weight: 300;
+  margin-top: 20px;
+}
+
 
 .video-controls-overlay button,
 .video-controls-overlay select {
