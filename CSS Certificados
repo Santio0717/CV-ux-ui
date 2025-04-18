@@ -1,37 +1,38 @@
 /* Estilo para el botón regresar */
 .regresar-button {
-  background-color: #1c1c1c; /* Fondo oscuro similar al de las tarjetas */
+  background-color: transparent; /* Fondo transparente */
   color: #ffffff; /* Texto blanco */
-  padding: 0.8rem 2rem; /* Espaciado alrededor del emoji y el texto */
+  padding: 0.5rem 2rem; /* Ajusta el padding alrededor del emoji y el texto */
   font-size: 1.5rem; /* Tamaño de la fuente para el texto */
   border: none; /* Elimina el borde */
-  border-radius: 20px; /* Redondeo para el botón */
+  border-radius: 20px; /* Redondeado para el botón */
   display: flex;
-  justify-content: center; /* Centra el contenido horizontalmente */
-  align-items: center; /* Centra el contenido verticalmente */
-  gap: 1rem; /* Espacio entre el emoji y el texto */
+  flex-direction: column; /* Coloca el emoji encima del texto */
+  justify-content: center; /* Centra el contenido verticalmente */
+  align-items: center; /* Centra el contenido horizontalmente */
+  gap: 0.5rem; /* Espacio entre el emoji y el texto */
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   margin: 0 auto; /* Centrado */
 }
 
 .regresar-button .emoji {
-  font-size: 2.5rem; /* Aumenta el tamaño del emoji */
+  font-size: 3rem; /* Tamaño grande del emoji */
 }
 
 .regresar-button:hover {
   transform: translateY(-6px); /* Efecto de elevación */
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.7); /* Sombra al pasar el cursor */
+  box-shadow: none; /* Elimina la sombra al pasar el cursor */
 }
 
 /* Ajustes para pantallas más pequeñas */
 @media (max-width: 768px) {
   .regresar-button {
     font-size: 1rem; /* Ajuste del tamaño de fuente */
-    padding: 0.5rem 1rem; /* Ajuste del padding */
+    padding: 0.8rem 1.5rem; /* Ajuste del padding */
   }
 
   .regresar-button .emoji {
-    font-size: 2rem; /* Ajuste del tamaño del emoji */
+    font-size: 2.5rem; /* Ajuste del tamaño del emoji */
   }
 }
