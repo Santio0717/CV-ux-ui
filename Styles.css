@@ -34,10 +34,16 @@ body, html {
   font-weight: 300;
 }
 
+/* Íconos */
+.icono {
+  font-size: 1.6rem;
+  display: inline-block;
+}
+
 /* Secciones organizadas en cuadrícula tipo tarjetas */
 .grid-secciones {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Dos columnas */
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Ajusta el tamaño de las columnas */
   gap: 2rem;
   padding: 4rem 2rem;
   max-width: 1200px;
@@ -70,8 +76,8 @@ body, html {
 }
 
 .seccion:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.7);
+  transform: translateY(-6px); /* Efecto de elevación */
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.7); /* Aumento de la sombra al pasar el cursor */
 }
 
 .seccion h2 {
@@ -81,42 +87,130 @@ body, html {
   color: #ffffff;
 }
 
-/* Alineación y distribución de los botones */
-.row {
+/* Video banner */
+.video-container {
   display: flex;
-  justify-content: flex-end; /* Alinea los botones hacia la derecha */
-  gap: 2rem;
-  margin-top: 1rem;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 0;
+  position: relative;
+  margin-top: 3rem;
+  background-color: #000000;
 }
 
-.row a {
-  width: 45%; /* Ajusta el tamaño de los botones */
+.video-banner-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* Estilo para el botón "Regresar" */
-.row a h2 {
-  font-size: 1.5rem;
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  overflow: hidden;
+}
+
+.video-banner {
+  width: 100%;
+  height: auto;
+  display: block;
+  background-color: #000000;
+  border-radius: 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Estilo del botón regresar */
+.regresar-button {
   background-color: #1c1c1c;
+  color: #ffffff;
   padding: 1rem;
+  font-size: 1.5rem;
+  border: none;
   border-radius: 20px;
-  text-align: center;
-  color: white;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  width: 100%;
+  margin: 0 auto;
+  display: block;
 }
 
-.row a h2:hover {
+.regresar-button:hover {
   transform: translateY(-6px);
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.7); /* Aumento de la sombra al pasar el cursor */
 }
 
+.regresar-button:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(255, 111, 97, 0.8);
+  padding: 20px;
+}
+
+/* Ajustes para los botones de los certificados */
+.boton-certificado {
+  display: inline-block;
+  padding: 15px 30px;
+  margin: 10px;
+  background-color: #2a2a2a;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  border: 2px solid #fff;
+  border-radius: 10px;
+}
+
+.boton-certificado:hover {
+  background-color: #1a1a1a;
+  border-color: #ff6f61;
+  transform: scale(1.05);
+}
+
+.boton-certificado:active {
+  transform: scale(1);
+}
+
+.boton-certificado:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(255, 111, 97, 0.8);
+  padding: 20px;
+}
+
+/* Ajustes de disposición de los botones de los certificados */
+.certificados-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.certificados-container p {
+  font-size: 1.2rem;
+  color: #ffffff;
+  font-weight: 300;
+  margin-top: 20px;
+  gap: 20px; /* Aumentar el espacio entre los botones */
+}
+
+.certificados-container button {
+  margin: 10px;
+  width: 300px; /* Aseguramos que los botones tengan un tamaño adecuado */
+  text-align: center;
+}
+
+/* Ajustes para pantallas pequeñas */
 @media (max-width: 768px) {
   .grid-secciones {
     grid-template-columns: 1fr; /* Una sola columna en pantallas pequeñas */
   }
 
+  .video-container {
+    padding: 2rem;
+  }
+
   .seccion {
     height: auto;
+  }
+
+  .regresar-button {
+    font-size: 1rem;
+    padding: 10px;
   }
 }
