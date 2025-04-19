@@ -43,9 +43,9 @@ body, html {
 /* Secciones organizadas en cuadrícula tipo tarjetas */
 .grid-secciones {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Dos columnas para cada fila */
-  gap: 1rem; /* Espaciado ajustado entre los botones */
-  padding: 2rem 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Ajusta el tamaño de las columnas */
+  gap: 2rem;
+  padding: 4rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
   justify-content: center;
