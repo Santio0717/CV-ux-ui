@@ -11,7 +11,8 @@ body, html {
   background-color: #000000;
   color: #f5f5f5;
   scroll-behavior: smooth;
-  height: 100%;
+  height: auto; /* Modificado para permitir desplazamiento */
+  min-height: 100vh; /* Asegura que el contenido mínimo ocupe toda la altura */
 }
 
 /* Intro texto de bienvenida */
@@ -87,65 +88,50 @@ body, html {
   color: #ffffff;
 }
 
-/* Estilos para los botones de los certificados */
-.boton-certificado {
-  display: inline-block;
-  padding: 15px 30px;
-  margin: 10px;
-  background-color: #2a2a2a;
-  color: #fff;
-  font-size: 16px;
-  font-weight: bold;
-  border: 2px solid #fff;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-/* Estilos para la página de Certificados sin los botones */
-.certificados-container {
-  text-align: center;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  width: 100%; /* Hacer que los botones ocupen el 100% del ancho del contenedor */
-  max-width: 300px; /* Establecer un tamaño máximo para que no sean demasiado grandes */
-}
-
-.boton-certificado:hover {
-  background-color: #1a1a1a;
-  border-color: #ff6f61;
-  transform: scale(1.05);
-}
-
-.boton-certificado:active {
-  transform: scale(1);
-}
-
-/* Estilo para los botones al hacer clic */
-.boton-certificado:focus {
-  outline: none;
-  box-shadow: 0 0 10px rgba(255, 111, 97, 0.8);
-  padding: 20px;
-}
-
-/* Contenedor de botones */
-.certificados-container {
+/* Video banner */
+.video-container {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
+  padding: 3rem 0;
+  position: relative;
+  margin-top: 3rem;
+  background-color: #000000;
+  width: 100%;
 }
 
-.certificados-container p {
-  font-size: 1.2rem;
-  color: #ffffff;
-  font-weight: 300;
-  margin-top: 20px;
-  gap: 20px; /* Aumentar el espacio entre los botones */
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  overflow: hidden;
 }
 
-.certificados-container button {
-  margin: 10px;
-  width: 300px; /* Aseguramos que los botones tengan un tamaño adecuado */
-  text-align: center;
+.video-banner {
+  width: 100%;
+  height: auto;
+  display: block;
+  background-color: #000000;
+  border-radius: 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+  .grid-secciones {
+    grid-template-columns: 1fr; /* Una sola columna en pantallas pequeñas */
+  }
+
+  .video-container {
+    padding: 2rem;
+  }
+
+  .seccion {
+    height: auto;
+  }
+
+  .regresar-button {
+    font-size: 1rem;
+    padding: 10px;
+  }
 }
