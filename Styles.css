@@ -29,9 +29,10 @@ body, html {
 }
 
 .intro-text p {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #cccccc;
   font-weight: 300;
+  line-height: 1.2; /* Reducido el interlineado */
 }
 
 /* Secciones organizadas en cuadrícula tipo tarjetas */
@@ -81,7 +82,7 @@ body, html {
   color: #ffffff;
 }
 
-/* Ajustes del botón regresar */
+/* Ajustes para el botón "Regresar" */
 .regresar h2 {
   font-size: 1.5rem;
   margin-bottom: 0.6rem;
@@ -107,7 +108,29 @@ body, html {
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.7); /* Aumento de la sombra al pasar el cursor */
 }
 
-/* Ajustes para las secciones en pantallas pequeñas */
+/* Ajustes de interlineado */
+.regresar, .seccion {
+  line-height: 1.3;
+}
+
+/* Ajustes para el pie de página (footer) */
+#footer {
+  font-size: 1rem;
+  color: #ffffff;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+#footer a {
+  color: #ff6f61;
+  text-decoration: none;
+}
+
+#footer a:hover {
+  text-decoration: underline;
+}
+
+/* Ajustes responsivos */
 @media (max-width: 768px) {
   .grid-secciones {
     grid-template-columns: 1fr; /* Una sola columna en pantallas pequeñas */
