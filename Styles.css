@@ -34,7 +34,7 @@ body, html {
   font-weight: 300;
 }
 
-/* Alinear todo el contenido (video y botones) en el centro */
+/* Contenedor de certificados */
 .certificados-container {
   display: flex;
   flex-direction: column;
@@ -43,15 +43,18 @@ body, html {
   padding: 4rem 2rem;
   height: calc(100vh - 100px); /* Ajusta hasta el footer */
   overflow: hidden; /* Evita que se desborde */
+  text-align: center; /* Asegura que el contenido de los botones esté centrado */
 }
 
+/* Configuración de la cuadrícula de botones */
 .grid-secciones {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* Dos columnas por fila */
   gap: 2rem;
   max-width: 1200px;
   width: 100%;
-  justify-items: center; /* Centra los elementos dentro de la cuadrícula */
+  justify-items: center; /* Centra todos los elementos dentro de la cuadrícula */
+  align-items: center; /* Alinea los botones en el centro */
 }
 
 /* Estilo general para cada sección (botones) */
