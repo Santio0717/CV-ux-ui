@@ -14,26 +14,6 @@ body, html {
   height: 100%;
 }
 
-/* Título de la sección */
-.intro-text {
-  padding: 3rem 2rem;
-  text-align: center;
-  z-index: 2;
-}
-
-.intro-text h1 {
-  font-size: 2.2rem;
-  color: #ffffff;
-  margin-bottom: 0.5rem;
-  font-weight: 700;
-}
-
-.intro-text p {
-  font-size: 1.1rem;
-  color: #cccccc;
-  font-weight: 300;
-}
-
 /* Contenedor de certificados */
 .certificados-container {
   display: flex;
@@ -46,24 +26,7 @@ body, html {
   text-align: center; /* Asegura que el contenido de los botones esté centrado */
 }
 
-/* Configuración de la cuadrícula de botones */
-.grid-secciones {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Dos columnas por fila */
-  gap: 2rem; /* Ajusta el espacio entre los botones */
-  max-width: 1200px;
-  width: 100%;
-  justify-items: center; /* Centra los botones horizontalmente */
-  align-items: center; /* Alinea los botones en el centro */
-}
-
-/* Estilo general para cada sección (botones) */
-.seccion-link {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-}
-
+/* Estilo para todos los botones */
 .seccion {
   background-color: #1c1c1c;
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -76,9 +39,9 @@ body, html {
   text-align: center;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  height: 200px; /* Mantener la misma altura para los botones */
+  height: 200px;
   width: 100%;
-  max-width: 250px; /* Asegura que todos los botones tengan el mismo tamaño */
+  max-width: 250px;
 }
 
 .seccion:hover {
