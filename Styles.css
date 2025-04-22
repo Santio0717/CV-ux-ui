@@ -42,8 +42,8 @@ body, html {
   align-items: center;
   padding: 4rem 2rem;
   height: calc(100vh - 100px); /* Ajusta hasta el footer */
-  overflow: hidden;
-  text-align: center;
+  overflow: hidden; /* Evita que se desborde */
+  text-align: center; /* Asegura que el contenido de los botones esté centrado */
 }
 
 /* Configuración de la cuadrícula de botones */
