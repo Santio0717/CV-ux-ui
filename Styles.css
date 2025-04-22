@@ -34,14 +34,14 @@ body, html {
   font-weight: 300;
 }
 
-/* Alinear el video */
+/* Alinear todo el contenido (video y botones) en el centro */
 .certificados-container {
-  padding: 4rem 2rem;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 100px); /* Ajusta la altura hasta el footer */
-  overflow: hidden; /* Evita que se desborde */
+  padding: 4rem 2rem;
+  height: calc(100vh - 100px); /* Ajusta hasta el footer */
 }
 
 .grid-secciones {
@@ -50,6 +50,7 @@ body, html {
   gap: 2rem;
   max-width: 1200px;
   width: 100%;
+  justify-items: center; /* Centra los elementos dentro de la cuadrícula */
 }
 
 /* Estilo general para cada sección */
@@ -86,7 +87,7 @@ body, html {
   color: #ffffff;
 }
 
-/* Estilo para el botón "Regresar" (igual que los otros botones) */
+/* Estilo para el botón "Regresar" */
 .regresar-button {
   background-color: #1c1c1c;
   color: #ffffff;
