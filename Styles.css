@@ -42,6 +42,7 @@ body, html {
   align-items: center;
   padding: 4rem 2rem;
   height: calc(100vh - 100px); /* Ajusta hasta el footer */
+  overflow: hidden; /* Evita que se desborde */
 }
 
 .grid-secciones {
@@ -53,7 +54,7 @@ body, html {
   justify-items: center; /* Centra los elementos dentro de la cuadrícula */
 }
 
-/* Estilo general para cada sección */
+/* Estilo general para cada sección (botones) */
 .seccion-link {
   display: block;
   text-decoration: none;
@@ -73,6 +74,8 @@ body, html {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   height: 200px; /* Mantener la misma altura para los botones */
+  width: 100%;
+  max-width: 250px; /* Asegura que todos los botones tengan el mismo tamaño */
 }
 
 .seccion:hover {
@@ -98,7 +101,7 @@ body, html {
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   width: 100%;
-  max-width: 200px; /* Igual tamaño que los otros botones */
+  max-width: 250px; /* Igual tamaño que los otros botones */
   display: flex;
   justify-content: center;
   align-items: center;
