@@ -12,10 +12,6 @@ body, html {
   color: #f5f5f5;
   scroll-behavior: smooth;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center; /* Alinea el contenido verticalmente en el centro */
-  flex-direction: column; /* Permite que los elementos estén apilados de arriba a abajo */
 }
 
 /* Título de la sección */
@@ -40,14 +36,25 @@ body, html {
 
 /* Contenedor de certificados */
 .certificados-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 2rem;
+  height: calc(100vh - 100px); /* Ajusta hasta el footer */
+  overflow: hidden;
+  text-align: center;
+}
+
+/* Configuración de la cuadrícula de botones */
+.grid-secciones {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* Dos columnas por fila */
-  gap: 2rem;
+  gap: 2rem; /* Ajusta el espacio entre los botones */
   max-width: 1200px;
   width: 100%;
   justify-items: center; /* Centra los botones horizontalmente */
-  align-items: center; /* Centra los botones verticalmente */
-  text-align: center; /* Asegura que el contenido de los botones esté centrado */
+  align-items: center; /* Alinea los botones en el centro */
 }
 
 /* Estilo general para cada sección (botones) */
