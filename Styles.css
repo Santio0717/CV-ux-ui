@@ -14,7 +14,7 @@ body, html {
   height: 100%;
 }
 
-/* Intro texto de bienvenida */
+/* Título de la sección */
 .intro-text {
   padding: 3rem 2rem;
   text-align: center;
@@ -34,22 +34,23 @@ body, html {
   font-weight: 300;
 }
 
-/* Secciones organizadas en cuadrícula tipo tarjetas */
+/* Sección con los botones en cuadrícula */
+.certificados-container {
+  padding: 4rem 2rem;
+}
+
 .grid-secciones {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Ajusta el tamaño de las columnas */
+  grid-template-columns: repeat(2, 1fr); /* Dos columnas por fila */
   gap: 2rem;
   padding: 4rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
-  justify-content: center;
 }
 
-/* Estilo general para cada tarjeta */
+/* Estilo general para cada sección */
 .seccion-link {
   display: block;
-  width: 100%;
-  height: 100%;
   text-decoration: none;
   color: inherit;
 }
@@ -66,7 +67,6 @@ body, html {
   text-align: center;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  height: 250px;
 }
 
 .seccion:hover {
@@ -81,18 +81,7 @@ body, html {
   color: #ffffff;
 }
 
-/* Botón "Regresar" */
-.regresar-container {
-  display: flex;
-  justify-content: center; /* Centra el botón "Regresar" */
-  width: 100%;
-  margin-top: 2rem; /* Añade margen superior */
-}
-
-.regresar-link {
-  text-decoration: none;
-}
-
+/* Estilo para el botón "Regresar" */
 .regresar-button {
   background-color: #1c1c1c;
   color: #ffffff;
@@ -103,7 +92,7 @@ body, html {
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   width: 100%;
-  max-width: 250px; /* Establece un ancho máximo */
+  max-width: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -114,7 +103,7 @@ body, html {
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.7);
 }
 
-/* Estilos para el Footer */
+/* ⚫ Footer con nombre y enlace de contacto */
 footer {
   text-align: center;
   padding: 1rem;
@@ -134,34 +123,3 @@ footer a {
 footer a:hover {
   text-decoration: underline;
 }
-
-/* Ajustes responsivos */
-@media (max-width: 768px) {
-  .grid-secciones {
-    grid-template-columns: 1fr; /* Una sola columna en pantallas pequeñas */
-  }
-
-  .video-container {
-    padding: 2rem;
-  }
-
-  .seccion {
-    height: auto;
-  }
-
-  .regresar-button {
-    font-size: 1rem;
-    padding: 10px;
-  }
-}
-
-/* Estilo para centrar el video */
-.video-container {
-  display: flex;
-  justify-content: center; /* Centra el video horizontalmente */
-  align-items: center; /* Centra el video verticalmente */
-  width: 100%;
-  height: 100vh; /* O la altura que desees para el contenedor */
-}
-
-
