@@ -154,3 +154,14 @@ footer a:hover {
     padding: 10px;
   }
 }
+
+/* Estilo para centrar el video */
+.video-container {
+  display: flex;
+  justify-content: center; /* Centra el video horizontalmente */
+  align-items: center; /* Centra el video verticalmente */
+  width: 100%;
+  height: 100vh; /* O la altura que desees para el contenedor */
+}
+
+
