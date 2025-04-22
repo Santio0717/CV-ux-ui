@@ -37,15 +37,19 @@ body, html {
 /* Sección con los botones en cuadrícula */
 .certificados-container {
   padding: 4rem 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 100px); /* Asegura que la altura se ajuste hasta el footer */
+  overflow: hidden; /* Evita que se desborde */
 }
 
 .grid-secciones {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* Dos columnas por fila */
   gap: 2rem;
-  padding: 4rem 2rem;
   max-width: 1200px;
-  margin: 0 auto;
+  width: 100%;
 }
 
 /* Estilo general para cada sección */
@@ -67,6 +71,7 @@ body, html {
   text-align: center;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 200px; /* Mantiene la altura de los botones consistente */
 }
 
 .seccion:hover {
