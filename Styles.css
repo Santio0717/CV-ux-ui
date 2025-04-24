@@ -35,13 +35,21 @@ p {
 /* Sección de los botones de Certificados en dos columnas */
 .certificados-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Dos columnas */
+  grid-template-columns: repeat(3, 1fr); /* Tres columnas */
   gap: 2rem;
   justify-items: center;
   padding: 4rem 2rem;
   height: calc(100vh - 100px); /* Ajusta hasta el footer */
   text-align: center;
   overflow: hidden;
+}
+
+.grid-secciones {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Tres columnas */
+  gap: 2rem;
+  justify-items: center;
+  padding: 2rem;
 }
 
 /* Estilo para todos los botones */
@@ -74,45 +82,30 @@ p {
   color: #ffffff;
 }
 
-/* Estilo de la sección de los botones en la página principal en fila */
-.grid-secciones {
-  display: flex;
-  flex-wrap: wrap; /* Permite que los botones se acomoden en una fila */
-  justify-content: space-evenly;
-  gap: 2rem;
-  padding: 2rem;
+/* Estilo para los enlaces (sin línea azul) */
+a {
+  text-decoration: none;
+  outline: none;
 }
 
-.seccion {
-  background-color: #1c1c1c;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  padding: 2rem;
-  border-radius: 20px;
+/* Estilo para el contenedor de video centrado */
+.video-container {
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  text-align: center;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  height: 200px;
+  padding: 3rem;
+}
+
+.video-banner-container {
+  max-width: 900px;
   width: 100%;
-  max-width: 250px;
 }
 
-.seccion:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.7);
+.video-banner {
+  width: 100%;
+  height: auto;
 }
 
-.seccion h2 {
-  font-size: 1.5rem;
-  margin-bottom: 0.6rem;
-  font-weight: 600;
-  color: #ffffff;
-}
-
-/* Estilo para el botón "Regresar" */
+/* Estilo para el botón "Regresar" al lado de los otros botones */
 .regresar-button {
   background-color: #1c1c1c;
   color: #ffffff;
@@ -123,7 +116,7 @@ p {
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   width: 100%;
-  max-width: 250px; /* Igual tamaño que los otros botones */
+  max-width: 250px;
   display: flex;
   justify-content: center;
   align-items: center;
