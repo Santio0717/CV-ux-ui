@@ -32,17 +32,18 @@ p {
   color: #f5f5f5;
 }
 
-/* Contenedor principal en grid para las secciones (tarjetas) */
+/* Contenedor principal con flexbox en fila centrada */
 .grid-secciones {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
+  display: flex;
+  justify-content: center; /* centra horizontalmente */
+  gap: 2rem;               /* espacio entre botones */
   padding: 2rem 3rem 4rem;
+  flex-wrap: wrap;         /* permite que bajen a otra línea en pantallas pequeñas */
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Estilo para cada tarjeta */
+/* Tarjetas (botones) */
 .seccion {
   background-color: #1c1c1c;
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -56,7 +57,8 @@ p {
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
-  height: 250px;
+  height: 200px;
+  width: 250px;    /* tamaño fijo para que se alineen bien */
 }
 
 .seccion:hover {
@@ -134,6 +136,7 @@ footer a:hover {
 /* Responsive adjustments */
 @media (max-width: 600px) {
   .seccion {
+    width: 100%;  /* full width en pantallas pequeñas */
     height: auto;
     padding: 1.5rem;
   }
