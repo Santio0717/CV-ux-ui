@@ -63,23 +63,23 @@ p {
   margin: 0 auto;
 }
 
-/* 2. Certificados.html - 1 columna */
+/* 2. Certificados.html - 2 columnas */
 .certificados-container {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
   padding: 2rem 3rem 4rem;
-  max-width: 600px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
-/* 3. Proyectos Tinker Cad - 1 columna */
+/* 3. Proyectos Tinker Cad - 2 columnas */
 .tinkercad-container {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
   padding: 2rem 3rem 4rem;
-  max-width: 600px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
@@ -103,13 +103,13 @@ p {
   margin: 0 auto;
 }
 
-/* Principal - 1 columna */
+/* Principal - 2 columnas */
 .main-container {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
   padding: 2rem 3rem 4rem;
-  max-width: 600px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
@@ -162,7 +162,7 @@ p {
   outline: none;
 }
 
-/* Video centrar */
+/* Centrar video en index.html */
 .video-banner-container {
   display: flex;
   justify-content: center;
