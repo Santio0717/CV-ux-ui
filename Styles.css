@@ -57,8 +57,11 @@ p {
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
+  min-width: 250px;       /* mínimo ancho */
+  max-width: 320px;       /* máximo ancho para no crecer demasiado */
   height: 200px;
-  width: 250px;    /* tamaño fijo para que se alineen bien */
+  word-wrap: break-word;  /* para que las palabras largas se ajusten */
+  overflow-wrap: break-word;
 }
 
 .seccion:hover {
@@ -122,6 +125,8 @@ footer a:hover {
     width: 100%;  /* full width en pantallas pequeñas */
     height: auto;
     padding: 1.5rem;
+    min-width: auto;  /* para que no limite en móvil */
+    max-width: none;
   }
   
   .seccion h2 {
