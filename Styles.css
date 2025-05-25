@@ -87,31 +87,6 @@ p {
   outline: none;
 }
 
-/* Iconos dentro de los títulos */
-.icono {
-  margin-right: 0.5rem;
-}
-
-/* Contenedor del video */
-.video-container {
-  display: flex;
-  justify-content: center;
-  padding: 2rem 1rem 4rem;
-  background-color: #111111;
-}
-
-.video-banner-container {
-  max-width: 900px;
-  width: 100%;
-}
-
-.video-banner {
-  width: 100%;
-  height: auto;
-  border-radius: 15px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.6);
-}
-
 /* Footer */
 footer {
   background-color: #222222;
@@ -150,3 +125,4 @@ footer a:hover {
     gap: 1.5rem;
   }
 }
+
