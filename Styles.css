@@ -24,7 +24,8 @@ body {
 /* Contenido principal que crece */
 .intro-text,
 .grid-secciones,
-.certificados-container {
+.certificados-container,
+.animaciones-container {
   flex: 1 0 auto;
 }
 
@@ -47,7 +48,9 @@ p {
 }
 
 /* Contenedor principal con flexbox en fila centrada */
-.grid-secciones {
+.grid-secciones,
+.certificados-container,
+.animaciones-container {
   display: flex;
   justify-content: center;
   gap: 2rem;
@@ -104,15 +107,7 @@ p {
   outline: none;
 }
 
-/* Centrar el video */
-.video-banner-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem 0;
-}
-
-/* Contenedor del reproductor de video */
+/* Contenedor del reproductor de video para Animaciones.html */
 .video-player-container {
   max-width: 800px;
   margin: 0 auto 3rem;
@@ -124,6 +119,14 @@ p {
   border-radius: 15px;
   box-shadow: 0 10px 20px rgba(0,0,0,0.5);
   background-color: #000;
+}
+
+/* Centrar el video en index.html (video-banner-container) */
+.video-banner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0;
 }
 
 /* Footer sticky */
@@ -159,7 +162,9 @@ footer a:hover {
     font-size: 1.4rem;
   }
   
-  .grid-secciones {
+  .grid-secciones,
+  .certificados-container,
+  .animaciones-container {
     padding: 1rem 1rem 3rem;
     gap: 1.5rem;
   }
