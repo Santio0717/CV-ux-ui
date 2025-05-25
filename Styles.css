@@ -65,17 +65,18 @@ p {
   background-color: #1c1c1c;
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 20px;
-  padding: 2rem;
+  padding: 1.5rem 2rem;
   box-shadow: 0 10px 20px rgba(0,0,0,0.4);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
+  min-width: 250px;
+  max-width: 320px;
   height: 200px;
-  width: 250px; /* tamaño fijo para que se alineen bien */
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
@@ -89,8 +90,10 @@ p {
 .seccion h2 {
   font-size: 1.7rem;
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   color: #ffffff;
+  line-height: 1.1;
+  width: 100%;
 }
 
 /* Texto descriptivo debajo del título */
@@ -98,6 +101,8 @@ p {
   font-size: 1rem;
   color: #cccccc;
   line-height: 1.4;
+  margin: 0;
+  width: 100%;
 }
 
 /* Enlaces que envuelven las tarjetas */
