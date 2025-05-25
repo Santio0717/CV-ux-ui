@@ -53,6 +53,16 @@ p {
 
 /* GRID layouts específicos para cada página */
 
+/* Principal - 3 columnas */
+.main-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  padding: 2rem 3rem 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 /* 1. Figmas.html - 3 columnas */
 .figmas-container {
   display: grid;
@@ -98,16 +108,6 @@ p {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
-  padding: 2rem 3rem 4rem;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-/* Principal - 2 columnas */
-.main-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
   padding: 2rem 3rem 4rem;
   max-width: 900px;
   margin: 0 auto;
@@ -211,12 +211,12 @@ footer a:hover {
     font-size: 1.4rem;
   }
   
+  .main-container,
   .figmas-container,
   .certificados-container,
   .tinkercad-container,
   .animaciones-container,
-  .colab-container,
-  .main-container {
+  .colab-container {
     grid-template-columns: 1fr !important;
     padding: 1rem 1rem 3rem;
     gap: 1.5rem;
