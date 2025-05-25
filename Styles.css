@@ -47,7 +47,7 @@ p {
   color: #f5f5f5;
 }
 
-/* Contenedor principal con flexbox en fila centrada */
+/* Contenedores principales con flexbox para los botones */
 .grid-secciones,
 .certificados-container,
 .animaciones-container {
@@ -74,14 +74,12 @@ p {
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
-  min-width: 250px;
-  max-width: 320px;
   height: 200px;
+  width: 250px; /* tamaño fijo para que se alineen bien */
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
 
-/* Hover */
 .seccion:hover {
   transform: translateY(-6px);
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.7);
@@ -150,8 +148,6 @@ footer a:hover {
     width: 100%;
     height: auto;
     padding: 1.5rem;
-    min-width: auto;
-    max-width: none;
   }
   
   .seccion h2 {
