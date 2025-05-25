@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Videos - Santiago Murillo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="Styles.css" />
+  <style>
+    /* Opcional: margen extra arriba para el video */
+    .video-player-container {
+      max-width: 800px;
+      margin: 0 auto 3rem;
+      padding: 0 1rem;
+    }
+    video {
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+      background-color: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <section class="intro-text">
+    <h1>🎥 Videos</h1>
+    <p>Selecciona un video para reproducirlo.</p>
+  </section>
+
+  <section class="certificados-container grid-secciones">
+    <a href="#" class="seccion-link" data-video="Lower Thirds.mp4">
+      <section class="seccion">
+        <h2>Lower Thirds</h2>
+      </section>
+    </a>
+
+    <a href="#" class="seccion-link" data-video="Comercial Jugo Naranja.mp4">
+      <section class="seccion">
+        <h2>Comercial Jugo Naranja</h2>
+      </section>
+    </a>
+
+    <a href="#" class="seccion-link" data-video="Millonarios.mp4">
+      <section class="seccion">
+        <h2>Millonarios</h2>
+      </section>
+    </a>
+
+    <a href="#" class="seccion-link" data-video="Caballero.mp4">
+      <section class="seccion">
+        <h2>Caballero</h2>
+      </section>
+    </a>
+
+    <a href="#" class="seccion-link" data-video="Real Madrid.mp4">
+      <section class="seccion">
+        <h2>Real Madrid</h2>
+      </section>
+    </a>
+
+    <a href="#" class="seccion-link" data-video="Loop Zoom.mp4">
+      <section class="seccion">
+        <h2>Loop Zoom</h2>
+      </section>
+    </a>
+
+    <a href="#" class="seccion-link" data-video="Intro al estilo Donkey Kong .mp4">
+      <section class="seccion">
+        <h2>Donkey Kong</h2>
+      </section>
+    </a>
+
+    <a href="index.html" class="seccion-link regresar-link">
+      <section class="seccion regresar-button">
+        <h2>🔙 Regresar</h2>
+      </section>
+    </a>
+  </section>
+
+  <div class="video-player-container">
+    <video id="videoPlayer" controls>
+      <source src="Lower Thirds.mp4" type="video/mp4" />
+      Tu navegador no soporta la etiqueta de video.
+    </video>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Santiago Murillo | <a href="mailto:santiagomr2003@gmail.com">Contáctame</a></p>
+  </footer>
+
+  <script>
+    // Obtener todos los enlaces con clase seccion-link y atributo data-video
+    const videoLinks = document.querySelectorAll('.seccion-link[data-video]');
+    const videoPlayer = document.getElementById('videoPlayer');
+    const source = videoPlayer.querySelector('source');
+
+    videoLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const videoFile = link.getAttribute('data-video');
+        source.src = videoFile;
+        videoPlayer.load();
+        videoPlayer.play();
+        // Scroll al reproductor para mejor UX
+        videoPlayer.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
+
+</body>
+</html>
