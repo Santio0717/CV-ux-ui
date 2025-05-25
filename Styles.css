@@ -23,13 +23,13 @@ body {
 
 /* Contenido principal que crece */
 .intro-text,
+.main-container,
 .grid-secciones,
 .certificados-container,
 .animaciones-container,
 .figmas-container,
 .tinkercad-container,
-.colab-container,
-.main-container {
+.colab-container {
   flex: 1 0 auto;
 }
 
@@ -51,69 +51,33 @@ p {
   color: #f5f5f5;
 }
 
-/* GRID layouts específicos para cada página */
-
-/* Principal - 3 columnas */
+/* Contenedor principal página principal: 3 columnas */
 .main-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  padding: 2rem 3rem 4rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* 1. Figmas.html - 3 columnas */
-.figmas-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   padding: 2rem 3rem 4rem;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* 2. Certificados.html - 2 columnas */
-.certificados-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-  padding: 2rem 3rem 4rem;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-/* 3. Proyectos Tinker Cad - 2 columnas */
-.tinkercad-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-  padding: 2rem 3rem 4rem;
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-/* 4. Animaciones.html - 3 columnas */
-.animaciones-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  padding: 2rem 3rem 4rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* 5. Proyectos Colab - 2 columnas */
+/* Contenedores para otras páginas (ejemplo para que quede uniforme) */
+.grid-secciones,
+.certificados-container,
+.animaciones-container,
+.figmas-container,
+.tinkercad-container,
 .colab-container {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  justify-content: center;
   gap: 2rem;
+  flex-wrap: wrap;
   padding: 2rem 3rem 4rem;
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Tarjetas comunes */
+/* Tarjetas (botones) comunes */
 .seccion {
   background-color: #1c1c1c;
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -140,6 +104,7 @@ p {
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.7);
 }
 
+/* Títulos de botones */
 .seccion h2 {
   font-size: 1.7rem;
   font-weight: 700;
@@ -149,6 +114,7 @@ p {
   width: 100%;
 }
 
+/* Texto descriptivo */
 .seccion p {
   font-size: 1rem;
   color: #cccccc;
@@ -157,12 +123,13 @@ p {
   width: 100%;
 }
 
+/* Enlaces que envuelven los botones */
 .seccion-link {
   text-decoration: none;
   outline: none;
 }
 
-/* Centrar video en index.html */
+/* Contenedor y estilo para video (index.html) */
 .video-banner-container {
   display: flex;
   justify-content: center;
@@ -200,29 +167,37 @@ footer a:hover {
 
 /* Responsive */
 @media (max-width: 600px) {
+  .main-container {
+    grid-template-columns: 1fr !important;
+    padding: 1rem 1rem 3rem;
+    gap: 1.5rem;
+    max-width: 100%;
+  }
+
   .seccion {
     width: 100%;
     height: auto;
     padding: 1.5rem;
     max-width: none;
   }
-  
+
   .seccion h2 {
     font-size: 1.4rem;
   }
-  
-  .main-container,
-  .figmas-container,
+
+  .grid-secciones,
   .certificados-container,
-  .tinkercad-container,
   .animaciones-container,
+  .figmas-container,
+  .tinkercad-container,
   .colab-container {
-    grid-template-columns: 1fr !important;
+    flex-direction: column;
+    align-items: center;
     padding: 1rem 1rem 3rem;
     gap: 1.5rem;
     max-width: 100%;
   }
-  
+
   .video-banner-container {
     padding: 0 0.5rem;
   }
