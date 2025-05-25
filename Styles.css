@@ -91,18 +91,21 @@ p {
 .seccion h2 {
   font-size: 1.7rem;
   font-weight: 700;
-  margin-bottom: 0;
+  margin-bottom: 1rem;
   color: #ffffff;
 }
 
-/* Elimina estilo especial para párrafos en tarjetas */
-/* .seccion p { ... }  Eliminado */
+/* Texto descriptivo debajo del título */
+.seccion p {
+  font-size: 1rem;
+  color: #cccccc;
+  line-height: 1.4;
+}
 
 /* Enlaces que envuelven las tarjetas */
 .seccion-link {
   text-decoration: none;
   outline: none;
-  cursor: default;
 }
 
 /* Centrar el video en index.html */
@@ -114,7 +117,6 @@ p {
   width: 100%;
 }
 
-/* Video estilo */
 .video-banner-container video {
   max-width: 100%;
   height: auto;
