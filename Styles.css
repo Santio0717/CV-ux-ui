@@ -87,6 +87,14 @@ p {
   outline: none;
 }
 
+/* Centrar el video */
+.video-banner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0;
+}
+
 /* Footer */
 footer {
   background-color: #222222;
@@ -125,4 +133,3 @@ footer a:hover {
     gap: 1.5rem;
   }
 }
-
