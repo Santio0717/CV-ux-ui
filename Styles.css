@@ -81,7 +81,7 @@ p {
   overflow-wrap: break-word;
 }
 
-/* Agregado para que el cursor cambie solo en el enlace “Ver proyecto” dentro de la tarjeta */
+/* Hover */
 .seccion:hover {
   transform: translateY(-6px);
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.7);
@@ -91,30 +91,36 @@ p {
 .seccion h2 {
   font-size: 1.7rem;
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0;
   color: #ffffff;
 }
 
-/* Texto descriptivo debajo del título (para el enlace "Ver proyecto") */
-.seccion p {
-  margin-top: 0.5rem;
-  font-size: 1rem;
-  color: #00aaff;
-  text-decoration: underline;
-}
-
-/* Solo el enlace “Ver proyecto” dentro del párrafo */
-.seccion p a {
-  color: inherit;
-  text-decoration: inherit;
-  cursor: pointer;
-}
+/* Elimina estilo especial para párrafos en tarjetas */
+/* .seccion p { ... }  Eliminado */
 
 /* Enlaces que envuelven las tarjetas */
 .seccion-link {
   text-decoration: none;
   outline: none;
-  cursor: default; /* No pointer para todo el enlace, solo el interno */
+  cursor: default;
+}
+
+/* Centrar el video en index.html */
+.video-banner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0;
+  width: 100%;
+}
+
+/* Video estilo */
+.video-banner-container video {
+  max-width: 100%;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+  background-color: #000;
 }
 
 /* Footer sticky */
@@ -155,5 +161,9 @@ footer a:hover {
   .animaciones-container {
     padding: 1rem 1rem 3rem;
     gap: 1.5rem;
+  }
+  
+  .video-banner-container {
+    padding: 0 0.5rem;
   }
 }
