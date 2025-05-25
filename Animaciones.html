@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Videos - Santiago Murillo</title>
+  <title>Animaciones - Santiago Murillo</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="Styles.css" />
   <style>
-    /* Opcional: margen extra arriba para el video */
     .video-player-container {
       max-width: 800px;
       margin: 0 auto 3rem;
@@ -24,8 +23,8 @@
 <body>
 
   <section class="intro-text">
-    <h1>🎥 Videos</h1>
-    <p>Selecciona un video para reproducirlo.</p>
+    <h1>🎥 Animaciones</h1>
+    <p>Selecciona una animación para reproducirla.</p>
   </section>
 
   <section class="certificados-container grid-secciones">
@@ -90,7 +89,6 @@
   </footer>
 
   <script>
-    // Obtener todos los enlaces con clase seccion-link y atributo data-video
     const videoLinks = document.querySelectorAll('.seccion-link[data-video]');
     const videoPlayer = document.getElementById('videoPlayer');
     const source = videoPlayer.querySelector('source');
@@ -102,7 +100,6 @@
         source.src = videoFile;
         videoPlayer.load();
         videoPlayer.play();
-        // Scroll al reproductor para mejor UX
         videoPlayer.scrollIntoView({ behavior: 'smooth' });
       });
     });
