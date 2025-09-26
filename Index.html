@@ -1,81 +1,129 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="no-js">
 <head>
-  <!-- Configuración básica del documento -->
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CV Diseñador UX - Santiago Murillo</title>
-
-  <!-- Tipografía desde Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
-
-  <!-- Enlace al archivo CSS externo -->
+  <title>Santiago Murillo — Diseñador UX/UI</title>
   <link rel="stylesheet" href="Styles.css" />
 </head>
 <body>
 
-  <!-- 🟠 Sección de bienvenida con título y descripción -->
-  <section class="intro-text">
-    <h1>Bienvenido a mi portafolio como Diseñador UX</h1>
-    <p>Explora mi trayectoria, habilidades y proyectos destacados.</p>
-  </section>
-
-  <!-- 🟢 Secciones principales del portafolio en formato de tarjetas (grid) -->
-  <main class="grid-secciones">
-    <!-- 🔹 Tarjeta que lleva a los Certificados -->
-    <a href="Certificados.html" class="seccion-link">
-      <section class="seccion">
-        <h2>📜 Certificados</h2>
-        <p>Explora mis logros académicos y profesionales.</p>
-      </section>
-    </a>
-
-    <!-- 🔹 Tarjeta que lleva a los Proyectos Google Colab -->
-    <a href="GoogleColab.html" class="seccion-link">
-      <section class="seccion">
-        <h2>💻 Proyectos Google Colab</h2>
-        <p>Descubre mis proyectos desarrollados en Google Colab.</p>
-      </section>
-    </a>
-
-    <!-- 🔹 Tarjeta que lleva a Animaciones -->
-    <a href="Animaciones.html" class="seccion-link">
-      <section class="seccion">
-        <h2>🎥 Animaciones</h2>
-        <p>Explora mis trabajos de animación e interactividad.</p>
-      </section>
-    </a>
-
-    <!-- 🔹 Tarjeta que lleva a los Proyectos Figmas -->
-    <a href="Figmas.html" class="seccion-link">
-      <section class="seccion">
-        <h2>🖌️ Figmas</h2>
-        <p>Mis diseños interactivos creados con Figma.</p>
-      </section>
-    </a>
-
-    <!-- 🔹 Tarjeta que lleva a los Proyectos Tinker Cad -->
-   <a href="proyectos_tinkercad.html" class="seccion-link">
-  <section class="seccion">
-    <h2>🔧 Proyectos Tinker Cad</h2>
-    <p>Proyectos y modelos 3D creados en Tinker Cad.</p>
-  </section>
-</a>
-  </main>
-
-  <!-- 🖤 Sección de Video -->
-  <div class="video-banner-container">
-    <video class="video-banner" controls>
-      <source src="Cv-UX.mp4" type="video/mp4" />
-      <!-- Mensaje si el navegador no soporta el video -->
-      Tu navegador no soporta la etiqueta de video.
-    </video>
+<!-- 🔹 HEADER -->
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a href="#inicio" class="brand">S·Murillo</a>
+    <nav class="main-nav">
+      <a href="#casos">Casos</a>
+      <a href="#figma">Figma</a>
+      <a href="#ui-motion">UI Motion</a>
+      <a href="#certificados">Certificados</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <button id="themeToggle" class="icon-btn">🌗</button>
   </div>
+</header>
 
-  <!-- ⚫ Footer con nombre y enlace de contacto -->
-  <footer>
-    <p>&copy; 2025 Santiago Murillo | <a href="mailto:santiagomr2003@gmail.com">Contáctame</a></p>
-  </footer>
+<!-- 🔹 HERO -->
+<section id="inicio" class="hero">
+  <div class="container hero-grid">
+    <div class="hero-card reveal">
+      <img src="assets/img/profile.jpg" alt="Foto de Santiago Murillo" class="avatar"/>
+      <div>
+        <h1 class="display">Santiago Murillo</h1>
+        <p class="subtitle">Diseñador UX/UI</p>
+        <p class="tagline">Creo experiencias digitales claras, accesibles y visualmente atractivas.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="assets/pdf/CV-Santiago-Murillo.pdf" target="_blank">Descargar CV</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- 🔹 CASOS DE ESTUDIO -->
+<section id="casos" class="section">
+  <div class="container">
+    <h2 class="section-title">Casos de Estudio</h2>
+    <div class="grid cards">
+      <article class="card reveal">
+        <h3>Rediseño App Salud</h3>
+        <p>Problema → Proceso → Solución → Resultado.</p>
+        <a class="card-link" href="https://www.figma.com/proto/...">Probar prototipo</a>
+      </article>
+      <!-- más casos -->
+    </div>
+  </div>
+</section>
+
+<!-- 🔹 PROTOTIPOS FIGMA -->
+<section id="figma" class="section alt">
+  <div class="container">
+    <h2 class="section-title">Prototipos en Figma</h2>
+    <div class="grid cards">
+      <article class="card hoverable reveal">
+        <h3>App Finanzas</h3>
+        <p>UI de gestión financiera.</p>
+        <a class="card-link" href="https://www.figma.com/proto/...">Abrir en Figma</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 🔹 UI MOTION -->
+<section id="ui-motion" class="section">
+  <div class="container">
+    <h2 class="section-title">UI Motion</h2>
+    <div class="grid cards">
+      <article class="card reveal">
+        <h3>Feedback de éxito</h3>
+        <video controls playsinline class="video-banner">
+          <source src="assets/video/success.mp4" type="video/mp4"/>
+        </video>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 🔹 CERTIFICADOS -->
+<section id="certificados" class="section alt">
+  <div class="container">
+    <h2 class="section-title">Certificados</h2>
+    <div class="grid tiles">
+      <article class="tile reveal">
+        <div class="title">Adobe Illustrator</div>
+        <a class="card-link" href="assets/pdf/Certificado-Illustrator.pdf" target="_blank">Ver certificado</a>
+      </article>
+      <article class="tile reveal">
+        <div class="title">Adobe Photoshop</div>
+        <a class="card-link" href="assets/pdf/Certificado-Photoshop.pdf" target="_blank">Ver certificado</a>
+      </article>
+      <article class="tile reveal">
+        <div class="title">EF SET (Inglés)</div>
+        <a class="card-link" href="assets/pdf/EF-SET-Certificate.pdf" target="_blank">Ver certificado</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 🔹 CONTACTO -->
+<section id="contacto" class="section">
+  <div class="container">
+    <h2 class="section-title">Contacto</h2>
+    <div class="card reveal">
+      <ul class="contact-list">
+        <li><a href="mailto:santiagomr2003@gmail.com">santiagomr2003@gmail.com</a></li>
+        <li><a href="https://www.linkedin.com/in/tuusuario" target="_blank">LinkedIn</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <small>© <span id="year"></span> Santiago Murillo · Diseñador UX/UI</small>
+  </div>
+</footer>
+
+<script src="Script.js" defer></script>
 </body>
 </html>
