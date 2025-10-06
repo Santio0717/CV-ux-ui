@@ -1,4 +1,4 @@
-:root{
+:root {
   --bg:#0b0e14;
   --card:#0f1420cc;
   --text:#e6e9ee;
@@ -7,16 +7,21 @@
   --accent:#3aa0ff;            
   --accent-2:#7c5cff;          
   --glass: blur(10px) saturate(140%);
+  --shadow:0 10px 30px rgba(0,0,0,.25);
 }
 
-:root.light{
-  --bg:#ffffff;
-  --card:#ffffffcc;
-  --text:#151515;
-  --muted:#6b7280;
-  --line:#e5e7eb;
-  --accent:#0b3d62;
-  --accent-2:#7c5cff;
+/* Light Mode automático */
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg:#ffffff;
+    --card:#ffffffcc;
+    --text:#151515;
+    --muted:#6b7280;
+    --line:#e5e7eb;
+    --accent:#0b3d62;
+    --accent-2:#7c5cff;
+    --shadow:0 6px 20px rgba(0,0,0,.1);
+  }
 }
 
 *{box-sizing:border-box}
@@ -37,48 +42,53 @@ body{
   backdrop-filter:var(--glass);
   border-bottom:1px solid var(--line);
 }
-:root.light .site-header{background:rgba(255,255,255,.9)}
 .nav-wrap{display:flex; align-items:center; justify-content:space-between; padding:12px 0}
 .brand{font-weight:800; letter-spacing:.3px; color:var(--text); text-decoration:none}
 .main-nav a{color:var(--text); text-decoration:none; margin-left:18px; font-size:.98rem; opacity:.9}
 .main-nav a:hover, .footer-nav a:hover{color:var(--accent)}
-.icon-btn{background:transparent; border:1px solid var(--line); color:var(--text); padding:6px 10px; border-radius:10px; cursor:pointer}
+.icon-btn{
+  background:transparent; border:1px solid var(--line); color:var(--text);
+  padding:6px 10px; border-radius:10px; cursor:pointer;
+}
 .icon-btn:hover{border-color:var(--accent)}
 
 /* ---------------- Hero ---------------- */
 .hero{position:relative; padding:84px 0 36px; overflow:hidden}
-.hero-bg .blob{position:absolute; width:420px; height:420px; border-radius:999px; filter:blur(60px); opacity:.4}
+.hero-bg .blob{
+  position:absolute; width:420px; height:420px; border-radius:999px;
+  filter:blur(60px); opacity:.4; will-change:transform;
+}
 .hero-bg .b1{background:radial-gradient(circle, var(--accent), transparent 60%); top:-120px; right:-80px; animation:f 12s ease-in-out infinite alternate}
 .hero-bg .b2{background:radial-gradient(circle, var(--accent-2), transparent 60%); bottom:-140px; left:-120px; animation:f 14s ease-in-out infinite alternate-reverse}
-.hero-bg .grid{position:absolute; inset:0; background-image:radial-gradient(transparent 1px, rgba(255,255,255,.04) 1px); background-size:22px 22px; mask-image:linear-gradient(180deg, rgba(0,0,0,.5), transparent)}
+.hero-bg .grid{
+  position:absolute; inset:0;
+  background-image:radial-gradient(transparent 1px, rgba(255,255,255,.04) 1px);
+  background-size:22px 22px;
+  mask-image:linear-gradient(180deg, rgba(0,0,0,.5), transparent)
+}
 @keyframes f{to{transform:translateY(20px) translateX(8px)}}
 
 .hero-grid{display:grid; grid-template-columns:1fr;}
 .hero-card{
   display:grid; grid-template-columns:140px 1fr; gap:24px; align-items:center;
   background:var(--card); border:1px solid var(--line); border-radius:22px; padding:22px;
-  backdrop-filter:var(--glass); box-shadow:0 10px 30px rgba(0,0,0,.25);
+  backdrop-filter:var(--glass); box-shadow:var(--shadow);
 }
 .display{font-size:2.2rem; margin:0 0 8px}
 .subtitle{margin:0; color:var(--muted); font-weight:700; letter-spacing:.3px; text-transform:uppercase}
 .tagline{margin:10px 0 16px}
 
-/* Avatar: tamaño fijo y responsivo */
+/* Avatar */
 .avatar{
-  width:160px;
-  height:160px;
-  max-width:100%;
-  object-fit:cover;
-  display:block;
-  border-radius:18px;
-  border:2px solid var(--line);
-  margin:auto;
+  width:160px; height:160px; max-width:100%; object-fit:cover;
+  display:block; border-radius:18px; border:2px solid var(--line); margin:auto;
 }
 
 /* ---------------- Botones ---------------- */
 .btn{
   display:inline-block; text-decoration:none; padding:12px 16px; border-radius:12px;
   font-weight:700; transition:transform .12s ease, opacity .12s;
+  will-change:transform;
 }
 .btn:hover{transform:translateY(-1px)}
 .btn.primary{background:linear-gradient(90deg, var(--accent), var(--accent-2)); color:#fff}
@@ -108,7 +118,7 @@ body{
 .meta{color:var(--muted); font-size:.95rem}
 .tl-body{margin:6px 0 0 0}
 
-/* ---------------- Tiles / Diplomas ---------------- */
+/* ---------------- Tiles ---------------- */
 .tiles .tile, .tile{
   display:flex; gap:12px; align-items:center;
   border:1px solid var(--line); border-radius:16px; padding:14px;
@@ -132,8 +142,14 @@ body{
 
 /* ---------------- Portafolio ---------------- */
 .portfolio .card{position:relative; overflow:hidden}
-.portfolio .cover{position:absolute; inset:0; background:linear-gradient(145deg, rgba(58,160,255,.25), rgba(124,92,255,.2)); opacity:.35; transition:transform .4s ease}
+.portfolio .cover{
+  position:absolute; inset:0;
+  background:linear-gradient(145deg, rgba(58,160,255,.25), rgba(124,92,255,.2));
+  opacity:.35; transition:transform .4s ease;
+  pointer-events:none;
+}
 .hoverable:hover .cover{transform:scale(1.08)}
+.portfolio .card > *:not(.cover){position: relative; z-index: 1;}
 
 /* ---------------- Contacto ---------------- */
 .contact-list{list-style:none; padding:0; margin:0; display:grid; gap:12px}
@@ -161,7 +177,7 @@ body{
 
 /* ---------------- Responsivo ---------------- */
 @media (max-width:760px){
-  .hero-card{grid-template-columns:1fr; text-align:left}
+  .hero-card{grid-template-columns:1fr; text-align:center; padding:18px}
   .avatar{width:120px; height:120px; border-radius:14px}
   .display{font-size:1.8rem}
   .main-nav{display:none}
@@ -178,22 +194,15 @@ body{
   transition:transform .12s ease, filter .2s ease, box-shadow .2s ease;
   will-change:transform;
 }
-.card-link:hover{
-  transform:translateY(-1px);
-  filter:saturate(110%);
-  text-decoration:none;
-}
-.card-link:focus-visible{
-  outline:none;
-  box-shadow:0 0 0 3px rgba(58,160,255,.35);
-}
+.card-link:hover{transform:translateY(-1px); filter:saturate(110%)}
+.card-link:focus-visible{outline:none; box-shadow:0 0 0 3px rgba(58,160,255,.35)}
 .card-link:active{transform:translateY(0)}
 .card-link .icon{width:18px; height:18px; display:inline-block}
 
 .card-link.ghost{
   background:transparent; color:var(--text); border:1px solid var(--line);
 }
-.card-link.ghost:hover{transform:translateY(-1px); filter:none; color:var(--accent)}
+.card-link.ghost:hover{transform:translateY(-1px); color:var(--accent)}
 
 .icon{width:20px; height:20px; vertical-align:middle; display:inline-block}
 .contact-list .icon{width:18px; height:18px}
@@ -203,6 +212,3 @@ body{
   .btn, .card-link, .reveal{transition:none}
   .btn:hover, .card-link:hover{transform:none}
 }
-
-.portfolio .cover{pointer-events: none;}
-.portfolio .card > *:not(.cover){position: relative; z-index: 1;}
