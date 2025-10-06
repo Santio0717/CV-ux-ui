@@ -1,45 +1,28 @@
-// Helpers
-const $ = (q, c=document) => c.querySelector(q);
-const $$ = (q, c=document) => [...c.querySelectorAll(q)];
-document.documentElement.classList.remove('no-js');
+const reveals = document.querySelectorAll(".reveal");
 
-// Año dinámico
-$("#year") && ($("#year").textContent = new Date().getFullYear());
-
-// Animación de reveal
-const io = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if(e.isIntersecting){
-      e.target.classList.add('show');
-      io.unobserve(e.target);
-    }
+function revealOnScroll() {
+  const triggerBottom = window.innerHeight * 0.85;
+  reveals.forEach((el) => {
+    const top = el.getBoundingClientRect().top;
+    if (top < triggerBottom) el.classList.add("show");
   });
-}, { threshold: .15 });
-$$('.reveal').forEach(el => io.observe(el));
-
-// Diplomas dinámicos
-async function loadDiplomas(){
-  try{
-    const res = await fetch('datos/diplomas.json', {cache:'no-store'});
-    const list = await res.json();
-    const wrap = $("#diploma-grid");
-    wrap.innerHTML = '';
-    list.forEach(item => {
-      const card = document.createElement('article');
-      card.className = 'card hoverable reveal';
-      card.innerHTML = `
-        <img src="${item.thumb}" alt="Icono de ${item.title}">
-        <h3>${item.title}</h3>
-        <p><strong>${item.institution}</strong> · ${item.date}</p>
-        <p>${item.description}</p>
-        <a class="btn primary" href="${item.file}" target="_blank" rel="noopener">Abrir</a>
-      `;
-      wrap.appendChild(card);
-      io.observe(card);
-    });
-  }catch(e){
-    console.error('Error cargando diplomas', e);
-  }
 }
 
-loadDiplomas();
+window.addEventListener("scroll", revealOnScroll);
+window.addEventListener("load", revealOnScroll);
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+const lightbox = document.getElementById("lightbox");
+if (lightbox) {
+  const img = document.getElementById("lightbox-img");
+  const pdf = document.getElementById("lightbox-pdf");
+  const closeBtn = document.querySelector(".lightbox-close");
+
+  closeBtn?.addEventListener("click", () => {
+    lightbox.classList.remove("show");
+    img.style.display = "none";
+    pdf.style.display = "none";
+  });
+}
+
