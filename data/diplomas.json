@@ -5,7 +5,8 @@
     "date": "2023",
     "file": "activos/diplomas/Certificado EF SET.pdf",
     "type": "pdf",
-    "thumb": "activos/iconos/pdf.svg"
+    "thumb": "activos/iconos/pdf.svg",
+    "description": "Certificación oficial en inglés que valida competencias en comprensión lectora y auditiva."
   },
   {
     "title": "Fundamentos de programación",
@@ -13,7 +14,8 @@
     "date": "2023",
     "file": "activos/diplomas/Fundamentos de programación.jpeg",
     "type": "image",
-    "thumb": "activos/iconos/pdf.svg"
+    "thumb": "activos/iconos/pdf.svg",
+    "description": "Curso introductorio en lógica de programación y estructuras básicas."
   },
   {
     "title": "Manejo de Adobe Illustrator",
@@ -21,6 +23,7 @@
     "date": "2023",
     "file": "activos/diplomas/Manejo De Adobe Illustrator .pdf",
     "type": "pdf",
-    "thumb": "activos/iconos/pdf.svg"
+    "thumb": "activos/iconos/pdf.svg",
+    "description": "Certificación en diseño vectorial, ilustraciones y creación de gráficos digitales."
   }
 ]
