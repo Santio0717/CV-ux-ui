@@ -3,8 +3,8 @@
   --card:#ffffff;
   --text:#151515;
   --muted:#6b7280;
-  --line:#e5e7eb;
-  --accent:#3a57ff;
+  --line:#dcdcdc;
+  --accent:#3a5fff;
   --accent-2:#7c5cff;
   --shadow:0 6px 20px rgba(0,0,0,.1);
 }
@@ -23,38 +23,34 @@ body{
 /* ---------------- Header ---------------- */
 .site-header{
   position:sticky; top:0; z-index:20;
-  background:#fff;
+  background:#ffffffdd;
+  backdrop-filter:blur(10px);
   border-bottom:1px solid var(--line);
 }
 .nav-wrap{display:flex; align-items:center; justify-content:space-between; padding:12px 0}
 .brand{font-weight:800; letter-spacing:.3px; color:var(--text); text-decoration:none}
 .main-nav a{color:var(--text); text-decoration:none; margin-left:18px; font-size:.98rem; opacity:.9}
-.main-nav a:hover, .footer-nav a:hover{color:var(--accent)}
+.main-nav a:hover{color:var(--accent)}
 
 /* ---------------- Hero ---------------- */
-.hero{padding:84px 0 36px}
-.hero-grid{display:grid; grid-template-columns:1fr;}
+.hero{position:relative; padding:84px 0 36px; overflow:hidden}
 .hero-card{
   display:grid; grid-template-columns:140px 1fr; gap:24px; align-items:center;
   background:var(--card); border:1px solid var(--line); border-radius:22px; padding:22px;
   box-shadow:var(--shadow);
 }
 .display{font-size:2.2rem; margin:0 0 8px}
-.subtitle{margin:0; color:var(--muted); font-weight:700; letter-spacing:.3px; text-transform:uppercase}
+.subtitle{margin:0; color:var(--muted); font-weight:700; text-transform:uppercase}
 .tagline{margin:10px 0 16px}
-
-/* Avatar */
 .avatar{
   width:160px; height:160px; max-width:100%; object-fit:cover;
-  display:block; border-radius:18px; border:2px solid var(--line); margin:auto;
+  display:block; border-radius:18px; border:2px solid var(--line);
 }
 
 /* ---------------- Botones ---------------- */
 .btn{
-  display:inline-block; text-decoration:none; padding:10px 20px; border-radius:12px;
+  display:inline-block; text-decoration:none; padding:10px 16px; border-radius:12px;
   font-weight:700; transition:transform .12s ease, opacity .12s;
-  will-change:transform;
-  width:auto; min-width:unset;
 }
 .btn:hover{transform:translateY(-1px)}
 .btn.primary{background:linear-gradient(90deg, var(--accent), var(--accent-2)); color:#fff}
@@ -62,25 +58,52 @@ body{
 
 /* ---------------- Secciones / Tarjetas ---------------- */
 .section{padding:48px 0}
+.section.alt{background:#f7f7f7}
 .section-title{margin:0 0 18px; font-size:1.6rem; letter-spacing:.2px; text-align:center}
+
+.card{
+  border:1px solid var(--line); border-radius:18px; padding:18px; background:var(--card);
+  text-align:center;
+  box-shadow:var(--shadow);
+}
+.card h3{margin:0 0 10px}
+.card p{margin:0 0 12px}
 
 .grid{display:grid; gap:18px}
 .cards{grid-template-columns:repeat(auto-fill, minmax(260px, 1fr))}
+.tiles{grid-template-columns:repeat(auto-fill, minmax(240px, 1fr))}
 
-.card{
-  border:1px solid var(--line); border-radius:18px; padding:18px;
-  background:var(--card); box-shadow:var(--shadow);
-  text-align:center;
+/* ---------------- Tecnologías ---------------- */
+.tech-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:20px;
 }
-.card h3{margin-top:0}
-.card p{margin:12px 0}
+.tech-grid .card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:18px;
+  box-shadow:var(--shadow);
+}
 
 /* ---------------- Diplomas ---------------- */
-#diploma-grid {
+#diploma-grid{
   display:grid;
   grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));
-  gap:18px;
-  margin-top:18px;
+  gap:20px;
+}
+#diploma-grid .card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:18px;
+  text-align:center;
+  box-shadow:var(--shadow);
+}
+#diploma-grid img{
+  width:60px;
+  margin-bottom:10px;
 }
 
 /* ---------------- Contacto ---------------- */
@@ -89,12 +112,4 @@ body{
 .contact-list a:hover{color:var(--accent)}
 
 /* ---------------- Footer ---------------- */
-.site-footer{border-top:1px solid var(--line); padding:18px 0; color:var(--muted); text-align:center}
-
-/* ---------------- Responsivo ---------------- */
-@media (max-width:760px){
-  .hero-card{grid-template-columns:1fr; text-align:center; padding:18px}
-  .avatar{width:120px; height:120px; border-radius:14px}
-  .display{font-size:1.8rem}
-  .main-nav{display:none}
-}
+.site-footer{border-top:1px solid var(--line); padding:18px 0; text-align:center; color:var(--muted)}
