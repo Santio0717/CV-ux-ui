@@ -1,123 +1,159 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" class="no-js">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>santiagomurillo-uxui · Portafolio</title>
   <meta name="description" content="Portafolio de Santiago Murillo – UX/UI Designer" />
+
+  <!-- Preload avatar -->
   <link rel="preload" as="image" href="activos/imagen/foto%20de%20perfil.jfif" />
-  <link rel="stylesheet" href="CSS/estiloss.css" />
+
+  <!-- CSS: nombres y rutas corregidas -->
+  <link rel="stylesheet" href="CSS/estilos.css" />
   <link rel="stylesheet" href="CSS/linjs.css" />
 </head>
 <body>
-  <!-- Fondo decorativo -->
-  <div class="bg-lines" aria-hidden="true"></div>
+  <!-- Fondo decorativo del hero -->
+  <div class="hero-bg" aria-hidden="true">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="grid"></div>
+  </div>
 
+  <!-- Header -->
   <header class="site-header">
-    <a href="#" class="brand">santiagomurillo-uxui</a>
+    <div class="container nav-wrap">
+      <a href="#" class="brand">santiagomurillo-uxui</a>
 
-    <nav class="nav" id="nav">
-      <a href="#inicio">Inicio</a>
-      <a href="#proyectos">Proyectos</a>
-      <a href="#diplomas">Diplomas</a>
-      <a href="#contacto">Contacto</a>
-    </nav>
+      <nav class="main-nav" id="nav">
+        <a href="#inicio">Inicio</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#diplomas">Diplomas</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
 
-    <div class="header-actions">
-      <button id="themeBtn" class="btn ghost" aria-label="Cambiar tema">🌗</button>
-      <button id="menuBtn" class="btn ghost" aria-label="Menú">☰</button>
+      <button id="themeToggle" class="icon-btn" aria-label="Cambiar tema">🌗</button>
     </div>
   </header>
 
   <main>
     <!-- HERO -->
-    <section id="inicio" class="hero reveal">
-      <div class="hero-copy">
-        <h1>
-          Diseño de <span class="accent">interfaces</span> y
-          experiencias <span class="accent">humanas</span>
-        </h1>
-        <p class="lead">
-          Soy <strong>Santiago Murillo</strong>, UX/UI Designer. Diseño productos
-          claros, bellos y medibles. Prototipo rápido, valido con usuarios y
-          aterrizo en componentes escalables.
-        </p>
-        <div class="cta">
-          <a class="btn primary" href="activos/CV%20-%20Santiago%20Murillo%20Ram%C3%ADrez.pdf" target="_blank" rel="noopener">
-            Descargar CV
-          </a>
-          <a class="btn" href="#proyectos">Ver proyectos</a>
-          <a class="icon-btn" href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">
-            <img src="activos/iconos/linkedin.svg" alt="" />
-          </a>
+    <section id="inicio" class="hero section reveal">
+      <div class="container hero-grid">
+        <article class="hero-card">
+          <img class="avatar" src="activos/imagen/foto%20de%20perfil.jfif" alt="Foto de perfil de Santiago" />
+          <div>
+            <p class="subtitle">UX/UI Designer</p>
+            <h1 class="display">Diseño de <span class="accent">interfaces</span> y experiencias <span class="accent">humanas</span></h1>
+            <p class="tagline">
+              Soy <strong>Santiago Murillo</strong>. Diseño productos claros, bellos y medibles.
+              Prototipo rápido, valido con usuarios y aterrizo en componentes escalables.
+            </p>
+            <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap">
+              <a class="btn primary" href="activos/CV%20-%20Santiago%20Murillo%20Ram%C3%ADrez.pdf" target="_blank" rel="noopener">Descargar CV</a>
+              <a class="btn ghost" href="#proyectos">Ver proyectos</a>
+              <a class="icon-btn" href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <img class="icon" src="activos/iconos/linkedin.svg" alt="LinkedIn" />
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- PROYECTOS -->
+    <section id="proyectos" class="section alt reveal">
+      <div class="container">
+        <h2 class="section-title">Proyectos destacados</h2>
+        <p class="card lead">Selección de casos con métricas y aprendizajes.</p>
+
+        <div class="grid cards" style="margin-top:18px">
+          <article class="card hoverable reveal">
+            <h3 style="margin-top:0">Onboarding móvil</h3>
+            <p>Rediseño del flujo con tests A/B → <strong>+23% activación</strong>.</p>
+            <div class="badge-row">
+              <span class="badge">UX Research</span>
+              <span class="badge">UI</span>
+              <span class="badge">A/B</span>
+            </div>
+          </article>
+
+          <article class="card hoverable reveal">
+            <h3 style="margin-top:0">Design System</h3>
+            <p>Tokens, componentes y documentación viva.</p>
+            <div class="badge-row">
+              <span class="badge">Figma</span>
+              <span class="badge">Tokens</span>
+              <span class="badge">Accesibilidad</span>
+            </div>
+          </article>
+
+          <article class="card hoverable reveal">
+            <h3 style="margin-top:0">Checkout web</h3>
+            <p>Simplificación de pasos → <strong>−32% abandono</strong>.</p>
+            <div class="badge-row">
+              <span class="badge">Flujo</span>
+              <span class="badge">Métricas</span>
+              <span class="badge">UI</span>
+            </div>
+          </article>
         </div>
       </div>
-
-      <aside class="hero-card">
-        <figure class="profile">
-          <img src="activos/imagen/foto%20de%20perfil.jfif" alt="Foto de perfil de Santiago" />
-        </figure>
-        <ul class="badges">
-          <li>Research</li>
-          <li>Wireframes</li>
-          <li>Design Systems</li>
-          <li>Prototipos</li>
-        </ul>
-      </aside>
     </section>
 
-    <!-- PROYECTOS (placeholder, puedes duplicar cards) -->
-    <section id="proyectos" class="section reveal">
-      <header class="section-head">
-        <h2>Proyectos destacados</h2>
-        <p>Selección de casos con métricas y aprendizajes.</p>
-      </header>
-
-      <div class="grid-cards">
-        <article class="card proj">
-          <div class="card-body">
-            <h3>Onboarding móvil</h3>
-            <p>Rediseño del flujo con tests A/B → +23% activación.</p>
-            <ul class="tags"><li>UX Research</li><li>UI</li><li>A/B</li></ul>
-          </div>
-        </article>
-
-        <article class="card proj">
-          <div class="card-body">
-            <h3>Design System</h3>
-            <p>Tokens, componentes y documentación viva.</p>
-            <ul class="tags"><li>Figma</li><li>Tokens</li><li>Accesibilidad</li></ul>
-          </div>
-        </article>
-
-        <article class="card proj">
-          <div class="card-body">
-            <h3>Checkout web</h3>
-            <p>Simplificación de pasos → −32% abandono.</p>
-            <ul class="tags"><li>Flujo</li><li>Métricas</li><li>UI</li></ul>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- DIPLOMAS (se carga desde datos/diplomas.json) -->
+    <!-- DIPLOMAS -->
     <section id="diplomas" class="section reveal">
-      <header class="section-head">
-        <h2>Diplomas & Certificaciones</h2>
-        <p>Información cargada desde <code>datos/diplomas.json</code>.</p>
-      </header>
+      <div class="container">
+        <h2 class="section-title">Diplomas & Certificaciones</h2>
+        <p class="meta">Información cargada desde <code>datos/diplomas.json</code>.</p>
 
-      <div id="diplomasList" class="grid-cards"></div>
+        <!-- Grid que el JS rellena dinámicamente -->
+        <div id="diploma-grid" class="grid tiles" style="margin-top:18px">
+          <!-- Se llena con JS -->
+        </div>
+      </div>
     </section>
 
     <!-- CONTACTO -->
     <section id="contacto" class="section reveal">
-      <header class="section-head">
-        <h2>Contacto</h2>
+      <div class="container">
+        <h2 class="section-title">Contacto</h2>
         <p>¿Hablamos de tu próximo producto?</p>
-      </header>
 
-      <div class="contact">
-        <a class="btn primary" href="mailto:cuenticachatgpt@gmail.com">cuenticachatgpt@gmail.com</a>
-        <a class="btn" href="https://wa.me/"><span>WhatsApp</span></a>
-        <a class="icon-btn" href
+        <ul class="contact-list">
+          <li><a href="mailto:cuenticachatgpt@gmail.com">cuenticachatgpt@gmail.com</a></li>
+          <li><a href="https://wa.me/" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- LIGHTBOX para diplomas -->
+  <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-label="Visor de diplomas">
+    <div class="lightbox-body">
+      <button class="lightbox-close" aria-label="Cerrar">×</button>
+      <img id="lightbox-img" alt="" />
+      <iframe id="lightbox-pdf"></iframe>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap:12px">
+      <span>© <span id="year"></span> Santiago Murillo</span>
+      <nav class="footer-nav">
+        <a href="#inicio">Inicio</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#diplomas">Diplomas</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- JS: usa el nombre/ruta reales de tu archivo -->
+  <!-- Si tu archivo se llama distinto, ajusta la ruta de abajo -->
+  <script src="js/aplicacion.js" defer></script>
+</body>
+</html>
