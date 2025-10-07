@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>santiagomurillo-uxui · Portafolio</title>
+  <title>Portafolio · Santiago Murillo</title>
   <meta name="description" content="Portafolio de Santiago Murillo – UX/UI Designer" />
 
-  <!-- Preload avatar -->
-  <link rel="preload" as="image" href="activos/imagen/foto%20de%20perfil.jfif" />
+  <!-- Google Fonts: Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
   <!-- CSS -->
   <link rel="stylesheet" href="CSS/estilos.css" />
@@ -16,6 +16,40 @@
   <style>
     body {
       background-color: #EDE8D0;
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: #111;
+      line-height: 1.6;
+    }
+    .display {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      line-height: 1.75;
+      margin-top: 8px;
+      color: #000;
+    }
+    .site-header {
+      background: rgba(15, 20, 32, .6);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #ccc;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+    .nav-wrap {
+      display: flex;
+      justify-content: center;
+      padding: 12px 0;
+    }
+    .main-nav a {
+      color: #111;
+      text-decoration: none;
+      margin: 0 18px;
+      font-weight: 600;
+      font-size: .98rem;
+    }
+    .main-nav a:hover {
+      color: #3a66ff;
     }
   </style>
 </head>
@@ -31,8 +65,6 @@
   <!-- Header -->
   <header class="site-header">
     <div class="container nav-wrap">
-      <a href="#" class="brand">santiagomurillo-uxui</a>
-
       <nav class="main-nav" id="nav">
         <a href="#inicio">Inicio</a>
         <a href="#proyectos">Proyectos</a>
@@ -52,8 +84,8 @@
           <div>
             <p class="subtitle">UX/UI Designer</p>
             <h1 class="display">
-              Estudiante orientado al diseño UX/UI, apasionado por crear experiencias digitales intuitivas y atractivas.
-              Disfruto investigar usuarios, diseñar wireframes y prototipos para desarrollar soluciones innovadoras,
+              Estudiante orientado al diseño UX/UI, apasionado por crear experiencias digitales intuitivas y atractivas.  
+              Disfruto investigar usuarios, diseñar wireframes y prototipos para desarrollar soluciones innovadoras,  
               accesibles y de alta calidad que mejoren la interacción entre las personas y la tecnología.
             </h1>
             <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-top:15px;">
@@ -113,8 +145,10 @@
         </p>
         <div class="grid tiles">
 
-          <article class="card"><h3>Figma / Axure</h3><p>★★★★⯪</p></article>
-          <article class="card"><h3>Adobe Photoshop / Illustrator</h3><p>★★★★</p></article>
+          <article class="card"><h3>Figma</h3><p>★★★★⯪</p></article>
+          <article class="card"><h3>Axure</h3><p>★★★</p></article>
+          <article class="card"><h3>Adobe Photoshop</h3><p>★★★★</p></article>
+          <article class="card"><h3>Illustrator</h3><p>★★★★</p></article>
           <article class="card"><h3>After Effects</h3><p>★★★★★</p></article>
           <article class="card"><h3>HTML5</h3><p>★★★</p></article>
           <article class="card"><h3>CSS</h3><p>★★★</p></article>
