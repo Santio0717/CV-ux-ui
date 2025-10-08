@@ -1,18 +1,16 @@
-/* ======== BASE GLOBAL ======== */
 body {
   font-family: 'Inter', sans-serif;
   margin: 0;
-  color: #fff;
+  color: #222;
   line-height: 1.6;
-  background: linear-gradient(120deg, #f5e4cb, #f2dfc2, #f0d6b1, #fbeed9);
+  background: linear-gradient(120deg, #f3dbc3, #fdecd9, #fff6ed);
   background-size: 400% 400%;
-  animation: backgroundMove 30s ease-in-out infinite;
+  animation: backgroundMove 35s ease-in-out infinite;
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-/* Fondo animado respirante */
 @keyframes backgroundMove {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -22,22 +20,20 @@ body {
 h1, h2, h3 {
   font-weight: 700;
   margin: 0 0 10px 0;
-  color: #fff;
+  color: #222;
 }
 
 a {
   text-decoration: none;
-  color: inherit;
+  color: #222;
 }
 
-/* ======== CONTENEDORES ======== */
 .container {
   width: 90%;
   max-width: 1100px;
   margin: 0 auto;
 }
 
-/* ======== HEADER ======== */
 .site-header {
   background: rgba(255, 255, 255, 0.25);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -56,7 +52,7 @@ a {
 }
 
 .main-nav a {
-  color: #fff;
+  color: #222;
   font-weight: 600;
   margin: 0 15px;
   transition: color 0.3s ease;
@@ -66,7 +62,6 @@ a {
   color: #b85c38;
 }
 
-/* ======== SECCIONES ======== */
 .section {
   padding: 60px 0;
   backdrop-filter: blur(12px);
@@ -83,14 +78,14 @@ a {
   font-size: 1.8rem;
   text-align: center;
   margin-bottom: 25px;
-  color: #fff;
+  color: #222;
 }
 
-/* ======== HERO ======== */
+/* HERO */
 .hero-card {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.3);
   border-radius: 20px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
   text-align: left;
   padding: 40px 30px;
   max-width: 750px;
@@ -103,7 +98,7 @@ a {
 
 .hero-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
 .avatar {
@@ -118,18 +113,18 @@ a {
 .subtitle {
   font-weight: 600;
   text-align: center;
-  color: #fff;
+  color: #333;
   margin-bottom: 10px;
 }
 
 .display {
   font-size: 1rem;
   text-align: left;
-  color: #fff;
+  color: #222;
   line-height: 1.8;
 }
 
-/* ======== BOTONES ======== */
+/* BOTONES */
 .btn {
   display: inline-block;
   padding: 12px 25px;
@@ -140,16 +135,15 @@ a {
   border: none;
   cursor: pointer;
   transition: transform 0.3s ease;
+  color: #fff;
 }
 
 .btn:hover {
   transform: scale(1.06);
 }
 
-/* Botón azul (proyectos) */
 .btn.primary {
   background: linear-gradient(135deg, #0077b6, #005f87);
-  color: #fff;
   animation: glow-blue 3s ease-in-out infinite alternate;
 }
 
@@ -158,10 +152,8 @@ a {
   100% { box-shadow: 0 0 25px rgba(0,119,182,0.6), 0 0 35px rgba(0,119,182,0.3); }
 }
 
-/* Botón rojo (CV y diplomas) */
 .btn.red {
   background: linear-gradient(135deg, #d72638, #b71c1c);
-  color: #fff;
   animation: glow-red 3s ease-in-out infinite alternate;
 }
 
@@ -170,10 +162,8 @@ a {
   100% { box-shadow: 0 0 25px rgba(215,38,56,0.6), 0 0 35px rgba(215,38,56,0.3); }
 }
 
-/* Botón verde (WhatsApp) */
 .btn.whatsapp {
   background: linear-gradient(135deg, #25D366, #128C7E);
-  color: #fff;
   animation: glow-green 3s ease-in-out infinite alternate;
 }
 
@@ -182,14 +172,12 @@ a {
   100% { box-shadow: 0 0 25px rgba(37,211,102,0.6), 0 0 35px rgba(37,211,102,0.3); }
 }
 
-/* Botón LinkedIn */
 .btn.linkedin {
   background: linear-gradient(135deg, #0077B5, #005a8d);
-  color: #fff;
   animation: glow-blue 3s ease-in-out infinite alternate;
 }
 
-/* ======== CARDS ======== */
+/* CARDS Y REFLEJO */
 .grid.cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -197,7 +185,7 @@ a {
 }
 
 .card {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.6);
   border-radius: 15px;
   padding: 25px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.06);
@@ -207,9 +195,9 @@ a {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #222;
 }
 
-/* Brillo sutil de movimiento */
 .card::after {
   content: "";
   position: absolute;
@@ -217,12 +205,7 @@ a {
   left: -75%;
   width: 50%;
   height: 100%;
-  background: linear-gradient(
-    120deg,
-    transparent,
-    rgba(255,255,255,0.35),
-    transparent
-  );
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.35), transparent);
   transform: skewX(-25deg);
   animation: sheen 5s infinite;
 }
@@ -235,33 +218,36 @@ a {
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
-/* ======== TECNOLOGÍAS ======== */
+/* TECNOLOGÍAS */
 .tiles {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 20px;
   text-align: center;
+  color: #222;
 }
 
-/* ======== DIPLOMAS ======== */
+/* DIPLOMAS */
 .diplomas-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 25px;
+  color: #222;
 }
 
-/* ======== CONTACTO ======== */
+/* CONTACTO */
 .contacto-box {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.3);
   padding: 35px;
   border-radius: 15px;
-  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  color: #222;
 }
 
 .botones-contacto {
@@ -272,16 +258,16 @@ a {
   margin-top: 20px;
 }
 
-/* ======== FOOTER ======== */
+/* FOOTER */
 .site-footer {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   text-align: center;
   padding: 15px 0;
   margin-top: 40px;
   border-top: 1px solid rgba(255, 255, 255, 0.3);
-  color: #fff;
+  color: #222;
 }
 
 .site-footer span {
