@@ -148,59 +148,50 @@ a {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  animation: glow 3s ease-in-out infinite alternate;
 }
 
-@keyframes glow {
-  0% { box-shadow: 0 0 10px rgba(255,255,255,0.2); }
-  100% { box-shadow: 0 0 20px rgba(255,255,255,0.35); }
-}
+/* ===== BOTONES ===== */
 
-/* ——— Botón rojo Descargar CV ——— */
+/* ——— Rojo: Descargar CV ——— */
 .btn.red {
   background: linear-gradient(135deg, #d72638, #b71c1c);
 }
-
 .btn.red:hover {
   transform: scale(1.06);
   box-shadow: 0 0 25px rgba(183, 28, 28, 0.5);
 }
 
-/* ——— Botón azul “Acceder” ——— */
+/* ——— Azul: Acceder ——— */
 .btn.primary {
   background: linear-gradient(135deg, #4b6cb7, #182848);
 }
-
 .btn.primary:hover {
   transform: scale(1.06);
   box-shadow: 0 0 25px rgba(24, 40, 72, 0.5);
 }
 
-/* ——— Botón morado “Ver certificado” ——— */
+/* ——— Morado: Ver certificado ——— */
 .btn.certificado {
   background: linear-gradient(135deg, #7b2ff7, #f107a3);
 }
-
 .btn.certificado:hover {
   transform: scale(1.06);
   box-shadow: 0 0 25px rgba(123, 47, 247, 0.5);
 }
 
-/* ——— Botón verde WhatsApp ——— */
+/* ——— Verde: WhatsApp ——— */
 .btn.whatsapp {
   background-color: #25d366;
 }
-
 .btn.whatsapp:hover {
   transform: scale(1.06);
   box-shadow: 0 0 25px rgba(37, 211, 102, 0.5);
 }
 
-/* ——— Botón azul LinkedIn ——— */
+/* ——— Azul: LinkedIn ——— */
 .btn.linkedin {
   background-color: #0077b5;
 }
-
 .btn.linkedin:hover {
   transform: scale(1.06);
   box-shadow: 0 0 25px rgba(0, 119, 181, 0.5);
@@ -232,7 +223,7 @@ a {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
-/* ===== TEXTO DE ESTRELLAS ===== */
+/* ===== TECNOLOGÍAS ===== */
 .meta {
   text-align: center;
   color: #222;
@@ -247,7 +238,6 @@ a {
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
 }
 
-/* ===== TECNOLOGÍAS ===== */
 .tiles {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -262,12 +252,12 @@ a {
 
 .tiles .card p {
   color: #fff;
-  background: transparent;
+  background: none;
   border-radius: 10px;
   padding: 5px 10px;
   display: inline-block;
   font-weight: bold;
-  text-shadow: 0 0 8px rgba(0,0,0,0.3);
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
 }
 
 /* ===== CERTIFICADOS ===== */
