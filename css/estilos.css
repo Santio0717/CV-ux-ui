@@ -2,9 +2,9 @@
 body {
   font-family: 'Inter', sans-serif;
   margin: 0;
-  color: #222;
+  color: #fff;
   line-height: 1.6;
-  background: linear-gradient(120deg, #f2dfc2, #f5e4cb, #f0d6b1, #fbeed9);
+  background: linear-gradient(120deg, #f5e4cb, #f2dfc2, #f0d6b1, #fbeed9);
   background-size: 400% 400%;
   animation: backgroundMove 30s ease-in-out infinite;
   background-attachment: fixed;
@@ -12,7 +12,7 @@ body {
   background-size: cover;
 }
 
-/* Fondo animado más suave y respirante */
+/* Fondo animado respirante */
 @keyframes backgroundMove {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -22,6 +22,7 @@ body {
 h1, h2, h3 {
   font-weight: 700;
   margin: 0 0 10px 0;
+  color: #fff;
 }
 
 a {
@@ -55,7 +56,7 @@ a {
 }
 
 .main-nav a {
-  color: #333;
+  color: #fff;
   font-weight: 600;
   margin: 0 15px;
   transition: color 0.3s ease;
@@ -73,7 +74,7 @@ a {
 }
 
 .section.alt {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 15px;
   padding: 50px;
 }
@@ -82,12 +83,12 @@ a {
   font-size: 1.8rem;
   text-align: center;
   margin-bottom: 25px;
-  color: #4a403a;
+  color: #fff;
 }
 
 /* ======== HERO ======== */
 .hero-card {
-  background: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.15);
   border-radius: 20px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
   text-align: left;
@@ -102,7 +103,7 @@ a {
 
 .hero-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
 }
 
 .avatar {
@@ -117,41 +118,78 @@ a {
 .subtitle {
   font-weight: 600;
   text-align: center;
-  color: #5a4c43;
+  color: #fff;
   margin-bottom: 10px;
 }
 
 .display {
   font-size: 1rem;
   text-align: left;
-  color: #222;
+  color: #fff;
   line-height: 1.8;
 }
 
-/* ======== BOTÓN DESCARGAR CV ======== */
+/* ======== BOTONES ======== */
+.btn {
+  display: inline-block;
+  padding: 12px 25px;
+  border-radius: 12px;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 15px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.btn:hover {
+  transform: scale(1.06);
+}
+
+/* Botón azul (proyectos) */
+.btn.primary {
+  background: linear-gradient(135deg, #0077b6, #005f87);
+  color: #fff;
+  animation: glow-blue 3s ease-in-out infinite alternate;
+}
+
+@keyframes glow-blue {
+  0% { box-shadow: 0 0 10px rgba(0,119,182,0.4), 0 0 20px rgba(0,119,182,0.2); }
+  100% { box-shadow: 0 0 25px rgba(0,119,182,0.6), 0 0 35px rgba(0,119,182,0.3); }
+}
+
+/* Botón rojo (CV y diplomas) */
 .btn.red {
   background: linear-gradient(135deg, #d72638, #b71c1c);
   color: #fff;
-  padding: 12px 25px;
-  border: none;
-  border-radius: 12px;
-  font-weight: 600;
-  display: inline-block;
-  margin-top: 20px;
-  transition: transform 0.3s ease;
   animation: glow-red 3s ease-in-out infinite alternate;
 }
 
 @keyframes glow-red {
-  0% { box-shadow: 0 0 10px rgba(215, 38, 56, 0.4), 0 0 20px rgba(215, 38, 56, 0.2); }
-  100% { box-shadow: 0 0 25px rgba(215, 38, 56, 0.6), 0 0 35px rgba(215, 38, 56, 0.3); }
+  0% { box-shadow: 0 0 10px rgba(215,38,56,0.4), 0 0 20px rgba(215,38,56,0.2); }
+  100% { box-shadow: 0 0 25px rgba(215,38,56,0.6), 0 0 35px rgba(215,38,56,0.3); }
 }
 
-.btn.red:hover {
-  transform: scale(1.06);
+/* Botón verde (WhatsApp) */
+.btn.whatsapp {
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: #fff;
+  animation: glow-green 3s ease-in-out infinite alternate;
 }
 
-/* ======== PROYECTOS ======== */
+@keyframes glow-green {
+  0% { box-shadow: 0 0 10px rgba(37,211,102,0.4), 0 0 20px rgba(37,211,102,0.2); }
+  100% { box-shadow: 0 0 25px rgba(37,211,102,0.6), 0 0 35px rgba(37,211,102,0.3); }
+}
+
+/* Botón LinkedIn */
+.btn.linkedin {
+  background: linear-gradient(135deg, #0077B5, #005a8d);
+  color: #fff;
+  animation: glow-blue 3s ease-in-out infinite alternate;
+}
+
+/* ======== CARDS ======== */
 .grid.cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -159,41 +197,45 @@ a {
 }
 
 .card {
-  background: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 15px;
   padding: 25px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.06);
+  position: relative;
+  overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Brillo sutil de movimiento */
+.card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.35),
+    transparent
+  );
+  transform: skewX(-25deg);
+  animation: sheen 5s infinite;
+}
+
+@keyframes sheen {
+  0% { left: -75%; }
+  50% { left: 125%; }
+  100% { left: 125%; }
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-/* ======== BOTONES GLOBALES ======== */
-.btn.primary {
-  background: #0077b6;
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-weight: 600;
-  display: inline-block;
-  margin-top: 10px;
-  transition: transform 0.3s ease;
-  animation: glow-blue 3s ease-in-out infinite alternate;
-}
-
-@keyframes glow-blue {
-  0% { box-shadow: 0 0 10px rgba(0, 119, 182, 0.4), 0 0 20px rgba(0, 119, 182, 0.2); }
-  100% { box-shadow: 0 0 25px rgba(0, 119, 182, 0.6), 0 0 35px rgba(0, 119, 182, 0.3); }
-}
-
-.btn.primary:hover {
-  transform: scale(1.06);
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
 }
 
 /* ======== TECNOLOGÍAS ======== */
@@ -202,13 +244,6 @@ a {
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 20px;
   text-align: center;
-}
-
-.tiles .card {
-  background: rgba(255, 255, 255, 0.4);
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
 }
 
 /* ======== DIPLOMAS ======== */
@@ -220,10 +255,10 @@ a {
 
 /* ======== CONTACTO ======== */
 .contacto-box {
-  background: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.15);
   padding: 35px;
   border-radius: 15px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
   text-align: center;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -233,49 +268,20 @@ a {
   display: flex;
   justify-content: center;
   gap: 20px;
+  flex-wrap: wrap;
   margin-top: 20px;
-}
-
-.btn.whatsapp {
-  background: #25D366;
-  color: #fff !important;
-  padding: 12px 25px;
-  border-radius: 10px;
-  font-weight: 600;
-  animation: glow-green 3s ease-in-out infinite alternate;
-  transition: transform 0.3s ease;
-}
-
-@keyframes glow-green {
-  0% { box-shadow: 0 0 10px rgba(37, 211, 102, 0.4), 0 0 20px rgba(37, 211, 102, 0.2); }
-  100% { box-shadow: 0 0 25px rgba(37, 211, 102, 0.6), 0 0 35px rgba(37, 211, 102, 0.3); }
-}
-
-.btn.linkedin {
-  background: #0077B5;
-  color: #fff !important;
-  padding: 12px 25px;
-  border-radius: 10px;
-  font-weight: 600;
-  animation: glow-blue 3s ease-in-out infinite alternate;
-  transition: transform 0.3s ease;
-}
-
-.btn.whatsapp:hover,
-.btn.linkedin:hover {
-  transform: scale(1.06);
 }
 
 /* ======== FOOTER ======== */
 .site-footer {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   text-align: center;
   padding: 15px 0;
   margin-top: 40px;
   border-top: 1px solid rgba(255, 255, 255, 0.3);
-  color: #3a3a3a;
+  color: #fff;
 }
 
 .site-footer span {
