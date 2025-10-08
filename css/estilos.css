@@ -1,3 +1,4 @@
+/* ===== FONDO GENERAL ===== */
 body {
   font-family: 'Inter', sans-serif;
   margin: 0;
@@ -17,6 +18,7 @@ body {
   100% { background-position: 0% 50%; }
 }
 
+/* ===== TIPOGRAFÍA Y TEXTO ===== */
 h1, h2, h3 {
   font-weight: 700;
   margin: 0 0 10px 0;
@@ -34,6 +36,7 @@ a {
   margin: 0 auto;
 }
 
+/* ===== ENCABEZADO ===== */
 .site-header {
   background: rgba(255, 255, 255, 0.25);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -62,6 +65,7 @@ a {
   color: #b85c38;
 }
 
+/* ===== SECCIONES ===== */
 .section {
   padding: 60px 0;
   backdrop-filter: blur(12px);
@@ -81,9 +85,9 @@ a {
   color: #222;
 }
 
-/* HERO */
+/* ===== HERO ===== */
 .hero-card {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.35);
   border-radius: 20px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
   text-align: left;
@@ -124,7 +128,7 @@ a {
   line-height: 1.8;
 }
 
-/* BOTONES */
+/* ===== BOTONES GLOBALES ===== */
 .btn {
   display: inline-block;
   padding: 12px 25px;
@@ -134,50 +138,34 @@ a {
   margin-top: 15px;
   border: none;
   cursor: pointer;
-  transition: transform 0.3s ease;
   color: #fff;
+  background: linear-gradient(135deg, #0077b6, #005f87);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 10px rgba(0,119,182,0.4), 0 0 20px rgba(0,119,182,0.2); }
+  100% { box-shadow: 0 0 25px rgba(0,119,182,0.6), 0 0 35px rgba(0,119,182,0.3); }
 }
 
 .btn:hover {
   transform: scale(1.06);
 }
 
-.btn.primary {
-  background: linear-gradient(135deg, #0077b6, #005f87);
-  animation: glow-blue 3s ease-in-out infinite alternate;
-}
-
-@keyframes glow-blue {
-  0% { box-shadow: 0 0 10px rgba(0,119,182,0.4), 0 0 20px rgba(0,119,182,0.2); }
-  100% { box-shadow: 0 0 25px rgba(0,119,182,0.6), 0 0 35px rgba(0,119,182,0.3); }
-}
-
 .btn.red {
   background: linear-gradient(135deg, #d72638, #b71c1c);
-  animation: glow-red 3s ease-in-out infinite alternate;
-}
-
-@keyframes glow-red {
-  0% { box-shadow: 0 0 10px rgba(215,38,56,0.4), 0 0 20px rgba(215,38,56,0.2); }
-  100% { box-shadow: 0 0 25px rgba(215,38,56,0.6), 0 0 35px rgba(215,38,56,0.3); }
 }
 
 .btn.whatsapp {
   background: linear-gradient(135deg, #25D366, #128C7E);
-  animation: glow-green 3s ease-in-out infinite alternate;
-}
-
-@keyframes glow-green {
-  0% { box-shadow: 0 0 10px rgba(37,211,102,0.4), 0 0 20px rgba(37,211,102,0.2); }
-  100% { box-shadow: 0 0 25px rgba(37,211,102,0.6), 0 0 35px rgba(37,211,102,0.3); }
 }
 
 .btn.linkedin {
   background: linear-gradient(135deg, #0077B5, #005a8d);
-  animation: glow-blue 3s ease-in-out infinite alternate;
 }
 
-/* CARDS Y REFLEJO */
+/* ===== TARJETAS DE PROYECTOS Y CERTIFICADOS ===== */
 .grid.cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -221,7 +209,7 @@ a {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
-/* TECNOLOGÍAS */
+/* ===== TECNOLOGÍAS ===== */
 .tiles {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -230,7 +218,7 @@ a {
   color: #222;
 }
 
-/* DIPLOMAS */
+/* ===== CERTIFICADOS ===== */
 .diplomas-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -238,7 +226,7 @@ a {
   color: #222;
 }
 
-/* CONTACTO */
+/* ===== CONTACTO ===== */
 .contacto-box {
   background: rgba(255, 255, 255, 0.3);
   padding: 35px;
@@ -258,7 +246,7 @@ a {
   margin-top: 20px;
 }
 
-/* FOOTER */
+/* ===== FOOTER ===== */
 .site-footer {
   background: rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(8px);
