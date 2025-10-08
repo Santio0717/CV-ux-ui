@@ -1,4 +1,4 @@
-/* ===== FONDO Y BASE GENERAL ===== */
+/* ===== BASE GENERAL ===== */
 body {
   font-family: 'Inter', sans-serif;
   margin: 0;
@@ -29,6 +29,7 @@ a {
   color: #222;
 }
 
+/* ===== CONTENEDORES ===== */
 .container {
   width: 90%;
   max-width: 1100px;
@@ -144,23 +145,48 @@ a {
   border: none;
   cursor: pointer;
   color: #fff;
-  background: linear-gradient(135deg, #d72638, #b71c1c);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  animation: glow 3s ease-in-out infinite alternate;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  animation: glow 3s ease-in-out infinite alternate;
 }
 
 @keyframes glow {
-  0% { box-shadow: 0 0 10px rgba(215,38,56,0.4), 0 0 20px rgba(215,38,56,0.2); }
-  100% { box-shadow: 0 0 25px rgba(215,38,56,0.6), 0 0 35px rgba(215,38,56,0.3); }
+  0% { box-shadow: 0 0 10px rgba(255,255,255,0.2); }
+  100% { box-shadow: 0 0 20px rgba(255,255,255,0.35); }
 }
 
-.btn:hover {
+/* ——— Botón rojo Descargar CV ——— */
+.btn.red {
+  background: linear-gradient(135deg, #d72638, #b71c1c);
+}
+
+.btn.red:hover {
   transform: scale(1.06);
+  box-shadow: 0 0 25px rgba(183, 28, 28, 0.5);
 }
 
-/* ===== TARJETAS ===== */
+/* ——— Botón verde WhatsApp ——— */
+.btn.whatsapp {
+  background-color: #25d366;
+}
+
+.btn.whatsapp:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 25px rgba(37, 211, 102, 0.5);
+}
+
+/* ——— Botón azul LinkedIn ——— */
+.btn.linkedin {
+  background-color: #0077b5;
+}
+
+.btn.linkedin:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 25px rgba(0, 119, 181, 0.5);
+}
+
+/* ===== PROYECTOS ===== */
 .grid.cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -179,24 +205,6 @@ a {
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   color: #222;
-}
-
-.card::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -75%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.35), transparent);
-  transform: skewX(-25deg);
-  animation: sheen 5s infinite;
-}
-
-@keyframes sheen {
-  0% { left: -75%; }
-  50% { left: 125%; }
-  100% { left: 125%; }
 }
 
 .card:hover {
