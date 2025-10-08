@@ -59,6 +59,7 @@ body {
   color: #6a00ff;
 }
 
+/* HERO */
 .hero {
   display: flex;
   align-items: center;
@@ -67,10 +68,10 @@ body {
 
 .hero-card {
   background: #fff;
-  padding: 25px;
+  padding: 25px 35px;
   border-radius: 15px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  text-align: left;
   max-width: 750px;
   margin: 0 auto;
 }
@@ -80,7 +81,8 @@ body {
   height: 150px;
   border-radius: 10px;
   object-fit: cover;
-  margin-bottom: 15px;
+  display: block;
+  margin: 0 auto 15px;
 }
 
 .subtitle {
@@ -89,6 +91,7 @@ body {
   text-transform: uppercase;
   margin-bottom: 10px;
   font-weight: 600;
+  text-align: center;
 }
 
 .display {
@@ -96,6 +99,7 @@ body {
   line-height: 1.7;
   color: #111;
   font-weight: 500;
+  text-align: left;
 }
 
 .grid {
@@ -136,6 +140,7 @@ body {
   color: #555;
 }
 
+/* BOTONES */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -166,6 +171,19 @@ body {
   background-color: #0077B5;
 }
 
+/* BOTÓN ROJO DESCARGAR CV */
+.btn.red {
+  background: linear-gradient(90deg, #ff3c3c, #cc0000);
+  color: #fff;
+  font-weight: 600;
+}
+
+.btn.red:hover {
+  background: linear-gradient(90deg, #cc0000, #ff3c3c);
+  box-shadow: 0 4px 10px rgba(255, 60, 60, 0.3);
+}
+
+/* CONTACTO */
 .contacto-box {
   background: #fff;
   border-radius: 15px;
@@ -198,11 +216,6 @@ body {
   justify-content: center;
 }
 
-.botones-contacto img {
-  margin-right: 8px;
-  vertical-align: middle;
-}
-
 .site-footer {
   background: #fff;
   text-align: center;
@@ -210,4 +223,29 @@ body {
   margin-top: 40px;
   color: #333;
   font-size: 0.9rem;
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+  .hero-card {
+    padding: 20px;
+  }
+
+  .display {
+    font-size: 1rem;
+  }
+
+  .main-nav {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    padding: 9px 16px;
+  }
+
+  .card {
+    padding: 15px;
+  }
 }
