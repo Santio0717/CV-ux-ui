@@ -148,11 +148,28 @@ a {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
 }
 
-/* ===== BOTONES ===== */
+/* Efecto de brillo diagonal */
+.btn::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+  transform: translateX(-100%) rotate(45deg);
+  transition: transform 0.7s ease-in-out;
+}
 
-/* ——— Rojo: Descargar CV ——— */
+.btn:hover::before {
+  transform: translateX(100%) rotate(45deg);
+}
+
+/* ——— Botón rojo Descargar CV ——— */
 .btn.red {
   background: linear-gradient(135deg, #d72638, #b71c1c);
 }
@@ -223,7 +240,7 @@ a {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
-/* ===== TECNOLOGÍAS ===== */
+/* ===== TEXTO DE ESTRELLAS ===== */
 .meta {
   text-align: center;
   color: #222;
@@ -238,6 +255,7 @@ a {
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
 }
 
+/* ===== TECNOLOGÍAS ===== */
 .tiles {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -251,13 +269,10 @@ a {
 }
 
 .tiles .card p {
-  color: #fff;
+  color: #000;
   background: none;
-  border-radius: 10px;
-  padding: 5px 10px;
-  display: inline-block;
   font-weight: bold;
-  text-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+  text-shadow: none;
 }
 
 /* ===== CERTIFICADOS ===== */
