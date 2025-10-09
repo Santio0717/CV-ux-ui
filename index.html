@@ -1,277 +1,219 @@
-/* ===== FONDO Y BASE GENERAL ===== */
-body {
-  font-family: 'Inter', sans-serif;
-  margin: 0;
-  color: #222;
-  line-height: 1.6;
-  background: linear-gradient(120deg, #f3dbc3, #fdecd9, #fff6ed);
-  background-size: 400% 400%;
-  animation: backgroundMove 35s ease-in-out infinite;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
+<!doctype html>
+<html lang="es">
+<html lang="es" class="no-js">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+@@ -10,14 +10,14 @@
+</head>
 
-@keyframes backgroundMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
+<body>
+  <!-- HEADER -->
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <nav class="main-nav" id="nav">
+        <a href="#inicio">Inicio</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#tecnologias">Tecnologías</a>
+        <a href="#certificados">Certificados</a>
+        <a href="#diplomas">Diplomas</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+@@ -36,54 +36,53 @@ <h1 class="display">
+              Disfruto investigar usuarios, diseñar wireframes y prototipos para desarrollar soluciones innovadoras,
+              accesibles y de alta calidad que mejoren la interacción entre las personas y la tecnología.
+            </h1>
+            <div class="botones-hero">
+              <a class="btn red" href="CV-Santiago-Murillo-Ramirez.pdf_" download>Descargar CV</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
 
-h1, h2, h3 {
-  font-weight: 700;
-  margin: 0 0 10px 0;
-  color: #222;
-}
+    <!-- PROYECTOS 3D -->
+    <section id="proyectos" class="section reveal">
+    <!-- PROYECTOS -->
+    <section id="proyectos" class="section alt reveal">
+      <div class="container">
+        <h2 class="section-title">Proyectos destacados</h2>
+        <div class="grid cards" style="margin-top:18px">
+          
+          <article class="card hoverable reveal">
+            <h3>Bon Bon Bum</h3>
+            <p>Wireframe de alta fidelidad en Figma, adaptado a MacBook Pro 16".</p>
+            <a class="btn primary" href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma?node-id=0-1" target="_blank" rel="noopener">Acceder</a>
+          </article>
 
-a {
-  text-decoration: none;
-  color: #222;
-}
+          <article class="card hoverable reveal">
+            <h3>Greescape</h3>
+            <p>Prototipo de alta fidelidad en Figma, adaptado a iPhone 13 Pro.</p>
+            <a class="btn primary" href="https://www.figma.com/proto/iYuZ5f1XPOvGDWncfB739r/HCI?node-id=385-6&t=Nl6IrEmuWuZ9Z22b-6&starting-point-node-id=385%3A6" target="_blank" rel="noopener">Acceder</a>
+          </article>
 
-.container {
-  width: 90%;
-  max-width: 1100px;
-  margin: 0 auto;
-}
+          <article class="card hoverable reveal">
+            <h3>NutriCampus</h3>
+            <p>Prototipo de alta fidelidad en Figma, pensado para RV.</p>
+            <a class="btn primary" href="https://www.figma.com/proto/riKsfkN37qsKX4NbQn5zOh/Nutricampus-V2?node-id=11-144&starting-point-node-id=11%3A144" target="_blank" rel="noopener">Acceder</a>
+          </article>
 
-/* ===== ENCABEZADO ===== */
-.site-header {
-  background: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-}
+          <article class="card hoverable reveal">
+            <h3>Isócrates</h3>
+            <p>Prototipo de alta fidelidad en Figma para desktop.</p>
+            <a class="btn primary" href="https://www.figma.com/proto/bCCXBOMkOQKVUB0emfQIb5/DSI-TRABAJO-GRUPAL?node-id=1-1028&t=wCu6hMbTKg0e4pQI-1&starting-point-node-id=20%3A1912&scaling=contain&content-scaling=fixed" target="_blank" rel="noopener">Acceder</a>
+          </article>
 
-.nav-wrap {
-  display: flex;
-  justify-content: center;
-  padding: 15px 0;
-}
+        <div class="carousel-container">
+          <div class="carousel" id="carousel">
+            <div class="carousel-item">
+              <h3>Bon Bon Bum</h3>
+              <p>Wireframe de alta fidelidad en Figma, adaptado a MacBook Pro 16".</p>
+              <a class="btn primary" href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma" target="_blank">Acceder</a>
+            </div>
+            <div class="carousel-item">
+              <h3>Greescape</h3>
+              <p>Prototipo de alta fidelidad en Figma, adaptado a iPhone 13 Pro.</p>
+              <a class="btn primary" href="https://www.figma.com/proto/iYuZ5f1XPOvGDWncfB739r/HCI" target="_blank">Acceder</a>
+            </div>
+            <div class="carousel-item">
+              <h3>NutriCampus</h3>
+              <p>Prototipo de alta fidelidad en Figma, pensado para RV.</p>
+              <a class="btn primary" href="https://www.figma.com/proto/riKsfkN37qsKX4NbQn5zOh/Nutricampus-V2" target="_blank">Acceder</a>
+            </div>
+            <div class="carousel-item">
+              <h3>Isócrates</h3>
+              <p>Prototipo de alta fidelidad en Figma para desktop.</p>
+              <a class="btn primary" href="https://www.figma.com/proto/bCCXBOMkOQKVUB0emfQIb5/DSI-TRABAJO-GRUPAL" target="_blank">Acceder</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-.main-nav a {
-  color: #222;
-  font-weight: 600;
-  margin: 0 15px;
-  transition: color 0.3s ease;
-}
+    <!-- TECNOLOGÍAS -->
+    <section id="tecnologias" class="section reveal">
+    <section id="tecnologias" class="section reveal" style="color:white;">
+      <div class="container">
+        <h2 class="section-title">Tecnologías</h2>
+        <p class="meta">
+          ★ a ★★⯪ = Básico &nbsp;&nbsp;|&nbsp;&nbsp;
+          ★★★ a ★★★⯪ = Intermedio &nbsp;&nbsp;|&nbsp;&nbsp;
+          ★★★★ a ★★★★★ = Experto
+          ★★⯪ a ★★★⯪ = Intermedio &nbsp;&nbsp;|&nbsp;&nbsp;
+          ★★★⯪ a ★★★★★ = Experto
+        </p>
+        <div class="grid tiles">
+          <article class="card"><h3>Figma</h3><p>★★★★⯪</p></article>
+@@ -93,6 +92,7 @@ <h2 class="section-title">Tecnologías</h2>
+          <article class="card"><h3>After Effects</h3><p>★★★★★</p></article>
+          <article class="card"><h3>HTML5</h3><p>★★★</p></article>
+          <article class="card"><h3>CSS</h3><p>★★★</p></article>
+          <article class="card"><h3>Miro</h3><p>★★★⯪</p></article>
+          <article class="card"><h3>Notion</h3><p>★★★</p></article>
+          <article class="card"><h3>Jira</h3><p>★★★★</p></article>
+          <article class="card"><h3>WCAG</h3><p>★★★</p></article>
+@@ -101,27 +101,25 @@ <h2 class="section-title">Tecnologías</h2>
+      </div>
+    </section>
 
-.main-nav a:hover {
-  color: #b85c38;
-}
+    <!-- CERTIFICADOS -->
+    <section id="certificados" class="section reveal">
+    <!-- DIPLOMAS -->
+    <section id="diplomas" class="section reveal" style="color:white;">
+      <div class="container">
+        <h2 class="section-title">Certificados</h2>
+        <h2 class="section-title">Diplomas & Certificaciones</h2>
+        <div class="grid diplomas-grid">
+          <article class="card hoverable">
+          <article class="card hoverable reveal">
+            <h3>Certificado EF SET</h3>
+            <p>Certificación oficial de inglés EF SET, nivel alcanzado en 2023.</p>
+            <a class="btn primary" href="activos/diplomas/Certificado_EF_SET.pdf" target="_blank">Ver certificado</a>
+            <a class="btn red" href="diplomas/Certificado_EF_SET.pdf" target="_blank" rel="noopener">Ver diploma</a>
+          </article>
 
-/* ===== SECCIONES ===== */
-.section {
-  padding: 60px 0;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
+          <article class="card hoverable">
+          <article class="card hoverable reveal">
+            <h3>Fundamentos de programación</h3>
+            <p>Curso introductorio de lógica y programación, completado en 2023.</p>
+            <a class="btn primary" href="activos/diplomas/Fundamentos_de_programacion.jpeg" target="_blank">Ver certificado</a>
+            <a class="btn red" href="diplomas/Fundamentos_de_programacion.jpeg" target="_blank" rel="noopener">Ver diploma</a>
+          </article>
 
-.section.alt {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 15px;
-  padding: 50px;
-}
+          <article class="card hoverable">
+          <article class="card hoverable reveal">
+            <h3>Manejo de Adobe Illustrator</h3>
+            <p>Curso de herramientas de diseño vectorial con Adobe Illustrator.</p>
+            <a class="btn primary" href="activos/diplomas/Manejo_de_Adobe_Illustrator.pdf" target="_blank">Ver certificado</a>
+            <a class="btn red" href="diplomas/Manejo_de_Adobe_Illustrator.pdf" target="_blank" rel="noopener">Ver diploma</a>
+          </article>
+        </div>
+      </div>
+@@ -133,9 +131,11 @@ <h3>Manejo de Adobe Illustrator</h3>
+        <h2 class="section-title">Contacto</h2>
+        <p><strong>Nombre:</strong> Santiago Murillo Ramírez</p>
+        <p><strong>Correo:</strong> <a href="mailto:santiagomr2003@gmail.com">santiagomr2003@gmail.com</a></p>
 
-.section-title {
-  font-size: 1.8rem;
-  text-align: center;
-  margin-bottom: 25px;
-  color: #222;
-}
+        <div class="botones-contacto">
+          <a class="btn whatsapp" href="https://wa.me/573228182311" target="_blank">WhatsApp</a>
+          <a class="btn linkedin" href="https://www.linkedin.com/in/santiago-murillo-ramírez-795447235" target="_blank">LinkedIn</a>
+          <a class="btn whatsapp" href="https://wa.me/573228182311" target="_blank" rel="noopener">WhatsApp</a>
+          <a class="btn linkedin" href="https://www.linkedin.com/in/santiago-murillo-ramírez-795447235" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn red" href="CV-Santiago-Murillo-Ramirez.pdf" download>Descargar CV</a>
+        </div>
+      </div>
+    </section>
+@@ -147,50 +147,6 @@ <h2 class="section-title">Contacto</h2>
+    </div>
+  </footer>
 
-/* ===== HERO ===== */
-.hero-card {
-  background: rgba(255, 255, 255, 0.35);
-  border-radius: 20px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-  text-align: left;
-  padding: 40px 30px;
-  max-width: 750px;
-  margin: 0 auto;
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+  <!-- SCRIPT CARRUSEL -->
+  <script>
+    const carousel = document.getElementById('carousel');
+    let angle = 0;
+    let startX = 0;
+    let isDragging = false;
 
-.hero-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-}
+    // Posicionar elementos en círculo
+    const items = document.querySelectorAll('.carousel-item');
+    const total = items.length;
+    const deg = 360 / total;
 
-.avatar {
-  display: block;
-  width: 120px;
-  height: 120px;
-  border-radius: 12px;
-  object-fit: cover;
-  margin: 0 auto 15px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+    items.forEach((item, i) => {
+      item.style.transform = `rotateY(${i * deg}deg) translateZ(380px)`;
+    });
 
-.avatar:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
-}
+    // Control de rotación
+    function rotateCarousel(delta) {
+      angle += delta * 0.3;
+      carousel.style.transform = `translateZ(-300px) rotateY(${angle}deg)`;
+    }
 
-.subtitle {
-  font-weight: 600;
-  text-align: center;
-  color: #333;
-  margin-bottom: 10px;
-}
+    // Eventos mouse
+    carousel.addEventListener('mousedown', e => {
+      isDragging = true;
+      startX = e.clientX;
+    });
 
-.display {
-  font-size: 1rem;
-  text-align: left;
-  color: #222;
-  line-height: 1.8;
-}
+    window.addEventListener('mouseup', () => (isDragging = false));
 
-.botones-hero {
-  display: flex;
-  justify-content: flex-start;
-  gap: 15px;
-  margin-top: 20px;
-}
+    window.addEventListener('mousemove', e => {
+      if (!isDragging) return;
+      const delta = e.clientX - startX;
+      rotateCarousel(delta);
+      startX = e.clientX;
+    });
 
-/* ===== BOTONES GLOBALES ===== */
-.btn {
-  display: inline-block;
-  padding: 12px 25px;
-  border-radius: 12px;
-  font-weight: 600;
-  text-align: center;
-  border: none;
-  cursor: pointer;
-  color: #fff;
-  background: linear-gradient(135deg, #0077b6, #005f87);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  animation: glow 3s ease-in-out infinite alternate;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-
-@keyframes glow {
-  0% { box-shadow: 0 0 10px rgba(0,119,182,0.4), 0 0 20px rgba(0,119,182,0.2); }
-  100% { box-shadow: 0 0 25px rgba(0,119,182,0.6), 0 0 35px rgba(0,119,182,0.3); }
-}
-
-.btn:hover {
-  transform: scale(1.06);
-}
-
-.btn.red {
-  background: linear-gradient(135deg, #d72638, #b71c1c);
-}
-
-.btn.whatsapp {
-  background: linear-gradient(135deg, #25D366, #128C7E);
-}
-
-.btn.linkedin {
-  background: linear-gradient(135deg, #0077B5, #005a8d);
-}
-
-/* ===== TARJETAS ===== */
-.grid.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 25px;
-}
-
-.card {
-  background: rgba(255, 255, 255, 0.6);
-  border-radius: 15px;
-  padding: 25px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.06);
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: #222;
-}
-
-.card::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -75%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.35), transparent);
-  transform: skewX(-25deg);
-  animation: sheen 5s infinite;
-}
-
-@keyframes sheen {
-  0% { left: -75%; }
-  50% { left: 125%; }
-  100% { left: 125%; }
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-}
-
-/* ===== TECNOLOGÍAS ===== */
-.tiles {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 20px;
-  text-align: center;
-  color: #222;
-}
-
-/* ===== CERTIFICADOS ===== */
-.diplomas-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
-  color: #222;
-}
-
-/* ===== CONTACTO ===== */
-.contacto-box {
-  background: rgba(255, 255, 255, 0.3);
-  padding: 35px;
-  border-radius: 15px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  color: #222;
-}
-
-.botones-contacto {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-  margin-top: 20px;
-}
-
-/* ===== FOOTER ===== */
-.site-footer {
-  background: rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  text-align: center;
-  padding: 15px 0;
-  margin-top: 40px;
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
-  color: #222;
-}
-
-.site-footer span {
-  font-size: 0.9rem;
-}
+    // Touch
+    carousel.addEventListener('touchstart', e => (startX = e.touches[0].clientX));
+    carousel.addEventListener('touchmove', e => {
+      const delta = e.touches[0].clientX - startX;
+      rotateCarousel(delta);
+      startX = e.touches[0].clientX;
+    });
+  </script>
+  <script src="js/aplicación.js"></script>
+</body>
+</html>
