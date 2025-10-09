@@ -44,7 +44,7 @@
       </div>
     </section>
 
-    <!-- PROYECTOS 3D INTERACTIVO -->
+    <!-- PROYECTOS 3D -->
     <section id="proyectos" class="section reveal">
       <div class="container">
         <h2 class="section-title">Proyectos destacados</h2>
@@ -53,25 +53,25 @@
           <div class="card3d">
             <h3>Bon Bon Bum</h3>
             <p>Wireframe de alta fidelidad en Figma, adaptado a MacBook Pro 16".</p>
-            <a class="btn primary" href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma?node-id=0-1" target="_blank">Acceder</a>
+            <a class="btn primary" href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma" target="_blank">Acceder</a>
           </div>
 
           <div class="card3d">
             <h3>Greescape</h3>
             <p>Prototipo de alta fidelidad en Figma, adaptado a iPhone 13 Pro.</p>
-            <a class="btn primary" href="https://www.figma.com/proto/iYuZ5f1XPOvGDWncfB739r/HCI?node-id=385-6" target="_blank">Acceder</a>
+            <a class="btn primary" href="https://www.figma.com/proto/iYuZ5f1XPOvGDWncfB739r/HCI" target="_blank">Acceder</a>
           </div>
 
           <div class="card3d">
             <h3>NutriCampus</h3>
             <p>Prototipo de alta fidelidad en Figma, pensado para RV.</p>
-            <a class="btn primary" href="https://www.figma.com/proto/riKsfkN37qsKX4NbQn5zOh/Nutricampus-V2?node-id=11-144" target="_blank">Acceder</a>
+            <a class="btn primary" href="https://www.figma.com/proto/riKsfkN37qsKX4NbQn5zOh/Nutricampus-V2" target="_blank">Acceder</a>
           </div>
 
           <div class="card3d">
             <h3>Isócrates</h3>
             <p>Prototipo de alta fidelidad en Figma para desktop.</p>
-            <a class="btn primary" href="https://www.figma.com/proto/bCCXBOMkOQKVUB0emfQIb5/DSI-TRABAJO-GRUPAL?node-id=1-1028" target="_blank">Acceder</a>
+            <a class="btn primary" href="https://www.figma.com/proto/bCCXBOMkOQKVUB0emfQIb5/DSI-TRABAJO-GRUPAL" target="_blank">Acceder</a>
           </div>
         </div>
       </div>
@@ -148,30 +148,29 @@
     </div>
   </footer>
 
-  <!-- SCRIPT DEL CARRUSEL -->
+  <!-- SCRIPT DEL CARRUSEL 3D -->
   <script>
     const carousel = document.querySelector('.carousel3d');
     const cards = document.querySelectorAll('.card3d');
+    const total = cards.length;
+    const angleStep = 360 / total;
     let rotation = 0;
     let isDragging = false;
     let startX = 0;
 
-    const total = cards.length;
-    const angleStep = 360 / total;
-
-    // Ubicación inicial de cada tarjeta
+    // Posicionar tarjetas en círculo
     cards.forEach((card, i) => {
       const angle = i * angleStep;
-      card.style.transform = `rotateY(${angle}deg)`;
+      card.style.transform = `rotateY(${angle}deg) translateZ(380px)`;
     });
 
-    // Rotación dinámica
+    // Actualizar rotación
     function updateRotation(delta) {
       rotation += delta * 0.3;
-      carousel.style.transform = `rotateY(${rotation}deg)`;
+      carousel.style.transform = `translateZ(-300px) rotateY(${rotation}deg)`;
     }
 
-    // Control con mouse
+    // Control por mouse
     carousel.addEventListener('mousedown', e => {
       isDragging = true;
       startX = e.clientX;
