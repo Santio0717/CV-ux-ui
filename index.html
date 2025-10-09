@@ -44,7 +44,7 @@
       </div>
     </section>
 
-    <!-- PROYECTOS 3D -->
+    <!-- PROYECTOS 3D INTERACTIVO -->
     <section id="proyectos" class="section reveal">
       <div class="container">
         <h2 class="section-title">Proyectos destacados</h2>
@@ -149,19 +149,49 @@
   </footer>
 
   <script>
-    // rotación controlable opcional
+    // ==== CONTROL DE CARRUSEL CON MOUSE Y TÁCTIL ====
     const carousel = document.querySelector('.carousel3d');
-    let rotation = 0, dragging = false, startX;
+    let rotation = 0;
+    let isDragging = false;
+    let startX = 0;
 
-    carousel.addEventListener('mousedown', e => { dragging = true; startX = e.clientX; });
-    window.addEventListener('mouseup', () => dragging = false);
-    window.addEventListener('mousemove', e => {
-      if (!dragging) return;
-      const delta = e.clientX - startX;
-      rotation += delta * 0.2;
+    // Función para actualizar rotación
+    function updateRotation(delta) {
+      rotation += delta * 0.3;
       carousel.style.transform = `rotateY(${rotation}deg)`;
+    }
+
+    // Mouse
+    carousel.addEventListener('mousedown', e => {
+      isDragging = true;
+      startX = e.clientX;
+      carousel.style.cursor = "grabbing";
+    });
+
+    window.addEventListener('mouseup', () => {
+      isDragging = false;
+      carousel.style.cursor = "grab";
+    });
+
+    window.addEventListener('mousemove', e => {
+      if (!isDragging) return;
+      const delta = e.clientX - startX;
+      updateRotation(delta);
       startX = e.clientX;
     });
+
+    // Touch (móviles)
+    carousel.addEventListener('touchstart', e => {
+      startX = e.touches[0].clientX;
+    });
+
+    carousel.addEventListener('touchmove', e => {
+      const delta = e.touches[0].clientX - startX;
+      updateRotation(delta);
+      startX = e.touches[0].clientX;
+    });
+
+    carousel.style.cursor = "grab";
   </script>
 </body>
 </html>
