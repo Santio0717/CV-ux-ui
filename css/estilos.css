@@ -1,4 +1,4 @@
-/* ===== BASE GENERAL ===== */
+/* ===== BASE ===== */
 body {
   font-family: 'Inter', sans-serif;
   margin: 0;
@@ -8,8 +8,6 @@ body {
   background-size: 400% 400%;
   animation: backgroundMove 35s ease-in-out infinite;
   background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 @keyframes backgroundMove {
@@ -20,32 +18,17 @@ body {
 
 h1, h2, h3 {
   font-weight: 700;
-  margin: 0 0 10px 0;
   color: #222;
 }
 
-a {
-  text-decoration: none;
-  color: #222;
-}
-
-/* ===== CONTENEDORES ===== */
-.container {
-  width: 90%;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-/* ===== ENCABEZADO ===== */
+/* ===== HEADER ===== */
 .site-header {
-  background: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(10px);
   position: sticky;
   top: 0;
   z-index: 10;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 1px solid rgba(255,255,255,0.3);
 }
 
 .nav-wrap {
@@ -68,41 +51,23 @@ a {
 /* ===== SECCIONES ===== */
 .section {
   padding: 60px 0;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-.section.alt {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 15px;
-  padding: 50px;
 }
 
 .section-title {
-  font-size: 1.8rem;
   text-align: center;
+  font-size: 1.8rem;
   margin-bottom: 25px;
-  color: #222;
 }
 
 /* ===== HERO ===== */
 .hero-card {
-  background: rgba(255, 255, 255, 0.35);
+  background: rgba(255,255,255,0.35);
   border-radius: 20px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-  text-align: left;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
   padding: 40px 30px;
   max-width: 750px;
   margin: 0 auto;
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.hero-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  text-align: left;
 }
 
 .avatar {
@@ -112,133 +77,71 @@ a {
   border-radius: 12px;
   object-fit: cover;
   margin: 0 auto 15px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
-.avatar:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
-}
-
-.subtitle {
-  font-weight: 600;
-  text-align: center;
-  color: #333;
-  margin-bottom: 10px;
-}
-
-.display {
-  font-size: 1rem;
-  text-align: left;
-  color: #222;
-  line-height: 1.8;
-}
-
-/* ===== BOTONES GLOBALES ===== */
+/* ===== BOTONES ===== */
 .btn {
   display: inline-block;
   padding: 12px 25px;
   border-radius: 12px;
   font-weight: 600;
   text-align: center;
-  border: none;
-  cursor: pointer;
   color: #fff;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  position: relative;
-  overflow: hidden;
 }
 
-/* Efecto de brillo diagonal */
-.btn::before {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
-  transform: translateX(-100%) rotate(45deg);
-  transition: transform 0.7s ease-in-out;
-}
-
-.btn:hover::before {
-  transform: translateX(100%) rotate(45deg);
-}
-
-/* Colores */
 .btn.red {
   background: linear-gradient(135deg, #d72638, #b71c1c);
-}
-.btn.red:hover {
-  transform: scale(1.06);
-  box-shadow: 0 0 25px rgba(183, 28, 28, 0.5);
 }
 
 .btn.primary {
   background: linear-gradient(135deg, #4b6cb7, #182848);
 }
-.btn.primary:hover {
-  transform: scale(1.06);
-  box-shadow: 0 0 25px rgba(24, 40, 72, 0.5);
-}
-
-.btn.certificado {
-  background: linear-gradient(135deg, #7b2ff7, #f107a3);
-}
-.btn.certificado:hover {
-  transform: scale(1.06);
-  box-shadow: 0 0 25px rgba(123, 47, 247, 0.5);
-}
 
 .btn.whatsapp {
   background-color: #25d366;
-}
-.btn.whatsapp:hover {
-  transform: scale(1.06);
-  box-shadow: 0 0 25px rgba(37, 211, 102, 0.5);
 }
 
 .btn.linkedin {
   background-color: #0077b5;
 }
-.btn.linkedin:hover {
+
+.btn:hover {
   transform: scale(1.06);
-  box-shadow: 0 0 25px rgba(0, 119, 181, 0.5);
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
 }
 
-/* ===== CARRUSEL 3D DE TARJETAS ===== */
+/* ===== CARRUSEL 3D ===== */
 .carousel3d {
-  width: 100%;
-  height: 380px;
   position: relative;
+  width: 100%;
+  height: 400px;
+  margin-top: 40px;
   perspective: 1200px;
   transform-style: preserve-3d;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 40px;
+  transform: translateZ(-300px) rotateY(0deg);
   transition: transform 0.4s ease;
+  cursor: grab;
 }
 
 .card3d {
   position: absolute;
-  width: 280px;
-  height: 200px;
-  background: rgba(255, 255, 255, 0.75);
+  width: 320px;
+  height: 220px;
+  left: calc(50% - 160px);
+  top: 70px;
   border-radius: 15px;
-  padding: 20px;
+  padding: 25px;
   text-align: center;
+  background: rgba(255,255,255,0.75);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
   color: #222;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  transition: transform 0.5s ease, box-shadow 0.3s ease;
-  backface-visibility: hidden; /* evita verse al revés */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: transform 0.6s ease;
+  backface-visibility: hidden;
   transform-origin: center center -400px;
 }
 
@@ -252,104 +155,18 @@ a {
   margin-bottom: 15px;
 }
 
-.card3d:hover {
-  transform: scale(1.1) translateZ(30px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
-}
-
-/* ===== TECNOLOGÍAS ===== */
-.meta {
-  text-align: center;
-  color: #222;
-  font-size: 0.95rem;
-  margin-bottom: 25px;
-  background: rgba(255, 255, 255, 0.25);
-  padding: 10px 15px;
-  border-radius: 10px;
-  display: inline-block;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
-}
-
-.tiles {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 20px;
-  text-align: center;
-  color: #222;
-}
-
-.tiles .card h3 {
-  margin-bottom: 8px;
-}
-
-.tiles .card p {
-  color: #000;
-  background: none;
-  font-weight: bold;
-  text-shadow: none;
-}
-
-/* ===== CERTIFICADOS ===== */
-.diplomas-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
-  color: #222;
-}
-
-.card {
-  background: rgba(255, 255, 255, 0.6);
-  border-radius: 15px;
-  padding: 25px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.06);
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: #222;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-}
-
 /* ===== CONTACTO ===== */
 .contacto-box {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(255,255,255,0.3);
   padding: 35px;
   border-radius: 15px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  color: #222;
-}
-
-.botones-contacto {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-  margin-top: 20px;
 }
 
 /* ===== FOOTER ===== */
 .site-footer {
-  background: rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
   text-align: center;
   padding: 15px 0;
-  margin-top: 40px;
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
-  color: #222;
-}
-
-.site-footer span {
-  font-size: 0.9rem;
+  background: rgba(255,255,255,0.25);
+  border-top: 1px solid rgba(255,255,255,0.3);
 }
