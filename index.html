@@ -44,62 +44,63 @@
       </div>
     </section>
 
-    <!-- PROYECTOS -->
-    <section id="proyectos" class="section alt reveal">
+    <!-- PROYECTOS 3D -->
+    <section id="proyectos" class="section reveal">
       <div class="container">
         <h2 class="section-title">Proyectos destacados</h2>
-        <div class="grid cards">
-          <article class="card hoverable">
+
+        <div class="carousel3d">
+          <div class="card3d">
             <h3>Bon Bon Bum</h3>
             <p>Wireframe de alta fidelidad en Figma, adaptado a MacBook Pro 16".</p>
             <a class="btn primary" href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma?node-id=0-1" target="_blank">Acceder</a>
-          </article>
+          </div>
 
-          <article class="card hoverable">
+          <div class="card3d">
             <h3>Greescape</h3>
             <p>Prototipo de alta fidelidad en Figma, adaptado a iPhone 13 Pro.</p>
             <a class="btn primary" href="https://www.figma.com/proto/iYuZ5f1XPOvGDWncfB739r/HCI?node-id=385-6" target="_blank">Acceder</a>
-          </article>
+          </div>
 
-          <article class="card hoverable">
+          <div class="card3d">
             <h3>NutriCampus</h3>
             <p>Prototipo de alta fidelidad en Figma, pensado para RV.</p>
             <a class="btn primary" href="https://www.figma.com/proto/riKsfkN37qsKX4NbQn5zOh/Nutricampus-V2?node-id=11-144" target="_blank">Acceder</a>
-          </article>
+          </div>
 
-          <article class="card hoverable">
+          <div class="card3d">
             <h3>Isócrates</h3>
             <p>Prototipo de alta fidelidad en Figma para desktop.</p>
             <a class="btn primary" href="https://www.figma.com/proto/bCCXBOMkOQKVUB0emfQIb5/DSI-TRABAJO-GRUPAL?node-id=1-1028" target="_blank">Acceder</a>
-          </article>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- TECNOLOGÍAS -->
     <section id="tecnologias" class="section reveal">
-  <div class="container">
-    <h2 class="section-title">Tecnologías</h2>
-    <p class="meta">
-      ★ a ★★⯪ = Básico &nbsp;&nbsp;|&nbsp;&nbsp;
-      ★★⯪ a ★★★⯪ = Intermedio &nbsp;&nbsp;|&nbsp;&nbsp;
-      ★★★⯪ a ★★★★★ = Experto
-    </p>
-    <div class="grid tiles">
-      <article class="card"><h3>Figma</h3><p>★★★★⯪</p></article>
-      <article class="card"><h3>Axure</h3><p>★★★</p></article>
-      <article class="card"><h3>Adobe Photoshop</h3><p>★★★★</p></article>
-      <article class="card"><h3>Illustrator</h3><p>★★★★</p></article>
-      <article class="card"><h3>After Effects</h3><p>★★★★★</p></article>
-      <article class="card"><h3>HTML5</h3><p>★★★</p></article>
-      <article class="card"><h3>CSS</h3><p>★★★</p></article>
-      <article class="card"><h3>Notion</h3><p>★★★</p></article>
-      <article class="card"><h3>Jira</h3><p>★★★★</p></article>
-      <article class="card"><h3>WCAG</h3><p>★★★</p></article>
-      <article class="card"><h3>GitHub</h3><p>★★★⯪</p></article>
-    </div>
-  </div>
-</section>
+      <div class="container">
+        <h2 class="section-title">Tecnologías</h2>
+        <p class="meta">
+          ★ a ★★⯪ = Básico &nbsp;&nbsp;|&nbsp;&nbsp;
+          ★★★ a ★★★⯪ = Intermedio &nbsp;&nbsp;|&nbsp;&nbsp;
+          ★★★★ a ★★★★★ = Experto
+        </p>
+        <div class="grid tiles">
+          <article class="card"><h3>Figma</h3><p>★★★★⯪</p></article>
+          <article class="card"><h3>Axure</h3><p>★★★</p></article>
+          <article class="card"><h3>Adobe Photoshop</h3><p>★★★★</p></article>
+          <article class="card"><h3>Illustrator</h3><p>★★★★</p></article>
+          <article class="card"><h3>After Effects</h3><p>★★★★★</p></article>
+          <article class="card"><h3>HTML5</h3><p>★★★</p></article>
+          <article class="card"><h3>CSS</h3><p>★★★</p></article>
+          <article class="card"><h3>Notion</h3><p>★★★</p></article>
+          <article class="card"><h3>Jira</h3><p>★★★★</p></article>
+          <article class="card"><h3>WCAG</h3><p>★★★</p></article>
+          <article class="card"><h3>GitHub</h3><p>★★★⯪</p></article>
+        </div>
+      </div>
+    </section>
 
     <!-- CERTIFICADOS -->
     <section id="certificados" class="section reveal">
@@ -146,5 +147,21 @@
       <span>© <span id="year"></span> Santiago Murillo</span>
     </div>
   </footer>
+
+  <script>
+    // rotación controlable opcional
+    const carousel = document.querySelector('.carousel3d');
+    let rotation = 0, dragging = false, startX;
+
+    carousel.addEventListener('mousedown', e => { dragging = true; startX = e.clientX; });
+    window.addEventListener('mouseup', () => dragging = false);
+    window.addEventListener('mousemove', e => {
+      if (!dragging) return;
+      const delta = e.clientX - startX;
+      rotation += delta * 0.2;
+      carousel.style.transform = `rotateY(${rotation}deg)`;
+      startX = e.clientX;
+    });
+  </script>
 </body>
 </html>
