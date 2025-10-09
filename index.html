@@ -49,29 +49,14 @@
       <div class="container">
         <h2 class="section-title">Proyectos destacados</h2>
 
-        <div class="carousel3d">
-          <div class="card3d">
-            <h3>Bon Bon Bum</h3>
-            <p>Wireframe de alta fidelidad en Figma, adaptado a MacBook Pro 16".</p>
-            <a class="btn primary" href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma?node-id=0-1" target="_blank">Acceder</a>
-          </div>
-
-          <div class="card3d">
-            <h3>Greescape</h3>
-            <p>Prototipo de alta fidelidad en Figma, adaptado a iPhone 13 Pro.</p>
-            <a class="btn primary" href="https://www.figma.com/proto/iYuZ5f1XPOvGDWncfB739r/HCI?node-id=385-6" target="_blank">Acceder</a>
-          </div>
-
-          <div class="card3d">
-            <h3>NutriCampus</h3>
-            <p>Prototipo de alta fidelidad en Figma, pensado para RV.</p>
-            <a class="btn primary" href="https://www.figma.com/proto/riKsfkN37qsKX4NbQn5zOh/Nutricampus-V2?node-id=11-144" target="_blank">Acceder</a>
-          </div>
-
-          <div class="card3d">
-            <h3>Isócrates</h3>
-            <p>Prototipo de alta fidelidad en Figma para desktop.</p>
-            <a class="btn primary" href="https://www.figma.com/proto/bCCXBOMkOQKVUB0emfQIb5/DSI-TRABAJO-GRUPAL?node-id=1-1028" target="_blank">Acceder</a>
+        <div class="carrusel" id="carrusel">
+          <div class="items">
+            <img src="https://pixabay.com/static/uploads/photo/2016/09/03/17/25/cigarette-1642232__340.jpg" alt="Bon Bon Bum" />
+            <img src="https://pixabay.com/static/uploads/photo/2016/05/28/17/42/rose-1421798__340.jpg" alt="Greescape" />
+            <img src="https://pixabay.com/static/uploads/photo/2016/04/22/22/11/dandelion-1346727__340.jpg" alt="NutriCampus" />
+            <img src="https://pixabay.com/static/uploads/photo/2016/07/14/13/35/matterhorn-1516733__340.jpg" alt="Isócrates" />
+            <img src="https://pixabay.com/static/uploads/photo/2016/08/03/14/24/roses-1566792__340.jpg" alt="Proyecto Extra" />
+            <img src="https://pixabay.com/static/uploads/photo/2016/06/11/12/13/hair-1450045__340.jpg" alt="Proyecto Extra 2" />
           </div>
         </div>
       </div>
@@ -149,49 +134,48 @@
   </footer>
 
   <script>
-    // ==== CONTROL DE CARRUSEL CON MOUSE Y TÁCTIL ====
-    const carousel = document.querySelector('.carousel3d');
-    let rotation = 0;
-    let isDragging = false;
-    let startX = 0;
+    // ==== CARRUSEL 3D DE IMÁGENES INTERACTIVO ====
+    const carrusel = document.querySelector('.carrusel .items');
+    let rotacion = 0;
+    let arrastrando = false;
+    let inicioX = 0;
 
-    // Función para actualizar rotación
-    function updateRotation(delta) {
-      rotation += delta * 0.3;
-      carousel.style.transform = `rotateY(${rotation}deg)`;
+    function actualizarRotacion(delta) {
+      rotacion += delta * 0.3;
+      carrusel.style.transform = `rotateY(${rotacion}deg)`;
     }
 
     // Mouse
-    carousel.addEventListener('mousedown', e => {
-      isDragging = true;
-      startX = e.clientX;
-      carousel.style.cursor = "grabbing";
+    carrusel.addEventListener('mousedown', e => {
+      arrastrando = true;
+      inicioX = e.clientX;
+      carrusel.style.cursor = "grabbing";
     });
 
     window.addEventListener('mouseup', () => {
-      isDragging = false;
-      carousel.style.cursor = "grab";
+      arrastrando = false;
+      carrusel.style.cursor = "grab";
     });
 
     window.addEventListener('mousemove', e => {
-      if (!isDragging) return;
-      const delta = e.clientX - startX;
-      updateRotation(delta);
-      startX = e.clientX;
+      if (!arrastrando) return;
+      const delta = e.clientX - inicioX;
+      actualizarRotacion(delta);
+      inicioX = e.clientX;
     });
 
-    // Touch (móviles)
-    carousel.addEventListener('touchstart', e => {
-      startX = e.touches[0].clientX;
+    // Touch
+    carrusel.addEventListener('touchstart', e => {
+      inicioX = e.touches[0].clientX;
     });
 
-    carousel.addEventListener('touchmove', e => {
-      const delta = e.touches[0].clientX - startX;
-      updateRotation(delta);
-      startX = e.touches[0].clientX;
+    carrusel.addEventListener('touchmove', e => {
+      const delta = e.touches[0].clientX - inicioX;
+      actualizarRotacion(delta);
+      inicioX = e.touches[0].clientX;
     });
 
-    carousel.style.cursor = "grab";
+    carrusel.style.cursor = "grab";
   </script>
 </body>
 </html>
