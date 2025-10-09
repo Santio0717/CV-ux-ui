@@ -1,4 +1,4 @@
-/* ===== BASE ===== */
+/* ===== BASE GENERAL ===== */
 body {
   font-family: 'Inter', sans-serif;
   margin: 0;
@@ -16,12 +16,9 @@ body {
   100% { background-position: 0% 50%; }
 }
 
-h1, h2, h3 {
-  font-weight: 700;
-  color: #222;
-}
+h1, h2, h3 { font-weight: 700; margin: 0 0 10px; }
 
-/* ===== HEADER ===== */
+/* ===== ENCABEZADO ===== */
 .site-header {
   background: rgba(255,255,255,0.25);
   backdrop-filter: blur(10px);
@@ -43,33 +40,21 @@ h1, h2, h3 {
   margin: 0 15px;
   transition: color 0.3s ease;
 }
-
-.main-nav a:hover {
-  color: #b85c38;
-}
+.main-nav a:hover { color: #b85c38; }
 
 /* ===== SECCIONES ===== */
-.section {
-  padding: 60px 0;
-}
-
-.section-title {
-  text-align: center;
-  font-size: 1.8rem;
-  margin-bottom: 25px;
-}
+.section { padding: 60px 0; }
+.section-title { text-align: center; font-size: 1.8rem; margin-bottom: 25px; }
 
 /* ===== HERO ===== */
 .hero-card {
   background: rgba(255,255,255,0.35);
   border-radius: 20px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
   padding: 40px 30px;
   max-width: 750px;
   margin: 0 auto;
-  text-align: left;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
 }
-
 .avatar {
   display: block;
   width: 120px;
@@ -77,7 +62,6 @@ h1, h2, h3 {
   border-radius: 12px;
   object-fit: cover;
   margin: 0 auto 15px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
 /* ===== BOTONES ===== */
@@ -86,74 +70,58 @@ h1, h2, h3 {
   padding: 12px 25px;
   border-radius: 12px;
   font-weight: 600;
-  text-align: center;
   color: #fff;
+  text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
 }
 
-.btn.red {
-  background: linear-gradient(135deg, #d72638, #b71c1c);
+.btn::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.5), transparent);
+  transform: translateX(-100%) rotate(45deg);
+  transition: transform 0.7s ease-in-out;
 }
+.btn:hover::before { transform: translateX(100%) rotate(45deg); }
 
-.btn.primary {
-  background: linear-gradient(135deg, #4b6cb7, #182848);
-}
+.btn.red { background: linear-gradient(135deg, #d72638, #b71c1c); }
+.btn.primary { background: linear-gradient(135deg, #4b6cb7, #182848); }
+.btn.whatsapp { background: #25d366; }
+.btn.linkedin { background: #0077b5; }
+.btn:hover { transform: scale(1.06); }
 
-.btn.whatsapp {
-  background-color: #25d366;
-}
-
-.btn.linkedin {
-  background-color: #0077b5;
-}
-
-.btn:hover {
-  transform: scale(1.06);
-  box-shadow: 0 0 20px rgba(0,0,0,0.3);
-}
-
-/* ===== CARRUSEL 3D ===== */
-.carousel3d {
+/* ===== SLIDER 3D ===== */
+.slider3d {
   position: relative;
   width: 100%;
-  height: 400px;
-  margin-top: 40px;
-  perspective: 1200px;
-  transform-style: preserve-3d;
-  transform: translateZ(-300px) rotateY(0deg);
-  transition: transform 0.4s ease;
-  cursor: grab;
+  height: 320px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
-.card3d {
+.slider3d .slide {
   position: absolute;
   width: 320px;
   height: 220px;
-  left: calc(50% - 160px);
-  top: 70px;
+  background: rgba(255,255,255,0.8);
   border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
   padding: 25px;
   text-align: center;
-  background: rgba(255,255,255,0.75);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-  color: #222;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  transition: transform 0.6s ease;
+  transition: transform 0.5s ease, opacity 0.5s ease;
   backface-visibility: hidden;
-  transform-origin: center center -400px;
 }
 
-.card3d h3 {
-  margin-bottom: 10px;
-  font-size: 1.2rem;
-}
-
-.card3d p {
-  font-size: 0.95rem;
-  margin-bottom: 15px;
-}
+.slider3d .slide h3 { margin-bottom: 10px; font-size: 1.2rem; }
+.slider3d .slide p { font-size: 0.95rem; margin-bottom: 15px; }
 
 /* ===== CONTACTO ===== */
 .contacto-box {
@@ -161,6 +129,7 @@ h1, h2, h3 {
   padding: 35px;
   border-radius: 15px;
   text-align: center;
+  backdrop-filter: blur(8px);
 }
 
 /* ===== FOOTER ===== */
