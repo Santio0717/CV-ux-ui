@@ -148,8 +148,8 @@
     </div>
   </footer>
 
+  <!-- SCRIPT DEL CARRUSEL -->
   <script>
-    // ==== CARRUSEL 3D DE TARJETAS ====
     const carousel = document.querySelector('.carousel3d');
     const cards = document.querySelectorAll('.card3d');
     let rotation = 0;
@@ -159,16 +159,19 @@
     const total = cards.length;
     const angleStep = 360 / total;
 
+    // Ubicación inicial de cada tarjeta
     cards.forEach((card, i) => {
       const angle = i * angleStep;
-      card.style.transform = `rotateY(${angle}deg) translateZ(400px)`;
+      card.style.transform = `rotateY(${angle}deg)`;
     });
 
+    // Rotación dinámica
     function updateRotation(delta) {
       rotation += delta * 0.3;
       carousel.style.transform = `rotateY(${rotation}deg)`;
     }
 
+    // Control con mouse
     carousel.addEventListener('mousedown', e => {
       isDragging = true;
       startX = e.clientX;
@@ -187,6 +190,7 @@
       startX = e.clientX;
     });
 
+    // Control táctil
     carousel.addEventListener('touchstart', e => {
       startX = e.touches[0].clientX;
     });
