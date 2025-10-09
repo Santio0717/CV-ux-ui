@@ -25,7 +25,7 @@
 
   <main>
     <!-- HERO -->
-    <section id="inicio" class="hero section">
+    <section id="inicio" class="hero section reveal">
       <div class="container hero-grid">
         <article class="hero-card">
           <img class="avatar" src="activos/imagen/foto%20de%20perfil.jfif" alt="Foto de perfil de Santiago" />
@@ -45,37 +45,39 @@
     </section>
 
     <!-- PROYECTOS 3D -->
-    <section id="proyectos" class="section">
+    <section id="proyectos" class="section reveal">
       <div class="container">
         <h2 class="section-title">Proyectos destacados</h2>
 
-        <div class="slider3d" id="slider3d">
-          <div class="slide active">
-            <h3>Bon Bon Bum</h3>
-            <p>Wireframe de alta fidelidad en Figma, adaptado a MacBook Pro 16".</p>
-            <a class="btn primary" href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma" target="_blank">Acceder</a>
-          </div>
-          <div class="slide">
-            <h3>Greescape</h3>
-            <p>Prototipo de alta fidelidad en Figma, adaptado a iPhone 13 Pro.</p>
-            <a class="btn primary" href="https://www.figma.com/proto/iYuZ5f1XPOvGDWncfB739r/HCI" target="_blank">Acceder</a>
-          </div>
-          <div class="slide">
-            <h3>NutriCampus</h3>
-            <p>Prototipo de alta fidelidad en Figma, pensado para RV.</p>
-            <a class="btn primary" href="https://www.figma.com/proto/riKsfkN37qsKX4NbQn5zOh/Nutricampus-V2" target="_blank">Acceder</a>
-          </div>
-          <div class="slide">
-            <h3>Isócrates</h3>
-            <p>Prototipo de alta fidelidad en Figma para desktop.</p>
-            <a class="btn primary" href="https://www.figma.com/proto/bCCXBOMkOQKVUB0emfQIb5/DSI-TRABAJO-GRUPAL" target="_blank">Acceder</a>
+        <div class="carousel-container">
+          <div class="carousel" id="carousel">
+            <div class="carousel-item">
+              <h3>Bon Bon Bum</h3>
+              <p>Wireframe de alta fidelidad en Figma, adaptado a MacBook Pro 16".</p>
+              <a class="btn primary" href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma" target="_blank">Acceder</a>
+            </div>
+            <div class="carousel-item">
+              <h3>Greescape</h3>
+              <p>Prototipo de alta fidelidad en Figma, adaptado a iPhone 13 Pro.</p>
+              <a class="btn primary" href="https://www.figma.com/proto/iYuZ5f1XPOvGDWncfB739r/HCI" target="_blank">Acceder</a>
+            </div>
+            <div class="carousel-item">
+              <h3>NutriCampus</h3>
+              <p>Prototipo de alta fidelidad en Figma, pensado para RV.</p>
+              <a class="btn primary" href="https://www.figma.com/proto/riKsfkN37qsKX4NbQn5zOh/Nutricampus-V2" target="_blank">Acceder</a>
+            </div>
+            <div class="carousel-item">
+              <h3>Isócrates</h3>
+              <p>Prototipo de alta fidelidad en Figma para desktop.</p>
+              <a class="btn primary" href="https://www.figma.com/proto/bCCXBOMkOQKVUB0emfQIb5/DSI-TRABAJO-GRUPAL" target="_blank">Acceder</a>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- TECNOLOGÍAS -->
-    <section id="tecnologias" class="section">
+    <section id="tecnologias" class="section reveal">
       <div class="container">
         <h2 class="section-title">Tecnologías</h2>
         <p class="meta">
@@ -100,7 +102,7 @@
     </section>
 
     <!-- CERTIFICADOS -->
-    <section id="certificados" class="section">
+    <section id="certificados" class="section reveal">
       <div class="container">
         <h2 class="section-title">Certificados</h2>
         <div class="grid diplomas-grid">
@@ -126,7 +128,7 @@
     </section>
 
     <!-- CONTACTO -->
-    <section id="contacto" class="section contacto">
+    <section id="contacto" class="section reveal contacto">
       <div class="container contacto-box">
         <h2 class="section-title">Contacto</h2>
         <p><strong>Nombre:</strong> Santiago Murillo Ramírez</p>
@@ -145,48 +147,49 @@
     </div>
   </footer>
 
-  <!-- SCRIPT DEL SLIDER -->
+  <!-- SCRIPT CARRUSEL -->
   <script>
-    const slides = document.querySelectorAll('.slider3d .slide');
-    let current = 0;
-
-    function updateSlides() {
-      slides.forEach((slide, i) => {
-        const offset = i - current;
-        slide.style.transform = `translateX(${offset * 80}%) scale(${1 - Math.abs(offset) * 0.2})`;
-        slide.style.opacity = offset === 0 ? "1" : "0.6";
-        slide.style.zIndex = 100 - Math.abs(offset);
-      });
-    }
-
-    updateSlides();
-
+    const carousel = document.getElementById('carousel');
+    let angle = 0;
     let startX = 0;
     let isDragging = false;
 
-    document.getElementById('slider3d').addEventListener('mousedown', e => {
+    // Posicionar elementos en círculo
+    const items = document.querySelectorAll('.carousel-item');
+    const total = items.length;
+    const deg = 360 / total;
+
+    items.forEach((item, i) => {
+      item.style.transform = `rotateY(${i * deg}deg) translateZ(380px)`;
+    });
+
+    // Control de rotación
+    function rotateCarousel(delta) {
+      angle += delta * 0.3;
+      carousel.style.transform = `translateZ(-300px) rotateY(${angle}deg)`;
+    }
+
+    // Eventos mouse
+    carousel.addEventListener('mousedown', e => {
       isDragging = true;
       startX = e.clientX;
     });
 
-    window.addEventListener('mouseup', e => {
+    window.addEventListener('mouseup', () => (isDragging = false));
+
+    window.addEventListener('mousemove', e => {
       if (!isDragging) return;
-      const diff = e.clientX - startX;
-      if (diff > 50 && current > 0) current--;
-      if (diff < -50 && current < slides.length - 1) current++;
-      updateSlides();
-      isDragging = false;
+      const delta = e.clientX - startX;
+      rotateCarousel(delta);
+      startX = e.clientX;
     });
 
     // Touch
-    document.getElementById('slider3d').addEventListener('touchstart', e => {
+    carousel.addEventListener('touchstart', e => (startX = e.touches[0].clientX));
+    carousel.addEventListener('touchmove', e => {
+      const delta = e.touches[0].clientX - startX;
+      rotateCarousel(delta);
       startX = e.touches[0].clientX;
-    });
-    document.getElementById('slider3d').addEventListener('touchend', e => {
-      const diff = e.changedTouches[0].clientX - startX;
-      if (diff > 50 && current > 0) current--;
-      if (diff < -50 && current < slides.length - 1) current++;
-      updateSlides();
     });
   </script>
 </body>
