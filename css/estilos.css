@@ -210,50 +210,52 @@ a {
   box-shadow: 0 0 25px rgba(0, 119, 181, 0.5);
 }
 
-/* ===== PROYECTOS (CARRUSEL 3D) ===== */
-.carrusel {
+/* ===== CARRUSEL 3D DE TARJETAS ===== */
+.carousel3d {
   width: 100%;
   height: 380px;
   position: relative;
   perspective: 1200px;
+  transform-style: preserve-3d;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 40px;
+  transition: transform 0.4s ease;
 }
 
-.carrusel .items {
-  width: 280px;
-  height: 200px;
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 0.3s ease;
-}
-
-.carrusel img {
+.card3d {
   position: absolute;
   width: 280px;
   height: 200px;
-  object-fit: cover;
+  background: rgba(255, 255, 255, 0.75);
   border-radius: 15px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  padding: 20px;
+  text-align: center;
+  color: #222;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: transform 0.5s ease, box-shadow 0.3s ease;
 }
 
-/* Posición circular 3D */
-.carrusel img:nth-child(1) { transform: rotateY(0deg) translateZ(400px); }
-.carrusel img:nth-child(2) { transform: rotateY(60deg) translateZ(400px); }
-.carrusel img:nth-child(3) { transform: rotateY(120deg) translateZ(400px); }
-.carrusel img:nth-child(4) { transform: rotateY(180deg) translateZ(400px); }
-.carrusel img:nth-child(5) { transform: rotateY(240deg) translateZ(400px); }
-.carrusel img:nth-child(6) { transform: rotateY(300deg) translateZ(400px); }
-
-.carrusel img:hover {
-  transform: scale(1.1) translateZ(420px);
-  box-shadow: 0 15px 40px rgba(0,0,0,0.35);
+.card3d h3 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
 }
 
-/* ===== TECNOLOGÍAS ===== */
+.card3d p {
+  font-size: 0.95rem;
+  margin-bottom: 15px;
+}
+
+.card3d:hover {
+  transform: scale(1.1) translateZ(40px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+}
+
+/* ===== TEXTO DE ESTRELLAS ===== */
 .meta {
   text-align: center;
   color: #222;
@@ -268,6 +270,7 @@ a {
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
 }
 
+/* ===== TECNOLOGÍAS ===== */
 .tiles {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
