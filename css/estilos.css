@@ -217,26 +217,35 @@ a {
   transition: width 2s ease-in-out, background 0.3s ease-in-out;
 }
 
-/* Hover - tooltip */
-.bar:hover::after {
+/* Tooltip de porcentaje */
+.bar::after {
   content: attr(data-skill);
   position: absolute;
-  top: -35px;
-  right: 0;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
   background: #ff7b00;
   color: #fff;
   font-size: 0.85rem;
-  padding: 3px 8px;
+  padding: 4px 8px;
   border-radius: 6px;
   white-space: nowrap;
-  transform: translateY(-5px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
+/* Hover: cambia color + muestra porcentaje */
 .bar:hover::before {
   background: linear-gradient(90deg, #ff7b00, #ffb347);
 }
 
-/* Estados finales */
+.bar:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-5px);
+}
+
+/* Estados finales (activación en scroll) */
 .bar.active[data-skill="60%"]::before { width: 60%; }
 .bar.active[data-skill="50%"]::before { width: 50%; }
 .bar.active[data-skill="45%"]::before { width: 45%; }
