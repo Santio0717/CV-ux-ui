@@ -217,13 +217,13 @@ a {
   transition: width 2s ease-in-out, background 0.3s ease-in-out;
 }
 
-/* Tooltip de porcentaje */
+/* Tooltip del porcentaje */
 .bar::after {
   content: attr(data-skill);
   position: absolute;
-  top: -30px;
+  top: -35px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(10px);
   background: #ff7b00;
   color: #fff;
   font-size: 0.85rem;
@@ -232,20 +232,20 @@ a {
   white-space: nowrap;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-/* Hover: cambia color + muestra porcentaje */
+/* Hover - Muestra el porcentaje y cambia color */
+.bar:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
 .bar:hover::before {
   background: linear-gradient(90deg, #ff7b00, #ffb347);
 }
 
-.bar:hover::after {
-  opacity: 1;
-  transform: translateX(-50%) translateY(-5px);
-}
-
-/* Estados finales (activación en scroll) */
+/* Estados finales (activación animada) */
 .bar.active[data-skill="60%"]::before { width: 60%; }
 .bar.active[data-skill="50%"]::before { width: 50%; }
 .bar.active[data-skill="45%"]::before { width: 45%; }
@@ -287,4 +287,3 @@ a {
   border-top: 1px solid rgba(255, 255, 255, 0.3);
   color: #222;
 }
-
