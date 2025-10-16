@@ -37,7 +37,6 @@
               accesibles y de alta calidad que mejoren la interacción entre las personas y la tecnología.
             </h1>
             <div class="botones-hero">
-              <!-- ✅ Botón de descarga correcto -->
               <a class="btn red" href="CV_Santiago_Murillo.pdf" download>Descargar CV</a>
             </div>
           </div>
@@ -82,7 +81,6 @@
       <div class="container">
         <h2 class="section-title">Tecnologías</h2>
         <div class="skills-container">
-
           <div class="skill"><span>Figma</span><div class="bar" data-skill="60%"></div></div>
           <div class="skill"><span>Axure</span><div class="bar" data-skill="30%"></div></div>
           <div class="skill"><span>Adobe Photoshop</span><div class="bar" data-skill="35%"></div></div>
@@ -94,7 +92,6 @@
           <div class="skill"><span>Jira</span><div class="bar" data-skill="35%"></div></div>
           <div class="skill"><span>WCAG</span><div class="bar" data-skill="50%"></div></div>
           <div class="skill"><span>GitHub</span><div class="bar" data-skill="45%"></div></div>
-
         </div>
       </div>
     </section>
@@ -147,18 +144,17 @@
 
   <!-- Script: animación de barras -->
   <script>
-    const bars = document.querySelectorAll('.bar');
+    document.addEventListener("scroll", animateBars);
+    document.addEventListener("DOMContentLoaded", animateBars);
+
     function animateBars() {
-      bars.forEach(bar => {
+      document.querySelectorAll(".bar").forEach(bar => {
         const rect = bar.getBoundingClientRect();
         if (rect.top < window.innerHeight - 50) {
-          bar.classList.add('active');
-          bar.style.width = bar.getAttribute('data-skill');
+          bar.classList.add("active");
         }
       });
     }
-    window.addEventListener('scroll', animateBars);
-    window.addEventListener('load', animateBars);
   </script>
 </body>
 </html>
