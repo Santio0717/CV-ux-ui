@@ -8,6 +8,8 @@ body {
   background-size: 400% 400%;
   animation: backgroundMove 30s ease-in-out infinite;
   background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 @keyframes backgroundMove {
@@ -27,7 +29,6 @@ a {
   color: inherit;
 }
 
-/* ======== CONTENEDORES ======== */
 .container {
   width: 90%;
   max-width: 1100px;
@@ -68,12 +69,6 @@ a {
   padding: 60px 0;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-}
-
-.section.alt {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 15px;
-  padding: 50px;
 }
 
 .section-title {
@@ -215,18 +210,20 @@ a {
   transition: width 2s ease-in-out, background 0.3s ease-in-out;
 }
 
-/* Tooltip de porcentaje — ahora se ve correctamente */
+/* Tooltip de porcentaje — corregido */
 .bar::after {
   content: attr(data-skill);
   position: absolute;
-  top: -35px;
-  left: 0;
-  width: var(--bar-width, 0%);
-  text-align: right;
-  padding-right: 8px;
-  color: transparent;
+  top: -32px;
+  right: 10px;
+  background: #ff7b00;
+  color: #fff;
   font-size: 0.9rem;
-  transition: color 0.3s ease;
+  padding: 4px 8px;
+  border-radius: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .bar:hover::before {
@@ -234,16 +231,17 @@ a {
 }
 
 .bar:hover::after {
-  color: #222;
+  opacity: 1;
+  transform: translateY(-5px);
 }
 
-/* ======== Estados finales de ancho ======== */
-.bar.active[data-skill="60%"]::before { width: 60%; --bar-width: 60%; }
-.bar.active[data-skill="50%"]::before { width: 50%; --bar-width: 50%; }
-.bar.active[data-skill="45%"]::before { width: 45%; --bar-width: 45%; }
-.bar.active[data-skill="40%"]::before { width: 40%; --bar-width: 40%; }
-.bar.active[data-skill="35%"]::before { width: 35%; --bar-width: 35%; }
-.bar.active[data-skill="30%"]::before { width: 30%; --bar-width: 30%; }
+/* Estados finales (activación en scroll) */
+.bar.active[data-skill="60%"]::before { width: 60%; }
+.bar.active[data-skill="50%"]::before { width: 50%; }
+.bar.active[data-skill="45%"]::before { width: 45%; }
+.bar.active[data-skill="40%"]::before { width: 40%; }
+.bar.active[data-skill="35%"]::before { width: 35%; }
+.bar.active[data-skill="30%"]::before { width: 30%; }
 
 /* ======== DIPLOMAS ======== */
 .diplomas-grid {
