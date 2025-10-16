@@ -76,25 +76,11 @@
       </div>
     </section>
 
-    <!-- TECNOLOGÍAS -->
+    <!-- TECNOLOGÍAS (nuevo con gráfico de líneas) -->
     <section id="tecnologias" class="section reveal">
       <div class="container">
         <h2 class="section-title">Tecnologías</h2>
-        <div class="skills-container">
-
-          <div class="skill"><span>Figma</span><div class="bar" data-skill="60%"></div></div>
-          <div class="skill"><span>Axure</span><div class="bar" data-skill="30%"></div></div>
-          <div class="skill"><span>Adobe Photoshop</span><div class="bar" data-skill="35%"></div></div>
-          <div class="skill"><span>Adobe Illustrator</span><div class="bar" data-skill="35%"></div></div>
-          <div class="skill"><span>After Effects</span><div class="bar" data-skill="30%"></div></div>
-          <div class="skill"><span>HTML5</span><div class="bar" data-skill="50%"></div></div>
-          <div class="skill"><span>CSS</span><div class="bar" data-skill="45%"></div></div>
-          <div class="skill"><span>Notion</span><div class="bar" data-skill="40%"></div></div>
-          <div class="skill"><span>Jira</span><div class="bar" data-skill="35%"></div></div>
-          <div class="skill"><span>WCAG</span><div class="bar" data-skill="50%"></div></div>
-          <div class="skill"><span>GitHub</span><div class="bar" data-skill="45%"></div></div>
-
-        </div>
+        <canvas id="techChart"></canvas>
       </div>
     </section>
 
@@ -144,19 +130,49 @@
     </div>
   </footer>
 
-  <!-- Script: animación de barras -->
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
-    const bars = document.querySelectorAll('.bar');
-    function animateBars() {
-      bars.forEach(bar => {
-        const rect = bar.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 50) {
-          bar.classList.add('active');
+    const ctx = document.getElementById('techChart').getContext('2d');
+    const techChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: [
+          'Figma', 'HTML5', 'Axure', 'Adobe Photoshop', 'Adobe Illustrator',
+          'After Effects', 'CSS', 'Notion', 'Jira', 'WCAG', 'GitHub'
+        ],
+        datasets: [{
+          label: 'Nivel actual (%)',
+          data: [50, 45, 30, 35, 35, 30, 45, 40, 35, 50, 45],
+          fill: true,
+          borderColor: '#b85c38',
+          backgroundColor: 'rgba(184, 92, 56, 0.1)',
+          pointBackgroundColor: '#b85c38',
+          pointRadius: 5,
+          tension: 0.4
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100,
+            ticks: {
+              callback: value => value + '%'
+            },
+            title: { display: true, text: 'Nivel (%)' }
+          }
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: context => `${context.parsed.y}%`
+            }
+          }
         }
-      });
-    }
-    window.addEventListener('scroll', animateBars);
-    window.addEventListener('load', animateBars);
+      }
+    });
   </script>
 </body>
 </html>
