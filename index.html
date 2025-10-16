@@ -81,6 +81,7 @@
       <div class="container">
         <h2 class="section-title">Tecnologías</h2>
         <div class="skills-container">
+
           <div class="skill"><span>Figma</span><div class="bar" data-skill="60%"></div></div>
           <div class="skill"><span>Axure</span><div class="bar" data-skill="30%"></div></div>
           <div class="skill"><span>Adobe Photoshop</span><div class="bar" data-skill="35%"></div></div>
@@ -92,6 +93,7 @@
           <div class="skill"><span>Jira</span><div class="bar" data-skill="35%"></div></div>
           <div class="skill"><span>WCAG</span><div class="bar" data-skill="50%"></div></div>
           <div class="skill"><span>GitHub</span><div class="bar" data-skill="45%"></div></div>
+
         </div>
       </div>
     </section>
@@ -116,7 +118,7 @@
           <article class="card hoverable">
             <h3>Manejo de Adobe Illustrator</h3>
             <p>Curso de herramientas de diseño vectorial con Adobe Illustrator.</p>
-            <a class="btn primary" href="activos/diplomas/Manejo_de_Adobe_Illustrator.pdf" target="_blank">Ver certificado</a>
+            <a class="btn primary" href="activos/diplomas/Manejo_Adobe_Illustrator.pdf" target="_blank">Ver certificado</a>
           </article>
         </div>
       </div>
@@ -144,17 +146,17 @@
 
   <!-- Script: animación de barras -->
   <script>
-    document.addEventListener("scroll", animateBars);
-    document.addEventListener("DOMContentLoaded", animateBars);
-
+    const bars = document.querySelectorAll('.bar');
     function animateBars() {
-      document.querySelectorAll(".bar").forEach(bar => {
+      bars.forEach(bar => {
         const rect = bar.getBoundingClientRect();
         if (rect.top < window.innerHeight - 50) {
-          bar.classList.add("active");
+          bar.classList.add('active');
         }
       });
     }
+    window.addEventListener('scroll', animateBars);
+    window.addEventListener('load', animateBars);
   </script>
 </body>
 </html>
