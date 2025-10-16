@@ -8,8 +8,6 @@ body {
   background-size: 400% 400%;
   animation: backgroundMove 30s ease-in-out infinite;
   background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 @keyframes backgroundMove {
@@ -24,11 +22,9 @@ h1, h2, h3 {
   color: #222;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
+a { text-decoration: none; color: inherit; }
 
+/* ======== CONTENEDORES ======== */
 .container {
   width: 90%;
   max-width: 1100px;
@@ -38,12 +34,10 @@ a {
 /* ======== HEADER ======== */
 .site-header {
   background: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   position: sticky;
   top: 0;
   z-index: 10;
   backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
@@ -60,36 +54,25 @@ a {
   transition: color 0.3s ease;
 }
 
-.main-nav a:hover {
-  color: #b85c38;
-}
+.main-nav a:hover { color: #b85c38; }
 
 /* ======== SECCIONES ======== */
-.section {
-  padding: 60px 0;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
+.section { padding: 60px 0; }
 
 .section-title {
   font-size: 1.8rem;
   text-align: center;
   margin-bottom: 25px;
-  color: #222;
 }
 
 /* ======== HERO ======== */
 .hero-card {
   background: rgba(255, 255, 255, 0.15);
   border-radius: 20px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
   text-align: left;
   padding: 40px 30px;
   max-width: 750px;
   margin: 0 auto;
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .avatar {
@@ -101,172 +84,22 @@ a {
   margin: 0 auto 20px;
 }
 
-.subtitle {
-  font-weight: 600;
-  text-align: center;
-  color: #222;
-  margin-bottom: 10px;
-}
-
-.display {
-  font-size: 1rem;
-  text-align: left;
-  color: #222;
-  line-height: 1.8;
-}
-
 /* ======== BOTONES ======== */
 .btn {
   display: inline-block;
   padding: 12px 25px;
   border-radius: 12px;
   font-weight: 600;
-  text-align: center;
   margin-top: 15px;
-  border: none;
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease;
 }
 
-.btn:hover {
-  transform: scale(1.06);
-}
-
-.btn.primary {
-  background: linear-gradient(135deg, #0077b6, #005f87);
-  color: #fff;
-}
-
-.btn.red {
-  background: linear-gradient(135deg, #d72638, #b71c1c);
-  color: #fff;
-}
-
-.btn.whatsapp {
-  background: linear-gradient(135deg, #25D366, #128C7E);
-  color: #fff;
-}
-
-.btn.linkedin {
-  background: linear-gradient(135deg, #0077B5, #005a8d);
-  color: #fff;
-}
-
-/* ======== PROYECTOS ======== */
-.grid.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 25px;
-}
-
-.card {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 15px;
-  padding: 25px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.06);
-  color: #222;
-}
-
-/* ======== BARRAS DE TECNOLOGÍAS ======== */
-.skills-container {
-  max-width: 800px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-}
-
-.skill {
-  display: flex;
-  flex-direction: column;
-}
-
-.skill span {
-  font-weight: 600;
-  margin-bottom: 8px;
-  color: #222;
-  font-size: 1rem;
-}
-
-.bar {
-  position: relative;
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
-  overflow: hidden;
-  height: 22px;
-  cursor: pointer;
-}
-
-/* Barra animada */
-.bar::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 0;
-  background: linear-gradient(90deg, #243b6b, #2a5298);
-  border-radius: 12px;
-  transition: width 2s ease-in-out, background 0.3s ease-in-out;
-}
-
-/* Tooltip de porcentaje — corregido */
-.bar::after {
-  content: attr(data-skill);
-  position: absolute;
-  top: -32px;
-  right: 10px;
-  background: #ff7b00;
-  color: #fff;
-  font-size: 0.9rem;
-  padding: 4px 8px;
-  border-radius: 6px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.bar:hover::before {
-  background: linear-gradient(90deg, #ff7b00, #ffb347);
-}
-
-.bar:hover::after {
-  opacity: 1;
-  transform: translateY(-5px);
-}
-
-/* Estados finales (activación en scroll) */
-.bar.active[data-skill="60%"]::before { width: 60%; }
-.bar.active[data-skill="50%"]::before { width: 50%; }
-.bar.active[data-skill="45%"]::before { width: 45%; }
-.bar.active[data-skill="40%"]::before { width: 40%; }
-.bar.active[data-skill="35%"]::before { width: 35%; }
-.bar.active[data-skill="30%"]::before { width: 30%; }
-
-/* ======== DIPLOMAS ======== */
-.diplomas-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
-  color: #222;
-}
-
-/* ======== CONTACTO ======== */
-.contacto-box {
-  background: rgba(255, 255, 255, 0.15);
-  padding: 35px;
-  border-radius: 15px;
-  text-align: center;
-  color: #222;
-}
-
-.botones-contacto {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-  margin-top: 20px;
-}
+.btn:hover { transform: scale(1.06); }
+.btn.primary { background: linear-gradient(135deg, #0077b6, #005f87); color: #fff; }
+.btn.red { background: linear-gradient(135deg, #d72638, #b71c1c); color: #fff; }
+.btn.whatsapp { background: linear-gradient(135deg, #25D366, #128C7E); color: #fff; }
+.btn.linkedin { background: linear-gradient(135deg, #0077B5, #005a8d); color: #fff; }
 
 /* ======== FOOTER ======== */
 .site-footer {
@@ -275,5 +108,4 @@ a {
   padding: 15px 0;
   margin-top: 40px;
   border-top: 1px solid rgba(255, 255, 255, 0.3);
-  color: #222;
 }
