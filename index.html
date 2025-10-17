@@ -1,19 +1,17 @@
 <!doctype html>
-<html lang="es" class="no-js">
+<html lang="es">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Portafolio · Santiago Murillo</title>
-  <meta name="description" content="Portafolio de Santiago Murillo – UX/UI Designer" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="CSS/estilos.css" />
 </head>
 
 <body>
-  <!-- HEADER -->
   <header class="site-header">
     <div class="container nav-wrap">
-      <nav class="main-nav" id="nav">
+      <nav class="main-nav">
         <a href="#inicio">Inicio</a>
         <a href="#proyectos">Proyectos</a>
         <a href="#tecnologias">Tecnologías</a>
@@ -33,100 +31,63 @@
             <p class="subtitle">UX/UI Designer</p>
             <h1 class="display">
               Estudiante orientado al diseño UX/UI, apasionado por crear experiencias digitales intuitivas y atractivas.
-              Disfruto investigar usuarios, diseñar wireframes y prototipos para desarrollar soluciones innovadoras,
-              accesibles y de alta calidad que mejoren la interacción entre las personas y la tecnología.
             </h1>
             <div class="botones-hero">
-              <!-- Si el PDF está en la raíz, este enlace descarga bien -->
-              <a class="btn red" href="CV_Santiago_Murillo.pdf" download>Descargar CV</a>
+              <a class="btn red breathing" href="CV_Santiago_Murillo.pdf" download>Descargar CV</a>
             </div>
           </div>
         </article>
       </div>
     </section>
 
-    <!-- PROYECTOS (tarjetas minimalistas con hover sutil) -->
+    <!-- PROYECTOS -->
     <section id="proyectos" class="section alt">
       <div class="container">
         <h2 class="section-title">Proyectos destacados</h2>
-        <div class="grid grid-min">
-          <article class="card-min">
+        <div class="grid cards">
+          <article class="card hoverable">
             <h3>Bon Bon Bum</h3>
             <p>Wireframe de alta fidelidad en Figma, adaptado a MacBook Pro 16".</p>
-            <a class="btn primary" href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma?node-id=0-1" target="_blank" rel="noopener">Acceder</a>
+            <a class="btn primary breathing" href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY" target="_blank">Acceder</a>
           </article>
-
-          <article class="card-min">
+          <article class="card hoverable">
             <h3>Greescape</h3>
             <p>Prototipo de alta fidelidad en Figma, adaptado a iPhone 13 Pro.</p>
-            <a class="btn primary" href="https://www.figma.com/proto/iYuZ5f1XPOvGDWncfB739r/HCI?node-id=385-6" target="_blank" rel="noopener">Acceder</a>
-          </article>
-
-          <article class="card-min">
-            <h3>NutriCampus</h3>
-            <p>Prototipo de alta fidelidad en Figma, pensado para RV.</p>
-            <a class="btn primary" href="https://www.figma.com/proto/riKsfkN37qsKX4NbQn5zOh/Nutricampus-V2?node-id=11-144" target="_blank" rel="noopener">Acceder</a>
-          </article>
-
-          <article class="card-min">
-            <h3>Isócrates</h3>
-            <p>Prototipo de alta fidelidad en Figma para desktop.</p>
-            <a class="btn primary" href="https://www.figma.com/proto/bCCXBOMkOQKVUB0emfQIb5/DSI-TRABAJO-GRUPAL?node-id=1-1028" target="_blank" rel="noopener">Acceder</a>
+            <a class="btn primary breathing" href="https://www.figma.com/proto/iYuZ5f1XPOvGDWncfB739r" target="_blank">Acceder</a>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- TECNOLOGÍAS (gráfico línea + niveles de seniority + tooltip avanzado) -->
+    <!-- TECNOLOGÍAS -->
     <section id="tecnologias" class="section">
       <div class="container">
         <h2 class="section-title">Tecnologías</h2>
-
-        <!-- Contenedor del gráfico -->
-        <div class="chart-wrap">
-          <!-- Líneas de nivel (Junior / Semi / Senior) -->
-          <div class="bands">
-            <div class="band band-junior"><span>Junior (0–40%)</span></div>
-            <div class="band band-semi"><span>Semi-Senior (41–70%)</span></div>
-            <div class="band band-senior"><span>Senior (71–100%)</span></div>
-          </div>
-
-          <!-- SVG responsivo -->
-          <svg id="techChart" viewBox="0 0 1200 520" preserveAspectRatio="none" aria-label="Gráfico de niveles por tecnología"></svg>
-
-          <!-- Tooltip custom -->
-          <div id="tooltip" class="tooltip" role="tooltip" aria-hidden="true">
-            <div class="tt-title"></div>
-            <div class="tt-line"><span class="tt-kv">Nivel:</span> <span class="tt-level"></span></div>
-            <div class="tt-line"><span class="tt-kv">Porcentaje:</span> <span class="tt-value"></span></div>
-            <div class="tt-desc"></div>
-          </div>
+        <div class="levels">
+          <span class="level junior">Junior</span>
+          <span class="level semi">Semi-Senior</span>
+          <span class="level senior">Senior</span>
+        </div>
+        <div class="chart-container">
+          <canvas id="techChart"></canvas>
         </div>
       </div>
     </section>
 
-    <!-- CERTIFICADOS (tarjetas minimalistas) -->
+    <!-- CERTIFICADOS -->
     <section id="certificados" class="section">
       <div class="container">
         <h2 class="section-title">Certificados</h2>
-        <div class="grid grid-min">
-          <article class="card-min">
+        <div class="grid diplomas-grid">
+          <article class="card hoverable">
             <h3>Certificado EF SET</h3>
             <p>Certificación oficial de inglés EF SET, nivel alcanzado en 2023.</p>
-            <a class="btn primary" href="activos/diplomas/Certificado_EF_SET.pdf" target="_blank" rel="noopener">Ver certificado</a>
+            <a class="btn primary breathing" href="activos/diplomas/Certificado_EF_SET.pdf" target="_blank">Ver certificado</a>
           </article>
-
-          <article class="card-min">
-            <h3>Fundamentos de programación</h3>
-            <p>Curso introductorio de lógica y programación, completado en 2023.</p>
-            <a class="btn primary" href="activos/diplomas/Fundamentos_de_programacion.jpeg" target="_blank" rel="noopener">Ver certificado</a>
-          </article>
-
-          <article class="card-min">
+          <article class="card hoverable">
             <h3>Manejo de Adobe Illustrator</h3>
             <p>Curso de herramientas de diseño vectorial con Adobe Illustrator.</p>
-            <!-- Nombre corregido como indicaste -->
-            <a class="btn primary" href="activos/diplomas/Manejo_Adobe_Illustrator.pdf" target="_blank" rel="noopener">Ver certificado</a>
+            <a class="btn primary breathing" href="activos/diplomas/Manejo_Adobe_Illustrator.pdf" target="_blank">Ver certificado</a>
           </article>
         </div>
       </div>
@@ -136,11 +97,10 @@
     <section id="contacto" class="section contacto">
       <div class="container contacto-box">
         <h2 class="section-title">Contacto</h2>
-        <p><strong>Nombre:</strong> Santiago Murillo Ramírez</p>
         <p><strong>Correo:</strong> <a href="mailto:santiagomr2003@gmail.com">santiagomr2003@gmail.com</a></p>
         <div class="botones-contacto">
-          <a class="btn whatsapp" href="https://wa.me/573228182311" target="_blank" rel="noopener">WhatsApp</a>
-          <a class="btn linkedin" href="https://www.linkedin.com/in/santiago-murillo-ramírez-795447235" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn whatsapp breathing" href="https://wa.me/573228182311" target="_blank">WhatsApp</a>
+          <a class="btn linkedin breathing" href="https://www.linkedin.com/in/santiago-murillo-ramírez-795447235" target="_blank">LinkedIn</a>
         </div>
       </div>
     </section>
@@ -152,147 +112,58 @@
     </div>
   </footer>
 
-  <!-- ===== JS mínimo para gráfico y tooltip ===== -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
-    // Año dinámico
-    document.getElementById('year').textContent = new Date().getFullYear();
+    const ctx = document.getElementById('techChart').getContext('2d');
+    const techData = {
+      labels: ["Figma", "HTML5", "Axure", "Photoshop", "Illustrator", "After Effects", "CSS", "Notion", "Jira", "WCAG", "GitHub"],
+      datasets: [{
+        label: 'Nivel actual (%)',
+        data: [60, 50, 35, 35, 40, 30, 30, 35, 30, 40, 35],
+        borderColor: '#243b6b',
+        backgroundColor: 'rgba(36, 59, 107, 0.1)',
+        fill: false,
+        tension: 0.4,
+        pointBackgroundColor: [
+          "#2a5298","#355c7d","#6c5b7b","#c06c84","#f67280","#f8b195","#243b6b","#b85c38","#8c5e58","#4a6670","#005f87"
+        ],
+        pointRadius: 8,
+        pointHoverRadius: 12,
+        pointBorderWidth: 3
+      }]
+    };
 
-    // Datos (porcentajes definitivos)
-    const techData = [
-      { name: 'Figma', value: 50, msg: 'Domino prototipado, auto-layout y design systems.' },
-      { name: 'HTML5', value: 45, msg: 'Maqueto interfaces accesibles y semánticas.' },
-      { name: 'Axure', value: 30, msg: 'Prototipos funcionales para flujos complejos.' },
-      { name: 'Adobe Photoshop', value: 35, msg: 'Edición y piezas de apoyo para UI.' },
-      { name: 'Adobe Illustrator', value: 35, msg: 'Iconografía y gráficos vectoriales.' },
-      { name: 'After Effects', value: 30, msg: 'Micro-interacciones y motion para UI.' },
-      { name: 'CSS', value: 45, msg: 'Layouts responsivos, variables y grid/flex.' },
-      { name: 'Notion', value: 40, msg: 'Organización, documentación y seguimiento.' },
-      { name: 'Jira', value: 35, msg: 'Gestión ágil y seguimiento de tareas.' },
-      { name: 'WCAG', value: 50, msg: 'Criterios AA en componentes y flujos.' },
-      { name: 'GitHub', value: 45, msg: 'Flujos básicos de versionado con equipos.' },
-    ];
-
-    const svg = document.getElementById('techChart');
-    const tooltip = document.getElementById('tooltip');
-    const ttTitle = tooltip.querySelector('.tt-title');
-    const ttLevel = tooltip.querySelector('.tt-level');
-    const ttValue = tooltip.querySelector('.tt-value');
-    const ttDesc  = tooltip.querySelector('.tt-desc');
-
-    // Niveles por porcentaje
-    function levelFor(v) {
-      if (v <= 40) return 'Junior';
-      if (v <= 70) return 'Semi-Senior';
-      return 'Senior';
-    }
-
-    // Márgenes internos del gráfico dentro del viewBox
-    const VB_W = 1200, VB_H = 520;
-    const M = {t: 28, r: 20, b: 60, l: 48};
-    const W = VB_W - M.l - M.r;
-    const H = VB_H - M.t - M.b;
-
-    // Escalas
-    const xStep = W / (techData.length - 1);
-    const y = v => M.t + (100 - v) * (H / 100); // 0 arriba, 100 abajo
-    const x = i => M.l + i * xStep;
-
-    // Área degradada bajo la línea
-    const pts = techData.map((d,i)=>`${x(i)},${y(d.value)}`).join(' ');
-    const areaPts = `${M.l},${M.t+H} ${pts} ${M.l+W},${M.t+H}`;
-
-    // Ejes suaves de fondo
-    const grid = document.createElementNS('http://www.w3.org/2000/svg','g');
-    grid.setAttribute('class','grid');
-    for (let p=10; p<=100; p+=10) {
-      const ly = y(p);
-      const line = document.createElementNS('http://www.w3.org/2000/svg','line');
-      line.setAttribute('x1', M.l);
-      line.setAttribute('x2', M.l+W);
-      line.setAttribute('y1', ly);
-      line.setAttribute('y2', ly);
-      line.setAttribute('class','grid-line');
-      grid.appendChild(line);
-
-      const label = document.createElementNS('http://www.w3.org/2000/svg','text');
-      label.setAttribute('x', 8);
-      label.setAttribute('y', ly+4);
-      label.setAttribute('class','y-label');
-      label.textContent = `${p}%`;
-      grid.appendChild(label);
-    }
-    svg.appendChild(grid);
-
-    // Área
-    const area = document.createElementNS('http://www.w3.org/2000/svg','polygon');
-    area.setAttribute('points', areaPts);
-    area.setAttribute('class', 'area');
-    svg.appendChild(area);
-
-    // Línea principal
-    const poly = document.createElementNS('http://www.w3.org/2000/svg','polyline');
-    poly.setAttribute('points', pts);
-    poly.setAttribute('class','line');
-    svg.appendChild(poly);
-
-    // Puntos interactivos
-    const nodes = document.createElementNS('http://www.w3.org/2000/svg','g');
-    nodes.setAttribute('class','nodes');
-
-    techData.forEach((d,i)=>{
-      const c = document.createElementNS('http://www.w3.org/2000/svg','circle');
-      c.setAttribute('cx', x(i));
-      c.setAttribute('cy', y(d.value));
-      c.setAttribute('r', 6);
-      c.setAttribute('tabindex', '0');
-      c.setAttribute('class','dot');
-
-      // Accesible title fallback
-      const t = document.createElementNS('http://www.w3.org/2000/svg','title');
-      t.textContent = `${d.name}: ${d.value}% – ${levelFor(d.value)}`;
-      c.appendChild(t);
-
-      c.addEventListener('mouseenter', e => showTooltip(e, d));
-      c.addEventListener('focus',     e => showTooltip(e, d));
-      c.addEventListener('mouseleave', hideTooltip);
-      c.addEventListener('blur',       hideTooltip);
-      nodes.appendChild(c);
-    });
-    svg.appendChild(nodes);
-
-    function showTooltip(evt, d) {
-      const rect = svg.getBoundingClientRect();
-      const cx = evt.target.getAttribute('cx');
-      const cy = evt.target.getAttribute('cy');
-      const px = rect.left + (cx / VB_W) * rect.width;
-      const py = rect.top  + (cy / VB_H) * rect.height;
-
-      ttTitle.textContent = d.name;
-      ttLevel.textContent = levelFor(d.value);
-      ttValue.textContent = d.value + '%';
-      ttDesc.textContent  = d.msg;
-
-      tooltip.style.left = (px + 14) + 'px';
-      tooltip.style.top  = (py - 14) + 'px';
-      tooltip.setAttribute('aria-hidden','false');
-      tooltip.classList.add('show');
-    }
-    function hideTooltip() {
-      tooltip.setAttribute('aria-hidden','true');
-      tooltip.classList.remove('show');
-    }
-
-    // Animación al entrar en viewport
-    const chartWrap = document.querySelector('.chart-wrap');
-    const observer = new IntersectionObserver((entries)=>{
-      entries.forEach(en=>{
-        if (en.isIntersecting) {
-          svg.classList.add('animate');
-          observer.disconnect();
+    const techChart = new Chart(ctx, {
+      type: 'line',
+      data: techData,
+      options: {
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                const value = context.parsed.y;
+                let nivel = value <= 40 ? "Junior" : value <= 70 ? "Semi-Senior" : "Senior";
+                let desc = nivel === "Junior" 
+                  ? "Estoy en etapa de desarrollo, centrado en bases sólidas." 
+                  : nivel === "Semi-Senior" 
+                  ? "Manejo aspectos más allá del diseño visual, como experiencia de usuario." 
+                  : "Integro visión estratégica centrada en negocio y usuarios.";
+                return `${context.label}: ${value}% - ${nivel}\n${desc}`;
+              }
+            }
+          }
+        },
+        scales: {
+          y: {
+            suggestedMin: 0,
+            suggestedMax: 100,
+            grid: {
+              color: 'rgba(0,0,0,0.1)'
+            }
+          }
         }
-      });
-    }, {threshold: 0.25});
-    observer.observe(chartWrap);
+      }
+    });
   </script>
 </body>
 </html>
