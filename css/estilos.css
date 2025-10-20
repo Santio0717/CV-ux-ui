@@ -1,6 +1,8 @@
+/* ======== BASE GLOBAL ======== */
 body {
   font-family: 'Inter', sans-serif;
   margin: 0;
+  color: #222;
   background: linear-gradient(120deg, #f5e4cb, #f2dfc2, #f0d6b1, #fbeed9);
   background-size: 400% 400%;
   animation: backgroundMove 30s ease-in-out infinite;
@@ -12,40 +14,43 @@ body {
   100% { background-position: 0% 50%; }
 }
 
-h1, h2, h3 { color: #222; }
-a { text-decoration: none; color: inherit; }
-
-.container { width: 90%; max-width: 1100px; margin: 0 auto; }
-
-.site-header { background: rgba(255, 255, 255, 0.25); padding: 15px 0; position: sticky; top: 0; }
-.main-nav a { margin: 0 15px; font-weight: 600; color: #222; }
-
-.section { padding: 60px 0; }
-.section-title { text-align: center; margin-bottom: 30px; font-size: 1.8rem; }
-
-.hero-card { background: rgba(255, 255, 255, 0.2); border-radius: 20px; padding: 40px; }
-.avatar { width: 150px; border-radius: 10px; display: block; margin: 0 auto 20px; }
-
-.btn { padding: 12px 25px; border-radius: 12px; font-weight: 600; cursor: pointer; color: #fff; }
-.btn.primary { background: linear-gradient(135deg, #0077b6, #005f87); }
-.btn.red { background: linear-gradient(135deg, #d72638, #b71c1c); }
-.btn.whatsapp { background: linear-gradient(135deg, #25D366, #128C7E); }
-.btn.linkedin { background: linear-gradient(135deg, #0077B5, #005a8d); }
-
-.breathing {
-  animation: breathing 3s ease-in-out infinite alternate, glow 2.5s ease-in-out infinite alternate;
+/* ======== BOTONES GLOW ======== */
+.btn.glow {
+  animation: breathing 3s ease-in-out infinite;
+  box-shadow: 0 0 0 rgba(0,0,0,0);
 }
 
-@keyframes breathing { 0% { transform: scale(1); } 100% { transform: scale(1.05); } }
-@keyframes glow { 0% { box-shadow: 0 0 10px rgba(0,119,182,0.4); } 100% { box-shadow: 0 0 25px rgba(0,119,182,0.7); } }
+@keyframes breathing {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 10px rgba(0,119,182,0.4); }
+  50% { transform: scale(1.05); box-shadow: 0 0 20px rgba(0,119,182,0.6); }
+}
 
-.chart-container { position: relative; height: 500px; }
-.levels { display: flex; justify-content: space-between; margin-bottom: 10px; font-weight: 600; }
-.level.junior { color: #8c5e58; }
-.level.semi { color: #b85c38; }
-.level.senior { color: #243b6b; }
+/* ======== GRÁFICO ======== */
+canvas {
+  max-width: 100%;
+  margin: 40px auto;
+  display: block;
+}
 
-canvas { width: 100%; }
+/* Tooltip personalizado */
+.chartjs-tooltip {
+  background: rgba(34,34,34,0.9);
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
 
-.point { animation: blink 2s infinite alternate; }
-@keyframes blink { 0% { opacity: 1; } 100% { opacity: 0.5; } }
+/* Líneas horizontales niveles */
+.level-line {
+  stroke-dasharray: 4;
+  opacity: 0.4;
+}
+
+/* Puntos titilantes */
+@keyframes blink {
+  0%, 100% { r: 6; }
+  50% { r: 8; }
+}
