@@ -13,12 +13,13 @@
   <!-- HEADER -->
   <header class="site-header">
     <div class="container nav-wrap">
+      <a href="#inicio" class="brand">SM·UX</a>
       <nav class="main-nav" id="nav">
-        <a href="#inicio">Inicio</a>
         <a href="#proyectos">Proyectos</a>
         <a href="#tecnologias">Tecnologías</a>
         <a href="#certificados">Certificados</a>
         <a href="#contacto">Contacto</a>
+        <a class="btn red nav-cta" href="CV_Santiago_Murillo.pdf" download>Descargar CV</a>
       </nav>
     </div>
   </header>
@@ -29,14 +30,16 @@
       <div class="container">
         <article class="hero-card">
           <img class="avatar" src="activos/imagen/foto%20de%20perfil.jfif" alt="Foto de perfil de Santiago" />
-          <div>
-            <p class="subtitle">UX/UI Designer</p>
+          <div class="hero-copy">
+            <p class="kicker">UX/UI Designer</p>
             <h1 class="display">
-              Estudiante orientado al diseño UX/UI, apasionado por crear experiencias digitales intuitivas y atractivas.
-              Disfruto investigar usuarios, diseñar wireframes y prototipos para desarrollar soluciones innovadoras,
-              accesibles y de alta calidad que mejoren la interacción entre las personas y la tecnología.
+              Diseños claros, accesibles y medibles. Transformo requisitos en experiencias que convierten.
             </h1>
-            <div class="botones-hero">
+            <p class="sub">
+              Investigo, diseño y prototipo flujos end-to-end. Documentación y handoff para equipos ágiles.
+            </p>
+            <div class="hero-ctas">
+              <a class="btn primary" href="#proyectos">Ver proyectos destacados</a>
               <a class="btn red" href="CV_Santiago_Murillo.pdf" download>Descargar CV</a>
             </div>
           </div>
@@ -44,59 +47,110 @@
       </div>
     </section>
 
-    <!-- PROYECTOS (tarjetas) -->
+    <!-- PROYECTOS (tarjetas con miniaturas) -->
     <section id="proyectos" class="section alt">
       <div class="container">
-        <h2 class="section-title">Proyectos destacados</h2>
-        <div class="grid cards">
-          <article class="card hoverable">
-            <h3>Bon Bon Bum</h3>
-            <p>Wireframe de alta fidelidad en Figma, adaptado a MacBook Pro 16".</p>
-            <a class="btn primary" href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma?node-id=0-1" target="_blank">Acceder</a>
+        <div class="section-head">
+          <h2 class="section-title">Proyectos destacados</h2>
+          <p class="section-sub">Casos con proceso: problema, hipótesis, solución y resultado.</p>
+        </div>
+
+        <div class="grid cards projects">
+          <!-- Proyecto 1 -->
+          <article class="card hoverable project">
+            <figure class="thumb">
+              <img src="https://images.unsplash.com/photo-1557821552-17105176677c?q=80&w=1200&auto=format&fit=crop" alt="Bon Bon Bum – Wireframe en Figma" loading="lazy">
+            </figure>
+            <div class="card-body">
+              <h3>Bon Bon Bum</h3>
+              <p>Wireframe de alta fidelidad para MacBook Pro 16". Arquitectura y flujos de compra.</p>
+              <div class="tag-row">
+                <span class="tag">Wireframe</span><span class="tag">E-commerce</span><span class="tag">Figma</span>
+              </div>
+              <div class="card-ctas">
+                <a class="btn primary" href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma?node-id=0-1" target="_blank" rel="noopener">Ver case study</a>
+                <a class="btn ghost" href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma?node-id=0-1" target="_blank" rel="noopener">Acceder</a>
+              </div>
+            </div>
           </article>
-          <article class="card hoverable">
-            <h3>Greescape</h3>
-            <p>Prototipo de alta fidelidad en Figma, adaptado a iPhone 13 Pro.</p>
-            <a class="btn primary" href="https://www.figma.com/proto/iYuZ5f1XPOvGDWncfB739r/HCI?node-id=385-6" target="_blank">Acceder</a>
+
+          <!-- Proyecto 2 -->
+          <article class="card hoverable project">
+            <figure class="thumb">
+              <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?q=80&w=1200&auto=format&fit=crop" alt="Greescape – Prototipo iOS" loading="lazy">
+            </figure>
+            <div class="card-body">
+              <h3>Greescape</h3>
+              <p>Prototipo de alta fidelidad para iPhone 13 Pro. Onboarding, gamificación y rewards.</p>
+              <div class="tag-row">
+                <span class="tag">Prototipo</span><span class="tag">iOS</span><span class="tag">Figma</span>
+              </div>
+              <div class="card-ctas">
+                <a class="btn primary" href="https://www.figma.com/proto/iYuZ5f1XPOvGDWncfB739r/HCI?node-id=385-6" target="_blank" rel="noopener">Ver case study</a>
+                <a class="btn ghost" href="https://www.figma.com/proto/iYuZ5f1XPOvGDWncfB739r/HCI?node-id=385-6" target="_blank" rel="noopener">Acceder</a>
+              </div>
+            </div>
           </article>
-          <article class="card hoverable">
-            <h3>NutriCampus</h3>
-            <p>Prototipo de alta fidelidad en Figma, pensado para RV.</p>
-            <a class="btn primary" href="https://www.figma.com/proto/riKsfkN37qsKX4NbQn5zOh/Nutricampus-V2?node-id=11-144" target="_blank">Acceder</a>
+
+          <!-- Proyecto 3 -->
+          <article class="card hoverable project">
+            <figure class="thumb">
+              <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop" alt="NutriCampus – Experiencia RV" loading="lazy">
+            </figure>
+            <div class="card-body">
+              <h3>NutriCampus</h3>
+              <p>Prototipo para RV: interfaz clara y controles accesibles para entornos inmersivos.</p>
+              <div class="tag-row">
+                <span class="tag">VR</span><span class="tag">Prototipo</span><span class="tag">Figma</span>
+              </div>
+              <div class="card-ctas">
+                <a class="btn primary" href="https://www.figma.com/proto/riKsfkN37qsKX4NbQn5zOh/Nutricampus-V2?node-id=11-144" target="_blank" rel="noopener">Ver case study</a>
+                <a class="btn ghost" href="https://www.figma.com/proto/riKsfkN37qsKX4NbQn5zOh/Nutricampus-V2?node-id=11-144" target="_blank" rel="noopener">Acceder</a>
+              </div>
+            </div>
           </article>
-          <article class="card hoverable">
-            <h3>Isócrates</h3>
-            <p>Prototipo de alta fidelidad en Figma para desktop.</p>
-            <a class="btn primary" href="https://www.figma.com/proto/bCCXBOMkOQKVUB0emfQIb5/DSI-TRABAJO-GRUPAL?node-id=1-1028" target="_blank">Acceder</a>
+
+          <!-- Proyecto 4 -->
+          <article class="card hoverable project">
+            <figure class="thumb">
+              <img src="https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?q=80&w=1200&auto=format&fit=crop" alt="Isócrates – Prototipo desktop" loading="lazy">
+            </figure>
+            <div class="card-body">
+              <h3>Isócrates</h3>
+              <p>Prototipo desktop con foco en legibilidad, búsqueda y tareas frecuentes.</p>
+              <div class="tag-row">
+                <span class="tag">Desktop</span><span class="tag">Accesibilidad</span>
+              </div>
+              <div class="card-ctas">
+                <a class="btn primary" href="https://www.figma.com/proto/bCCXBOMkOQKVUB0emfQIb5/DSI-TRABAJO-GRUPAL?node-id=1-1028" target="_blank" rel="noopener">Ver case study</a>
+                <a class="btn ghost" href="https://www.figma.com/proto/bCCXBOMkOQKVUB0emfQIb5/DSI-TRABAJO-GRUPAL?node-id=1-1028" target="_blank" rel="noopener">Acceder</a>
+              </div>
+            </div>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- TECNOLOGÍAS (gráfico de líneas) -->
+    <!-- TECNOLOGÍAS (gráfico) -->
     <section id="tecnologias" class="section">
       <div class="container">
-        <h2 class="section-title">Tecnologías</h2>
+        <div class="section-head">
+          <h2 class="section-title">Tecnologías</h2>
+          <p class="section-sub">Nivel actual por herramienta. Pasa el mouse por cada punto.</p>
+        </div>
 
         <div class="chart-wrap">
-          <!-- Bandas de seniority -->
+          <!-- Bandas de seniority (mejor contraste y etiqueta al pasar) -->
           <div class="chart-bands">
-            <div class="band senior"></div>
-            <div class="band semi"></div>
-            <div class="band junior"></div>
+            <div class="band senior" data-label="Senior (71–100%)"></div>
+            <div class="band semi"   data-label="Semi-Senior (41–70%)"></div>
+            <div class="band junior" data-label="Junior (0–40%)"></div>
           </div>
 
           <!-- Líneas guía -->
           <div class="level-lines">
             <div class="line t70"></div>
             <div class="line t40"></div>
-          </div>
-
-          <!-- Etiquetas de bandas -->
-          <div class="level-labels">
-            <span class="level-label">Senior (71–100%)</span>
-            <span class="level-label">Semi-Senior (41–70%)</span>
-            <span class="level-label">Junior (0–40%)</span>
           </div>
 
           <!-- SVG del gráfico -->
@@ -113,25 +167,36 @@
       </div>
     </section>
 
-    <!-- CERTIFICADOS -->
+    <!-- CERTIFICADOS (tarjetas) -->
     <section id="certificados" class="section">
       <div class="container">
-        <h2 class="section-title">Certificados</h2>
+        <div class="section-head">
+          <h2 class="section-title">Certificados</h2>
+          <p class="section-sub">Formación y evidencias</p>
+        </div>
         <div class="grid cards diplomas-grid">
           <article class="card hoverable">
             <h3>Certificado EF SET</h3>
             <p>Certificación oficial de inglés EF SET, nivel alcanzado en 2023.</p>
-            <a class="btn primary" href="activos/diplomas/Certificado_EF_SET.pdf" target="_blank">Ver certificado</a>
+            <div class="card-ctas">
+              <a class="btn primary" href="activos/diplomas/Certificado_EF_SET.pdf" target="_blank" rel="noopener">Ver certificado</a>
+            </div>
           </article>
+
           <article class="card hoverable">
             <h3>Fundamentos de programación</h3>
             <p>Curso introductorio de lógica y programación, completado en 2023.</p>
-            <a class="btn primary" href="activos/diplomas/Fundamentos_de_programacion.jpeg" target="_blank">Ver certificado</a>
+            <div class="card-ctas">
+              <a class="btn primary" href="activos/diplomas/Fundamentos_de_programacion.jpeg" target="_blank" rel="noopener">Ver certificado</a>
+            </div>
           </article>
+
           <article class="card hoverable">
             <h3>Manejo de Adobe Illustrator</h3>
             <p>Curso de herramientas de diseño vectorial con Adobe Illustrator.</p>
-            <a class="btn primary" href="activos/diplomas/Manejo_Adobe_Illustrator.pdf" target="_blank">Ver certificado</a>
+            <div class="card-ctas">
+              <a class="btn primary" href="activos/diplomas/Manejo_Adobe_Illustrator.pdf" target="_blank" rel="noopener">Ver certificado</a>
+            </div>
           </article>
         </div>
       </div>
@@ -139,21 +204,35 @@
 
     <!-- CONTACTO -->
     <section id="contacto" class="section">
-      <div class="container contacto-box">
-        <h2 class="section-title">Contacto</h2>
-        <p><strong>Nombre:</strong> Santiago Murillo Ramírez</p>
-        <p><strong>Correo:</strong> <a href="mailto:santiagomr2003@gmail.com">santiagomr2003@gmail.com</a></p>
-        <div class="botones-contacto">
-          <a class="btn whatsapp" href="https://wa.me/573228182311" target="_blank">WhatsApp</a>
-          <a class="btn linkedin" href="https://www.linkedin.com/in/santiago-murillo-ramírez-795447235" target="_blank">LinkedIn</a>
+      <div class="container contacto-grid">
+        <div class="contacto-box">
+          <h2 class="section-title">Contacto</h2>
+          <p><strong>Nombre:</strong> Santiago Murillo Ramírez</p>
+          <p><strong>Correo:</strong> <a href="mailto:santiagomr2003@gmail.com">santiagomr2003@gmail.com</a></p>
+          <div class="botones-contacto">
+            <a class="btn whatsapp" href="https://wa.me/573228182311" target="_blank" rel="noopener">WhatsApp</a>
+            <a class="btn linkedin" href="https://www.linkedin.com/in/santiago-murillo-ramírez-795447235" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
         </div>
+
+        <!-- Formulario breve -->
+        <form class="card contact-form" action="https://formspree.io/f/xayz" method="POST">
+          <h3>Escríbeme</h3>
+          <label>Nombre<input name="nombre" type="text" required></label>
+          <label>Email<input name="email" type="email" required></label>
+          <label>Mensaje<textarea name="mensaje" rows="4" required></textarea></label>
+          <button class="btn primary" type="submit">Enviar</button>
+        </form>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <span>© <span id="year"></span> Santiago Murillo</span>
+      <div class="foot-grid">
+        <p>© <span id="year"></span> Santiago Murillo · UX/UI Designer</p>
+        <p class="foot-mini">Portafolio construido con Figma → HTML/CSS/JS. Accesible y responsive.</p>
+      </div>
     </div>
   </footer>
 
@@ -161,40 +240,34 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Datos
+    // Datos (según tus porcentajes actuales)
     const data = [
-      { name:'Figma',               value:60, desc:'Creo interfaces escalables y sistemas de diseño en Figma con componentes y variantes.' },
-      { name:'HTML5',               value:45, desc:'Maqueto vistas accesibles y semánticas, listas para integrarse con frameworks.' },
-      { name:'Axure',               value:30, desc:'Prototipos funcionales para flujos complejos cuando se requiere lógica avanzada.' },
-      { name:'Adobe Photoshop',     value:35, desc:'Retoque y preparación de recursos para UI con enfoque en rendimiento.' },
-      { name:'Adobe Illustrator',   value:35, desc:'Iconografía y gráficos vectoriales consistentes con el sistema visual.' },
-      { name:'After Effects',       value:30, desc:'Microinteracciones y motion básico para explicar propuestas de interfaz.' },
-      { name:'CSS',                 value:45, desc:'Estilos responsivos, grid/flex y utilidades; foco en legibilidad y accesibilidad.' },
-      { name:'Notion',              value:40, desc:'Documentación de procesos y handoff para equipos multidisciplinarios.' },
-      { name:'Jira',                value:35, desc:'Seguimiento de backlog, planificación y trabajo por iteraciones.' },
-      { name:'WCAG',                value:50, desc:'Criterios AA: contraste, foco visible, orden lógico y semántica.' },
-      { name:'GitHub',              value:45, desc:'Flujos básicos de colaboración: ramas, PRs y revision de cambios.' },
+      { name:'Figma',               value:60, desc:'Creo interfaces escalables y sistemas de diseño con componentes y variantes.' },
+      { name:'HTML5',               value:50, desc:'Maquetación semántica y accesible, SEO técnico base y buen performance.' },
+      { name:'Axure',               value:35, desc:'Prototipos con lógica avanzada para flujos complejos.' },
+      { name:'Adobe Photoshop',     value:35, desc:'Retoque y recursos óptimos para interfaz.' },
+      { name:'Adobe Illustrator',   value:40, desc:'Iconografía y gráficos vectoriales coherentes con el sistema visual.' },
+      { name:'After Effects',       value:30, desc:'Microinteracciones y motion para explicar propuestas.' },
+      { name:'CSS',                 value:30, desc:'Layouts con Grid/Flex, variables y utilidades.' },
+      { name:'Notion',              value:35, desc:'Documentación viva y handoff para equipos.' },
+      { name:'Jira',                value:30, desc:'Seguimiento de backlog e iteraciones.' },
+      { name:'WCAG',                value:40, desc:'Criterios AA: contraste, foco visible y orden lógico.' },
+      { name:'GitHub',              value:35, desc:'Flujos básicos de colaboración: ramas y PRs.' },
     ];
 
-    // Nivel por porcentaje
-    function levelOf(p){
-      if (p <= 40) return 'Junior';
-      if (p <= 70) return 'Semi-Senior';
-      return 'Senior';
-    }
+    // Nivel
+    function levelOf(p){ if (p <= 40) return 'Junior'; if (p <= 70) return 'Semi-Senior'; return 'Senior'; }
 
-    // Construir SVG
+    // SVG
     const svg = document.querySelector('.chart-area');
     const W = 1100, H = 480, pad = {l:48, r:20, t:16, b:40};
     svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
-
     const innerW = W - pad.l - pad.r;
     const innerH = H - pad.t - pad.b;
-
     const xs = (i)=> pad.l + (innerW) * (i/(data.length-1));
     const ys = (v)=> pad.t + (innerH) * (1 - v/100);
 
-    // Grid horizontal suave (cada 10%)
+    // Grid
     for(let pct=10;pct<=100;pct+=10){
       const y = ys(pct);
       const line = document.createElementNS('http://www.w3.org/2000/svg','line');
@@ -203,25 +276,23 @@
       line.setAttribute('stroke', 'rgba(0,0,0,.07)');
       line.setAttribute('stroke-width','1');
       svg.appendChild(line);
-      // labels eje Y (izquierda)
       const lbl = document.createElementNS('http://www.w3.org/2000/svg','text');
-      lbl.setAttribute('x', 6);
-      lbl.setAttribute('y', y+4);
-      lbl.setAttribute('fill','rgba(0,0,0,.45)');
+      lbl.setAttribute('x', 6); lbl.setAttribute('y', y+4);
+      lbl.setAttribute('fill','rgba(0,0,0,.55)');
       lbl.setAttribute('font-size','11');
       lbl.textContent = pct+'%';
       svg.appendChild(lbl);
     }
 
-    // Eje X (nombres)
+    // Eje X
     data.forEach((d,i)=>{
       const tx = document.createElementNS('http://www.w3.org/2000/svg','text');
       tx.setAttribute('x', xs(i));
       tx.setAttribute('y', H-8);
       tx.setAttribute('text-anchor','middle');
-      tx.setAttribute('fill','rgba(0,0,0,.55)');
+      tx.setAttribute('fill','rgba(0,0,0,.70)');
       tx.setAttribute('font-size','12');
-      tx.setAttribute('transform',`rotate( -9 ${xs(i)} ${H-8})`);
+      tx.setAttribute('transform',`rotate(-8 ${xs(i)} ${H-8})`);
       tx.textContent = d.name;
       svg.appendChild(tx);
     });
@@ -239,20 +310,8 @@
     path.setAttribute('class','tech-line');
     svg.appendChild(path);
 
-    // Puntos
+    // Puntos + tooltip
     const dots = [];
-    data.forEach((d,i)=>{
-      const c = document.createElementNS('http://www.w3.org/2000/svg','circle');
-      c.setAttribute('class','dot');
-      c.setAttribute('cx', xs(i));
-      c.setAttribute('cy', ys(d.value));
-      c.setAttribute('r','6');
-      c.dataset.index=i;
-      svg.appendChild(c);
-      dots.push(c);
-    });
-
-    // Tooltip
     const tip = document.getElementById('chartTip');
     const tipLevel = document.getElementById('tipLevel');
     const tipPerc = document.getElementById('tipPerc');
@@ -270,18 +329,23 @@
       tipLevel.textContent = levelOf(d.value);
       tipPerc.textContent = d.value + '%';
       tipDesc.textContent = d.desc;
-
       tip.style.left = pageX + 'px';
       tip.style.top  = (pageY - 18) + 'px';
       tip.classList.add('visible');
     }
-    function hideTip(){ tip.classList.remove('visible'); }
+    const hideTip = ()=> tip.classList.remove('visible');
 
-    dots.forEach((c)=>{
-      const d = data[+c.dataset.index];
+    data.forEach((d,i)=>{
+      const c = document.createElementNS('http://www.w3.org/2000/svg','circle');
+      c.setAttribute('class','dot');
+      c.setAttribute('cx', xs(i));
+      c.setAttribute('cy', ys(d.value));
+      c.setAttribute('r','6');
+      c.dataset.index=i;
       c.addEventListener('mouseenter',(e)=>showTip(e,d));
       c.addEventListener('mouseleave', hideTip);
-      c.addEventListener('touchstart',(e)=>{ e.preventDefault(); showTip(e.changedTouches[0].target?e:d, d); }, {passive:false});
+      svg.appendChild(c);
+      dots.push(c);
     });
     svg.addEventListener('mouseleave', hideTip);
 
@@ -295,6 +359,16 @@
       });
     },{threshold:.25});
     io.observe(svg);
+
+    // Bandas: label on-hover
+    document.querySelectorAll('.chart-bands .band').forEach(b=>{
+      b.addEventListener('mouseenter', ()=>{
+        b.setAttribute('data-show','1');
+      });
+      b.addEventListener('mouseleave', ()=>{
+        b.removeAttribute('data-show');
+      });
+    });
   </script>
 </body>
 </html>
