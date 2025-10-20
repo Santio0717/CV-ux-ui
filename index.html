@@ -6,12 +6,14 @@
   <title>Portafolio · Santiago Murillo</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="CSS/estilos.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-
 <body>
+
+  <!-- HEADER -->
   <header class="site-header">
     <div class="container nav-wrap">
-      <nav class="main-nav">
+      <nav class="main-nav" id="nav">
         <a href="#inicio">Inicio</a>
         <a href="#proyectos">Proyectos</a>
         <a href="#tecnologias">Tecnologías</a>
@@ -23,7 +25,7 @@
 
   <main>
     <!-- HERO -->
-    <section id="inicio" class="hero section">
+    <section id="inicio" class="hero section reveal">
       <div class="container hero-grid">
         <article class="hero-card">
           <img class="avatar" src="activos/imagen/foto%20de%20perfil.jfif" alt="Foto de perfil de Santiago" />
@@ -31,9 +33,11 @@
             <p class="subtitle">UX/UI Designer</p>
             <h1 class="display">
               Estudiante orientado al diseño UX/UI, apasionado por crear experiencias digitales intuitivas y atractivas.
+              Disfruto investigar usuarios, diseñar wireframes y prototipos para desarrollar soluciones innovadoras,
+              accesibles y de alta calidad que mejoren la interacción entre las personas y la tecnología.
             </h1>
             <div class="botones-hero">
-              <a class="btn red breathing" href="CV_Santiago_Murillo.pdf" download>Descargar CV</a>
+              <a class="btn red glow" href="CV_Santiago_Murillo.pdf" download>Descargar CV</a>
             </div>
           </div>
         </article>
@@ -41,66 +45,75 @@
     </section>
 
     <!-- PROYECTOS -->
-    <section id="proyectos" class="section alt">
+    <section id="proyectos" class="section alt reveal">
       <div class="container">
         <h2 class="section-title">Proyectos destacados</h2>
         <div class="grid cards">
           <article class="card hoverable">
             <h3>Bon Bon Bum</h3>
             <p>Wireframe de alta fidelidad en Figma, adaptado a MacBook Pro 16".</p>
-            <a class="btn primary breathing" href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY" target="_blank">Acceder</a>
+            <a class="btn primary glow" href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma?node-id=0-1" target="_blank">Acceder</a>
           </article>
           <article class="card hoverable">
             <h3>Greescape</h3>
             <p>Prototipo de alta fidelidad en Figma, adaptado a iPhone 13 Pro.</p>
-            <a class="btn primary breathing" href="https://www.figma.com/proto/iYuZ5f1XPOvGDWncfB739r" target="_blank">Acceder</a>
+            <a class="btn primary glow" href="https://www.figma.com/proto/iYuZ5f1XPOvGDWncfB739r/HCI?node-id=385-6" target="_blank">Acceder</a>
+          </article>
+          <article class="card hoverable">
+            <h3>NutriCampus</h3>
+            <p>Prototipo de alta fidelidad en Figma, pensado para RV.</p>
+            <a class="btn primary glow" href="https://www.figma.com/proto/riKsfkN37qsKX4NbQn5zOh/Nutricampus-V2?node-id=11-144" target="_blank">Acceder</a>
+          </article>
+          <article class="card hoverable">
+            <h3>Isócrates</h3>
+            <p>Prototipo de alta fidelidad en Figma para desktop.</p>
+            <a class="btn primary glow" href="https://www.figma.com/proto/bCCXBOMkOQKVUB0emfQIb5/DSI-TRABAJO-GRUPAL?node-id=1-1028" target="_blank">Acceder</a>
           </article>
         </div>
       </div>
     </section>
 
     <!-- TECNOLOGÍAS -->
-    <section id="tecnologias" class="section">
+    <section id="tecnologias" class="section reveal">
       <div class="container">
         <h2 class="section-title">Tecnologías</h2>
-        <div class="levels">
-          <span class="level junior">Junior</span>
-          <span class="level semi">Semi-Senior</span>
-          <span class="level senior">Senior</span>
-        </div>
-        <div class="chart-container">
-          <canvas id="techChart"></canvas>
-        </div>
+        <canvas id="skillsChart"></canvas>
       </div>
     </section>
 
     <!-- CERTIFICADOS -->
-    <section id="certificados" class="section">
+    <section id="certificados" class="section reveal">
       <div class="container">
         <h2 class="section-title">Certificados</h2>
         <div class="grid diplomas-grid">
           <article class="card hoverable">
             <h3>Certificado EF SET</h3>
             <p>Certificación oficial de inglés EF SET, nivel alcanzado en 2023.</p>
-            <a class="btn primary breathing" href="activos/diplomas/Certificado_EF_SET.pdf" target="_blank">Ver certificado</a>
+            <a class="btn primary glow" href="activos/diplomas/Certificado_EF_SET.pdf" target="_blank">Ver certificado</a>
+          </article>
+          <article class="card hoverable">
+            <h3>Fundamentos de programación</h3>
+            <p>Curso introductorio de lógica y programación, completado en 2023.</p>
+            <a class="btn primary glow" href="activos/diplomas/Fundamentos_de_programacion.jpeg" target="_blank">Ver certificado</a>
           </article>
           <article class="card hoverable">
             <h3>Manejo de Adobe Illustrator</h3>
             <p>Curso de herramientas de diseño vectorial con Adobe Illustrator.</p>
-            <a class="btn primary breathing" href="activos/diplomas/Manejo_Adobe_Illustrator.pdf" target="_blank">Ver certificado</a>
+            <a class="btn primary glow" href="activos/diplomas/Manejo_Adobe_Illustrator.pdf" target="_blank">Ver certificado</a>
           </article>
         </div>
       </div>
     </section>
 
     <!-- CONTACTO -->
-    <section id="contacto" class="section contacto">
+    <section id="contacto" class="section reveal contacto">
       <div class="container contacto-box">
         <h2 class="section-title">Contacto</h2>
+        <p><strong>Nombre:</strong> Santiago Murillo Ramírez</p>
         <p><strong>Correo:</strong> <a href="mailto:santiagomr2003@gmail.com">santiagomr2003@gmail.com</a></p>
         <div class="botones-contacto">
-          <a class="btn whatsapp breathing" href="https://wa.me/573228182311" target="_blank">WhatsApp</a>
-          <a class="btn linkedin breathing" href="https://www.linkedin.com/in/santiago-murillo-ramírez-795447235" target="_blank">LinkedIn</a>
+          <a class="btn whatsapp glow" href="https://wa.me/573228182311" target="_blank">WhatsApp</a>
+          <a class="btn linkedin glow" href="https://www.linkedin.com/in/santiago-murillo-ramírez-795447235" target="_blank">LinkedIn</a>
         </div>
       </div>
     </section>
@@ -112,58 +125,6 @@
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script>
-    const ctx = document.getElementById('techChart').getContext('2d');
-    const techData = {
-      labels: ["Figma", "HTML5", "Axure", "Photoshop", "Illustrator", "After Effects", "CSS", "Notion", "Jira", "WCAG", "GitHub"],
-      datasets: [{
-        label: 'Nivel actual (%)',
-        data: [60, 50, 35, 35, 40, 30, 30, 35, 30, 40, 35],
-        borderColor: '#243b6b',
-        backgroundColor: 'rgba(36, 59, 107, 0.1)',
-        fill: false,
-        tension: 0.4,
-        pointBackgroundColor: [
-          "#2a5298","#355c7d","#6c5b7b","#c06c84","#f67280","#f8b195","#243b6b","#b85c38","#8c5e58","#4a6670","#005f87"
-        ],
-        pointRadius: 8,
-        pointHoverRadius: 12,
-        pointBorderWidth: 3
-      }]
-    };
-
-    const techChart = new Chart(ctx, {
-      type: 'line',
-      data: techData,
-      options: {
-        plugins: {
-          tooltip: {
-            callbacks: {
-              label: function(context) {
-                const value = context.parsed.y;
-                let nivel = value <= 40 ? "Junior" : value <= 70 ? "Semi-Senior" : "Senior";
-                let desc = nivel === "Junior" 
-                  ? "Estoy en etapa de desarrollo, centrado en bases sólidas." 
-                  : nivel === "Semi-Senior" 
-                  ? "Manejo aspectos más allá del diseño visual, como experiencia de usuario." 
-                  : "Integro visión estratégica centrada en negocio y usuarios.";
-                return `${context.label}: ${value}% - ${nivel}\n${desc}`;
-              }
-            }
-          }
-        },
-        scales: {
-          y: {
-            suggestedMin: 0,
-            suggestedMax: 100,
-            grid: {
-              color: 'rgba(0,0,0,0.1)'
-            }
-          }
-        }
-      }
-    });
-  </script>
+<script src="JS/skills.js"></script>
 </body>
 </html>
