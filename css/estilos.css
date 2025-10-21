@@ -76,41 +76,31 @@ a{text-decoration:none;color:inherit}
 .sub{margin:0 0 10px;opacity:.9}
 .hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
 
-/* ======== BOTONES ======== */
+/* ======== BOTONES (breathing glow) ======== */
 .btn{
   display:inline-block;padding:12px 22px;border-radius:12px;
   font-weight:600;border:none;cursor:pointer;color:#fff;
-  position:relative;isolation:isolate;transition:transform .25s, box-shadow .25s, background .25s;
+  position:relative;isolation:isolate;transition:transform .25s;
+  animation:breath 3.2s ease-in-out infinite;
 }
 .btn:hover{transform:translateY(-1px)}
-.btn:focus-visible{outline:3px solid #000;outline-offset:2px}
-
+@keyframes breath{
+  0%{transform:scale(1);box-shadow:0 0 0 rgba(0,0,0,0)}
+  50%{transform:scale(1.03);box-shadow:0 10px 30px rgba(0,0,0,.12)}
+  100%{transform:scale(1)}
+}
+.btn::after{
+  content:"";position:absolute;inset:-2px;border-radius:14px;
+  background:radial-gradient(closest-side,rgba(255,255,255,.35),transparent 70%);
+  opacity:.0;filter:blur(6px);transition:opacity .4s;z-index:-1;
+}
+.btn:hover::after{opacity:.9}
 .btn.primary{background:linear-gradient(135deg,#0077b6,#005f87)}
-.btn.primary:hover{background:linear-gradient(135deg,#005f87,#004767)}
-
 .btn.red{background:linear-gradient(135deg,#d72638,#b71c1c)}
-.btn.red:hover{background:linear-gradient(135deg,#b71c1c,#8f111d)}
-
 .btn.whatsapp{background:linear-gradient(135deg,#25D366,#128C7E)}
 .btn.linkedin{background:linear-gradient(135deg,#0077B5,#005a8d)}
-
-.btn.ghost{
-  background:transparent;color:var(--accent);
-  box-shadow:inset 0 0 0 2px var(--accent);
-}
+.btn.ghost{background:transparent;color:var(--accent);box-shadow:inset 0 0 0 2px var(--accent);animation:none}
 .btn.ghost:hover{background:rgba(184,92,56,.08)}
-
-/* NUEVO: Botón Estudio de caso */
-.btn.study{
-  background:linear-gradient(135deg,#b85c38,#8f4428);
-  color:#fff;
-  box-shadow:0 6px 18px rgba(184,92,56,.28);
-}
-.btn.study:hover{
-  background:linear-gradient(135deg,#8f4428,#b85c38);
-  box-shadow:0 10px 24px rgba(184,92,56,.35);
-  transform:translateY(-2px);
-}
 
 /* ======== TARJETAS / PROYECTOS ======== */
 .grid.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
@@ -179,37 +169,6 @@ svg .tech-line{
 svg.revealed .tech-line{stroke-dashoffset:0}
 svg .dot{fill:var(--accent);stroke:#fff;stroke-width:2;filter:drop-shadow(0 1px 2px rgba(0,0,0,.15));animation:twinkle 2.6s ease-in-out infinite}
 @keyframes twinkle{0%,100%{opacity:.85;r:5.5}50%{opacity:1;r:7.2}}
-
-/* ======== MODAL DE CASO DE ESTUDIO (opcional) ======== */
-.case-modal{
-  position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
-  background:rgba(0,0,0,.55);
-  opacity:0;visibility:hidden;transition:opacity .25s ease, visibility .25s ease;
-  z-index:50;padding:24px;
-}
-.case-modal:target{opacity:1;visibility:visible}
-.case-dialog{
-  width:min(900px,95vw);max-height:88vh;overflow:auto;
-  background:linear-gradient(180deg,#fff,rgba(255,255,255,.96));
-  border-radius:16px;padding:22px 22px 26px;
-  box-shadow:0 30px 60px rgba(0,0,0,.35);
-}
-.case-header{
-  display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px
-}
-.case-title{font-size:1.35rem;font-weight:800;color:var(--ink);margin:0}
-.case-close{
-  display:inline-flex;align-items:center;justify-content:center;
-  width:36px;height:36px;border-radius:10px;background:#f3f3f3;color:#222;
-  font-weight:800;text-decoration:none
-}
-.case-close:hover{background:#e8e8e8}
-.case-body{display:grid;gap:14px;font-size:1rem}
-.case-meta{display:flex;flex-wrap:wrap;gap:8px}
-.badge{
-  font-size:.78rem;padding:4px 8px;border-radius:999px;background:rgba(184,92,56,.12);
-  color:var(--accent);font-weight:600
-}
 
 /* ======== CERTIFICADOS ======== */
 .diplomas-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
