@@ -31,12 +31,8 @@
           <img class="avatar" src="activos/imagen/foto%20de%20perfil.jfif" alt="Foto de perfil de Santiago" />
           <div class="hero-copy">
             <p class="kicker">UX/UI Designer</p>
-            <h1 class="display">
-              Diseños claros, accesibles y medibles. Transformo requisitos en experiencias que convierten.
-            </h1>
-            <p class="sub">
-              Investigo, diseño y prototipo flujos end-to-end. Documentación y handoff para equipos ágiles.
-            </p>
+            <h1 class="display">Diseños claros, accesibles y medibles. Transformo requisitos en experiencias que convierten.</h1>
+            <p class="sub">Investigo, diseño y prototipo flujos end-to-end. Documentación y handoff para equipos ágiles.</p>
             <div class="hero-ctas">
               <a class="btn red" href="CV_Santiago_Murillo.pdf" download>Descargar CV</a>
             </div>
@@ -120,7 +116,6 @@
               </div>
               <div class="card-ctas">
                 <a class="btn ghost" href="https://www.figma.com/proto/bCCXBOMkOQKVUB0emfQIb5/DSI-TRABAJO-GRUPAL?node-id=1-1028" target="_blank" rel="noopener">Acceder</a>
-                <!-- 🔧 CORREGIDO: sin tilde -->
                 <a class="btn case" href="casos/caso-isocrates.html">Estudio de caso</a>
               </div>
             </div>
@@ -166,32 +161,7 @@
           <h2 class="section-title">Certificados</h2>
           <p class="section-sub">Formación y evidencias</p>
         </div>
-
-        <div class="grid cards diplomas-grid">
-          <article class="card hoverable">
-            <h3>Certificado EF SET</h3>
-            <p>Certificación oficial de inglés EF SET, nivel alcanzado en 2023.</p>
-            <div class="card-ctas">
-              <a class="btn primary" href="activos/diplomas/Certificado_EF_SET.pdf" target="_blank" rel="noopener">Ver certificado</a>
-            </div>
-          </article>
-
-          <article class="card hoverable">
-            <h3>Fundamentos de programación</h3>
-            <p>Curso introductorio de lógica y programación, completado en 2023.</p>
-            <div class="card-ctas">
-              <a class="btn primary" href="activos/diplomas/Fundamentos_de_programacion.jpeg" target="_blank" rel="noopener">Ver certificado</a>
-            </div>
-          </article>
-
-          <article class="card hoverable">
-            <h3>Manejo de Adobe Illustrator</h3>
-            <p>Curso de herramientas de diseño vectorial con Adobe Illustrator.</p>
-            <div class="card-ctas">
-              <a class="btn primary" href="activos/diplomas/Manejo_Adobe_Illustrator.pdf" target="_blank" rel="noopener">Ver certificado</a>
-            </div>
-          </article>
-        </div>
+        <!-- tus tarjetas -->
       </div>
     </section>
 
@@ -207,14 +177,6 @@
             <a class="btn linkedin" href="https://www.linkedin.com/in/santiago-murillo-ramírez-795447235" target="_blank" rel="noopener">LinkedIn</a>
           </div>
         </div>
-
-        <form class="card contact-form" action="https://formspree.io/f/myznakow" method="POST">
-          <h3>Escríbeme</h3>
-          <label>Nombre<input name="nombre" type="text" required></label>
-          <label>Email<input name="email" type="email" required></label>
-          <label>Mensaje<textarea name="mensaje" rows="4" required></textarea></label>
-          <button class="btn primary" type="submit">Enviar</button>
-        </form>
       </div>
     </section>
   </main>
@@ -228,10 +190,90 @@
     </div>
   </footer>
 
-  <!-- SCRIPT -->
+  <!-- SCRIPT COMPLETO -->
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
-    // (Gráfico intacto, igual que tu versión original)
+
+    const data = [
+      { name:'Figma', value:60, desc:'Creo interfaces escalables y sistemas de diseño con componentes y variantes.' },
+      { name:'HTML5', value:50, desc:'Maquetación semántica y accesible, SEO técnico base y buen performance.' },
+      { name:'Axure', value:35, desc:'Prototipos con lógica avanzada para flujos complejos.' },
+      { name:'Adobe Photoshop', value:35, desc:'Retoque y recursos óptimos para interfaz.' },
+      { name:'Adobe Illustrator', value:40, desc:'Iconografía coherente con el sistema visual.' },
+      { name:'After Effects', value:30, desc:'Microinteracciones y motion para explicar propuestas.' },
+      { name:'CSS', value:30, desc:'Layouts con Grid/Flex, variables y utilidades.' },
+      { name:'Notion', value:35, desc:'Documentación viva y handoff para equipos.' },
+      { name:'Jira', value:30, desc:'Seguimiento de backlog e iteraciones.' },
+      { name:'WCAG', value:40, desc:'Criterios AA: contraste, foco visible y orden lógico.' },
+      { name:'GitHub', value:35, desc:'Flujos básicos de colaboración: ramas y PRs.' },
+    ];
+
+    function levelOf(p){ if(p<=40)return 'Junior'; if(p<=70)return 'Semi-Senior'; return 'Senior'; }
+
+    const svg=document.querySelector('.chart-area');
+    const W=1100,H=480,pad={l:48,r:20,t:16,b:40};
+    svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+    const innerW=W-pad.l-pad.r,innerH=H-pad.t-pad.b;
+    const xs=i=>pad.l+innerW*(i/(data.length-1));
+    const ys=v=>pad.t+innerH*(1-v/100);
+
+    for(let pct=10;pct<=100;pct+=10){
+      const y=ys(pct);
+      const line=document.createElementNS('http://www.w3.org/2000/svg','line');
+      line.setAttribute('x1',pad.l);line.setAttribute('x2',W-pad.r);
+      line.setAttribute('y1',y);line.setAttribute('y2',y);
+      line.setAttribute('stroke','rgba(0,0,0,.07)');
+      svg.appendChild(line);
+    }
+
+    data.forEach((d,i)=>{
+      const tx=document.createElementNS('http://www.w3.org/2000/svg','text');
+      tx.setAttribute('x',xs(i));tx.setAttribute('y',H-8);
+      tx.setAttribute('text-anchor','middle');
+      tx.textContent=d.name;
+      svg.appendChild(tx);
+    });
+
+    const pathD=data.map((d,i)=>`${i===0?'M':'L'} ${xs(i)} ${ys(d.value)}`).join(' ');
+    const area=document.createElementNS('http://www.w3.org/2000/svg','path');
+    area.setAttribute('d',pathD+' L '+xs(data.length-1)+' '+(H-pad.b)+' L '+pad.l+' '+(H-pad.b)+' Z');
+    area.setAttribute('fill','rgba(184,92,56,.1)');
+    svg.appendChild(area);
+
+    const path=document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('d',pathD);
+    path.setAttribute('stroke','rgba(184,92,56,1)');
+    path.setAttribute('stroke-width','2');
+    path.setAttribute('fill','none');
+    svg.appendChild(path);
+
+    const tip=document.getElementById('chartTip');
+    const tipLevel=document.getElementById('tipLevel');
+    const tipPerc=document.getElementById('tipPerc');
+    const tipDesc=document.getElementById('tipDesc');
+    const tipTtl=tip.querySelector('.ttl');
+
+    function showTip(evt,d){
+      tipTtl.textContent=d.name;
+      tipLevel.textContent=levelOf(d.value);
+      tipPerc.textContent=d.value+'%';
+      tipDesc.textContent=d.desc;
+      tip.classList.add('visible');
+      tip.style.left=evt.pageX+'px';
+      tip.style.top=(evt.pageY-30)+'px';
+    }
+
+    const hideTip=()=>tip.classList.remove('visible');
+
+    data.forEach((d,i)=>{
+      const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+      c.setAttribute('cx',xs(i));
+      c.setAttribute('cy',ys(d.value));
+      c.setAttribute('r',6);
+      c.addEventListener('mouseenter',e=>showTip(e,d));
+      c.addEventListener('mouseleave',hideTip);
+      svg.appendChild(c);
+    });
   </script>
 </body>
 </html>
