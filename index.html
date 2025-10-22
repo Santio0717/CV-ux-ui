@@ -138,10 +138,12 @@
             <div class="band semi" data-label="Semi-Senior (41–70%)"></div>
             <div class="band junior" data-label="Junior (0–40%)"></div>
           </div>
+
           <div class="level-lines">
             <div class="line t70"></div>
             <div class="line t40"></div>
           </div>
+
           <svg class="chart-area" viewBox="0 0 1100 480" preserveAspectRatio="none" aria-label="Gráfico tecnologías"></svg>
 
           <div class="chart-tooltip" id="chartTip">
@@ -154,13 +156,14 @@
       </div>
     </section>
 
-  <!-- CERTIFICADOS (tarjetas) -->
+    <!-- CERTIFICADOS -->
     <section id="certificados" class="section">
       <div class="container">
         <div class="section-head">
           <h2 class="section-title">Certificados</h2>
           <p class="section-sub">Formación y evidencias</p>
         </div>
+
         <div class="grid cards diplomas-grid">
           <article class="card hoverable">
             <h3>Certificado EF SET</h3>
@@ -201,6 +204,14 @@
             <a class="btn linkedin" href="https://www.linkedin.com/in/santiago-murillo-ramírez-795447235" target="_blank" rel="noopener">LinkedIn</a>
           </div>
         </div>
+
+        <form class="card contact-form" action="https://formspree.io/f/myznakow" method="POST">
+          <h3>Escríbeme</h3>
+          <label>Nombre<input name="nombre" type="text" required></label>
+          <label>Email<input name="email" type="email" required></label>
+          <label>Mensaje<textarea name="mensaje" rows="4" required></textarea></label>
+          <button class="btn primary" type="submit">Enviar</button>
+        </form>
       </div>
     </section>
   </main>
@@ -214,10 +225,9 @@
     </div>
   </footer>
 
-  <!-- SCRIPT COMPLETO -->
+  <!-- SCRIPT DEL GRÁFICO -->
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
-
     const data = [
       { name:'Figma', value:60, desc:'Creo interfaces escalables y sistemas de diseño con componentes y variantes.' },
       { name:'HTML5', value:50, desc:'Maquetación semántica y accesible, SEO técnico base y buen performance.' },
@@ -231,16 +241,13 @@
       { name:'WCAG', value:40, desc:'Criterios AA: contraste, foco visible y orden lógico.' },
       { name:'GitHub', value:35, desc:'Flujos básicos de colaboración: ramas y PRs.' },
     ];
-
     function levelOf(p){ if(p<=40)return 'Junior'; if(p<=70)return 'Semi-Senior'; return 'Senior'; }
-
     const svg=document.querySelector('.chart-area');
     const W=1100,H=480,pad={l:48,r:20,t:16,b:40};
     svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
     const innerW=W-pad.l-pad.r,innerH=H-pad.t-pad.b;
     const xs=i=>pad.l+innerW*(i/(data.length-1));
     const ys=v=>pad.t+innerH*(1-v/100);
-
     for(let pct=10;pct<=100;pct+=10){
       const y=ys(pct);
       const line=document.createElementNS('http://www.w3.org/2000/svg','line');
@@ -249,7 +256,6 @@
       line.setAttribute('stroke','rgba(0,0,0,.07)');
       svg.appendChild(line);
     }
-
     data.forEach((d,i)=>{
       const tx=document.createElementNS('http://www.w3.org/2000/svg','text');
       tx.setAttribute('x',xs(i));tx.setAttribute('y',H-8);
@@ -257,26 +263,22 @@
       tx.textContent=d.name;
       svg.appendChild(tx);
     });
-
     const pathD=data.map((d,i)=>`${i===0?'M':'L'} ${xs(i)} ${ys(d.value)}`).join(' ');
     const area=document.createElementNS('http://www.w3.org/2000/svg','path');
     area.setAttribute('d',pathD+' L '+xs(data.length-1)+' '+(H-pad.b)+' L '+pad.l+' '+(H-pad.b)+' Z');
     area.setAttribute('fill','rgba(184,92,56,.1)');
     svg.appendChild(area);
-
     const path=document.createElementNS('http://www.w3.org/2000/svg','path');
     path.setAttribute('d',pathD);
     path.setAttribute('stroke','rgba(184,92,56,1)');
     path.setAttribute('stroke-width','2');
     path.setAttribute('fill','none');
     svg.appendChild(path);
-
     const tip=document.getElementById('chartTip');
     const tipLevel=document.getElementById('tipLevel');
     const tipPerc=document.getElementById('tipPerc');
     const tipDesc=document.getElementById('tipDesc');
     const tipTtl=tip.querySelector('.ttl');
-
     function showTip(evt,d){
       tipTtl.textContent=d.name;
       tipLevel.textContent=levelOf(d.value);
@@ -286,9 +288,7 @@
       tip.style.left=evt.pageX+'px';
       tip.style.top=(evt.pageY-30)+'px';
     }
-
     const hideTip=()=>tip.classList.remove('visible');
-
     data.forEach((d,i)=>{
       const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
       c.setAttribute('cx',xs(i));
