@@ -53,6 +53,7 @@
         </div>
 
         <div class="grid cards projects">
+          <!-- Proyecto 1 -->
           <article class="card hoverable project">
             <figure class="thumb">
               <img src="activos/Proyectos/Bon_Bon_Bum.png" alt="Bon Bon Bum – Wireframe en Figma" loading="lazy">
@@ -69,6 +70,7 @@
             </div>
           </article>
 
+          <!-- Proyecto 2 -->
           <article class="card hoverable project">
             <figure class="thumb">
               <img src="activos/Proyectos/Greenscape.png" alt="Greenscape – Prototipo iOS" loading="lazy">
@@ -85,6 +87,7 @@
             </div>
           </article>
 
+          <!-- Proyecto 3 -->
           <article class="card hoverable project">
             <figure class="thumb">
               <img src="activos/Proyectos/NutriCampus.png" alt="NutriCampus – Experiencia RV" loading="lazy">
@@ -101,6 +104,7 @@
             </div>
           </article>
 
+          <!-- Proyecto 4 -->
           <article class="card hoverable project">
             <figure class="thumb">
               <img src="activos/Proyectos/Isocrates.png" alt="Isócrates – Prototipo desktop" loading="lazy">
@@ -219,7 +223,65 @@
     </div>
   </footer>
 
-  <!-- SCRIPT GRÁFICO -->
-  <script src="JS/grafico.js"></script>
+  <!-- ====== SCRIPT GRÁFICO ====== -->
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const data = [
+      { name:'Figma', value:60, desc:'Creo interfaces escalables y sistemas de diseño con componentes y variantes.' },
+      { name:'HTML5', value:50, desc:'Maquetación semántica y accesible, SEO técnico base y buen performance.' },
+      { name:'Axure', value:35, desc:'Prototipos con lógica avanzada para flujos complejos.' },
+      { name:'Adobe Photoshop', value:35, desc:'Retoque y recursos óptimos para interfaz.' },
+      { name:'Adobe Illustrator', value:40, desc:'Iconografía y gráficos vectoriales coherentes con el sistema visual.' },
+      { name:'After Effects', value:30, desc:'Microinteracciones y motion para explicar propuestas.' },
+      { name:'CSS', value:30, desc:'Layouts con Grid/Flex, variables y utilidades.' },
+      { name:'Notion', value:35, desc:'Documentación viva y handoff para equipos.' },
+      { name:'Jira', value:30, desc:'Seguimiento de backlog e iteraciones.' },
+      { name:'WCAG', value:40, desc:'Criterios AA: contraste, foco visible y orden lógico.' },
+      { name:'GitHub', value:35, desc:'Flujos básicos de colaboración: ramas y PRs.' },
+    ];
+
+    const svg = document.querySelector('.chart-area');
+    const W = 1100, H = 480, pad = {l:48, r:20, t:16, b:40};
+    const innerW = W - pad.l - pad.r;
+    const innerH = H - pad.t - pad.b;
+    const xs = (i)=> pad.l + (innerW)*(i/(data.length-1));
+    const ys = (v)=> pad.t + (innerH)*(1 - v/100);
+
+    for(let pct=10;pct<=100;pct+=10){
+      const y = ys(pct);
+      const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+      line.setAttribute('x1',pad.l); line.setAttribute('x2',W-pad.r);
+      line.setAttribute('y1',y); line.setAttribute('y2',y);
+      line.setAttribute('stroke','rgba(0,0,0,.07)');
+      svg.appendChild(line);
+    }
+
+    data.forEach((d,i)=>{
+      const tx = document.createElementNS('http://www.w3.org/2000/svg','text');
+      tx.setAttribute('x',xs(i));
+      tx.setAttribute('y',H-8);
+      tx.setAttribute('text-anchor','middle');
+      tx.setAttribute('font-size','12');
+      tx.setAttribute('fill','rgba(0,0,0,.7)');
+      tx.textContent=d.name;
+      svg.appendChild(tx);
+    });
+
+    const pathD = data.map((d,i)=>`${i===0?'M':'L'} ${xs(i)} ${ys(d.value)}`).join(' ');
+    const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('d',pathD);
+    path.setAttribute('class','tech-line');
+    svg.appendChild(path);
+
+    data.forEach((d,i)=>{
+      const c = document.createElementNS('http://www.w3.org/2000/svg','circle');
+      c.setAttribute('cx',xs(i));
+      c.setAttribute('cy',ys(d.value));
+      c.setAttribute('r','6');
+      c.setAttribute('class','dot');
+      svg.appendChild(c);
+    });
+  </script>
 </body>
 </html>
