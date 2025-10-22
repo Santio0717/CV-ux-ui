@@ -128,9 +128,247 @@
       </div>
     </section>
 
-    <!-- RESTO DE SECCIONES -->
-    <!-- Aquí continúan tecnologías, certificados y contacto sin cambios -->
-    <!-- (Mantén tu mismo código anterior para esas secciones y el script final) -->
+   <!-- TECNOLOGÍAS (gráfico) -->
+    <section id="tecnologias" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">Tecnologías</h2>
+          <p class="section-sub">Nivel actual por herramienta. Pasa el mouse por cada punto.</p>
+        </div>
+
+        <div class="chart-wrap">
+          <!-- Bandas de seniority (mejor contraste y etiqueta al pasar) -->
+          <div class="chart-bands">
+            <div class="band senior" data-label="Senior (71–100%)"></div>
+            <div class="band semi"   data-label="Semi-Senior (41–70%)"></div>
+            <div class="band junior" data-label="Junior (0–40%)"></div>
+          </div>
+
+          <!-- Líneas guía -->
+          <div class="level-lines">
+            <div class="line t70"></div>
+            <div class="line t40"></div>
+          </div>
+
+          <!-- SVG del gráfico -->
+          <svg class="chart-area" viewBox="0 0 1100 480" preserveAspectRatio="none" aria-label="Gráfico tecnologías"></svg>
+
+          <!-- Tooltip -->
+          <div class="chart-tooltip" id="chartTip">
+            <div class="ttl">Tecnología</div>
+            <div class="row"><span class="tag">Nivel</span><span id="tipLevel">—</span></div>
+            <div class="row"><span class="tag">Porcentaje</span><span id="tipPerc">—</span></div>
+            <div class="row" style="margin-top:6px;"><span id="tipDesc">—</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICADOS (tarjetas) -->
+    <section id="certificados" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">Certificados</h2>
+          <p class="section-sub">Formación y evidencias</p>
+        </div>
+        <div class="grid cards diplomas-grid">
+          <article class="card hoverable">
+            <h3>Certificado EF SET</h3>
+            <p>Certificación oficial de inglés EF SET, nivel alcanzado en 2023.</p>
+            <div class="card-ctas">
+              <a class="btn primary" href="activos/diplomas/Certificado_EF_SET.pdf" target="_blank" rel="noopener">Ver certificado</a>
+            </div>
+          </article>
+
+          <article class="card hoverable">
+            <h3>Fundamentos de programación</h3>
+            <p>Curso introductorio de lógica y programación, completado en 2023.</p>
+            <div class="card-ctas">
+              <a class="btn primary" href="activos/diplomas/Fundamentos_de_programacion.jpeg" target="_blank" rel="noopener">Ver certificado</a>
+            </div>
+          </article>
+
+          <article class="card hoverable">
+            <h3>Manejo de Adobe Illustrator</h3>
+            <p>Curso de herramientas de diseño vectorial con Adobe Illustrator.</p>
+            <div class="card-ctas">
+              <a class="btn primary" href="activos/diplomas/Manejo_Adobe_Illustrator.pdf" target="_blank" rel="noopener">Ver certificado</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="section">
+      <div class="container contacto-grid">
+        <div class="contacto-box">
+          <h2 class="section-title">Contacto</h2>
+          <p><strong>Nombre:</strong> Santiago Murillo Ramírez</p>
+          <p><strong>Correo:</strong> <a href="mailto:santiagomr2003@gmail.com">santiagomr2003@gmail.com</a></p>
+          <div class="botones-contacto">
+            <a class="btn whatsapp" href="https://wa.me/573228182311" target="_blank" rel="noopener">WhatsApp</a>
+            <a class="btn linkedin" href="https://www.linkedin.com/in/santiago-murillo-ramírez-795447235" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+
+        <!-- Formulario breve -->
+        <form class="card contact-form" action="https://formspree.io/f/myznakow method="POST">
+          <h3>Escríbeme</h3>
+          <label>Nombre<input name="nombre" type="text" required></label>
+          <label>Email<input name="email" type="email" required></label>
+          <label>Mensaje<textarea name="mensaje" rows="4" required></textarea></label>
+          <button class="btn primary" type="submit">Enviar</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="foot-grid">
+        <p>© <span id="year"></span> Santiago Murillo · UX/UI Designer</p>
+        <p class="foot-mini">Portafolio construido con Figma → HTML/CSS/JS. Accesible y responsive.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ====== SCRIPT GRÁFICO ====== -->
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Datos (según tus porcentajes actuales)
+    const data = [
+      { name:'Figma',               value:60, desc:'Creo interfaces escalables y sistemas de diseño con componentes y variantes.' },
+      { name:'HTML5',               value:50, desc:'Maquetación semántica y accesible, SEO técnico base y buen performance.' },
+      { name:'Axure',               value:35, desc:'Prototipos con lógica avanzada para flujos complejos.' },
+      { name:'Adobe Photoshop',     value:35, desc:'Retoque y recursos óptimos para interfaz.' },
+      { name:'Adobe Illustrator',   value:40, desc:'Iconografía y gráficos vectoriales coherentes con el sistema visual.' },
+      { name:'After Effects',       value:30, desc:'Microinteracciones y motion para explicar propuestas.' },
+      { name:'CSS',                 value:30, desc:'Layouts con Grid/Flex, variables y utilidades.' },
+      { name:'Notion',              value:35, desc:'Documentación viva y handoff para equipos.' },
+      { name:'Jira',                value:30, desc:'Seguimiento de backlog e iteraciones.' },
+      { name:'WCAG',                value:40, desc:'Criterios AA: contraste, foco visible y orden lógico.' },
+      { name:'GitHub',              value:35, desc:'Flujos básicos de colaboración: ramas y PRs.' },
+    ];
+
+    // Nivel
+    function levelOf(p){ if (p <= 40) return 'Junior'; if (p <= 70) return 'Semi-Senior'; return 'Senior'; }
+
+    // SVG
+    const svg = document.querySelector('.chart-area');
+    const W = 1100, H = 480, pad = {l:48, r:20, t:16, b:40};
+    svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+    const innerW = W - pad.l - pad.r;
+    const innerH = H - pad.t - pad.b;
+    const xs = (i)=> pad.l + (innerW) * (i/(data.length-1));
+    const ys = (v)=> pad.t + (innerH) * (1 - v/100);
+
+    // Grid
+    for(let pct=10;pct<=100;pct+=10){
+      const y = ys(pct);
+      const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+      line.setAttribute('x1', pad.l); line.setAttribute('x2', W-pad.r);
+      line.setAttribute('y1', y);     line.setAttribute('y2', y);
+      line.setAttribute('stroke', 'rgba(0,0,0,.07)');
+      line.setAttribute('stroke-width','1');
+      svg.appendChild(line);
+      const lbl = document.createElementNS('http://www.w3.org/2000/svg','text');
+      lbl.setAttribute('x', 6); lbl.setAttribute('y', y+4);
+      lbl.setAttribute('fill','rgba(0,0,0,.55)');
+      lbl.setAttribute('font-size','11');
+      lbl.textContent = pct+'%';
+      svg.appendChild(lbl);
+    }
+
+    // Eje X
+    data.forEach((d,i)=>{
+      const tx = document.createElementNS('http://www.w3.org/2000/svg','text');
+      tx.setAttribute('x', xs(i));
+      tx.setAttribute('y', H-8);
+      tx.setAttribute('text-anchor','middle');
+      tx.setAttribute('fill','rgba(0,0,0,.70)');
+      tx.setAttribute('font-size','12');
+      tx.setAttribute('transform',`rotate(-8 ${xs(i)} ${H-8})`);
+      tx.textContent = d.name;
+      svg.appendChild(tx);
+    });
+
+    // Área + línea
+    const pathD = data.map((d,i)=> `${i===0?'M':'L'} ${xs(i)} ${ys(d.value)}`).join(' ');
+    const areaD = `M ${xs(0)} ${ys(data[0].value)} ${data.slice(1).map((d,i)=>`L ${xs(i+1)} ${ys(d.value)}`).join(' ')} L ${xs(data.length-1)} ${H-pad.b} L ${xs(0)} ${H-pad.b} Z`;
+    const area = document.createElementNS('http://www.w3.org/2000/svg','path');
+    area.setAttribute('d', areaD);
+    area.setAttribute('fill','rgba(184,92,56,.12)');
+    svg.appendChild(area);
+
+    const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('d', pathD);
+    path.setAttribute('class','tech-line');
+    svg.appendChild(path);
+
+    // Puntos + tooltip
+    const dots = [];
+    const tip = document.getElementById('chartTip');
+    const tipLevel = document.getElementById('tipLevel');
+    const tipPerc = document.getElementById('tipPerc');
+    const tipDesc = document.getElementById('tipDesc');
+    const tipTtl  = tip.querySelector('.ttl');
+
+    function showTip(evt, d){
+      const rect = svg.getBoundingClientRect();
+      const px = +evt.target.getAttribute('cx');
+      const py = +evt.target.getAttribute('cy');
+      const pageX = rect.left + px;
+      const pageY = rect.top  + py;
+
+      tipTtl.textContent = d.name;
+      tipLevel.textContent = levelOf(d.value);
+      tipPerc.textContent = d.value + '%';
+      tipDesc.textContent = d.desc;
+      tip.style.left = pageX + 'px';
+      tip.style.top  = (pageY - 18) + 'px';
+      tip.classList.add('visible');
+    }
+    const hideTip = ()=> tip.classList.remove('visible');
+
+    data.forEach((d,i)=>{
+      const c = document.createElementNS('http://www.w3.org/2000/svg','circle');
+      c.setAttribute('class','dot');
+      c.setAttribute('cx', xs(i));
+      c.setAttribute('cy', ys(d.value));
+      c.setAttribute('r','6');
+      c.dataset.index=i;
+      c.addEventListener('mouseenter',(e)=>showTip(e,d));
+      c.addEventListener('mouseleave', hideTip);
+      svg.appendChild(c);
+      dots.push(c);
+    });
+    svg.addEventListener('mouseleave', hideTip);
+
+    // Revelar al entrar en viewport
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          svg.classList.add('revealed');
+          io.disconnect();
+        }
+      });
+    },{threshold:.25});
+    io.observe(svg);
+
+    // Bandas: label on-hover
+    document.querySelectorAll('.chart-bands .band').forEach(b=>{
+      b.addEventListener('mouseenter', ()=>{
+        b.setAttribute('data-show','1');
+      });
+      b.addEventListener('mouseleave', ()=>{
+        b.removeAttribute('data-show');
+      });
+    });
+  </script>
+</body>
+</html>
   </main>
 </body>
 </html>
