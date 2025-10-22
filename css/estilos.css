@@ -98,16 +98,103 @@ a{text-decoration:none;color:inherit}
 .tag{font-size:.78rem;padding:4px 8px;border-radius:999px;background:rgba(0,0,0,.08)}
 .card-ctas{display:flex;gap:10px;flex-wrap:wrap}
 
+/* ======== GRÁFICO DE TECNOLOGÍAS ======== */
+.chart-wrap {
+  position: relative;
+  margin-top: 2rem;
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+  padding: 1rem;
+}
+.chart-bands {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.chart-bands .band {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+}
+.band.senior { background: var(--senior); top: 0; height: 30%; }
+.band.semi { background: var(--semi); top: 30%; height: 30%; }
+.band.junior { background: var(--junior); top: 60%; height: 40%; }
+
+.level-lines { position: absolute; inset: 0; z-index: 1; }
+.level-lines .line {
+  position: absolute; width: 100%; height: 1px;
+  background: rgba(0, 0, 0, 0.07);
+}
+.line.t70 { top: 30%; }
+.line.t40 { top: 60%; }
+
+.chart-area {
+  width: 100%;
+  height: 480px;
+  position: relative;
+  z-index: 2;
+}
+
+.chart-tooltip {
+  position: absolute;
+  background: var(--tooltip-bg);
+  color: var(--tooltip-fg);
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  display: none;
+  z-index: 10;
+  pointer-events: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: opacity 0.2s ease;
+}
+.chart-tooltip.visible { display: block; opacity: 1; }
+.chart-tooltip .ttl { font-weight: 700; margin-bottom: 6px; }
+.chart-tooltip .row { display: flex; justify-content: space-between; gap: 1rem; }
+.chart-tooltip .tag {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  padding: 2px 6px;
+  font-size: 0.75rem;
+}
+
+/* Etiquetas del eje X */
+svg text {
+  font-family: "Inter", sans-serif;
+  fill: rgba(0, 0, 0, 0.75);
+  font-size: 12px;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
+  transform: rotate(-8deg);
+}
+
+/* Animación de línea */
+@keyframes drawLine {
+  from { stroke-dasharray: 1000; stroke-dashoffset: 1000; }
+  to { stroke-dasharray: 1000; stroke-dashoffset: 0; }
+}
+.chart-area path { animation: drawLine 2.5s ease forwards; }
+
 /* ======== CONTACTO ======== */
-.contacto-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.contacto-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
 .contacto-box{background:rgba(255,255,255,.16);padding:28px;border-radius:16px}
-.contact-form{display:grid;gap:12px}
+.contact-form{
+  background:rgba(255,255,255,.16);
+  padding:24px;
+  border-radius:16px;
+  display:grid;gap:12px;
+  box-shadow:0 4px 16px rgba(0,0,0,.06);
+}
+.contact-form h3{margin-top:0}
 .contact-form label{display:grid;gap:6px;font-weight:600}
 .contact-form input,.contact-form textarea{
   padding:10px 12px;border-radius:10px;border:1px solid rgba(0,0,0,.15);
-  background:rgba(255,255,255,.7);outline:none
+  background:rgba(255,255,255,.7);outline:none;font-family:'Inter',sans-serif;
 }
 .contact-form input:focus,.contact-form textarea:focus{border-color:var(--accent)}
+.contact-form button{margin-top:10px;width:max-content}
 
 /* ======== FOOTER ======== */
 .site-footer{text-align:center;padding:18px 0;margin-top:40px;color:var(--ink)}
@@ -119,4 +206,5 @@ a{text-decoration:none;color:inherit}
   .hero-card{grid-template-columns:1fr}
   .avatar{width:120px;height:120px;margin:auto}
   .contacto-grid{grid-template-columns:1fr}
+  .chart-area{height:340px}
 }
