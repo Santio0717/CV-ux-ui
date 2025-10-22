@@ -31,8 +31,12 @@
           <img class="avatar" src="activos/imagen/foto%20de%20perfil.jfif" alt="Foto de perfil de Santiago" />
           <div class="hero-copy">
             <p class="kicker">UX/UI Designer</p>
-            <h1 class="display">Diseños claros, accesibles y medibles. Transformo requisitos en experiencias que convierten.</h1>
-            <p class="sub">Investigo, diseño y prototipo flujos end-to-end. Documentación y handoff para equipos ágiles.</p>
+            <h1 class="display">
+              Diseños claros, accesibles y medibles. Transformo requisitos en experiencias que convierten.
+            </h1>
+            <p class="sub">
+              Investigo, diseño y prototipo flujos end-to-end. Documentación y handoff para equipos ágiles.
+            </p>
             <div class="hero-ctas">
               <a class="btn red" href="CV_Santiago_Murillo.pdf" download>Descargar CV</a>
             </div>
@@ -49,7 +53,6 @@
         </div>
 
         <div class="grid cards projects">
-          <!-- Proyecto 1 -->
           <article class="card hoverable project">
             <figure class="thumb">
               <img src="activos/Proyectos/Bon_Bon_Bum.png" alt="Bon Bon Bum – Wireframe en Figma" loading="lazy">
@@ -62,12 +65,10 @@
               </div>
               <div class="card-ctas">
                 <a class="btn ghost" href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma?node-id=0-1" target="_blank" rel="noopener">Acceder</a>
-                <a class="btn case" href="casos/caso-bonbonbum.html">Estudio de caso</a>
               </div>
             </div>
           </article>
 
-          <!-- Proyecto 2 -->
           <article class="card hoverable project">
             <figure class="thumb">
               <img src="activos/Proyectos/Greenscape.png" alt="Greenscape – Prototipo iOS" loading="lazy">
@@ -80,12 +81,10 @@
               </div>
               <div class="card-ctas">
                 <a class="btn ghost" href="https://www.figma.com/proto/iYuZ5f1XPOvGDWncfB739r/HCI?node-id=385-6" target="_blank" rel="noopener">Acceder</a>
-                <a class="btn case" href="casos/caso-greenscape.html">Estudio de caso</a>
               </div>
             </div>
           </article>
 
-          <!-- Proyecto 3 -->
           <article class="card hoverable project">
             <figure class="thumb">
               <img src="activos/Proyectos/NutriCampus.png" alt="NutriCampus – Experiencia RV" loading="lazy">
@@ -98,12 +97,10 @@
               </div>
               <div class="card-ctas">
                 <a class="btn ghost" href="https://www.figma.com/proto/riKsfkN37qsKX4NbQn5zOh/Nutricampus-V2?node-id=11-144" target="_blank" rel="noopener">Acceder</a>
-                <a class="btn case" href="casos/caso-nutricampus.html">Estudio de caso</a>
               </div>
             </div>
           </article>
 
-          <!-- Proyecto 4 -->
           <article class="card hoverable project">
             <figure class="thumb">
               <img src="activos/Proyectos/Isocrates.png" alt="Isócrates – Prototipo desktop" loading="lazy">
@@ -116,7 +113,6 @@
               </div>
               <div class="card-ctas">
                 <a class="btn ghost" href="https://www.figma.com/proto/bCCXBOMkOQKVUB0emfQIb5/DSI-TRABAJO-GRUPAL?node-id=1-1028" target="_blank" rel="noopener">Acceder</a>
-                <a class="btn case" href="casos/caso-isocrates.html">Estudio de caso</a>
               </div>
             </div>
           </article>
@@ -138,12 +134,10 @@
             <div class="band semi" data-label="Semi-Senior (41–70%)"></div>
             <div class="band junior" data-label="Junior (0–40%)"></div>
           </div>
-
           <div class="level-lines">
             <div class="line t70"></div>
             <div class="line t40"></div>
           </div>
-
           <svg class="chart-area" viewBox="0 0 1100 480" preserveAspectRatio="none" aria-label="Gráfico tecnologías"></svg>
 
           <div class="chart-tooltip" id="chartTip">
@@ -225,79 +219,7 @@
     </div>
   </footer>
 
-  <!-- SCRIPT DEL GRÁFICO -->
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-    const data = [
-      { name:'Figma', value:60, desc:'Creo interfaces escalables y sistemas de diseño con componentes y variantes.' },
-      { name:'HTML5', value:50, desc:'Maquetación semántica y accesible, SEO técnico base y buen performance.' },
-      { name:'Axure', value:35, desc:'Prototipos con lógica avanzada para flujos complejos.' },
-      { name:'Adobe Photoshop', value:35, desc:'Retoque y recursos óptimos para interfaz.' },
-      { name:'Adobe Illustrator', value:40, desc:'Iconografía coherente con el sistema visual.' },
-      { name:'After Effects', value:30, desc:'Microinteracciones y motion para explicar propuestas.' },
-      { name:'CSS', value:30, desc:'Layouts con Grid/Flex, variables y utilidades.' },
-      { name:'Notion', value:35, desc:'Documentación viva y handoff para equipos.' },
-      { name:'Jira', value:30, desc:'Seguimiento de backlog e iteraciones.' },
-      { name:'WCAG', value:40, desc:'Criterios AA: contraste, foco visible y orden lógico.' },
-      { name:'GitHub', value:35, desc:'Flujos básicos de colaboración: ramas y PRs.' },
-    ];
-    function levelOf(p){ if(p<=40)return 'Junior'; if(p<=70)return 'Semi-Senior'; return 'Senior'; }
-    const svg=document.querySelector('.chart-area');
-    const W=1100,H=480,pad={l:48,r:20,t:16,b:40};
-    svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
-    const innerW=W-pad.l-pad.r,innerH=H-pad.t-pad.b;
-    const xs=i=>pad.l+innerW*(i/(data.length-1));
-    const ys=v=>pad.t+innerH*(1-v/100);
-    for(let pct=10;pct<=100;pct+=10){
-      const y=ys(pct);
-      const line=document.createElementNS('http://www.w3.org/2000/svg','line');
-      line.setAttribute('x1',pad.l);line.setAttribute('x2',W-pad.r);
-      line.setAttribute('y1',y);line.setAttribute('y2',y);
-      line.setAttribute('stroke','rgba(0,0,0,.07)');
-      svg.appendChild(line);
-    }
-    data.forEach((d,i)=>{
-      const tx=document.createElementNS('http://www.w3.org/2000/svg','text');
-      tx.setAttribute('x',xs(i));tx.setAttribute('y',H-8);
-      tx.setAttribute('text-anchor','middle');
-      tx.textContent=d.name;
-      svg.appendChild(tx);
-    });
-    const pathD=data.map((d,i)=>`${i===0?'M':'L'} ${xs(i)} ${ys(d.value)}`).join(' ');
-    const area=document.createElementNS('http://www.w3.org/2000/svg','path');
-    area.setAttribute('d',pathD+' L '+xs(data.length-1)+' '+(H-pad.b)+' L '+pad.l+' '+(H-pad.b)+' Z');
-    area.setAttribute('fill','rgba(184,92,56,.1)');
-    svg.appendChild(area);
-    const path=document.createElementNS('http://www.w3.org/2000/svg','path');
-    path.setAttribute('d',pathD);
-    path.setAttribute('stroke','rgba(184,92,56,1)');
-    path.setAttribute('stroke-width','2');
-    path.setAttribute('fill','none');
-    svg.appendChild(path);
-    const tip=document.getElementById('chartTip');
-    const tipLevel=document.getElementById('tipLevel');
-    const tipPerc=document.getElementById('tipPerc');
-    const tipDesc=document.getElementById('tipDesc');
-    const tipTtl=tip.querySelector('.ttl');
-    function showTip(evt,d){
-      tipTtl.textContent=d.name;
-      tipLevel.textContent=levelOf(d.value);
-      tipPerc.textContent=d.value+'%';
-      tipDesc.textContent=d.desc;
-      tip.classList.add('visible');
-      tip.style.left=evt.pageX+'px';
-      tip.style.top=(evt.pageY-30)+'px';
-    }
-    const hideTip=()=>tip.classList.remove('visible');
-    data.forEach((d,i)=>{
-      const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
-      c.setAttribute('cx',xs(i));
-      c.setAttribute('cy',ys(d.value));
-      c.setAttribute('r',6);
-      c.addEventListener('mouseenter',e=>showTip(e,d));
-      c.addEventListener('mouseleave',hideTip);
-      svg.appendChild(c);
-    });
-  </script>
+  <!-- SCRIPT GRÁFICO -->
+  <script src="JS/grafico.js"></script>
 </body>
 </html>
