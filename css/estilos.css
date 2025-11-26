@@ -12,13 +12,6 @@
   --accent:#b85c38;
   --accent-dark:#8f4428;
   --ink:#222;
-
-  --junior:rgba(184,92,56,.18);
-  --semi:rgba(60,118,61,.16);
-  --senior:rgba(44,82,130,.15);
-
-  --tooltip-bg:#222;
-  --tooltip-fg:#fff;
 }
 
 /* ======== RESETEO Y BASE ======== */
@@ -289,148 +282,36 @@ a{ text-decoration:none; color:inherit; }
 }
 
 /* =====================================================
-   GRÁFICO DE TECNOLOGÍAS
+   🚀 NUEVO GRÁFICO DE DONAS (PROFESIONAL)
    ===================================================== */
 
-.chart-wrap{
-  position:relative;
-  margin-top:2rem;
+.donut-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
+  gap:32px;
+  margin-top:40px;
+}
+
+.donut-card{
+  background:rgba(255,255,255,0.20);
   border-radius:20px;
-  overflow:hidden;
-  background:rgba(255,255,255,0.35);
-  box-shadow:0 6px 25px rgba(0,0,0,0.08);
-  padding:1rem;
+  padding:24px;
+  text-align:center;
+  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+  backdrop-filter:blur(10px);
 }
 
-.chart-area{
-  width:100%;
-  height:480px;
-  display:block;
+.donut{
+  width:180px;
+  height:180px;
+  margin:auto;
 }
 
-/* Bandas */
-.chart-bands{
-  position:absolute;
-  inset:0;
-  z-index:0;
-}
-
-.chart-bands .band{
-  position:absolute;
-  left:0;
-  width:100%;
-  transition:filter 0.25s ease;
-}
-
-.band.senior{background:var(--senior);top:0;height:29%;}
-.band.semi{background:var(--semi);top:29%;height:31%;}
-.band.junior{background:var(--junior);top:60%;height:40%;}
-
-.band:hover{ filter:saturate(1.2); }
-
-.band::after{
-  content:attr(data-label);
-  position:absolute;
-  left:12px;
-  top:8px;
-  font-weight:700;
-  font-size:.82rem;
-  color:rgba(0,0,0,.85);
-  background:rgba(255,255,255,.75);
-  padding:4px 8px;
-  border-radius:8px;
-  opacity:0;
-  transform:translateY(-4px);
-  transition:opacity .2s, transform .2s;
-}
-
-.band[data-show]::after,
-.band:hover::after{
-  opacity:1;
-  transform:translateY(0);
-}
-
-/* Líneas guía */
-.level-lines{
-  position:absolute;
-  inset:0;
-  z-index:1;
-}
-
-.level-lines .line{
-  position:absolute;
-  width:100%;
-  height:1px;
-  background:rgba(0,0,0,.07);
-}
-
-.line.t70{ top:30%; }
-.line.t40{ top:60%; }
-
-/* Línea del gráfico */
-.tech-line{
-  stroke:var(--accent);
-  stroke-width:2.5;
-  fill:none;
-  stroke-linejoin:round;
-  stroke-linecap:round;
-  animation:drawLine 2.5s ease forwards;
-}
-
-@keyframes drawLine{
-  from{ stroke-dasharray:1000; stroke-dashoffset:1000; }
-  to{ stroke-dasharray:1000; stroke-dashoffset:0; }
-}
-
-/* Puntos */
-.dot{
-  fill:var(--accent);
-  stroke:#fff;
-  stroke-width:2;
-  transition:r 0.2s ease, fill 0.2s ease;
-}
-
-.dot:hover{
-  r:8;
-  fill:var(--accent-dark);
-}
-
-/* Tooltip */
-.chart-tooltip{
-  position:absolute;
-  background:var(--tooltip-bg);
-  color:var(--tooltip-fg);
-  padding:10px 14px;
-  border-radius:10px;
-  font-size:0.85rem;
-  display:none;
-  z-index:10;
-  pointer-events:none;
-  box-shadow:0 4px 12px rgba(0,0,0,0.25);
-  transition:opacity 0.2s ease;
-}
-
-.chart-tooltip.visible{
-  display:block;
-  opacity:1;
-}
-
-.chart-tooltip .ttl{
-  font-weight:700;
-  margin-bottom:6px;
-}
-
-.chart-tooltip .row{
-  display:flex;
-  justify-content:space-between;
-  gap:1rem;
-}
-
-.chart-tooltip .tag{
-  background:rgba(255,255,255,0.12);
-  border-radius:6px;
-  padding:2px 6px;
-  font-size:0.75rem;
+.donut-title{
+  margin-top:12px;
+  font-size:1.1rem;
+  font-weight:600;
+  color:var(--ink);
 }
 
 /* =====================================================
