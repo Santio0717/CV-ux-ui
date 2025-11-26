@@ -54,8 +54,6 @@ const tip = document.getElementById("donutTip");
 
 donutCards.forEach(card => {
   card.addEventListener("mousemove", (e) => {
-    if (!tip) return;
-
     tip.style.display = "block";
     tip.style.left = e.pageX + 15 + "px";
     tip.style.top = e.pageY + 15 + "px";
@@ -71,6 +69,6 @@ donutCards.forEach(card => {
   });
 
   card.addEventListener("mouseleave", () => {
-    if (tip) tip.style.display = "none";
+    tip.style.display = "none";
   });
 });
