@@ -88,9 +88,10 @@
               </div>
 
               <div class="card-ctas">
-                <a class="btn ghost" href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma?node-id=0-1" target="_blank">Acceder</a>
+                <a class="btn ghost" 
+                   href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma?node-id=0-1"
+                   target="_blank">Acceder</a>
 
-                <!-- Caso de estudio -->
                 <a class="btn case" href="casos/caso-bonbonbum.html">Caso de estudio</a>
               </div>
             </div>
@@ -100,7 +101,7 @@
           <!-- Proyecto 2: GREENSCAPE -->
           <article class="card hoverable project">
             <figure class="thumb">
-              <img src="activos/Proyectos/Paisaje verde.png" alt="Greenscape – Prototipo iOS" loading="lazy">
+              <img src="activos/Proyectos/Greenscape.png" alt="Greenscape – Prototipo iOS" loading="lazy">
             </figure>
 
             <div class="card-body">
@@ -114,9 +115,10 @@
               </div>
 
               <div class="card-ctas">
-                <a class="btn ghost" href="https://www.figma.com/proto/iYuZ5f1XPOvGDWncfB739r/HCI?node-id=385-6" target="_blank">Acceder</a>
+                <a class="btn ghost"
+                   href="https://www.figma.com/proto/iYuZ5f1XPOvGDWncfB739r/HCI?node-id=385-6"
+                   target="_blank">Acceder</a>
 
-                <!-- Caso de estudio -->
                 <a class="btn case" href="casos/caso-greenscape.html">Caso de estudio</a>
               </div>
             </div>
@@ -140,9 +142,10 @@
               </div>
 
               <div class="card-ctas">
-                <a class="btn ghost" href="https://www.figma.com/proto/riKsfkN37qsKX4NbQn5zOh/Nutricampus-V2?node-id=11-144" target="_blank">Acceder</a>
+                <a class="btn ghost"
+                   href="https://www.figma.com/proto/riKsfkN37qsKX4NbQn5zOh/Nutricampus-V2?node-id=11-144"
+                   target="_blank">Acceder</a>
 
-                <!-- Caso de estudio -->
                 <a class="btn case" href="casos/caso-nutricampus.html">Caso de estudio</a>
               </div>
             </div>
@@ -152,7 +155,7 @@
           <!-- Proyecto 4: ISÓCRATES -->
           <article class="card hoverable project">
             <figure class="thumb">
-              <img src="activos/Proyectos/Isócrates.png" alt="Isócrates – Prototipo desktop" loading="lazy">
+              <img src="activos/Proyectos/Isocrates.png" alt="Isócrates – Prototipo desktop" loading="lazy">
             </figure>
 
             <div class="card-body">
@@ -165,9 +168,10 @@
               </div>
 
               <div class="card-ctas">
-                <a class="btn ghost" href="https://www.figma.com/proto/bCCXBOMkOQKVUB0emfQIb5/DSI-TRABAJO-GRUPAL?node-id=1-1028" target="_blank">Acceder</a>
+                <a class="btn ghost"
+                   href="https://www.figma.com/proto/bCCXBOMkOQKVUB0emfQIb5/DSI-TRABAJO-GRUPAL?node-id=1-1028"
+                   target="_blank">Acceder</a>
 
-                <!-- Caso de estudio -->
                 <a class="btn case" href="casos/caso-isocrates.html">Caso de estudio</a>
               </div>
             </div>
@@ -190,19 +194,23 @@
 
         <div class="chart-wrap">
 
+          <!-- Bandas -->
           <div class="chart-bands">
             <div class="band senior" data-label="Senior (71–100%)"></div>
             <div class="band semi" data-label="Semi-Senior (41–70%)"></div>
             <div class="band junior" data-label="Junior (0–40%)"></div>
           </div>
 
+          <!-- Líneas guía -->
           <div class="level-lines">
             <div class="line t70"></div>
             <div class="line t40"></div>
           </div>
 
+          <!-- SVG -->
           <svg class="chart-area" viewBox="0 0 1100 480" preserveAspectRatio="none"></svg>
 
+          <!-- Tooltip -->
           <div class="chart-tooltip" id="chartTip">
             <div class="ttl">Tecnología</div>
             <div class="row"><span class="tag">Nivel</span><span id="tipLevel">—</span></div>
@@ -229,7 +237,7 @@
 
           <article class="card hoverable">
             <h3>Certificado EF SET</h3>
-            <p>Certificación oficial de inglés EF SET, nivel alcanzado en 2023.</p>
+            <p>Certificación oficial de inglés EF SET.</p>
             <div class="card-ctas">
               <a class="btn primary" href="activos/diplomas/Certificado_EF_SET.pdf" target="_blank">Ver certificado</a>
             </div>
@@ -237,7 +245,7 @@
 
           <article class="card hoverable">
             <h3>Fundamentos de programación</h3>
-            <p>Curso introductorio de lógica y programación, completado en 2023.</p>
+            <p>Curso de lógica y programación.</p>
             <div class="card-ctas">
               <a class="btn primary" href="activos/diplomas/Fundamentos_de_programacion.jpeg" target="_blank">Ver certificado</a>
             </div>
@@ -245,7 +253,7 @@
 
           <article class="card hoverable">
             <h3>Manejo de Adobe Illustrator</h3>
-            <p>Curso de herramientas de diseño vectorial con Adobe Illustrator.</p>
+            <p>Diseño vectorial profesional.</p>
             <div class="card-ctas">
               <a class="btn primary" href="activos/diplomas/Manejo_Adobe_Illustrator.pdf" target="_blank">Ver certificado</a>
             </div>
@@ -317,7 +325,7 @@
   <script src="js/aplicación.js"></script>
 
 
-  <!-- ================= SCRIPT DEL GRÁFICO ================= -->
+  <!-- ================= SCRIPT DEL GRÁFICO (CORREGIDO) ================= -->
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -336,51 +344,83 @@
     ];
 
     const svg = document.querySelector('.chart-area');
+    const tooltip = document.getElementById('chartTip');
+    const tipLevel = document.getElementById('tipLevel');
+    const tipPerc = document.getElementById('tipPerc');
+    const tipDesc = document.getElementById('tipDesc');
+
     const W = 1100, H = 480, pad = {l:48, r:20, t:16, b:40};
     const innerW = W - pad.l - pad.r;
     const innerH = H - pad.t - pad.b;
+
     const xs = (i)=> pad.l + (innerW)*(i/(data.length-1));
     const ys = (v)=> pad.t + (innerH)*(1 - v/100);
 
+    function getLevel(v){
+      if(v >= 71) return "Senior";
+      if(v >= 41) return "Semi-Senior";
+      return "Junior";
+    }
+
     // Grid horizontal
-    for(let pct = 10; pct <= 100; pct += 10){
+    for(let pct=10; pct<=100; pct+=10){
       const y = ys(pct);
-      const line = document.createElementNS('http://www.w3.org/2000/svg','line');
-      line.setAttribute('x1',pad.l);
-      line.setAttribute('x2',W-pad.r);
-      line.setAttribute('y1',y);
-      line.setAttribute('y2',y);
-      line.setAttribute('stroke','rgba(0,0,0,.07)');
+      const line = document.createElementNS("http://www.w3.org/2000/svg","line");
+      line.setAttribute("x1", pad.l);
+      line.setAttribute("x2", W - pad.r);
+      line.setAttribute("y1", y);
+      line.setAttribute("y2", y);
+      line.setAttribute("stroke", "rgba(0,0,0,.07)");
       svg.appendChild(line);
     }
 
-    // Labels
+    // Labels del eje X
     data.forEach((d,i)=>{
-      const tx = document.createElementNS('http://www.w3.org/2000/svg','text');
-      tx.setAttribute('x',xs(i));
-      tx.setAttribute('y',H - 12);
-      tx.setAttribute('text-anchor','middle');
-      tx.setAttribute('font-size','12');
-      tx.setAttribute('fill','rgba(0,0,0,.7)');
+      const tx = document.createElementNS("http://www.w3.org/2000/svg","text");
+      tx.setAttribute("x", xs(i));
+      tx.setAttribute("y", H - 10);
+      tx.setAttribute("text-anchor","middle");
+      tx.setAttribute("font-size","12");
+      tx.setAttribute("fill","rgba(0,0,0,.7)");
       tx.textContent = d.name;
       svg.appendChild(tx);
     });
 
-    // Línea
-    const pathD = data.map((d,i)=>`${i===0?'M':'L'} ${xs(i)} ${ys(d.value)}`).join(' ');
-    const path = document.createElementNS('http://www.w3.org/2000/svg','path');
-    path.setAttribute('d',pathD);
-    path.setAttribute('class','tech-line');
+    // Línea principal
+    const path = document.createElementNS("http://www.w3.org/2000/svg","path");
+    const pathD = data.map((d,i)=>`${i===0?'M':'L'} ${xs(i)} ${ys(d.value)}`).join(" ");
+    path.setAttribute("class","tech-line");
+    path.setAttribute("d", pathD);
     svg.appendChild(path);
 
-    // Puntos
+    // Puntos interactivos con tooltip
     data.forEach((d,i)=>{
-      const c = document.createElementNS('http://www.w3.org/2000/svg','circle');
-      c.setAttribute('cx',xs(i));
-      c.setAttribute('cy',ys(d.value));
-      c.setAttribute('r','6');
-      c.setAttribute('class','dot');
-      svg.appendChild(c);
+      const cx = xs(i);
+      const cy = ys(d.value);
+
+      const dot = document.createElementNS("http://www.w3.org/2000/svg","circle");
+      dot.setAttribute("cx", cx);
+      dot.setAttribute("cy", cy);
+      dot.setAttribute("r", 6);
+      dot.setAttribute("class", "dot");
+
+      dot.addEventListener("mouseenter", e=>{
+        tooltip.classList.add("visible");
+        tipLevel.textContent = getLevel(d.value);
+        tipPerc.textContent = d.value + "%";
+        tipDesc.textContent = d.desc;
+      });
+
+      dot.addEventListener("mousemove", e=>{
+        tooltip.style.left = e.pageX + 15 + "px";
+        tooltip.style.top = e.pageY - 20 + "px";
+      });
+
+      dot.addEventListener("mouseleave", ()=>{
+        tooltip.classList.remove("visible");
+      });
+
+      svg.appendChild(dot);
     });
   </script>
 
