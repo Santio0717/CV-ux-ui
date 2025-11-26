@@ -24,7 +24,7 @@ if (yearEl) {
 }
 
 // =============================
-// LIGHTBOX (Evita errores si no existe)
+// LIGHTBOX SEGURO
 // =============================
 const lightbox = document.getElementById("lightbox");
 
