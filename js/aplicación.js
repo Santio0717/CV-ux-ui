@@ -15,6 +15,7 @@ function revealOnScroll() {
 window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("load", revealOnScroll);
 
+
 // =============================
 // AÑO AUTOMÁTICO
 // =============================
@@ -22,6 +23,7 @@ const yearEl = document.getElementById("year");
 if (yearEl) {
   yearEl.textContent = new Date().getFullYear();
 }
+
 
 // =============================
 // LIGHTBOX SEGURO
@@ -42,3 +44,33 @@ if (lightbox) {
     });
   }
 }
+
+
+// =============================
+// TOOLTIP DONUT – TECNOLOGÍAS
+// =============================
+const donutCards = document.querySelectorAll(".donut-card");
+const tip = document.getElementById("donutTip");
+
+donutCards.forEach(card => {
+  card.addEventListener("mousemove", (e) => {
+    if (!tip) return;
+
+    tip.style.display = "block";
+    tip.style.left = e.pageX + 15 + "px";
+    tip.style.top = e.pageY + 15 + "px";
+
+    tip.innerHTML = `
+      <div class="tt-title">${card.dataset.title}</div>
+      <ul>
+        <li><strong>Nivel:</strong> ${card.dataset.nivel}</li>
+        <li><strong>Porcentaje:</strong> ${card.dataset.porc}%</li>
+      </ul>
+      <div class="nivel">${card.dataset.desc}</div>
+    `;
+  });
+
+  card.addEventListener("mouseleave", () => {
+    if (tip) tip.style.display = "none";
+  });
+});
