@@ -183,39 +183,40 @@
 
 
 
-    <!-- ================= TECNOLOGÍAS ================= -->
+    <!-- ================= TECNOLOGÍAS (DONUT CHART) ================= -->
     <section id="tecnologias" class="section">
       <div class="container">
 
         <div class="section-head">
           <h2 class="section-title">Tecnologías</h2>
-          <p class="section-sub">Nivel actual por herramienta. Pasa el mouse por cada punto.</p>
+          <p class="section-sub">Dominio por categoría</p>
         </div>
 
-        <div class="chart-wrap">
+        <div class="donut-grid">
 
-          <!-- Bandas -->
-          <div class="chart-bands">
-            <div class="band senior" data-label="Senior (71–100%)"></div>
-            <div class="band semi" data-label="Semi-Senior (41–70%)"></div>
-            <div class="band junior" data-label="Junior (0–40%)"></div>
+          <div class="donut-card">
+            <canvas class="donut" data-value="45" data-label="UX/UI"></canvas>
+            <p class="donut-title">UX / UI</p>
           </div>
 
-          <!-- Líneas guía -->
-          <div class="level-lines">
-            <div class="line t70"></div>
-            <div class="line t40"></div>
+          <div class="donut-card">
+            <canvas class="donut" data-value="40" data-label="Frontend"></canvas>
+            <p class="donut-title">Frontend</p>
           </div>
 
-          <!-- SVG -->
-          <svg class="chart-area" viewBox="0 0 1100 480" preserveAspectRatio="none"></svg>
+          <div class="donut-card">
+            <canvas class="donut" data-value="35" data-label="Motion & Diseño"></canvas>
+            <p class="donut-title">Motion & Diseño</p>
+          </div>
 
-          <!-- Tooltip -->
-          <div class="chart-tooltip" id="chartTip">
-            <div class="ttl">Tecnología</div>
-            <div class="row"><span class="tag">Nivel</span><span id="tipLevel">—</span></div>
-            <div class="row"><span class="tag">Porcentaje</span><span id="tipPerc">—</span></div>
-            <div class="row" style="margin-top:6px;"><span id="tipDesc">—</span></div>
+          <div class="donut-card">
+            <canvas class="donut" data-value="35" data-label="Documentación"></canvas>
+            <p class="donut-title">Documentación</p>
+          </div>
+
+          <div class="donut-card">
+            <canvas class="donut" data-value="32.5" data-label="Productividad"></canvas>
+            <p class="donut-title">Productividad / Dev</p>
           </div>
 
         </div>
@@ -325,103 +326,50 @@
   <script src="js/aplicación.js"></script>
 
 
-  <!-- ================= SCRIPT DEL GRÁFICO (CORREGIDO) ================= -->
+  <!-- ================= DONUT CHART SCRIPT ================= -->
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+document.getElementById('year').textContent = new Date().getFullYear();
 
-    const data = [
-      { name:'Figma', value:60, desc:'Creo interfaces escalables y sistemas de diseño.' },
-      { name:'HTML5', value:50, desc:'Maquetación semántica accesible.' },
-      { name:'Axure', value:35, desc:'Prototipos con lógica avanzada.' },
-      { name:'Adobe Photoshop', value:35, desc:'Retoque y recursos visuales.' },
-      { name:'Adobe Illustrator', value:40, desc:'Iconografía y gráficos vectoriales.' },
-      { name:'After Effects', value:30, desc:'Motion y microinteracciones.' },
-      { name:'CSS', value:30, desc:'Layouts con Grid/Flex y variables.' },
-      { name:'Notion', value:35, desc:'Documentación viva.' },
-      { name:'Jira', value:30, desc:'Backlog y seguimiento ágil.' },
-      { name:'WCAG', value:40, desc:'Accesibilidad AA.' },
-      { name:'GitHub', value:35, desc:'Colaboración con PRs.' }
-    ];
+document.querySelectorAll(".donut").forEach(canvas => {
+  const ctx = canvas.getContext("2d");
+  const percent = parseFloat(canvas.dataset.value);
+  const label = canvas.dataset.label;
 
-    const svg = document.querySelector('.chart-area');
-    const tooltip = document.getElementById('chartTip');
-    const tipLevel = document.getElementById('tipLevel');
-    const tipPerc = document.getElementById('tipPerc');
-    const tipDesc = document.getElementById('tipDesc');
+  canvas.width = 200;
+  canvas.height = 200;
 
-    const W = 1100, H = 480, pad = {l:48, r:20, t:16, b:40};
-    const innerW = W - pad.l - pad.r;
-    const innerH = H - pad.t - pad.b;
+  const start = -0.5 * Math.PI;
+  const end = start + (percent / 100) * (2 * Math.PI);
 
-    const xs = (i)=> pad.l + (innerW)*(i/(data.length-1));
-    const ys = (v)=> pad.t + (innerH)*(1 - v/100);
+  const radius = 80;
+  const cxpos = canvas.width / 2;
+  const cypos = canvas.height / 2;
 
-    function getLevel(v){
-      if(v >= 71) return "Senior";
-      if(v >= 41) return "Semi-Senior";
-      return "Junior";
-    }
+  // Fondo circular
+  ctx.lineWidth = 18;
+  ctx.strokeStyle = "rgba(0,0,0,0.15)";
+  ctx.beginPath();
+  ctx.arc(cxpos, cypos, radius, 0, 2 * Math.PI);
+  ctx.stroke();
 
-    // Grid horizontal
-    for(let pct=10; pct<=100; pct+=10){
-      const y = ys(pct);
-      const line = document.createElementNS("http://www.w3.org/2000/svg","line");
-      line.setAttribute("x1", pad.l);
-      line.setAttribute("x2", W - pad.r);
-      line.setAttribute("y1", y);
-      line.setAttribute("y2", y);
-      line.setAttribute("stroke", "rgba(0,0,0,.07)");
-      svg.appendChild(line);
-    }
+  // Arco activo
+  const grad = ctx.createLinearGradient(0, 0, 200, 0);
+  grad.addColorStop(0, "#b85c38");
+  grad.addColorStop(1, "#8f4428");
 
-    // Labels del eje X
-    data.forEach((d,i)=>{
-      const tx = document.createElementNS("http://www.w3.org/2000/svg","text");
-      tx.setAttribute("x", xs(i));
-      tx.setAttribute("y", H - 10);
-      tx.setAttribute("text-anchor","middle");
-      tx.setAttribute("font-size","12");
-      tx.setAttribute("fill","rgba(0,0,0,.7)");
-      tx.textContent = d.name;
-      svg.appendChild(tx);
-    });
+  ctx.strokeStyle = grad;
+  ctx.lineCap = "round";
+  ctx.beginPath();
+  ctx.arc(cxpos, cypos, radius, start, end);
+  ctx.stroke();
 
-    // Línea principal
-    const path = document.createElementNS("http://www.w3.org/2000/svg","path");
-    const pathD = data.map((d,i)=>`${i===0?'M':'L'} ${xs(i)} ${ys(d.value)}`).join(" ");
-    path.setAttribute("class","tech-line");
-    path.setAttribute("d", pathD);
-    svg.appendChild(path);
-
-    // Puntos interactivos con tooltip
-    data.forEach((d,i)=>{
-      const cx = xs(i);
-      const cy = ys(d.value);
-
-      const dot = document.createElementNS("http://www.w3.org/2000/svg","circle");
-      dot.setAttribute("cx", cx);
-      dot.setAttribute("cy", cy);
-      dot.setAttribute("r", 6);
-      dot.setAttribute("class", "dot");
-
-      dot.addEventListener("mouseenter", e=>{
-        tooltip.classList.add("visible");
-        tipLevel.textContent = getLevel(d.value);
-        tipPerc.textContent = d.value + "%";
-        tipDesc.textContent = d.desc;
-      });
-
-      dot.addEventListener("mousemove", e=>{
-        tooltip.style.left = e.pageX + 15 + "px";
-        tooltip.style.top = e.pageY - 20 + "px";
-      });
-
-      dot.addEventListener("mouseleave", ()=>{
-        tooltip.classList.remove("visible");
-      });
-
-      svg.appendChild(dot);
-    });
+  // Porcentaje
+  ctx.fillStyle = "#222";
+  ctx.font = "bold 28px Inter";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText(Math.round(percent) + "%", cxpos, cypos);
+});
   </script>
 
 </body>
