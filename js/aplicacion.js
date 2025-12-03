@@ -8,54 +8,52 @@ if (yearEl) {
 
 
 /* =====================================================
-   ASIGNAR COLOR A LOS DONUTS
+   DONUT ELEMENTS
    ===================================================== */
 const donutCards = document.querySelectorAll(".donut-card");
+const tip = document.getElementById("donutTip");
 
+
+/* =====================================================
+   SETUP: COLOR DEL DONUT
+   ===================================================== */
 function setupDonuts() {
   donutCards.forEach(card => {
     const valuePath = card.querySelector(".value");
-    if (!valuePath) return;
-
     const color = card.dataset.color;
-    if (!color) return;
-
-    valuePath.style.stroke = color;
-    card.style.color = color; // importante para el glow
+    if (valuePath && color) {
+      valuePath.style.stroke = color;
+      card.style.color = color; // glow
+    }
   });
 }
-
 window.addEventListener("load", setupDonuts);
 
 
 /* =====================================================
-   ANIMACIÓN DE DONUTS AL HACER SCROLL
+   ANIMACIÓN DE DONUTS
    ===================================================== */
 function animateDonuts() {
   donutCards.forEach(card => {
     const rect = card.getBoundingClientRect();
     const valuePath = card.querySelector(".value");
-
     if (!valuePath) return;
 
     const endValue = parseInt(valuePath.dataset.end);
     if (isNaN(endValue)) return;
 
     if (rect.top < window.innerHeight * 0.85) {
-      valuePath.style.strokeDasharray = `${endValue}, 100`;
+      valuePath.style.strokeDasharray = `${endValue} 100`;
     }
   });
 }
-
 window.addEventListener("scroll", animateDonuts);
 window.addEventListener("load", animateDonuts);
 
 
 /* =====================================================
-   TOOLTIP DONUT
+   TOOLTIP SEGUIMIENTO
    ===================================================== */
-const tip = document.getElementById("donutTip");
-
 let mouseX = 0;
 let mouseY = 0;
 
@@ -67,11 +65,16 @@ function followTooltip() {
 followTooltip();
 
 
+/* =====================================================
+   TOOLTIP: EVENTOS FIABLES (mouseenter + mousemove)
+   ===================================================== */
 donutCards.forEach(card => {
-  const color = card.dataset.color || "#fff";
-  const icon = card.dataset.icon || "";
+  
+  const color = card.dataset.color;
+  const icon = card.dataset.icon;
 
-  card.addEventListener("mousemove", (e) => {
+  // Aparece tooltip al entrar
+  card.addEventListener("mouseenter", (e) => {
     mouseX = e.pageX;
     mouseY = e.pageY;
 
@@ -82,13 +85,11 @@ donutCards.forEach(card => {
       <div class="tt-title" style="color:${color}">
         ${icon} ${card.dataset.title}
       </div>
-
       <ul style="margin:0; padding-left:18px;">
         <li><strong>Nivel:</strong> ${card.dataset.nivel}</li>
         <li><strong>Porcentaje:</strong> ${card.dataset.porc}%</li>
       </ul>
-
-      <div class="nivel" style="color:${color}; margin-top:10px;">
+      <div class="nivel" style="color:${color}; margin-top:8px;">
         ${card.dataset.desc}
       </div>
     `;
@@ -96,6 +97,13 @@ donutCards.forEach(card => {
     tip.classList.add("visible");
   });
 
+  // Actualiza posición
+  card.addEventListener("mousemove", (e) => {
+    mouseX = e.pageX;
+    mouseY = e.pageY;
+  });
+
+  // Oculta tooltip
   card.addEventListener("mouseleave", () => {
     tip.classList.remove("visible");
   });
