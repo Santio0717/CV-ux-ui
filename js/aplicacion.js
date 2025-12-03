@@ -1,74 +1,81 @@
-// =============================
-// REVEAL EN SCROLL
-// =============================
-const reveals = document.querySelectorAll(".reveal");
-
-function revealOnScroll() {
-  const triggerBottom = window.innerHeight * 0.85;
-
-  reveals.forEach((el) => {
-    const top = el.getBoundingClientRect().top;
-    if (top < triggerBottom) el.classList.add("show");
-  });
-}
-
-window.addEventListener("scroll", revealOnScroll);
-window.addEventListener("load", revealOnScroll);
-
-
-// =============================
-// AÑO AUTOMÁTICO
-// =============================
+/* =====================================================
+   AÑO AUTOMÁTICO
+   ===================================================== */
 const yearEl = document.getElementById("year");
 if (yearEl) {
   yearEl.textContent = new Date().getFullYear();
 }
 
 
-// =============================
-// LIGHTBOX SEGURO
-// =============================
-const lightbox = document.getElementById("lightbox");
+/* =====================================================
+   ANIMACIÓN DE DONUTS AL HACER SCROLL
+   ===================================================== */
+const donutCards = document.querySelectorAll(".donut-card");
 
-if (lightbox) {
-  const img = document.getElementById("lightbox-img");
-  const pdf = document.getElementById("lightbox-pdf");
-  const closeBtn = document.querySelector(".lightbox-close");
+function animateDonuts() {
+  donutCards.forEach(card => {
+    const rect = card.getBoundingClientRect();
+    const valuePath = card.querySelector(".value");
+    const endValue = parseInt(valuePath.dataset.end);
 
-  if (closeBtn) {
-    closeBtn.addEventListener("click", () => {
-      lightbox.classList.remove("show");
-
-      if (img) img.style.display = "none";
-      if (pdf) pdf.style.display = "none";
-    });
-  }
+    if (rect.top < window.innerHeight * 0.85) {
+      valuePath.style.strokeDasharray = `${endValue}, 100`;
+    }
+  });
 }
 
+window.addEventListener("scroll", animateDonuts);
+window.addEventListener("load", animateDonuts);
 
-// =============================
-// TOOLTIP DONUT – TECNOLOGÍAS
-// =============================
-const donutCards = document.querySelectorAll(".donut-card");
+
+/* =====================================================
+   TOOLTIP DONUT (CON ICONOS Y COLOR DINÁMICO)
+   ===================================================== */
 const tip = document.getElementById("donutTip");
 
-donutCards.forEach(card => {
-  card.addEventListener("mousemove", (e) => {
-    tip.style.display = "block";
-    tip.style.left = e.pageX + 15 + "px";
-    tip.style.top = e.pageY + 15 + "px";
+let mouseX = 0;
+let mouseY = 0;
 
+/* Movimiento suave */
+function followTooltip() {
+  tip.style.left = mouseX + 20 + "px";
+  tip.style.top = mouseY + 20 + "px";
+  requestAnimationFrame(followTooltip);
+}
+followTooltip();
+
+donutCards.forEach(card => {
+  const color = card.dataset.color;
+  const icon = card.dataset.icon;
+
+  card.addEventListener("mousemove", (e) => {
+    mouseX = e.pageX;
+    mouseY = e.pageY;
+
+    /* Cambia color dinámico del tooltip */
+    tip.style.border = `2px solid ${color}`;
+    tip.style.boxShadow = `0 0 14px ${color}`;
+
+    /* Contenido del tooltip */
     tip.innerHTML = `
-      <div class="tt-title">${card.dataset.title}</div>
+      <div class="tt-title" style="color:${color}">
+        ${icon} ${card.dataset.title}
+      </div>
+
       <ul>
         <li><strong>Nivel:</strong> ${card.dataset.nivel}</li>
         <li><strong>Porcentaje:</strong> ${card.dataset.porc}%</li>
       </ul>
-      <div class="nivel">${card.dataset.desc}</div>
+
+      <div class="nivel" style="color:${color}">
+        ${card.dataset.desc}
+      </div>
     `;
+
+    tip.classList.add("visible");
   });
 
   card.addEventListener("mouseleave", () => {
-    tip.style.display = "none";
+    tip.classList.remove("visible");
   });
 });
