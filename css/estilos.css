@@ -17,6 +17,9 @@
 
   --tooltip-bg:#1e1e1e;
   --tooltip-fg:#fff;
+
+  --glass:rgba(255,255,255,0.18);
+  --glass-strong:rgba(255,255,255,0.28);
 }
 
 /* =====================================================
@@ -78,15 +81,19 @@ a{text-decoration:none;color:inherit;}
   flex-wrap:wrap;
 }
 
-.section-title{font-size:1.9rem;}
-.section-sub{opacity:.8;margin:0;}
+.section-title{
+  font-size:1.9rem;
+}
+
+/* Eliminado el texto “Pasa el mouse…” → no existirá en HTML */
+
 
 /* =====================================================
    HEADER
    ===================================================== */
 .site-header{
   background:rgba(255,255,255,.25);
-  border-bottom:1px solid rgba(255,255,255,.3);
+  border-bottom:1px solid rgba(0,0,0,.05);
   backdrop-filter:blur(10px);
   position:sticky;
   top:0;
@@ -118,11 +125,11 @@ a{text-decoration:none;color:inherit;}
    HERO
    ===================================================== */
 .hero-card{
-  background:rgba(255,255,255,.18);
+  background:var(--glass);
   border-radius:20px;
   backdrop-filter:blur(14px);
   border:1px solid rgba(255,255,255,.3);
-  box-shadow:0 5px 20px rgba(0,0,0,.08);
+  box-shadow:0 5px 20px rgba(0,0,0,.07);
 
   max-width:960px;
   margin:auto;
@@ -139,7 +146,10 @@ a{text-decoration:none;color:inherit;}
   object-fit:cover;
 }
 
-.display{font-size:1.35rem;}
+.display{
+  font-size:1.32rem;
+}
+
 .sub{opacity:.9;margin-bottom:10px;}
 
 /* =====================================================
@@ -155,7 +165,10 @@ a{text-decoration:none;color:inherit;}
   transition:.25s ease;
   color:#fff;
 }
-.btn:hover{transform:translateY(-3px);}
+
+.btn:hover{
+  transform:translateY(-3px);
+}
 
 .btn.red{background:linear-gradient(135deg,#d72638,#b71c1c);}
 .btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--uxui);}
@@ -163,6 +176,14 @@ a{text-decoration:none;color:inherit;}
 .btn.whatsapp{background:linear-gradient(135deg,#25D366,#128C7E);}
 .btn.linkedin{background:linear-gradient(135deg,#0077B5,#005a8d);}
 .btn.case{background:linear-gradient(135deg,#b85c38,#8f4428);}
+
+/* separar botones de tags */
+.card-ctas.separated{
+  margin-top:16px;
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
 
 /* =====================================================
    TARJETAS DE PROYECTOS
@@ -175,11 +196,12 @@ a{text-decoration:none;color:inherit;}
 }
 
 .card{
-  background:rgba(255,255,255,.20);
+  background:var(--glass-strong);
   border-radius:16px;
   padding:20px;
   box-shadow:0 8px 24px rgba(0,0,0,.06);
   transition:.25s ease;
+  border:1px solid rgba(255,255,255,0.3);
 }
 
 .card:hover{
@@ -231,7 +253,7 @@ a{text-decoration:none;color:inherit;}
 }
 
 .donut-card{
-  background:rgba(255,255,255,.5);
+  background:rgba(255,255,255,.55);
   border:1px solid rgba(0,0,0,0.1);
   backdrop-filter:blur(8px);
   padding:26px;
@@ -240,6 +262,7 @@ a{text-decoration:none;color:inherit;}
   transition:.35s ease;
   position:relative;
   cursor:pointer;
+  box-shadow:0 6px 20px rgba(0,0,0,.08);
 }
 
 .donut-card:hover{
@@ -282,7 +305,7 @@ a{text-decoration:none;color:inherit;}
 }
 
 /* =====================================================
-   TOOLTIP DONUT
+   TOOLTIP DONUT — TOTALMENTE FUNCIONAL
    ===================================================== */
 .donut-tooltip{
   position:fixed;
@@ -319,20 +342,6 @@ a{text-decoration:none;color:inherit;}
   gap:6px;
 }
 
-.donut-tooltip ul{
-  margin:10px 0;
-  padding-left:18px;
-}
-
-.donut-tooltip li{
-  margin-bottom:4px;
-}
-
-.donut-tooltip .nivel{
-  margin-top:8px;
-  font-weight:600;
-}
-
 /* =====================================================
    CONTACTO
    ===================================================== */
@@ -343,44 +352,51 @@ a{text-decoration:none;color:inherit;}
 }
 
 .contacto-box{
-  background:rgba(255,255,255,.16);
+  background:var(--glass);
   padding:28px;
   border-radius:16px;
+  border:1px solid rgba(255,255,255,.3);
 }
 
 .contact-form{
   display:grid;
-  gap:12px;
+  gap:14px;
 }
 
-.contact-form input,
-.contact-form textarea{
-  padding:10px 12px;
+.input-field{
+  padding:12px 14px;
   border-radius:10px;
-  border:1px solid rgba(0,0,0,.15);
-  background:rgba(255,255,255,.7);
+  border:1px solid rgba(0,0,0,.12);
+  background:rgba(255,255,255,.75);
+  width:100%;
+  font-size:0.93rem;
 }
 
-.contact-form input:focus,
-.contact-form textarea:focus{
+.input-field:focus{
+  outline:none;
   border-color:var(--uxui);
+  background:white;
 }
 
 /* =====================================================
-   FOOTER
+   NUEVO FOOTER PROFESIONAL
    ===================================================== */
-.site-footer{
+.footer-clean{
   text-align:center;
-  padding:18px 0;
+  padding:28px 0;
+  background:rgba(0,0,0,0.07);
+  backdrop-filter:blur(6px);
+  border-top:1px solid rgba(0,0,0,0.08);
 }
 
-.foot-grid{
-  display:grid;
-  gap:6px;
+.footer-clean p{
+  margin:4px 0;
+  font-size:0.95rem;
 }
 
-.foot-mini{
-  opacity:.75;
+.footer-clean .subfooter{
+  opacity:.6;
+  font-size:.85rem;
 }
 
 /* =====================================================
