@@ -8,10 +8,29 @@ if (yearEl) {
 
 
 /* =====================================================
-   ANIMACIÓN DE DONUTS AL HACER SCROLL
+   ASIGNAR COLOR A LOS DONUTS
    ===================================================== */
 const donutCards = document.querySelectorAll(".donut-card");
 
+function setupDonuts() {
+  donutCards.forEach(card => {
+    const valuePath = card.querySelector(".value");
+    if (!valuePath) return;
+
+    const color = card.dataset.color;
+    if (!color) return;
+
+    valuePath.style.stroke = color;
+    card.style.color = color; // importante para el glow
+  });
+}
+
+window.addEventListener("load", setupDonuts);
+
+
+/* =====================================================
+   ANIMACIÓN DE DONUTS AL HACER SCROLL
+   ===================================================== */
 function animateDonuts() {
   donutCards.forEach(card => {
     const rect = card.getBoundingClientRect();
@@ -22,7 +41,6 @@ function animateDonuts() {
     const endValue = parseInt(valuePath.dataset.end);
     if (isNaN(endValue)) return;
 
-    // Cuando el donut entra al viewport, se anima
     if (rect.top < window.innerHeight * 0.85) {
       valuePath.style.strokeDasharray = `${endValue}, 100`;
     }
@@ -34,24 +52,21 @@ window.addEventListener("load", animateDonuts);
 
 
 /* =====================================================
-   TOOLTIP DONUT (CON ICONOS, COLOR Y MOUSE FOLLOW)
+   TOOLTIP DONUT
    ===================================================== */
 const tip = document.getElementById("donutTip");
 
 let mouseX = 0;
 let mouseY = 0;
 
-/* Movimiento suave */
 function followTooltip() {
   tip.style.left = mouseX + 20 + "px";
   tip.style.top = mouseY + 20 + "px";
   requestAnimationFrame(followTooltip);
 }
+followTooltip();
 
-followTooltip(); // inicia el seguimiento
 
-
-/* Eventos */
 donutCards.forEach(card => {
   const color = card.dataset.color || "#fff";
   const icon = card.dataset.icon || "";
@@ -60,11 +75,9 @@ donutCards.forEach(card => {
     mouseX = e.pageX;
     mouseY = e.pageY;
 
-    // Borde y sombra dinámicos
     tip.style.border = `2px solid ${color}`;
     tip.style.boxShadow = `0 0 14px ${color}`;
 
-    // Contenido
     tip.innerHTML = `
       <div class="tt-title" style="color:${color}">
         ${icon} ${card.dataset.title}
