@@ -8,8 +8,10 @@
   <title>Portafolio · Santiago Murillo</title>
   <meta name="description" content="Portafolio de Santiago Murillo – UX/UI Designer" />
 
+  <!-- Fuente -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
+  <!-- Estilos -->
   <link rel="stylesheet" href="CSS/estilos.css" />
 </head>
 
@@ -50,6 +52,7 @@
         </article>
       </div>
     </section>
+
 
 
     <!-- ================= PROYECTOS ================= -->
@@ -168,7 +171,7 @@
 
         <div class="donut-grid">
 
-          <!-- Donut 1 -->
+          <!-- UX/UI -->
           <div class="donut-card"
             data-title="UX/UI"
             data-nivel="Semi-Senior"
@@ -179,14 +182,13 @@
 
             <svg class="donut" viewBox="0 0 36 36">
               <path class="bg" d="M18 2 a16 16 0 1 1 0 32 a16 16 0 1 1 0 -32"/>
-              <path class="value" data-end="60"
+              <path class="value" pathLength="100" data-end="60"
                 d="M18 2 a16 16 0 1 1 0 32 a16 16 0 1 1 0 -32"/>
             </svg>
-
             <div class="donut-title">UX/UI</div>
           </div>
 
-          <!-- Donut 2 -->
+          <!-- Frontend -->
           <div class="donut-card"
             data-title="Frontend"
             data-nivel="Junior"
@@ -197,14 +199,13 @@
 
             <svg class="donut" viewBox="0 0 36 36">
               <path class="bg" d="M18 2 a16 16 0 1 1 0 32 a16 16 0 1 1 0 -32"/>
-              <path class="value" data-end="40"
+              <path class="value" pathLength="100" data-end="40"
                 d="M18 2 a16 16 0 1 1 0 32 a16 16 0 1 1 0 -32"/>
             </svg>
-
             <div class="donut-title">Frontend</div>
           </div>
 
-          <!-- Donut 3 -->
+          <!-- Motion -->
           <div class="donut-card"
             data-title="Motion"
             data-nivel="Junior"
@@ -215,14 +216,13 @@
 
             <svg class="donut" viewBox="0 0 36 36">
               <path class="bg" d="M18 2 a16 16 0 1 1 0 32 a16 16 0 1 1 0 -32"/>
-              <path class="value" data-end="30"
+              <path class="value" pathLength="100" data-end="30"
                 d="M18 2 a16 16 0 1 1 0 32 a16 16 0 1 1 0 -32"/>
             </svg>
-
             <div class="donut-title">Motion</div>
           </div>
 
-          <!-- Donut 4 -->
+          <!-- Documentación -->
           <div class="donut-card"
             data-title="Documentación"
             data-nivel="Junior"
@@ -233,14 +233,13 @@
 
             <svg class="donut" viewBox="0 0 36 36">
               <path class="bg" d="M18 2 a16 16 0 1 1 0 32 a16 16 0 1 1 0 -32"/>
-              <path class="value" data-end="35"
+              <path class="value" pathLength="100" data-end="35"
                 d="M18 2 a16 16 0 1 1 0 32 a16 16 0 1 1 0 -32"/>
             </svg>
-
             <div class="donut-title">Documentación</div>
           </div>
 
-          <!-- Donut 5 -->
+          <!-- Producción -->
           <div class="donut-card"
             data-title="Producción"
             data-nivel="Junior"
@@ -251,18 +250,16 @@
 
             <svg class="donut" viewBox="0 0 36 36">
               <path class="bg" d="M18 2 a16 16 0 1 1 0 32 a16 16 0 1 1 0 -32"/>
-              <path class="value" data-end="35"
+              <path class="value" pathLength="100" data-end="35"
                 d="M18 2 a16 16 0 1 1 0 32 a16 16 0 1 1 0 -32"/>
             </svg>
-
             <div class="donut-title">Producción</div>
           </div>
 
         </div>
 
-        <!-- Tooltip real -->
+        <!-- Tooltip -->
         <div class="donut-tooltip" id="donutTip"></div>
-
       </div>
     </section>
 
@@ -352,7 +349,7 @@
   </main>
 
 
-  <!-- ================= FOOTER NUEVO ================= -->
+  <!-- ================= FOOTER ================= -->
   <footer class="footer-clean">
     <div class="container">
       <p>© <span id="year"></span> · Portafolio de Santiago Murillo</p>
@@ -360,7 +357,8 @@
     </div>
   </footer>
 
-
+  <!-- ================= JS PRINCIPAL ================= -->
   <script src="js/aplicacion.js"></script>
+
 </body>
 </html>
