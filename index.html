@@ -52,113 +52,135 @@
         </article>
       </div>
     </section>
-<!-- ================= PROYECTOS ================= -->
-<section id="proyectos" class="section alt">
-  <div class="container">
-    <h2 class="section-title">Proyectos destacados</h2>
 
-    <div class="grid cards projects">
 
-      <!-- Proyecto 1 -->
-      <article class="card hoverable project">
-        <figure class="thumb">
-          <img src="activos/Proyectos/Bon_Bon_Bum.png" loading="lazy">
-        </figure>
+    <!-- ================= PROYECTOS ================= -->
+    <section id="proyectos" class="section alt">
+      <div class="container">
+        <h2 class="section-title">Proyectos destacados</h2>
 
-        <div class="card-body">
-          <h3>Bon Bon Bum</h3>
-          <p>Wireframe de alta fidelidad.</p>
-
-          <div class="tag-row">
-            <span class="tag">Wireframe</span>
-            <span class="tag">E-commerce</span>
-            <span class="tag">Figma</span>
-          </div>
-
-          <div class="card-ctas separated">
-            <a class="btn ghost" target="_blank"
-              href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma">Acceder</a>
-            <a class="btn case" href="casos/caso-bonbonbum.html">Caso de estudio</a>
-          </div>
+        <!-- CATEGORÍAS UX -->
+        <div class="ux-filter">
+          <button class="ux-btn active" data-filter="all">Todos</button>
+          <button class="ux-btn" data-filter="ux-research">UX Research</button>
+          <button class="ux-btn" data-filter="ux-design">UX Design</button>
+          <button class="ux-btn" data-filter="accesibilidad">Accesibilidad</button>
+          <button class="ux-btn" data-filter="prototipado">Prototipado</button>
+          <button class="ux-btn" data-filter="product-design">Product Design</button>
         </div>
-      </article>
 
-      <!-- Proyecto 2 -->
-      <article class="card hoverable project">
-        <figure class="thumb">
-          <img src="activos/Proyectos/Greenscape.png" loading="lazy">
-        </figure>
+        <div class="grid cards projects">
 
-        <div class="card-body">
-          <h3>Greenscape</h3>
-          <p>Prototipo iOS.</p>
+          <!-- Proyecto 1 -->
+          <article class="card hoverable project"
+            data-category="ux-design prototipado product-design">
 
-          <div class="tag-row">
-            <span class="tag">Prototipo</span>
-            <span class="tag">iOS</span>
-            <span class="tag">Figma</span>
-          </div>
+            <figure class="thumb">
+              <img src="activos/Proyectos/Bon_Bon_Bum.png" loading="lazy">
+            </figure>
 
-          <div class="card-ctas separated">
-            <a class="btn ghost" target="_blank"
-              href="https://www.figma.com/proto/iYuZ5f1XPOvGDWncfB739r/HCI">Acceder</a>
-            <a class="btn case" href="casos/caso-greenscape.html">Caso de estudio</a>
-          </div>
+            <div class="card-body">
+              <h3>Bon Bon Bum</h3>
+              <p>Wireframe de alta fidelidad.</p>
+
+              <div class="tag-row">
+                <span class="tag">Wireframe</span>
+                <span class="tag">E-commerce</span>
+                <span class="tag">Figma</span>
+              </div>
+
+              <div class="card-ctas separated">
+                <a class="btn ghost" target="_blank"
+                  href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma">Acceder</a>
+                <a class="btn case" href="casos/caso-bonbonbum.html">Caso de estudio</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Proyecto 2 -->
+          <article class="card hoverable project"
+            data-category="ux-design prototipado product-design">
+
+            <figure class="thumb">
+              <img src="activos/Proyectos/Greenscape.png" loading="lazy">
+            </figure>
+
+            <div class="card-body">
+              <h3>Greenscape</h3>
+              <p>Prototipo iOS.</p>
+
+              <div class="tag-row">
+                <span class="tag">Prototipo</span>
+                <span class="tag">iOS</span>
+                <span class="tag">Figma</span>
+              </div>
+
+              <div class="card-ctas separated">
+                <a class="btn ghost" target="_blank"
+                  href="https://www.figma.com/proto/iYuZ5f1XPOvGDWncfB739r/HCI">Acceder</a>
+                <a class="btn case" href="casos/caso-greenscape.html">Caso de estudio</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Proyecto 3 -->
+          <article class="card hoverable project"
+            data-category="ux-research ux-design prototipado">
+
+            <figure class="thumb">
+              <img src="activos/Proyectos/NutriCampus.png" loading="lazy">
+            </figure>
+
+            <div class="card-body">
+              <h3>NutriCampus</h3>
+              <p>Prototipo para RV.</p>
+
+              <div class="tag-row">
+                <span class="tag">VR</span>
+                <span class="tag">Prototipo</span>
+                <span class="tag">Figma</span>
+              </div>
+
+              <div class="card-ctas separated">
+                <a class="btn ghost" target="_blank"
+                  href="https://www.figma.com/proto/riKsfkN37qsKX4NbQn5zOh/Nutricampus-V2">Acceder</a>
+                <a class="btn case" href="casos/caso-nutricampus.html">Caso de estudio</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Proyecto 4 -->
+          <article class="card hoverable project"
+            data-category="accesibilidad prototipado ux-design">
+
+            <figure class="thumb">
+              <img src="activos/Proyectos/Isocrates.png" loading="lazy">
+            </figure>
+
+            <div class="card-body">
+              <h3>Isócrates</h3>
+              <p>Prototipo desktop enfocado en accesibilidad.</p>
+
+              <div class="tag-row">
+                <span class="tag">Desktop</span>
+                <span class="tag">Accesibilidad</span>
+              </div>
+
+              <div class="card-ctas separated">
+                <a class="btn ghost"
+                  href="https://www.figma.com/proto/bCCXBOMkOQKVUB0emfQIb5"
+                  target="_blank">Acceder</a>
+
+                <a class="btn case" href="casos/caso-isocrates.html">Caso de estudio</a>
+              </div>
+            </div>
+          </article>
+
         </div>
-      </article>
+      </div>
+    </section>
 
-      <!-- Proyecto 3 -->
-      <article class="card hoverable project">
-        <figure class="thumb">
-          <img src="activos/Proyectos/NutriCampus.png" loading="lazy">
-        </figure>
 
-        <div class="card-body">
-          <h3>NutriCampus</h3>
-          <p>Prototipo para RV.</p>
-
-          <div class="tag-row">
-            <span class="tag">VR</span>
-            <span class="tag">Prototipo</span>
-            <span class="tag">Figma</span>
-          </div>
-
-          <div class="card-ctas separated">
-            <a class="btn ghost" target="_blank"
-              href="https://www.figma.com/proto/riKsfkN37qsKX4NbQn5zOh/Nutricampus-V2">Acceder</a>
-            <a class="btn case" href="casos/caso-nutricampus.html">Caso de estudio</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- Proyecto 4: ISÓCRATES -->
-      <article class="card hoverable project">
-        <figure class="thumb">
-          <img src="activos/Proyectos/Isocrates.png" loading="lazy">
-        </figure>
-
-        <div class="card-body">
-          <h3>Isócrates</h3>
-          <p>Prototipo desktop enfocado en accesibilidad.</p>
-
-          <div class="tag-row">
-            <span class="tag">Desktop</span>
-            <span class="tag">Accesibilidad</span>
-          </div>
-
-          <div class="card-ctas separated">
-            <a class="btn ghost"
-              href="https://www.figma.com/proto/bCCXBOMkOQKVUB0emfQIb5"
-              target="_blank">Acceder</a>
-
-            <a class="btn case" href="casos/caso-isocrates.html">Caso de estudio</a>
-          </div>
-        </div>
-      </article>
-
-    </div>
-  </div>
-</section>
     <!-- ================= TECNOLOGÍAS ================= -->
     <section id="tecnologias" class="section tecnologias-section">
       <div class="container">
@@ -201,6 +223,7 @@
       </div>
     </section>
 
+
     <!-- ================= CERTIFICADOS ================= -->
     <section id="certificados" class="section">
       <div class="container">
@@ -208,23 +231,16 @@
 
         <div class="grid cards diplomas-grid">
 
-          <!-- EF SET -->
           <article class="card hoverable">
             <h3>Certificado EF SET</h3>
-
             <div class="tag-row">
               <span class="tag">B2</span>
             </div>
-
-            <a class="btn primary" href="/activos/diplomas/Certificado_EF_SET.pdf" target="_blank">
-              Ver certificado
-            </a>
+            <a class="btn primary" href="/activos/diplomas/Certificado_EF_SET.pdf" target="_blank">Ver certificado</a>
           </article>
 
-          <!-- Dreamweaver -->
           <article class="card hoverable">
             <h3>Diseño Web con Adobe Dreamweaver</h3>
-
             <div class="tag-row">
               <span class="tag">Prototipado rápido</span>
               <span class="tag">Análisis de requisitos</span>
@@ -234,16 +250,11 @@
               <span class="tag">Requisitos funcionales</span>
               <span class="tag">Design Thinking</span>
             </div>
-
-            <a class="btn primary" href="/activos/diplomas/Diseño_Web_Con_Adobe_Dreamweaver.pdf" target="_blank">
-              Ver certificado
-            </a>
+            <a class="btn primary" href="/activos/diplomas/Diseño_Web_Con_Adobe_Dreamweaver.pdf" target="_blank">Ver certificado</a>
           </article>
 
-          <!-- Fundamentos -->
           <article class="card hoverable">
             <h3>Fundamentos de programación</h3>
-
             <div class="tag-row">
               <span class="tag">Java</span>
               <span class="tag">Python</span>
@@ -255,64 +266,44 @@
               <span class="tag">JavaScript</span>
               <span class="tag">C</span>
             </div>
-
-            <a class="btn primary" href="/activos/diplomas/Fundamentos_de_programacion.jpeg" target="_blank">
-              Ver certificado
-            </a>
+            <a class="btn primary" href="/activos/diplomas/Fundamentos_de_programacion.jpeg" target="_blank">Ver certificado</a>
           </article>
 
-          <!-- Innovación -->
           <article class="card hoverable">
             <h3>Generación de ideas innovadoras con Design Thinking</h3>
-
             <div class="tag-row">
               <span class="tag">Innovación en productos</span>
               <span class="tag">Desarrollo de innovación</span>
               <span class="tag">Propuesta de innovación</span>
               <span class="tag">Gestión de innovación</span>
             </div>
-
             <a class="btn primary" href="/activos/diplomas/Generacion_De_Ideas_Innovadoras_Con_Desing_Thinking.pdf"
-              target="_blank">
-              Ver certificado
-            </a>
+              target="_blank">Ver certificado</a>
           </article>
 
-          <!-- Illustrator -->
           <article class="card hoverable">
             <h3>Manejo de Adobe Illustrator</h3>
-
             <div class="tag-row">
               <span class="tag">Adobe Photoshop</span>
               <span class="tag">Combinación de colores</span>
               <span class="tag">Teoría del color</span>
             </div>
-
-            <a class="btn primary" href="/activos/diplomas/Manejo_Adobe_Illustrator.pdf" target="_blank">
-              Ver certificado
-            </a>
+            <a class="btn primary" href="/activos/diplomas/Manejo_Adobe_Illustrator.pdf" target="_blank">Ver certificado</a>
           </article>
 
-          <!-- Photoshop -->
           <article class="card hoverable">
             <h3>Manejo de Adobe Photoshop</h3>
-
             <div class="tag-row">
               <span class="tag">Adobe Illustrator</span>
               <span class="tag">Ilustración</span>
               <span class="tag">Diseño gráfico</span>
               <span class="tag">Diseño de logotipos</span>
             </div>
-
-            <a class="btn primary" href="/activos/diplomas/Manejo_Adobe_Photoshop.pdf" target="_blank">
-              Ver certificado
-            </a>
+            <a class="btn primary" href="/activos/diplomas/Manejo_Adobe_Photoshop.pdf" target="_blank">Ver certificado</a>
           </article>
 
-          <!-- Validación -->
           <article class="card hoverable">
             <h3>Validación de ideas y prototipos con Design Thinking</h3>
-
             <div class="tag-row">
               <span class="tag">Prototipado rápido</span>
               <span class="tag">Análisis de requisitos</span>
@@ -322,17 +313,15 @@
               <span class="tag">Requisitos funcionales</span>
               <span class="tag">Design Thinking</span>
             </div>
-
             <a class="btn primary"
               href="/activos/diplomas/Validacion_De_Ideas_y_Prototipos_Con_Desing_Thinking.pdf"
-              target="_blank">
-              Ver certificado
-            </a>
+              target="_blank">Ver certificado</a>
           </article>
 
         </div>
       </div>
     </section>
+
 
     <!-- ================= CONTACTO ================= -->
     <section id="contacto" class="section">
