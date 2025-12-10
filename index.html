@@ -14,13 +14,11 @@
   <!-- Estilos -->
   <link rel="stylesheet" href="CSS/estilos.css" />
 
-  <!-- ANYCHART -->
-  <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-base.min.js"></script>
-  <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-pie.min.js"></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
-
   <!-- ================= HEADER ================= -->
   <header class="site-header">
     <div class="container nav-wrap">
@@ -34,10 +32,9 @@
       </nav>
     </div>
   </header>
-
   <!-- ================= HERO ================= -->
   <main>
-    <section id="inicio" class="hero section">
+    <section id="inicio" class="section hero">
       <div class="container">
         <article class="hero-card">
           <img class="avatar" src="activos/imagen/foto de perfil.jfif" alt="Foto de Santiago Murillo" />
@@ -55,13 +52,10 @@
         </article>
       </div>
     </section>
-
     <!-- ================= PROYECTOS ================= -->
     <section id="proyectos" class="section alt">
       <div class="container">
-        <div class="section-head">
-          <h2 class="section-title">Proyectos destacados</h2>
-        </div>
+        <h2 class="section-title">Proyectos destacados</h2>
 
         <div class="grid cards projects">
 
@@ -134,52 +128,51 @@
             </div>
           </article>
 
-          <!-- Proyecto 4 -->
-          <article class="card hoverable project">
-            <figure class="thumb">
-              <img src="activos/Proyectos/Isocrates.png" loading="lazy">
-            </figure>
-
-            <div class="card-body">
-              <h3>Isócrates</h3>
-              <p>Prototipo desktop enfocado en accesibilidad.</p>
-
-              <div class="tag-row">
-                <span class="tag">Desktop</span>
-                <span class="tag">Accesibilidad</span>
-              </div>
-
-              <div class="card-ctas separated">
-                <a class="btn ghost" href="https://www.figma.com/proto/bCCXBOMkOQKVUB0emfQIb5" target="_blank">Acceder</a>
-                <a class="btn case" href="casos/caso-isocrates.html">Caso de estudio</a>
-              </div>
-            </div>
-          </article>
-
         </div>
       </div>
     </section>
-
-    <!-- ================= TECNOLOGÍAS (NUEVA DONA) ================= -->
+    <!-- ================= TECNOLOGÍAS — 5 DONITAS ================= -->
     <section id="tecnologias" class="section">
       <div class="container">
-        
+
         <h2 class="section-title">Tecnologías</h2>
 
-        <div class="donut-wrapper">
-          <div id="donutChart" class="donut-chart-container"></div>
-          <div class="donut-center-text">UX / UI<br>Designer</div>
+        <div class="donut-grid-5">
+
+          <div class="donut-item" data-label="UX/UI" data-value="35" data-color="#f39c12">
+            <canvas class="mini-donut"></canvas>
+            <p class="donut-title-5">UX/UI</p>
+          </div>
+
+          <div class="donut-item" data-label="Documentación" data-value="20" data-color="#2ecc71">
+            <canvas class="mini-donut"></canvas>
+            <p class="donut-title-5">Documentación</p>
+          </div>
+
+          <div class="donut-item" data-label="Frontend" data-value="15" data-color="#3498db">
+            <canvas class="mini-donut"></canvas>
+            <p class="donut-title-5">Frontend</p>
+          </div>
+
+          <div class="donut-item" data-label="Motion" data-value="30" data-color="#9b59b6">
+            <canvas class="mini-donut"></canvas>
+            <p class="donut-title-5">Motion</p>
+          </div>
+
+          <div class="donut-item" data-label="Producción" data-value="10" data-color="#e74c3c">
+            <canvas class="mini-donut"></canvas>
+            <p class="donut-title-5">Producción</p>
+          </div>
+
         </div>
 
+        <div id="donutTooltip" class="donut-tooltip"></div>
       </div>
     </section>
-
     <!-- ================= CERTIFICADOS ================= -->
     <section id="certificados" class="section">
       <div class="container">
-        <div class="section-head">
-          <h2 class="section-title">Certificados</h2>
-        </div>
+        <h2 class="section-title">Certificados</h2>
 
         <div class="grid cards diplomas-grid">
 
@@ -210,7 +203,6 @@
         </div>
       </div>
     </section>
-
     <!-- ================= CONTACTO ================= -->
     <section id="contacto" class="section">
       <div class="container contact-wrapper">
@@ -219,9 +211,7 @@
           <h2 class="section-title">Contacto</h2>
 
           <p><strong>Nombre:</strong> Santiago Murillo Ramírez</p>
-          <p><strong>Email:</strong>
-            <a href="mailto:santiagomr2003@gmail.com">santiagomr2003@gmail.com</a>
-          </p>
+          <p><strong>Email:</strong> <a href="mailto:santiagomr2003@gmail.com">santiagomr2003@gmail.com</a></p>
 
           <div class="botones-contacto">
             <a class="btn whatsapp big" href="https://wa.me/573228182311" target="_blank">WhatsApp</a>
@@ -254,15 +244,14 @@
     </section>
 
   </main>
-
   <!-- ================= FOOTER ================= -->
   <footer class="new-footer">
-    <p class="footer-main">© <span id="year"></span> · Portafolio de Santiago Murillo</p>
-    <p class="footer-sub">Diseño y desarrollo por S. Murillo</p>
+    <div class="container">
+      <p class="footer-main">© <span id="year"></span> · Portafolio de Santiago Murillo</p>
+      <p class="footer-sub">Diseño y desarrollo por S.Murillo</p>
+    </div>
   </footer>
-
   <!-- ================= JS PRINCIPAL ================= -->
   <script src="js/aplicacion.js"></script>
-
 </body>
 </html>
