@@ -7,7 +7,7 @@ if (yearEl) {
 }
 
 /* =====================================================
-   DONUTS CON CHART.JS
+   DONUTS CON CHART.JS (NUEVO SISTEMA)
 ===================================================== */
 
 const cards = document.querySelectorAll(".chart-card");
@@ -28,8 +28,9 @@ window.addEventListener("mousemove", e => {
 });
 
 /* =====================================================
-   INICIALIZAR CADA DONUT
+   INICIALIZACIÓN DE CADA DONUT
 ===================================================== */
+
 cards.forEach(card => {
   const canvas = card.querySelector(".donut-chart");
   const value = Number(card.dataset.value);
@@ -38,52 +39,56 @@ cards.forEach(card => {
 
   new Chart(canvas, {
     type: "doughnut",
+
     data: {
-      labels: [label, ""],
+      labels: [label, ""], // pero la leyenda NO se muestra
       datasets: [{
         data: [value, 100 - value],
-        backgroundColor: [color, "#e2e2e2"],
+        backgroundColor: [color, "#e4e4e4"],
         hoverBackgroundColor: [color, "#dcdcdc"],
         borderWidth: 0
       }]
     },
 
     options: {
-      cutout: "70%",
-      animation: {
-        animateRotate: true,
-        duration: 1400
-      },
+      cutout: "70%", // tamaño del agujero central
 
       plugins: {
+        legend: { display: false }, // Quita la leyenda de arriba
+
         tooltip: {
-          enabled: false, // usamos tooltip propio
+          enabled: false, // usaremos tooltip personalizado
 
           external: function (ctx) {
-            const dataPoint = ctx.tooltip.dataPoints?.[0];
-
-            if (!dataPoint) {
+            const datapoint = ctx.tooltip.dataPoints?.[0];
+            if (!datapoint) {
               tooltip.style.opacity = 0;
               return;
             }
 
+            // CONTENIDO DEL TOOLTIP
             tooltip.innerHTML = `
-              <div style="font-weight:700; margin-bottom:4px;">
+              <div style="font-weight:700; margin-bottom:4px; font-size:1rem;">
                 ${label}
               </div>
-              <div>Nivel: ${value}%</div>
+              <div style="font-size:.95rem;">${value}%</div>
             `;
 
             tooltip.style.opacity = 1;
             tooltip.style.border = `2px solid ${color}`;
-            tooltip.style.boxShadow = `0 0 12px ${color}`;
+            tooltip.style.boxShadow = `0 0 14px ${color}`;
           }
         }
       },
+
+      animation: {
+        animateRotate: true,
+        duration: 1200
+      },
+
+      // Cuando el mouse está fuera del donut → ocultar tooltip
       onHover: (evt, activeEls) => {
-        if (activeEls.length === 0) {
-          tooltip.style.opacity = 0;
-        }
+        if (activeEls.length === 0) tooltip.style.opacity = 0;
       }
     }
   });
