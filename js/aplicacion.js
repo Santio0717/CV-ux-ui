@@ -7,101 +7,84 @@ if (yearEl) {
 }
 
 /* =====================================================
-   DONUT ELEMENTS
+   DONUTS CON CHART.JS
 ===================================================== */
-const donutCards = document.querySelectorAll(".donut-card");
-const tip = document.getElementById("donutTip");
 
-/* =====================================================
-   SETUP: COLOR DEL DONUT
-===================================================== */
-function setupDonuts() {
-  donutCards.forEach(card => {
-    const valuePath = card.querySelector(".value");
-    const color = card.dataset.color;
+const cards = document.querySelectorAll(".chart-card");
+const tooltip = document.getElementById("chart-tooltip");
 
-    if (valuePath && color) {
-      valuePath.style.stroke = color;
-      card.style.color = color; // Glow
-    }
-  });
-}
-window.addEventListener("load", setupDonuts);
-
-/* =====================================================
-   ANIMACIÓN DE DONUTS
-===================================================== */
-function animateDonuts() {
-  donutCards.forEach(card => {
-    const rect = card.getBoundingClientRect();
-    const valuePath = card.querySelector(".value");
-    if (!valuePath) return;
-
-    const endValue = parseInt(valuePath.dataset.end);
-    if (isNaN(endValue)) return;
-
-    // Fix crítico
-    valuePath.style.strokeDashoffset = "0";
-
-    if (rect.top < window.innerHeight * 0.85) {
-      valuePath.style.strokeDasharray = `${endValue} 100`;
-    }
-  });
-}
-
-window.addEventListener("scroll", animateDonuts);
-window.addEventListener("load", animateDonuts);
-
-/* =====================================================
-   TOOLTIP: SEGUIMIENTO
-===================================================== */
 let mouseX = 0;
 let mouseY = 0;
 
-function followTooltip() {
-  tip.style.left = mouseX + 20 + "px";
-  tip.style.top = mouseY + 20 + "px";
-  requestAnimationFrame(followTooltip);
-}
-followTooltip();
+/* =====================================================
+   TOOLTIP: SEGUIMIENTO DEL MOUSE
+===================================================== */
+window.addEventListener("mousemove", e => {
+  mouseX = e.pageX;
+  mouseY = e.pageY;
+
+  tooltip.style.left = mouseX + 20 + "px";
+  tooltip.style.top = mouseY + 20 + "px";
+});
 
 /* =====================================================
-   TOOLTIP: EVENTOS DONUT
+   INICIALIZAR CADA DONUT
 ===================================================== */
-donutCards.forEach(card => {
-  
+cards.forEach(card => {
+  const canvas = card.querySelector(".donut-chart");
+  const value = Number(card.dataset.value);
   const color = card.dataset.color;
-  const icon = card.dataset.icon;
+  const label = card.dataset.label;
 
-  card.addEventListener("mouseenter", (e) => {
-    mouseX = e.pageX;
-    mouseY = e.pageY;
+  new Chart(canvas, {
+    type: "doughnut",
+    data: {
+      labels: [label, ""],
+      datasets: [{
+        data: [value, 100 - value],
+        backgroundColor: [color, "#e2e2e2"],
+        hoverBackgroundColor: [color, "#dcdcdc"],
+        borderWidth: 0
+      }]
+    },
 
-    tip.style.border = `2px solid ${color}`;
-    tip.style.boxShadow = `0 0 14px ${color}`;
+    options: {
+      cutout: "70%",
+      animation: {
+        animateRotate: true,
+        duration: 1400
+      },
 
-    tip.innerHTML = `
-      <div class="tt-title" style="color:${color}">
-        ${icon} ${card.dataset.title}
-      </div>
-      <ul style="margin:0; padding-left:18px;">
-        <li><strong>Nivel:</strong> ${card.dataset.nivel}</li>
-        <li><strong>Porcentaje:</strong> ${card.dataset.porc}%</li>
-      </ul>
-      <div class="nivel" style="color:${color}; margin-top:8px;">
-        ${card.dataset.desc}
-      </div>
-    `;
+      plugins: {
+        tooltip: {
+          enabled: false, // usamos tooltip propio
 
-    tip.classList.add("visible");
-  });
+          external: function (ctx) {
+            const dataPoint = ctx.tooltip.dataPoints?.[0];
 
-  card.addEventListener("mousemove", (e) => {
-    mouseX = e.pageX;
-    mouseY = e.pageY;
-  });
+            if (!dataPoint) {
+              tooltip.style.opacity = 0;
+              return;
+            }
 
-  card.addEventListener("mouseleave", () => {
-    tip.classList.remove("visible");
+            tooltip.innerHTML = `
+              <div style="font-weight:700; margin-bottom:4px;">
+                ${label}
+              </div>
+              <div>Nivel: ${value}%</div>
+            `;
+
+            tooltip.style.opacity = 1;
+            tooltip.style.border = `2px solid ${color}`;
+            tooltip.style.boxShadow = `0 0 12px ${color}`;
+          }
+        }
+      },
+      onHover: (evt, activeEls) => {
+        if (activeEls.length === 0) {
+          tooltip.style.opacity = 0;
+        }
+      }
+    }
   });
 });
