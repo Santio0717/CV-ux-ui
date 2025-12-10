@@ -1,6 +1,6 @@
 /* =====================================================
    PALETA Y VARIABLES
-   ===================================================== */
+===================================================== */
 :root{
   --cream-1:#f5e4cb;
   --cream-2:#f2dfc2;
@@ -184,8 +184,9 @@ a{text-decoration:none;color:inherit;}
 }
 
 /* =====================================================
-   DONUTS
-   ===================================================== */
+   DONUTS – NUEVA VERSIÓN CON CHART.JS
+===================================================== */
+
 .donut-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -193,7 +194,7 @@ a{text-decoration:none;color:inherit;}
   margin-top:32px;
 }
 
-.donut-card{
+.chart-card{
   background:rgba(255,255,255,.55);
   border:1px solid rgba(0,0,0,0.1);
   backdrop-filter:blur(8px);
@@ -201,88 +202,38 @@ a{text-decoration:none;color:inherit;}
   border-radius:24px;
   text-align:center;
   transition:.35s ease;
-  position:relative;
-
-  /* FIX tooltip/hover */
-  pointer-events:auto !important;
-  isolation:isolate;
-  z-index:1;
 }
 
-.donut-card:hover{
+.chart-card:hover{
   transform:translateY(-6px);
   box-shadow:0 14px 28px rgba(0,0,0,.18);
 }
 
-.donut{
-  width:170px;height:170px;
-  margin:auto;
-}
-.donut .bg{
-  fill:none;
-  stroke:rgba(0,0,0,.15);
-  stroke-width:3.2;
-}
-
-.donut .value{
-  fill:none;
-  stroke-width:4;
-  stroke-linecap:round;
-  transform:rotate(-90deg);
-  transform-origin:50% 50%;
-  stroke-dasharray:0 100;
-  transition:stroke-dasharray 1.4s ease, stroke .3s ease;
-}
-
-.donut-card:hover .value{
-  filter:drop-shadow(0 0 10px currentColor);
-  stroke-width:4.8;
-}
-
-.donut-title{
+.chart-title{
   margin-top:12px;
   font-size:1.2rem;
   font-weight:700;
 }
 
-/* =====================================================
-   TOOLTIP DONUT — FIX DEFINITIVO
-   ===================================================== */
-.donut-tooltip{
-  position:fixed !important;
-  pointer-events:none !important;
-  z-index:999999999 !important;
+/* Tooltip de Chart.js personalizado */
+.chart-tooltip{
+  position:fixed;
+  pointer-events:none;
   opacity:0;
-  transform:translateY(6px);
-  transition:opacity .2s ease, transform .2s ease;
-
-  padding:16px 20px;
+  padding:14px 18px;
   background:#1e1e1eec;
   color:white;
   border-radius:14px;
-  box-shadow:0 12px 32px rgba(0,0,0,.35);
-
-  max-width:260px;
   font-size:.92rem;
-  line-height:1.45;
-  backdrop-filter:blur(4px);
+  box-shadow:0 12px 32px rgba(0,0,0,.35);
+  transition:opacity .2s ease;
+  z-index:9999;
 }
 
-.donut-tooltip.visible{
-  opacity:1;
-  transform:translateY(0);
-}
+/* =====================================================
+   RESPONSIVE
+===================================================== */
 
-.donut-tooltip .tt-title{
-  font-size:1.05rem;
-  font-weight:700;
-  margin-bottom:6px;
-  display:flex;
-  align-items:center;
-  gap:6px;
-}
-
-/* RESPONSIVE */
 @media(max-width:820px){
   .hero-card{
     grid-template-columns:1fr;
