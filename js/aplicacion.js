@@ -7,7 +7,7 @@ if (yearEl) {
 }
 
 /* =====================================================
-   DONITAS – ANIMAR SOLO EN EL PRIMER HOVER
+   DONITAS – ANIMACIÓN SOLO EN EL PRIMER HOVER
 ===================================================== */
 
 const donutItems = document.querySelectorAll(".donut-item");
@@ -18,26 +18,33 @@ donutItems.forEach(item => {
   const value = Number(item.dataset.value);
   const color = item.dataset.color;
 
-  const tooltip = document.createElement("div");
-  tooltip.classList.add("donut-fixed-tooltip");
-  item.appendChild(tooltip);
+  /* -------------------------------
+     Crear tooltip fijo por dona
+  -------------------------------- */
+  const tooltip = item.querySelector(".donut-fixed-tooltip");
+  tooltip.style.opacity = 0;
 
+  /* -------------------------------
+     Bandera para animar solo una vez
+  -------------------------------- */
   let animatedOnce = false;
 
-  // Crear dona vacía inicialmente
+  /* -------------------------------
+     Crear donut inicialmente vacío
+  -------------------------------- */
   const chart = new Chart(canvas, {
     type: "doughnut",
     data: {
       labels: [label],
       datasets: [{
-        data: [0, 100],
+        data: [0, 100],           // empieza en 0%
         backgroundColor: [color, "#e6e6e6"],
         borderWidth: 0
       }]
     },
     options: {
       cutout: "70%",
-      animation: { duration: 0 },
+      animation: { duration: 0 }, // sin animación inicial
       plugins: {
         legend: { display: false },
         tooltip: { enabled: false }
@@ -46,8 +53,10 @@ donutItems.forEach(item => {
   });
 
   /* =====================================================
-     MOSTRAR TOOLTIP + ANIMACIÓN SOLO UNA VEZ
+     EVENTOS DE MOUSE
   ====================================================== */
+
+  // Mostrar tooltip + activar animación si no ha ocurrido
   item.addEventListener("mouseenter", () => {
     tooltip.innerHTML = `<strong>${label}</strong><br>${value}%`;
     tooltip.style.opacity = 1;
@@ -58,6 +67,7 @@ donutItems.forEach(item => {
     }
   });
 
+  // Ocultar tooltip al salir
   item.addEventListener("mouseleave", () => {
     tooltip.style.opacity = 0;
   });
@@ -80,5 +90,5 @@ function animateDonut(chart, finalValue) {
 
     chart.data.datasets[0].data = [progress, 100 - progress];
     chart.update();
-  }, 20);
+  }, 18); // velocidad ideal
 }
