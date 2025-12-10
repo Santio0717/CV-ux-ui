@@ -192,7 +192,8 @@ a { text-decoration:none; color:inherit; }
   display:grid;
   grid-template-columns:repeat(2,1fr);
   justify-items:center;
-  gap:60px 40px;
+  align-items:flex-start;
+  gap:70px 40px;
   margin-top:40px;
 }
 
@@ -203,6 +204,7 @@ a { text-decoration:none; color:inherit; }
   align-items:center;
   text-align:center;
   gap:6px;
+  min-height:180px;
 }
 
 .mini-donut {
@@ -210,32 +212,30 @@ a { text-decoration:none; color:inherit; }
   height:150px;
 }
 
-/* TÍTULO BAJO LA DONA */
 .donut-title-5 {
-  margin-top:2px;
+  margin-top:4px;
   font-weight:600;
   font-size:.95rem;
 }
 
-/* TOOLTIP FIJO A LA DERECHA */
+/* Tooltip fijo */
 .donut-fixed-tooltip {
   position:absolute;
   top:50%;
-  left:170px;
+  left:175px;
   transform:translateY(-50%);
-  background:#111;
+  background:#000;
   color:#fff;
   padding:10px 14px;
   border-radius:10px;
   opacity:0;
-  font-size:.9rem;
   pointer-events:none;
-  min-width:90px;
-  box-shadow:0 0 12px rgba(0,0,0,0.5);
+  white-space:nowrap;
+  font-size:.9rem;
+  box-shadow:0 0 12px rgba(0,0,0,0.4);
   transition:opacity .25s ease;
 }
 
-/* Tooltip visible */
 .donut-item.show-tooltip .donut-fixed-tooltip {
   opacity:1;
 }
@@ -247,7 +247,7 @@ a { text-decoration:none; color:inherit; }
 .diplomas-grid {
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:24px;
+  gap:30px;
 }
 
 
@@ -315,6 +315,8 @@ a { text-decoration:none; color:inherit; }
   }
 
   .donut-fixed-tooltip {
-    left:160px;
+    left:50%;
+    transform:translateX(-50%) translateY(-50%);
+    top:170px;
   }
 }
