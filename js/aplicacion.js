@@ -17,18 +17,19 @@ let mouseX = 0;
 let mouseY = 0;
 
 /* -----------------------------------------------------
-   EL TOOLTIP SIGUE AL MOUSE
+   EL TOOLTIP SIGUE AL MOUSE (MUY CERCA)
 ----------------------------------------------------- */
 window.addEventListener("mousemove", e => {
   mouseX = e.pageX;
   mouseY = e.pageY;
 
-  tooltip.style.left = mouseX + 18 + "px";
-  tooltip.style.top = mouseY + 18 + "px";
+  // Tooltip más cerca del cursor (ajuste solicitado)
+  tooltip.style.left = (mouseX + 10) + "px";
+  tooltip.style.top = (mouseY - 10) + "px";
 });
 
 /* -----------------------------------------------------
-   CREAR DONITAS
+   CREAR DONITAS INDIVIDUALES
 ----------------------------------------------------- */
 donutItems.forEach(item => {
   const canvas = item.querySelector(".mini-donut");
@@ -50,7 +51,7 @@ donutItems.forEach(item => {
     },
 
     options: {
-      cutout: "70%",
+      cutout: "70%", // agujero interno
 
       animation: {
         duration: 1200,
@@ -62,7 +63,7 @@ donutItems.forEach(item => {
         legend: { display: false },
 
         tooltip: {
-          enabled: false, // USAMOS TOOLTIP PERSONALIZADO
+          enabled: false, // Tooltip nativo desactivado
 
           external: function (ctx) {
             const dp = ctx.tooltip.dataPoints?.[0];
@@ -72,7 +73,7 @@ donutItems.forEach(item => {
               return;
             }
 
-            // contenido del tooltip
+            // CONTENIDO DEL TOOLTIP PERSONALIZADO
             tooltip.innerHTML = `
               <strong>${label}</strong><br>
               ${value}%
@@ -85,7 +86,7 @@ donutItems.forEach(item => {
         }
       },
 
-      // si no está sobre una parte del donut → ocultar tooltip
+      // Al salir del donut se oculta el tooltip
       onHover: (evt, active) => {
         if (active.length === 0) tooltip.style.opacity = 0;
       }
