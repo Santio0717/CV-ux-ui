@@ -18,33 +18,25 @@ donutItems.forEach(item => {
   const value = Number(item.dataset.value);
   const color = item.dataset.color;
 
-  /* -------------------------------
-     Crear tooltip fijo por dona
-  -------------------------------- */
   const tooltip = item.querySelector(".donut-fixed-tooltip");
   tooltip.style.opacity = 0;
 
-  /* -------------------------------
-     Bandera para animar solo una vez
-  -------------------------------- */
   let animatedOnce = false;
 
-  /* -------------------------------
-     Crear donut inicialmente vacío
-  -------------------------------- */
+  /* Crear donut vacío */
   const chart = new Chart(canvas, {
     type: "doughnut",
     data: {
       labels: [label],
       datasets: [{
-        data: [0, 100],           // empieza en 0%
+        data: [0, 100],
         backgroundColor: [color, "#e6e6e6"],
         borderWidth: 0
       }]
     },
     options: {
       cutout: "70%",
-      animation: { duration: 0 }, // sin animación inicial
+      animation: { duration: 0 },
       plugins: {
         legend: { display: false },
         tooltip: { enabled: false }
@@ -52,11 +44,7 @@ donutItems.forEach(item => {
     }
   });
 
-  /* =====================================================
-     EVENTOS DE MOUSE
-  ====================================================== */
-
-  // Mostrar tooltip + activar animación si no ha ocurrido
+  /* Evento mouseenter */
   item.addEventListener("mouseenter", () => {
     tooltip.innerHTML = `<strong>${label}</strong><br>${value}%`;
     tooltip.style.opacity = 1;
@@ -67,14 +55,14 @@ donutItems.forEach(item => {
     }
   });
 
-  // Ocultar tooltip al salir
+  /* Evento mouseleave */
   item.addEventListener("mouseleave", () => {
     tooltip.style.opacity = 0;
   });
 });
 
 /* =====================================================
-   FUNCIÓN DE ANIMACIÓN PROGRESIVA
+   ANIMACIÓN PROGRESIVA DE LA DONA
 ===================================================== */
 function animateDonut(chart, finalValue) {
   let progress = 0;
@@ -90,5 +78,42 @@ function animateDonut(chart, finalValue) {
 
     chart.data.datasets[0].data = [progress, 100 - progress];
     chart.update();
-  }, 18); // velocidad ideal
+  }, 18);
 }
+
+/* =====================================================
+   FILTRO UX / CATEGORÍAS
+===================================================== */
+
+const filterButtons = document.querySelectorAll(".ux-btn");
+const projectCards = document.querySelectorAll(".project");
+
+filterButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+
+    /* Quitar activo a todos */
+    filterButtons.forEach(b => b.classList.remove("active"));
+
+    /* Activar el actual */
+    btn.classList.add("active");
+
+    const category = btn.dataset.filter;
+
+    /* Mostrar todos */
+    if (category === "all") {
+      projectCards.forEach(card => card.classList.remove("hide"));
+      return;
+    }
+
+    /* Filtrar */
+    projectCards.forEach(card => {
+      const tags = card.dataset.tags.split(",");
+
+      if (tags.includes(category)) {
+        card.classList.remove("hide");
+      } else {
+        card.classList.add("hide");
+      }
+    });
+  });
+});
