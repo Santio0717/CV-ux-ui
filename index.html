@@ -156,7 +156,7 @@
         </div>
       </div>
     </section>
-    <!-- ================= TECNOLOGÍAS (CORREGIDO) ================= -->
+    <!-- ================= TECNOLOGÍAS ================= -->
     <section id="tecnologias" class="section">
       <div class="container">
 
@@ -198,47 +198,12 @@
 
       </div>
     </section>
-    <!-- ================= CERTIFICADOS ================= -->
-    <section id="certificados" class="section">
-      <div class="container">
-        <div class="section-head">
-          <h2 class="section-title">Certificados</h2>
-        </div>
-
-        <div class="grid cards diplomas-grid">
-
-          <article class="card hoverable">
-            <h3>Certificado EF SET</h3>
-            <p>Inglés nivel oficial.</p>
-            <div class="card-ctas separated">
-              <a class="btn primary" href="activos/diplomas/Certificado_EF_SET.pdf" target="_blank">Ver certificado</a>
-            </div>
-          </article>
-
-          <article class="card hoverable">
-            <h3>Fundamentos de programación</h3>
-            <p>Lógica y fundamentos.</p>
-            <div class="card-ctas separated">
-              <a class="btn primary" href="activos/diplomas/Fundamentos_de_programacion.jpeg" target="_blank">Ver certificado</a>
-            </div>
-          </article>
-
-          <article class="card hoverable">
-            <h3>Adobe Illustrator</h3>
-            <p>Gráficos vectoriales.</p>
-            <div class="card-ctas separated">
-              <a class="btn primary" href="activos/diplomas/Manejo_Adobe_Illustrator.pdf" target="_blank">Ver certificado</a>
-            </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
     <!-- ================= CONTACTO ================= -->
     <section id="contacto" class="section">
-      <div class="container contacto-grid">
+      <div class="container contacto-grid contact-wrapper">
 
-        <div class="contacto-box">
+        <!-- IZQUIERDA -->
+        <div class="contact-info">
           <h2 class="section-title">Contacto</h2>
 
           <p><strong>Nombre:</strong> Santiago Murillo Ramírez</p>
@@ -247,44 +212,43 @@
           </p>
 
           <div class="botones-contacto">
-            <a class="btn whatsapp" href="https://wa.me/573228182311" target="_blank">WhatsApp</a>
-            <a class="btn linkedin" href="https://www.linkedin.com/in/santiago-murillo-ramírez-795447235" target="_blank">LinkedIn</a>
+            <a class="btn whatsapp big" href="https://wa.me/573228182311" target="_blank">WhatsApp</a>
+            <a class="btn linkedin big" href="https://www.linkedin.com/in/santiago-murillo-ramírez-795447235" target="_blank">LinkedIn</a>
           </div>
         </div>
 
-        <form class="card contact-form"
+        <!-- DERECHA: FORMULARIO -->
+        <form class="contact-form card"
           action="https://formspree.io/f/myznakow"
           method="POST">
 
           <h3>Escríbeme</h3>
 
           <label>Nombre
-            <input class="input-field" name="nombre" type="text" required>
+            <input class="input-field full" name="nombre" type="text" required>
           </label>
 
           <label>Email
-            <input class="input-field" name="email" type="email" required>
+            <input class="input-field full" name="email" type="email" required>
           </label>
 
           <label>Mensaje
-            <textarea class="input-field" name="mensaje" rows="4" required></textarea>
+            <textarea class="input-field full" name="mensaje" rows="5" required></textarea>
           </label>
 
-          <button class="btn primary" type="submit">Enviar</button>
+          <button class="btn primary full-btn" type="submit">Enviar</button>
         </form>
 
       </div>
     </section>
   </main>
-
-  <!-- ================= FOOTER ================= -->
-  <footer class="footer-clean">
+  <!-- ================= FOOTER NUEVO ================= -->
+  <footer class="footer-clean new-footer">
     <div class="container">
-      <p>© <span id="year"></span> · Portafolio de Santiago Murillo</p>
-      <p class="subfooter">Diseño y desarrollo por S.Murillo</p>
+      <p class="footer-main">© <span id="year"></span> · Portafolio de Santiago Murillo</p>
+      <p class="footer-sub">Diseño y desarrollo por S. Murillo</p>
     </div>
   </footer>
-
   <!-- ================= JS PRINCIPAL ================= -->
   <script src="js/aplicacion.js"></script>
 
