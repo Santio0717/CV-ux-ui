@@ -13,10 +13,13 @@
 
   <!-- Estilos -->
   <link rel="stylesheet" href="CSS/estilos.css" />
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 
 <body>
-
   <!-- ================= HEADER ================= -->
   <header class="site-header">
     <div class="container nav-wrap">
@@ -30,8 +33,6 @@
       </nav>
     </div>
   </header>
-
-
   <!-- ================= HERO ================= -->
   <main>
     <section id="inicio" class="hero section">
@@ -52,9 +53,6 @@
         </article>
       </div>
     </section>
-
-
-
     <!-- ================= PROYECTOS ================= -->
     <section id="proyectos" class="section alt">
       <div class="container">
@@ -158,10 +156,7 @@
         </div>
       </div>
     </section>
-
-
-
-    <!-- ================= TECNOLOGÍAS ================= -->
+    <!-- ================= TECNOLOGÍAS (CORREGIDO) ================= -->
     <section id="tecnologias" class="section">
       <div class="container">
 
@@ -171,100 +166,38 @@
 
         <div class="donut-grid">
 
-          <!-- UX/UI -->
-          <div class="donut-card"
-            data-title="UX/UI"
-            data-nivel="Semi-Senior"
-            data-porc="60"
-            data-desc="Diseño de interfaces, sistemas de diseño y prototipado."
-            data-color="#f39c12"
-            data-icon="🎨">
-
-            <svg class="donut" viewBox="0 0 36 36">
-              <path class="bg" d="M18 2 a16 16 0 1 1 0 32 a16 16 0 1 1 0 -32"/>
-              <path class="value" pathLength="100" data-end="60"
-                d="M18 2 a16 16 0 1 1 0 32 a16 16 0 1 1 0 -32"/>
-            </svg>
-            <div class="donut-title">UX/UI</div>
+          <div class="chart-card" data-color="#f39c12" data-label="UX/UI" data-value="60">
+            <canvas class="donut-chart"></canvas>
+            <h3 class="chart-title">UX/UI</h3>
           </div>
 
-          <!-- Frontend -->
-          <div class="donut-card"
-            data-title="Frontend"
-            data-nivel="Junior"
-            data-porc="40"
-            data-desc="HTML5, CSS3 y estructura."
-            data-color="#3498db"
-            data-icon="💻">
-
-            <svg class="donut" viewBox="0 0 36 36">
-              <path class="bg" d="M18 2 a16 16 0 1 1 0 32 a16 16 0 1 1 0 -32"/>
-              <path class="value" pathLength="100" data-end="40"
-                d="M18 2 a16 16 0 1 1 0 32 a16 16 0 1 1 0 -32"/>
-            </svg>
-            <div class="donut-title">Frontend</div>
+          <div class="chart-card" data-color="#3498db" data-label="Frontend" data-value="40">
+            <canvas class="donut-chart"></canvas>
+            <h3 class="chart-title">Frontend</h3>
           </div>
 
-          <!-- Motion -->
-          <div class="donut-card"
-            data-title="Motion"
-            data-nivel="Junior"
-            data-porc="30"
-            data-desc="Animación y microinteracciones."
-            data-color="#9b59b6"
-            data-icon="✨">
-
-            <svg class="donut" viewBox="0 0 36 36">
-              <path class="bg" d="M18 2 a16 16 0 1 1 0 32 a16 16 0 1 1 0 -32"/>
-              <path class="value" pathLength="100" data-end="30"
-                d="M18 2 a16 16 0 1 1 0 32 a16 16 0 1 1 0 -32"/>
-            </svg>
-            <div class="donut-title">Motion</div>
+          <div class="chart-card" data-color="#9b59b6" data-label="Motion" data-value="30">
+            <canvas class="donut-chart"></canvas>
+            <h3 class="chart-title">Motion</h3>
           </div>
 
-          <!-- Documentación -->
-          <div class="donut-card"
-            data-title="Documentación"
-            data-nivel="Junior"
-            data-porc="35"
-            data-desc="Notion, handoff y documentación."
-            data-color="#2ecc71"
-            data-icon="📝">
-
-            <svg class="donut" viewBox="0 0 36 36">
-              <path class="bg" d="M18 2 a16 16 0 1 1 0 32 a16 16 0 1 1 0 -32"/>
-              <path class="value" pathLength="100" data-end="35"
-                d="M18 2 a16 16 0 1 1 0 32 a16 16 0 1 1 0 -32"/>
-            </svg>
-            <div class="donut-title">Documentación</div>
+          <div class="chart-card" data-color="#2ecc71" data-label="Documentación" data-value="35">
+            <canvas class="donut-chart"></canvas>
+            <h3 class="chart-title">Documentación</h3>
           </div>
 
-          <!-- Producción -->
-          <div class="donut-card"
-            data-title="Producción"
-            data-nivel="Junior"
-            data-porc="35"
-            data-desc="GitHub, Jira y metodologías ágiles."
-            data-color="#e74c3c"
-            data-icon="⚙️">
-
-            <svg class="donut" viewBox="0 0 36 36">
-              <path class="bg" d="M18 2 a16 16 0 1 1 0 32 a16 16 0 1 1 0 -32"/>
-              <path class="value" pathLength="100" data-end="35"
-                d="M18 2 a16 16 0 1 1 0 32 a16 16 0 1 1 0 -32"/>
-            </svg>
-            <div class="donut-title">Producción</div>
+          <div class="chart-card" data-color="#e74c3c" data-label="Producción" data-value="35">
+            <canvas class="donut-chart"></canvas>
+            <h3 class="chart-title">Producción</h3>
           </div>
 
         </div>
 
         <!-- Tooltip -->
-        <div class="donut-tooltip" id="donutTip"></div>
+        <div id="chart-tooltip" class="chart-tooltip"></div>
+
       </div>
     </section>
-
-
-
     <!-- ================= CERTIFICADOS ================= -->
     <section id="certificados" class="section">
       <div class="container">
@@ -301,9 +234,6 @@
         </div>
       </div>
     </section>
-
-
-
     <!-- ================= CONTACTO ================= -->
     <section id="contacto" class="section">
       <div class="container contacto-grid">
@@ -345,9 +275,7 @@
 
       </div>
     </section>
-
   </main>
-
 
   <!-- ================= FOOTER ================= -->
   <footer class="footer-clean">
