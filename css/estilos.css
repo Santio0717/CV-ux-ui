@@ -15,14 +15,16 @@
   --docs:#2ecc71;
   --prod:#e74c3c;
 
-  --tooltip-bg:#1e1e1e;
-  --tooltip-fg:#fff;
-
   --glass:rgba(255,255,255,0.18);
   --glass-strong:rgba(255,255,255,0.28);
+
+  --tooltip-bg:#1e1e1e;
+  --tooltip-fg:#fff;
 }
 
-/* BASE */
+/* =====================================================
+   BASE
+===================================================== */
 *{ box-sizing:border-box; margin:0; padding:0; }
 
 body{
@@ -43,6 +45,7 @@ body{
 
 .container{ width:92%; max-width:1150px; margin:auto; }
 .section{ padding:64px 0; }
+
 .section.alt{
   background:rgba(255,255,255,.08);
   border-radius:16px;
@@ -93,8 +96,7 @@ a{text-decoration:none;color:inherit;}
 }
 
 .avatar{
-  width:110px;
-  height:110px;
+  width:110px;height:110px;
   border-radius:12px;
   object-fit:cover;
 }
@@ -161,10 +163,10 @@ a{text-decoration:none;color:inherit;}
 }
 .project:hover .thumb img{ transform:scale(1.06); }
 
-.tag-row{ 
-  display:flex; 
-  flex-wrap:wrap; 
-  gap:8px; 
+.tag-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
   margin-bottom:14px;
 }
 .tag{
@@ -175,67 +177,60 @@ a{text-decoration:none;color:inherit;}
 }
 
 /* =====================================================
-   DONUT ANYCHART — SECCIÓN TECNOLOGÍAS
+   TECNOLOGÍAS — 5 DONITAS (CHART.JS)
 ===================================================== */
 
-#tecnologias {
-  padding-top: 40px;
-  padding-bottom: 60px;
+.donut-grid-5{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:40px;
+  justify-items:center;
+  margin-top:40px;
 }
 
-.donut-wrapper {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  margin-top: 30px;
+.donut-item{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  position:relative;
 }
 
-.donut-chart-container {
-  width: 480px;
-  height: 480px;
-  position: relative;
-  overflow: visible !important; /* evita recortes */
+.mini-donut{
+  width:150px;
+  height:150px;
 }
 
-.donut-center-text {
-  position: absolute;
-  font-size: 2rem;
-  font-weight: 700;
-  text-align: center;
-  line-height: 1.3;
-  pointer-events: none;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: var(--ink);
-  opacity: 0.95;
-  -webkit-font-smoothing: antialiased;
+.donut-title-5{
+  margin-top:10px;
+  font-size:1rem;
+  font-weight:700;
+  text-align:center;
+  color:var(--ink);
 }
 
-@media (max-width: 600px) {
-  .donut-chart-container {
-    width: 300px;
-    height: 300px;
-  }
-
-  .donut-center-text {
-    font-size: 1.5rem;
-  }
+/* Tooltip para las donitas */
+#donutTooltip{
+  position:fixed;
+  background:#1e1e1e;
+  color:white;
+  padding:10px 14px;
+  border-radius:12px;
+  font-size:.9rem;
+  box-shadow:0 10px 25px rgba(0,0,0,.35);
+  pointer-events:none;
+  opacity:0;
+  transition:.18s ease;
+  z-index:99999;
 }
 
 /* =====================================================
    CONTACTO
 ===================================================== */
-
 .contact-wrapper{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:40px;
 }
-
-.contact-info p{ margin-bottom:8px; }
 
 .input-field.full{
   width:100%;
@@ -285,13 +280,11 @@ a{text-decoration:none;color:inherit;}
     grid-template-columns:1fr;
     text-align:center;
   }
-
   .avatar{
     margin:auto;
     width:120px;
     height:120px;
   }
-
   .contact-wrapper{
     grid-template-columns:1fr;
   }
