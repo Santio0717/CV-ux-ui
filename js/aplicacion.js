@@ -7,7 +7,7 @@ if (yearEl) {
 }
 
 /* =====================================================
-   DONITAS TECNOLOGÍAS – TOOLTIP FIJO
+   DONITAS TECNOLOGÍAS – TOOLTIP FIJO + ANIMACIÓN AL PRIMER HOVER
 ===================================================== */
 
 const donutItems = document.querySelectorAll(".donut-item");
@@ -17,57 +17,87 @@ donutItems.forEach(item => {
   const canvas = item.querySelector(".mini-donut");
   const tooltipBox = item.querySelector(".donut-fixed-tooltip");
 
-  const value = Number(item.dataset.value);
+  const finalValue = Number(item.dataset.value); // valor real
   const color = item.dataset.color;
   const label = item.dataset.label;
 
   /* =====================================================
-     CREAR DONA CON CHART.JS
+     1) CREAR DONA INICIAL EN 0% (SIN ANIMACIÓN)
   ===================================================== */
-  new Chart(canvas, {
+  const chart = new Chart(canvas, {
     type: "doughnut",
 
     data: {
       labels: [label],
       datasets: [{
-        data: [value, 100 - value],
+        data: [0, 100],  // empieza vacía
         backgroundColor: [color, "#e6e6e6"],
-        hoverBackgroundColor: [color, "#cccccc"],
         borderWidth: 0
       }]
     },
 
     options: {
-      cutout: "70%", // grosor del donut
-
+      cutout: "70%",
+      animation: false,
       plugins: {
         legend: { display: false },
-        tooltip: { enabled: false } // tooltip nativo desactivado
-      },
-
-      animation: {
-        duration: 1200,
-        easing: "easeOutCubic",
-        animateRotate: true
+        tooltip: { enabled: false }
       }
     }
   });
 
+  /* Marcar que aún NO se ha animado */
+  item.dataset.played = "false";
+
   /* =====================================================
-     MOSTRAR TOOLTIP FIJO AL PASAR EL MOUSE
+     2) ANIMACIÓN UNA SOLA VEZ CUANDO PASAS EL MOUSE
+  ===================================================== */
+  function animateOnce() {
+    if (item.dataset.played === "true") return; // ya animó antes
+
+    item.dataset.played = "true"; // marcar que ya animó
+
+    let current = 0;
+    const duration = 900; // duración total
+    const fps = 1000 / 60;
+    const steps = duration / fps;
+    const increment = finalValue / steps;
+
+    const interval = setInterval(() => {
+      current += increment;
+
+      if (current >= finalValue) {
+        current = finalValue;
+        clearInterval(interval);
+      }
+
+      chart.data.datasets[0].data[0] = current;
+      chart.data.datasets[0].data[1] = 100 - current;
+      chart.update();
+    }, fps);
+  }
+
+  /* =====================================================
+     3) MOSTRAR TOOLTIP + TRIGGER DE ANIMACIÓN
   ===================================================== */
   canvas.addEventListener("mouseenter", () => {
+
+    // activar animación si es primera vez
+    animateOnce();
+
     tooltipBox.innerHTML = `
       <strong>${label}</strong><br>
-      ${value}%
+      ${finalValue}%
     `;
+
     tooltipBox.style.border = `2px solid ${color}`;
     tooltipBox.style.boxShadow = `0 0 12px ${color}`;
+
     item.classList.add("show-tooltip");
   });
 
   /* =====================================================
-     OCULTAR TOOLTIP AL SALIR
+     4) OCULTAR TOOLTIP CUANDO SALES
   ===================================================== */
   canvas.addEventListener("mouseleave", () => {
     item.classList.remove("show-tooltip");
