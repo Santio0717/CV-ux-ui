@@ -1,305 +1,84 @@
 /* =====================================================
-   PALETA Y VARIABLES
+   AÑO AUTOMÁTICO
 ===================================================== */
-:root {
-  --cream-1:#f5e4cb;
-  --cream-2:#f2dfc2;
-  --cream-3:#f0d6b1;
-  --cream-4:#fbeed9;
-
-  --ink:#222;
-
-  --uxui:#f39c12;
-  --frontend:#3498db;
-  --motion:#9b59b6;
-  --docs:#2ecc71;
-  --prod:#e74c3c;
-
-  --tooltip-bg:#1e1e1e;
-  --tooltip-fg:#fff;
-
-  --glass:rgba(255,255,255,0.18);
-  --glass-strong:rgba(255,255,255,0.28);
+const yearEl = document.getElementById("year");
+if (yearEl) {
+  yearEl.textContent = new Date().getFullYear();
 }
 
 /* =====================================================
-   BASE
+   DONITAS – ANIMAR SOLO EN EL PRIMER HOVER
 ===================================================== */
-*{ margin:0; padding:0; box-sizing:border-box; }
 
-body{
-  font-family:'Inter',sans-serif;
-  line-height:1.6;
-  color:var(--ink);
-  background:linear-gradient(120deg,var(--cream-1),var(--cream-2),var(--cream-3),var(--cream-4));
-  background-size:400% 400%;
-  animation:bgMove 30s ease-in-out infinite;
-  background-attachment:fixed;
-}
+const donutItems = document.querySelectorAll(".donut-item");
 
-@keyframes bgMove {
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
-}
+donutItems.forEach(item => {
+  const canvas = item.querySelector(".mini-donut");
+  const label = item.dataset.label;
+  const value = Number(item.dataset.value);
+  const color = item.dataset.color;
 
-.container { width:92%; max-width:1150px; margin:auto; }
-.section { padding:64px 0; }
-.section.alt {
-  background:rgba(255,255,255,.08);
-  padding:52px;
-  border-radius:16px;
-}
+  const tooltip = document.createElement("div");
+  tooltip.classList.add("donut-fixed-tooltip");
+  item.appendChild(tooltip);
 
-h1,h2,h3 {
-  font-weight:700;
-  margin-bottom:12px;
-}
+  let animatedOnce = false;
 
-a { text-decoration:none; color:inherit; }
+  // Crear dona vacía inicialmente
+  const chart = new Chart(canvas, {
+    type: "doughnut",
+    data: {
+      labels: [label],
+      datasets: [{
+        data: [0, 100],
+        backgroundColor: [color, "#e6e6e6"],
+        borderWidth: 0
+      }]
+    },
+    options: {
+      cutout: "70%",
+      animation: { duration: 0 },
+      plugins: {
+        legend: { display: false },
+        tooltip: { enabled: false }
+      }
+    }
+  });
+
+  /* =====================================================
+     MOSTRAR TOOLTIP + ANIMACIÓN SOLO UNA VEZ
+  ====================================================== */
+  item.addEventListener("mouseenter", () => {
+    tooltip.innerHTML = `<strong>${label}</strong><br>${value}%`;
+    tooltip.style.opacity = 1;
+
+    if (!animatedOnce) {
+      animatedOnce = true;
+      animateDonut(chart, value);
+    }
+  });
+
+  item.addEventListener("mouseleave", () => {
+    tooltip.style.opacity = 0;
+  });
+});
 
 /* =====================================================
-   HEADER
+   FUNCIÓN DE ANIMACIÓN PROGRESIVA
 ===================================================== */
-.site-header {
-  background:rgba(255,255,255,.25);
-  border-bottom:1px solid rgba(0,0,0,.05);
-  backdrop-filter:blur(10px);
-  position:sticky;
-  top:0;
-  z-index:10;
-}
+function animateDonut(chart, finalValue) {
+  let progress = 0;
+  const step = 2;
 
-.nav-wrap {
-  padding:12px 0;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
+  const interval = setInterval(() => {
+    progress += step;
 
-.main-nav { display:flex; gap:18px; }
-.main-nav a { font-weight:600; transition:color .25s; }
-.main-nav a:hover { color:var(--uxui); }
+    if (progress >= finalValue) {
+      progress = finalValue;
+      clearInterval(interval);
+    }
 
-/* =====================================================
-   HERO
-===================================================== */
-.hero-card{
-  background:var(--glass);
-  border-radius:20px;
-  backdrop-filter:blur(14px);
-  border:1px solid rgba(255,255,255,.3);
-  box-shadow:0 5px 20px rgba(0,0,0,.07);
-  max-width:960px;
-  margin:auto;
-  padding:36px 28px;
-  display:grid;
-  grid-template-columns:120px 1fr;
-  gap:22px;
-}
-
-.avatar{
-  width:110px;
-  height:110px;
-  border-radius:12px;
-  object-fit:cover;
-}
-
-.kicker { font-weight:600; opacity:.8; }
-.display { font-size:1.32rem; }
-.sub { opacity:.9; margin-bottom:10px; }
-
-/* =====================================================
-   BOTONES
-===================================================== */
-.btn{
-  display:inline-block;
-  padding:12px 22px;
-  border-radius:12px;
-  font-weight:600;
-  cursor:pointer;
-  transition:.25s;
-  color:#fff;
-}
-.btn:hover { transform:translateY(-3px); }
-
-.btn.red{ background:linear-gradient(135deg,#d72638,#b71c1c); }
-.btn.ghost{ background:transparent; color:var(--ink); box-shadow:inset 0 0 0 2px var(--uxui); }
-.btn.primary{ background:linear-gradient(135deg,#0077b6,#005f87); }
-.btn.whatsapp{ background:linear-gradient(135deg,#25D366,#128C7E); }
-.btn.linkedin{ background:linear-gradient(135deg,#0077B5,#005a8d); }
-.btn.case{ background:linear-gradient(135deg,#b85c38,#8f4428); }
-.btn.big { padding:16px 26px; font-size:1.05rem; }
-
-/* =====================================================
-   PROYECTOS
-===================================================== */
-.grid.cards{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:24px;
-  margin-top:20px;
-}
-
-.card{
-  background:var(--glass-strong);
-  border-radius:16px;
-  padding:20px;
-  border:1px solid rgba(255,255,255,0.3);
-  box-shadow:0 8px 24px rgba(0,0,0,.06);
-  transition:.25s;
-}
-
-.card:hover{
-  transform:translateY(-4px);
-  box-shadow:0 16px 32px rgba(0,0,0,.10);
-}
-
-.thumb{
-  aspect-ratio:16/9;
-  border-radius:12px;
-  overflow:hidden;
-  margin-bottom:12px;
-}
-
-.thumb img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transform:scale(1.03);
-  transition:.6s;
-}
-
-.project:hover .thumb img{ transform:scale(1.06); }
-
-.tag-row{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-bottom:12px;
-}
-
-.tag{
-  background:rgba(0,0,0,.08);
-  padding:4px 8px;
-  border-radius:999px;
-  font-size:.78rem;
-}
-
-/* =====================================================
-   TECNOLOGÍAS — DONITAS
-===================================================== */
-
-.donut-grid-5 {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  justify-items:center;
-  align-items:flex-start;
-  gap: 70px 40px;
-  margin-top:40px;
-}
-
-.donut-item {
-  position: relative;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  text-align:center;
-  min-height:200px;
-}
-
-.mini-donut {
-  width:150px;
-  height:150px;
-}
-
-/* Tooltip fijo */
-.donut-fixed-tooltip {
-  position:absolute;
-  top:50%;
-  left:170px;
-  transform:translateY(-50%);
-  background:#000;
-  color:#fff;
-  padding:8px 14px;
-  border-radius:10px;
-  opacity:0;
-  pointer-events:none;
-  transition:opacity .2s;
-  font-size:.9rem;
-  white-space:nowrap;
-}
-
-/* =====================================================
-   CERTIFICADOS
-===================================================== */
-.diplomas-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(290px,1fr));
-  gap:32px;
-  margin-top:30px;
-}
-
-.card p { margin-bottom:6px; }
-
-/* =====================================================
-   CONTACTO
-===================================================== */
-.contact-wrapper{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:40px;
-}
-
-.input-field.full{
-  width:100%;
-  padding:12px 14px;
-  border-radius:10px;
-  border:1px solid #ccc;
-  margin-top:4px;
-  margin-bottom:14px;
-  font-size:1rem;
-}
-
-.full-btn{
-  width:100%;
-  padding:14px;
-  border-radius:12px;
-  font-size:1rem;
-}
-
-/* =====================================================
-   FOOTER
-===================================================== */
-.new-footer{
-  text-align:center;
-  padding:32px 0;
-  margin-top:40px;
-  background:rgba(255,255,255,0.45);
-  border-top:1px solid rgba(0,0,0,0.1);
-}
-
-.footer-main{ font-size:1.1rem; font-weight:600; }
-.footer-sub{ opacity:.7; margin-top:6px; font-size:.9rem; }
-
-/* =====================================================
-   RESPONSIVE
-===================================================== */
-@media(max-width:820px){
-  .hero-card{
-    grid-template-columns:1fr;
-    text-align:center;
-  }
-  .avatar{
-    margin:auto;
-    width:120px;
-    height:120px;
-  }
-  .contact-wrapper{
-    grid-template-columns:1fr;
-  }
-  .donut-fixed-tooltip {
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+    chart.data.datasets[0].data = [progress, 100 - progress];
+    chart.update();
+  }, 20);
 }
