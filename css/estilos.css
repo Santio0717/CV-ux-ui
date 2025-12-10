@@ -93,7 +93,8 @@ a{text-decoration:none;color:inherit;}
 }
 
 .avatar{
-  width:110px;height:110px;
+  width:110px;
+  height:110px;
   border-radius:12px;
   object-fit:cover;
 }
@@ -164,7 +165,7 @@ a{text-decoration:none;color:inherit;}
   display:flex; 
   flex-wrap:wrap; 
   gap:8px; 
-  margin-bottom:12px;  /* SEPARACIÓN EXTRA COMO PEDISTE */
+  margin-bottom:14px;
 }
 .tag{
   background:rgba(0,0,0,.08);
@@ -177,18 +178,25 @@ a{text-decoration:none;color:inherit;}
    DONUT ANYCHART — SECCIÓN TECNOLOGÍAS
 ===================================================== */
 
+#tecnologias {
+  padding-top: 40px;
+  padding-bottom: 60px;
+}
+
 .donut-wrapper {
-  position: relative;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  position: relative;
+  margin-top: 30px;
 }
 
 .donut-chart-container {
   width: 480px;
   height: 480px;
   position: relative;
+  overflow: visible !important; /* evita recortes */
 }
 
 .donut-center-text {
@@ -199,18 +207,21 @@ a{text-decoration:none;color:inherit;}
   line-height: 1.3;
   pointer-events: none;
   top: 50%;
-  transform: translateY(-50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
   color: var(--ink);
+  opacity: 0.95;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Responsive donut */
 @media (max-width: 600px) {
   .donut-chart-container {
     width: 300px;
     height: 300px;
   }
+
   .donut-center-text {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
   }
 }
 
@@ -274,11 +285,13 @@ a{text-decoration:none;color:inherit;}
     grid-template-columns:1fr;
     text-align:center;
   }
+
   .avatar{
     margin:auto;
     width:120px;
     height:120px;
   }
+
   .contact-wrapper{
     grid-template-columns:1fr;
   }
