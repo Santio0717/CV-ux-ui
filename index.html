@@ -14,13 +14,11 @@
   <!-- Estilos -->
   <link rel="stylesheet" href="CSS/estilos.css" />
 
-  <!-- Chart.js CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+  <!-- AnyChart -->
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-bundle.min.js"></script>
 </head>
 
 <body>
-
   <!-- ================= HEADER ================= -->
   <header class="site-header">
     <div class="container nav-wrap">
@@ -34,8 +32,6 @@
       </nav>
     </div>
   </header>
-
-
   <!-- ================= HERO ================= -->
   <main>
     <section id="inicio" class="hero section">
@@ -56,9 +52,6 @@
         </article>
       </div>
     </section>
-
-
-
     <!-- ================= PROYECTOS ================= -->
     <section id="proyectos" class="section alt">
       <div class="container">
@@ -162,56 +155,58 @@
         </div>
       </div>
     </section>
-
-
-
-
-    <!-- ================= TECNOLOGÍAS ================= -->
+    <!-- ================= DONUT ÚNICA (NUEVA SECCIÓN TECNOLOGÍAS) ================= -->
     <section id="tecnologias" class="section">
-      <div class="container">
+      <div class="container donut-wrapper">
 
-        <div class="section-head">
-          <h2 class="section-title">Tecnologías</h2>
+        <h2 class="section-title" style="text-align:center; margin-bottom:28px;">
+          Habilidades principales
+        </h2>
+
+        <div id="skillsDonut" class="donut-chart-container"></div>
+
+        <div class="donut-center-text">
+          UX / UI <br> Designer
         </div>
-
-        <div class="donut-grid">
-
-          <div class="chart-card" data-color="#f39c12" data-label="UX/UI" data-value="60">
-            <canvas class="donut-chart"></canvas>
-            <h3 class="chart-title">UX/UI</h3>
-          </div>
-
-          <div class="chart-card" data-color="#3498db" data-label="Frontend" data-value="40">
-            <canvas class="donut-chart"></canvas>
-            <h3 class="chart-title">Frontend</h3>
-          </div>
-
-          <div class="chart-card" data-color="#9b59b6" data-label="Motion" data-value="30">
-            <canvas class="donut-chart"></canvas>
-            <h3 class="chart-title">Motion</h3>
-          </div>
-
-          <div class="chart-card" data-color="#2ecc71" data-label="Documentación" data-value="35">
-            <canvas class="donut-chart"></canvas>
-            <h3 class="chart-title">Documentación</h3>
-          </div>
-
-          <div class="chart-card" data-color="#e74c3c" data-label="Producción" data-value="35">
-            <canvas class="donut-chart"></canvas>
-            <h3 class="chart-title">Producción</h3>
-          </div>
-
-        </div>
-
-        <!-- Tooltip -->
-        <div id="chart-tooltip" class="chart-tooltip"></div>
 
       </div>
     </section>
+    <!-- ================= CERTIFICADOS ================= -->
+    <section id="certificados" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">Certificados</h2>
+        </div>
 
+        <div class="grid cards diplomas-grid">
 
+          <article class="card hoverable">
+            <h3>Certificado EF SET</h3>
+            <p>Inglés nivel oficial.</p>
+            <div class="card-ctas separated">
+              <a class="btn primary" href="activos/diplomas/Certificado_EF_SET.pdf" target="_blank">Ver certificado</a>
+            </div>
+          </article>
 
+          <article class="card hoverable">
+            <h3>Fundamentos de programación</h3>
+            <p>Lógica y fundamentos.</p>
+            <div class="card-ctas separated">
+              <a class="btn primary" href="activos/diplomas/Fundamentos_de_programacion.jpeg" target="_blank">Ver certificado</a>
+            </div>
+          </article>
 
+          <article class="card hoverable">
+            <h3>Adobe Illustrator</h3>
+            <p>Gráficos vectoriales.</p>
+            <div class="card-ctas separated">
+              <a class="btn primary" href="activos/diplomas/Manejo_Adobe_Illustrator.pdf" target="_blank">Ver certificado</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
     <!-- ================= CONTACTO ================= -->
     <section id="contacto" class="section">
       <div class="container contacto-grid contact-wrapper">
@@ -230,7 +225,6 @@
             <a class="btn linkedin big" href="https://www.linkedin.com/in/santiago-murillo-ramírez-795447235" target="_blank">LinkedIn</a>
           </div>
         </div>
-
         <!-- DERECHA: FORMULARIO -->
         <form class="contact-form card"
           action="https://formspree.io/f/myznakow"
@@ -255,13 +249,7 @@
 
       </div>
     </section>
-
-
-
-
   </main>
-
-
   <!-- ================= FOOTER NUEVO ================= -->
   <footer class="footer-clean new-footer">
     <div class="container">
@@ -269,10 +257,7 @@
       <p class="footer-sub">Diseño y desarrollo por S. Murillo</p>
     </div>
   </footer>
-
-
   <!-- ================= JS PRINCIPAL ================= -->
   <script src="js/aplicacion.js"></script>
-
 </body>
 </html>
