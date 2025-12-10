@@ -23,8 +23,7 @@
 }
 
 /* BASE */
-*{ box-sizing:border-box; }
-html,body{ margin:0; padding:0; }
+*{ box-sizing:border-box; margin:0; padding:0; }
 
 body{
   font-family:'Inter',sans-serif;
@@ -42,11 +41,7 @@ body{
   100%{background-position:0% 50%}
 }
 
-h1,h2,h3{ margin:0 0 12px; font-weight:700; }
-a{text-decoration:none;color:inherit;}
-
 .container{ width:92%; max-width:1150px; margin:auto; }
-
 .section{ padding:64px 0; }
 .section.alt{
   background:rgba(255,255,255,.08);
@@ -54,7 +49,12 @@ a{text-decoration:none;color:inherit;}
   padding:52px;
 }
 
-/* HEADER */
+h1,h2,h3{ font-weight:700; margin-bottom:12px; }
+a{text-decoration:none;color:inherit;}
+
+/* =====================================================
+   HEADER
+===================================================== */
 .site-header{
   background:rgba(255,255,255,.25);
   border-bottom:1px solid rgba(0,0,0,.05);
@@ -71,18 +71,13 @@ a{text-decoration:none;color:inherit;}
   align-items:center;
 }
 
-.main-nav{
-  display:flex;
-  gap:18px;
-}
-
-.main-nav a{
-  font-weight:600;
-  transition:color .25s;
-}
+.main-nav{ display:flex; gap:18px; }
+.main-nav a{ font-weight:600; transition:.25s; }
 .main-nav a:hover{ color:var(--uxui); }
 
-/* HERO */
+/* =====================================================
+   HERO
+===================================================== */
 .hero-card{
   background:var(--glass);
   border-radius:20px;
@@ -106,7 +101,9 @@ a{text-decoration:none;color:inherit;}
 .display{ font-size:1.32rem; }
 .sub{ opacity:.9; margin-bottom:10px; }
 
-/* BOTONES */
+/* =====================================================
+   BOTONES
+===================================================== */
 .btn{
   display:inline-block;
   padding:12px 22px;
@@ -114,7 +111,7 @@ a{text-decoration:none;color:inherit;}
   font-weight:600;
   cursor:pointer;
   border:none;
-  transition:.25s ease;
+  transition:.25s;
   color:#fff;
 }
 .btn:hover{ transform:translateY(-3px); }
@@ -125,15 +122,11 @@ a{text-decoration:none;color:inherit;}
 .btn.whatsapp{background:linear-gradient(135deg,#25D366,#128C7E);}
 .btn.linkedin{background:linear-gradient(135deg,#0077B5,#005a8d);}
 .btn.case{background:linear-gradient(135deg,#b85c38,#8f4428);}
+.btn.big{ padding:16px 26px; font-size:1.05rem; }
 
-.card-ctas.separated{
-  margin-top:16px;
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-}
-
-/* PROYECTOS */
+/* =====================================================
+   PROYECTOS
+===================================================== */
 .grid.cards{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
@@ -146,7 +139,7 @@ a{text-decoration:none;color:inherit;}
   border-radius:16px;
   padding:20px;
   box-shadow:0 8px 24px rgba(0,0,0,.06);
-  transition:.25s ease;
+  transition:.25s;
   border:1px solid rgba(255,255,255,0.3);
 }
 .card:hover{
@@ -160,22 +153,14 @@ a{text-decoration:none;color:inherit;}
   overflow:hidden;
   margin-bottom:12px;
 }
-
 .thumb img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
+  width:100%; height:100%; object-fit:cover;
   transform:scale(1.03);
-  transition:transform .6s ease;
+  transition:transform .6s;
 }
 .project:hover .thumb img{ transform:scale(1.06); }
 
-/* TAGS */
-.tag-row{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-}
+.tag-row{ display:flex; flex-wrap:wrap; gap:8px; }
 .tag{
   background:rgba(0,0,0,.08);
   padding:4px 8px;
@@ -184,7 +169,7 @@ a{text-decoration:none;color:inherit;}
 }
 
 /* =====================================================
-   DONUTS – NUEVA VERSIÓN CON CHART.JS
+   TECNOLOGÍAS — CHART.JS
 ===================================================== */
 
 .donut-grid{
@@ -201,9 +186,8 @@ a{text-decoration:none;color:inherit;}
   padding:26px;
   border-radius:24px;
   text-align:center;
-  transition:.35s ease;
+  transition:.35s;
 }
-
 .chart-card:hover{
   transform:translateY(-6px);
   box-shadow:0 14px 28px rgba(0,0,0,.18);
@@ -215,7 +199,7 @@ a{text-decoration:none;color:inherit;}
   font-weight:700;
 }
 
-/* Tooltip de Chart.js personalizado */
+/* Tooltip personalizado */
 .chart-tooltip{
   position:fixed;
   pointer-events:none;
@@ -226,14 +210,65 @@ a{text-decoration:none;color:inherit;}
   border-radius:14px;
   font-size:.92rem;
   box-shadow:0 12px 32px rgba(0,0,0,.35);
-  transition:opacity .2s ease;
+  transition:opacity .15s ease;
   z-index:9999;
+}
+
+/* =====================================================
+   CONTACTO
+===================================================== */
+
+.contact-wrapper{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+}
+
+.contact-info p{ margin-bottom:8px; }
+
+.input-field.full{
+  width:100%;
+  padding:12px 14px;
+  border-radius:10px;
+  border:1px solid #ccc;
+  margin-top:4px;
+  margin-bottom:14px;
+  font-size:1rem;
+}
+
+.full-btn{
+  width:100%;
+  padding:14px;
+  border-radius:12px;
+  font-size:1rem;
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+.new-footer{
+  text-align:center;
+  padding:32px 0;
+  margin-top:40px;
+  background:rgba(255,255,255,0.45);
+  backdrop-filter:blur(10px);
+  border-top:1px solid rgba(0,0,0,0.1);
+}
+
+.footer-main{
+  font-size:1.1rem;
+  font-weight:600;
+}
+
+.footer-sub{
+  opacity:0.7;
+  margin-top:6px;
+  font-size:.9rem;
 }
 
 /* =====================================================
    RESPONSIVE
 ===================================================== */
-
 @media(max-width:820px){
   .hero-card{
     grid-template-columns:1fr;
@@ -244,7 +279,7 @@ a{text-decoration:none;color:inherit;}
     width:120px;
     height:120px;
   }
-  .contacto-grid{
+  .contact-wrapper{
     grid-template-columns:1fr;
   }
 }
