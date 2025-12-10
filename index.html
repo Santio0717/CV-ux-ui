@@ -14,11 +14,13 @@
   <!-- Estilos -->
   <link rel="stylesheet" href="CSS/estilos.css" />
 
-  <!-- AnyChart -->
-  <script src="https://cdn.anychart.com/releases/v8/js/anychart-bundle.min.js"></script>
+  <!-- ANYCHART -->
+  <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-base.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-pie.min.js"></script>
 </head>
 
 <body>
+
   <!-- ================= HEADER ================= -->
   <header class="site-header">
     <div class="container nav-wrap">
@@ -32,6 +34,7 @@
       </nav>
     </div>
   </header>
+
   <!-- ================= HERO ================= -->
   <main>
     <section id="inicio" class="hero section">
@@ -52,6 +55,7 @@
         </article>
       </div>
     </section>
+
     <!-- ================= PROYECTOS ================= -->
     <section id="proyectos" class="section alt">
       <div class="container">
@@ -155,22 +159,21 @@
         </div>
       </div>
     </section>
-    <!-- ================= DONUT ÚNICA (NUEVA SECCIÓN TECNOLOGÍAS) ================= -->
+
+    <!-- ================= TECNOLOGÍAS (NUEVA DONA) ================= -->
     <section id="tecnologias" class="section">
-      <div class="container donut-wrapper">
+      <div class="container">
+        
+        <h2 class="section-title">Tecnologías</h2>
 
-        <h2 class="section-title" style="text-align:center; margin-bottom:28px;">
-          Habilidades principales
-        </h2>
-
-        <div id="skillsDonut" class="donut-chart-container"></div>
-
-        <div class="donut-center-text">
-          UX / UI <br> Designer
+        <div class="donut-wrapper">
+          <div id="donutChart" class="donut-chart-container"></div>
+          <div class="donut-center-text">UX / UI<br>Designer</div>
         </div>
 
       </div>
     </section>
+
     <!-- ================= CERTIFICADOS ================= -->
     <section id="certificados" class="section">
       <div class="container">
@@ -207,11 +210,11 @@
         </div>
       </div>
     </section>
+
     <!-- ================= CONTACTO ================= -->
     <section id="contacto" class="section">
-      <div class="container contacto-grid contact-wrapper">
+      <div class="container contact-wrapper">
 
-        <!-- IZQUIERDA -->
         <div class="contact-info">
           <h2 class="section-title">Contacto</h2>
 
@@ -225,8 +228,8 @@
             <a class="btn linkedin big" href="https://www.linkedin.com/in/santiago-murillo-ramírez-795447235" target="_blank">LinkedIn</a>
           </div>
         </div>
-        <!-- DERECHA: FORMULARIO -->
-        <form class="contact-form card"
+
+        <form class="card contact-form"
           action="https://formspree.io/f/myznakow"
           method="POST">
 
@@ -241,7 +244,7 @@
           </label>
 
           <label>Mensaje
-            <textarea class="input-field full" name="mensaje" rows="5" required></textarea>
+            <textarea class="input-field full" name="mensaje" rows="4" required></textarea>
           </label>
 
           <button class="btn primary full-btn" type="submit">Enviar</button>
@@ -249,15 +252,17 @@
 
       </div>
     </section>
+
   </main>
-  <!-- ================= FOOTER NUEVO ================= -->
-  <footer class="footer-clean new-footer">
-    <div class="container">
-      <p class="footer-main">© <span id="year"></span> · Portafolio de Santiago Murillo</p>
-      <p class="footer-sub">Diseño y desarrollo por S. Murillo</p>
-    </div>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="new-footer">
+    <p class="footer-main">© <span id="year"></span> · Portafolio de Santiago Murillo</p>
+    <p class="footer-sub">Diseño y desarrollo por S. Murillo</p>
   </footer>
+
   <!-- ================= JS PRINCIPAL ================= -->
   <script src="js/aplicacion.js"></script>
+
 </body>
 </html>
