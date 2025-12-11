@@ -19,31 +19,37 @@
       padding: 32px;
       border-radius: 16px;
       box-shadow: 0 8px 20px rgba(0,0,0,.08);
+      margin-bottom: 50px;
     }
 
     .case-title {
-      font-size: 2rem;
-      margin-bottom: 18px;
+      font-size: 2.2rem;
       text-align: center;
+      margin-bottom: 20px;
     }
 
-    /* Tabs UX */
+    /* TABS */
     .ux-tabs {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin: 25px 0 35px;
       justify-content: center;
+      gap: 12px;
+      margin: 25px 0 35px;
     }
 
     .ux-tab {
-      padding: 10px 18px;
+      padding: 10px 20px;
       border-radius: 40px;
       background: #e8dfd2;
       border: 1px solid #cfc4b4;
       cursor: pointer;
       font-weight: 600;
       transition: .25s;
+      font-size: .95rem;
+    }
+
+    .ux-tab:hover {
+      background: #d8cebf;
     }
 
     .ux-tab.active {
@@ -52,6 +58,7 @@
       transform: scale(1.05);
     }
 
+    /* Secciones filtrables */
     .ux-section {
       display: none;
       animation: fadeIn .35s ease;
@@ -62,12 +69,13 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
+    /* Botones inferiores */
     .case-links {
-      margin-top: 38px;
+      margin-top: 40px;
       display: flex;
       justify-content: center;
       gap: 18px;
@@ -99,18 +107,21 @@
       <h2>Investigación · UX Research</h2>
 
       <p>
-        Este proyecto fue desarrollado durante un intercambio académico en la 
-        <strong>Universidad Miguel Hernández (España)</strong>, iniciando con una fase de 
-        investigación orientada a entender las necesidades de usuarios con baja visión
-        al interactuar con plataformas digitales.
+        El proyecto se desarrolló durante un intercambio académico en la 
+        <strong>Universidad Miguel Hernández (España)</strong>, iniciando con una investigación
+        enfocada en las dificultades que enfrentan personas con baja visión al usar plataformas digitales.
       </p>
 
       <ul>
-        <li>Análisis de la competencia en librerías digitales accesibles.</li>
-        <li>Identificación de barreras visuales comunes: contraste, tamaño de texto y estructura.</li>
-        <li>Definición de dos perfiles clave: usuario lector y administrador.</li>
-        <li>Mapeo del flujo ideal para lectura, compra y administración de contenido.</li>
+        <li>Análisis comparativo de librerías digitales accesibles.</li>
+        <li>Identificación de barreras: contraste insuficiente, tipografías pequeñas y falta de estructura jerárquica.</li>
+        <li>Definición de dos perfiles clave: <strong>lector</strong> y <strong>administrador</strong>.</li>
+        <li>Mapa del flujo ideal para lectura, compra y gestión de contenido.</li>
       </ul>
+
+      <p>
+        Esta investigación fundamentó todo el diseño, priorizando accesibilidad, claridad visual y rutas de navegación limpias.
+      </p>
     </section>
 
     <!-- ============================
@@ -121,19 +132,15 @@
       <h2>UX/UI y Diseño</h2>
 
       <ul>
-        <li><strong>Diferenciación de Perfiles:</strong> Diseño de pantallas para cliente y administrador utilizando rutas separadas.</li>
+        <li><strong>Diferenciación de perfiles:</strong> Se diseñaron pantallas específicas para cliente y administrador, evitando confusiones en el acceso.</li>
 
-        <li><strong>Compromiso Inicial:</strong> Un carrusel automático destaca novedades y descuentos al ingresar.</li>
+        <li><strong>Compromiso inicial:</strong> Un carrusel automático destaca novedades y descuentos desde la primera interacción.</li>
 
-        <li><strong>Microinteracciones:</strong> Hover con relieve en libros para mejorar el feedback visual.</li>
+        <li><strong>Microinteracciones visuales:</strong> Los libros tienen animación de relieve al pasar el cursor para reforzar el feedback visual.</li>
 
-        <li><strong>Flujo de Compra:</strong>
-          El usuario accede al libro → revisa sinopsis → confirma compra → ingresa datos de envío → recibe mensaje final.
-        </li>
+        <li><strong>Flujo de compra claro:</strong> Selección → sinopsis → compra → datos de envío → mensaje de confirmación.</li>
 
-        <li><strong>Mensajes de Seguridad:</strong>
-          Ventana emergente para restringir estadísticas a administradores.
-        </li>
+        <li><strong>Gestión de seguridad:</strong> Una ventana emergente limita el acceso a estadísticas solo para administradores.</li>
       </ul>
 
     </section>
@@ -146,15 +153,16 @@
       <h2>Accesibilidad</h2>
 
       <p>
-        El proyecto se centró especialmente en mejorar la experiencia web de personas con baja visión.
+        La accesibilidad fue el pilar principal del proyecto, especialmente para usuarios con baja visión.
       </p>
 
       <ul>
-        <li>Aumento de contraste en títulos, fondos y botones.</li>
-        <li>Componentes con contenedores grandes para evitar esfuerzo visual.</li>
-        <li>Interacciones con enfoque claro y retroalimentación inmediata.</li>
-        <li>Estructura basada en WCAG para lectura rápida y navegación segura.</li>
+        <li>Contraste alto en textos, fondos y botones.</li>
+        <li>Componentes amplios para reducir el esfuerzo visual.</li>
+        <li>Enfoques y estados activos visibles en todos los elementos interactivos.</li>
+        <li>Estructura basada en pautas WCAG para lectura rápida y segura.</li>
       </ul>
+
     </section>
 
     <!-- ============================
@@ -165,14 +173,14 @@
       <h2>Prototipado</h2>
 
       <p>
-        El prototipo fue elaborado completamente en <strong>Figma</strong>, optimizado para dispositivos de escritorio.
+        El prototipo fue construido en <strong>Figma</strong>, orientado exclusivamente a dispositivos de escritorio.
       </p>
 
       <ul>
-        <li>Diseño y codificación de la ventana emergente de seguridad.</li>
-        <li>Animaciones suaves de relieve en los libros.</li>
-        <li>Componentes reutilizables: tarjetas de libros, sliders, formularios.</li>
-        <li>Prototipo funcional de flujo completo de compra y administración.</li>
+        <li>Programación y diseño de la ventana emergente de restricción de acceso.</li>
+        <li>Microanimaciones en hover y tarjetas de libros.</li>
+        <li>Componentes reutilizables para secciones completas de la plataforma.</li>
+        <li>Simulación completa del flujo de lectura y compra.</li>
       </ul>
 
     </section>
@@ -190,14 +198,15 @@
   </main>
 
   <!-- ============================
-       SCRIPT DE TABS UX
-  ============================= -->
+       SCRIPT TABS
+    ============================= -->
   <script>
     const tabs = document.querySelectorAll(".ux-tab");
     const sections = document.querySelectorAll(".ux-section");
 
     tabs.forEach(tab => {
       tab.addEventListener("click", () => {
+
         tabs.forEach(t => t.classList.remove("active"));
         sections.forEach(s => s.classList.remove("active"));
 
