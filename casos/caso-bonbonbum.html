@@ -10,7 +10,7 @@
 
   <style>
     /* ======================
-       ESTILOS ESPECÍFICOS PARA LOS CASOS
+       ESTILOS ESPECÍFICOS PARA CASOS DE ESTUDIO
     ====================== */
 
     body.case-page {
@@ -23,31 +23,38 @@
       padding: 32px;
       border-radius: 16px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
+      margin-bottom: 50px;
     }
 
     .case-title {
-      font-size: 2rem;
-      margin-bottom: 18px;
+      font-size: 2.1rem;
       text-align: center;
+      margin-bottom: 20px;
+      font-weight: 700;
     }
 
-    /* Botones categorías */
+    /* ---------- BOTONES DE TABS ---------- */
     .ux-tabs {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin: 25px 0 35px;
       justify-content: center;
+      gap: 12px;
+      margin: 25px 0 35px;
     }
 
     .ux-tab {
-      padding: 10px 18px;
+      padding: 10px 20px;
       border-radius: 40px;
       background: #e8dfd2;
       border: 1px solid #cfc4b4;
       cursor: pointer;
       font-weight: 600;
       transition: .25s;
+      font-size: .95rem;
+    }
+
+    .ux-tab:hover {
+      background: #d8cebf;
     }
 
     .ux-tab.active {
@@ -56,9 +63,10 @@
       transform: scale(1.05);
     }
 
+    /* ---------- SECCIONES DE CONTENIDO ---------- */
     .ux-section {
       display: none;
-      animation: fadeIn .4s ease;
+      animation: fadeIn .35s ease;
     }
 
     .ux-section.active {
@@ -66,13 +74,20 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    /* Botones inferiores */
+    /* ---------- BOTONES INFERIORES ---------- */
     .case-links {
-      margin-top: 38px;
+      margin-top: 40px;
       display: flex;
       justify-content: center;
       gap: 18px;
@@ -86,7 +101,7 @@
     <h1 class="case-title">Bon Bon Bum</h1>
 
     <!-- =====================
-         TABS UX
+         TABS DE CATEGORÍAS UX
     ===================== -->
     <div class="ux-tabs">
       <button class="ux-tab active" data-target="ux-research">UX Research</button>
@@ -97,85 +112,84 @@
     </div>
 
     <!-- =====================
-         CONTENIDO UX RESEARCH
+         SECCIÓN UX RESEARCH
     ===================== -->
     <section id="ux-research" class="ux-section active">
       <h2>Investigación · UX Research</h2>
       <p>
-        Este proyecto comenzó con un análisis estructural del contenido de Bon Bon Bum,
-        identificando sus pilares narrativos: historia, sabores, conexión emocional y presencia digital.
+        Este proyecto inició con un análisis estructural del contenido digital de Bon Bon Bum,
+        identificando oportunidades en su arquitectura informacional, narrativa visual y orden de
+        presentación de elementos clave como sabores, historia y datos curiosos.
       </p>
 
       <p>
-        Se estudió cómo marcas similares estructuran sus sitios informativos y se definió una arquitectura
-        basada en claridad, rapidez de escaneo visual y jerarquía simple para usuarios ocasionales.
+        Se estudiaron referencias de marcas similares para definir una estructura más clara,
+        orientada a usuarios de navegación rápida y exploración visual.
       </p>
     </section>
 
     <!-- =====================
-         CONTENIDO UX DESIGN
+         SECCIÓN UX DESIGN
     ===================== -->
     <section id="ux-design" class="ux-section">
       <h2>UX/UI y Diseño</h2>
 
       <ul>
-        <li><strong>Organización de Contenido (UX):</strong> Se estructuró la información en secciones claras: “Sabores”, “Historia”, “Curiosidades” y “Contactar”.</li>
+        <li><strong>Arquitectura de contenido:</strong> Se definieron secciones principales para estructurar el flujo narrativo.</li>
 
-        <li><strong>Elementos Visuales (UI):</strong> Se aplicó paleta de colores basada en la identidad de la marca.</li>
+        <li><strong>Componentes visuales:</strong> Se aplicó una paleta coherente con la identidad de la marca.</li>
 
-        <li><strong>Jerarquía Visual:</strong> Se segmentó la sección “Curiosidades” en seis bloques visuales con colorimetría asociada.</li>
+        <li><strong>Jerarquía visual clara:</strong> Contenido dividido en bloques de fácil lectura.</li>
 
-        <li><strong>Navegación:</strong> Se integró un footer con acciones clave: inicio, redes sociales y contacto.</li>
+        <li><strong>Navegación intuitiva:</strong> Footer con accesos directos a redes y contacto.</li>
       </ul>
     </section>
 
     <!-- =====================
-         CONTENIDO PROTOTIPADO
+         SECCIÓN PROTOTIPADO
     ===================== -->
     <section id="prototipado" class="ux-section">
       <h2>Prototipado</h2>
 
       <p>
-        Se prototipó en Figma bajo un modelo de MacBook Pro 16", empleando wireframes de alta fidelidad
-        con interacción fluida entre secciones, carruseles animados y microdetalles de UI.
+        El prototipo se creó en Figma utilizando un modelo MacBook Pro 16”.
+        Incluye carruseles animados, navegación simulada y una estructura altamente estética.
       </p>
 
       <p>
-        El objetivo fue transmitir un flujo intuitivo, con navegación lateral limpia
-        y secciones que responden a patrones de lectura digitales estándar.
+        La experiencia prioriza una lectura fluida, inspirada en patrones modernos de interfaces web.
       </p>
     </section>
 
     <!-- =====================
-         CONTENIDO PRODUCT DESIGN
+         SECCIÓN PRODUCT DESIGN
     ===================== -->
     <section id="product-design" class="ux-section">
       <h2>Product Design</h2>
-      <p>
-        La estructura diseñada no solo buscó belleza visual,
-        sino que resolvió necesidades de comunicación de marca:
-      </p>
+
+      <p>El diseño se enfocó en reforzar tres pilares:</p>
 
       <ul>
-        <li>Un storytelling claro y comercial.</li>
-        <li>Una jerarquía que guía la atención del usuario.</li>
-        <li>Componentes modulares escalables a otros productos Colombina.</li>
+        <li>Storytelling atractivo y comercial.</li>
+        <li>Estructura modular para escalar a otras líneas de producto.</li>
+        <li>Consistencia sólida con la marca Colombina.</li>
       </ul>
     </section>
 
     <!-- =====================
-         CONTENIDO ACCESIBILIDAD
+         SECCIÓN ACCESIBILIDAD
     ===================== -->
     <section id="accesibilidad" class="ux-section">
       <h2>Accesibilidad</h2>
+
       <p>
-        Aunque no se trató de un rediseño inclusivo completo, se incorporaron buenas prácticas como:
+        Aunque no fue un rediseño accesible completo, se aplicaron varias prácticas UX:
       </p>
 
       <ul>
-        <li>Contrastes adecuados en texto.</li>
-        <li>Navegación clara para lectores no especializados.</li>
-        <li>Segmentación visual amplia para facilitar comprensión.</li>
+        <li>Contraste de colores adecuado.</li>
+        <li>Textos con buen espaciamiento.</li>
+        <li>Navegación simple y predecible.</li>
       </ul>
     </section>
 
@@ -192,7 +206,7 @@
   </main>
 
   <!-- =====================
-       SCRIPT TABS
+       SCRIPT PARA TABS UX
   ===================== -->
   <script>
     const tabs = document.querySelectorAll(".ux-tab");
@@ -211,4 +225,5 @@
   </script>
 
 </body>
+
 </html>
