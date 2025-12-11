@@ -1,44 +1,192 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NutriCampus · Estudio de Caso</title>
+
   <link rel="stylesheet" href="../CSS/estilos.css">
+
+  <style>
+    body.case-page {
+      background: var(--cream-2);
+      padding-top: 40px;
+    }
+
+    .case-content {
+      background: var(--glass-strong);
+      padding: 32px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,.08);
+    }
+
+    .case-title {
+      font-size: 2rem;
+      margin-bottom: 18px;
+      text-align: center;
+    }
+
+    /* Tabs UX */
+    .ux-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 25px 0 35px;
+      justify-content: center;
+    }
+
+    .ux-tab {
+      padding: 10px 18px;
+      border-radius: 40px;
+      background: #e8dfd2;
+      border: 1px solid #cfc4b4;
+      cursor: pointer;
+      font-weight: 600;
+      transition: .25s;
+    }
+
+    .ux-tab.active {
+      background: #000;
+      color: #fff;
+      transform: scale(1.05);
+    }
+
+    .ux-section {
+      display: none;
+      animation: fadeIn .35s ease;
+    }
+
+    .ux-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+
+    .case-links {
+      margin-top: 38px;
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+    }
+  </style>
 </head>
 
 <body class="case-page">
+
   <main class="case-content container">
+
     <h1 class="case-title">NutriCampus</h1>
 
-    <h2>Tipo de Proyecto</h2>
-    <p>Prototipo de Interfaz para una Experiencia de Realidad Virtual (RV) Educativa.</p>
-
-    <h2>Contexto</h2>
-    <p>
-      Este proyecto académico, desarrollado para la Universidad Autónoma de Occidente, se centró en la creación de un
-      prototipo de interfaz para una experiencia de Realidad Virtual (RV) educativa. Su objetivo fue mejorar los hábitos
-      alimenticios de los usuarios a través de una experiencia dinámica y visualmente inmersiva.
-    </p>
-
-    <h2>UX/UI y Diseño</h2>
-    <ul>
-      <li><strong>Personalización y Compromiso (UX/UI):</strong> La característica central es la visualización del usuario como un avatar (Oso, Zorro, Mono) con tres perspectivas de estado corporal (Delgado, Normal, Obeso), lo cual proporciona una retroalimentación visual e inmediata.</li>
-      <li><strong>Contenido Estructurado (UX):</strong> La aplicación ofrece un “Menú Especializado” (desayunos, almuerzos, postres) y un “Calendario Día a Día” que prescribe la ingesta alimenticia, facilitando la adherencia a la dieta.</li>
-      <li><strong>Interacción y Seguridad (UX):</strong> El usuario puede modificar su agenda de alimentos, y para garantizar la precisión, se implementa una pregunta de seguridad antes de cualquier cambio, protegiendo la consistencia del plan.</li>
-      <li><strong>Funcionalidades adicionales:</strong> Incluye un perfil de usuario, contacto con feedback recibido, preguntas frecuentes, un apartado de “Cupones” y una sección de “Retos” basada en el calendario.</li>
-    </ul>
-
-    <h2>Mi Contribución</h2>
-    <ul>
-      <li><strong>Diseño de Elementos Visuales (UI):</strong> Fui el encargado del modelado en Blender de los personajes avatares en sus tres aspectos (Delgado, Normal y Obeso), que son el eje visual de la experiencia RV.</li>
-      <li><strong>Diseño de Interacción (UX):</strong> Trabajé en las interacciones y el flujo entre pantallas para garantizar un desplazamiento y una navegación eficientes dentro del prototipo.</li>
-    </ul>
-
-    <div class="case-links">
-      <a href="../index.html#proyectos" class="btn ghost"> Volver al portafolio</a>
-      <a href="https://www.figma.com/proto/riKsfkN37qsKX4NbQn5zOh/Nutricampus-V2?node-id=11-144" target="_blank" class="btn case">Ver prototipo en Figma</a>
+    <!-- ============================
+         TABS UX
+    ============================= -->
+    <div class="ux-tabs">
+      <button class="ux-tab active" data-target="ux-research">UX Research</button>
+      <button class="ux-tab" data-target="ux-design">UX Design</button>
+      <button class="ux-tab" data-target="prototipado">Prototipado</button>
     </div>
+
+    <!-- ============================
+         UX RESEARCH
+    ============================= -->
+    <section id="ux-research" class="ux-section active">
+
+      <h2>Investigación · UX Research</h2>
+
+      <p>
+        Este proyecto académico estuvo enfocado en comprender cómo mejorar los hábitos alimenticios 
+        mediante una experiencia inmersiva en Realidad Virtual (RV).
+      </p>
+
+      <ul>
+        <li>Exploración del comportamiento de estudiantes frente a rutinas alimenticias.</li>
+        <li>Análisis de experiencias educativas gamificadas para promover hábitos saludables.</li>
+        <li>Identificación de problemas: baja adherencia, poca motivación, falta de retroalimentación visual.</li>
+        <li>Definición de avatar + estados corporales para crear conciencia del progreso nutricional.</li>
+      </ul>
+
+    </section>
+
+    <!-- ============================
+         UX DESIGN
+    ============================= -->
+    <section id="ux-design" class="ux-section">
+
+      <h2>UX/UI y Diseño</h2>
+
+      <ul>
+        <li><strong>Feedback visual inmediato:</strong> El avatar del usuario (Oso, Zorro o Mono)
+            cambia entre los estados Delgado · Normal · Obeso.</li>
+
+        <li><strong>Contenido Estructurado:</strong>
+          Menú especializado (desayuno, almuerzo, postres) + calendario diario de alimentación.
+        </li>
+
+        <li><strong>Control y Seguridad UX:</strong>
+          Antes de modificar la dieta, aparece un cuadro de confirmación para evitar errores.
+        </li>
+
+        <li><strong>Información adicional:</strong>
+          Perfil del usuario, sección de contacto, preguntas frecuentes, cupones y retos.
+        </li>
+      </ul>
+
+    </section>
+
+    <!-- ============================
+         PROTOTIPADO
+    ============================= -->
+    <section id="prototipado" class="ux-section">
+
+      <h2>Prototipado · Figma</h2>
+
+      <p>
+        El diseño visual y las interacciones fueron realizadas inicialmente en Figma.
+      </p>
+
+      <ul>
+        <li><strong>Modelado 3D:</strong> Creación en Blender de los tres avatares y sus estados corporales.</li>
+        <li><strong>Interacción fluida:</strong> Flujo entre pantallas optimizado para navegaciones rápidas.</li>
+        <li><strong>Jerarquía visual:</strong> Elección cromática y distribución enfocada en claridad.</li>
+        <li><strong>Prototipo funcional:</strong> Conexión de pantallas clave de menú, calendario, perfil y edición.</li>
+      </ul>
+
+    </section>
+
+    <!-- ============================
+         BOTONES FINALES
+    ============================= -->
+    <div class="case-links">
+      <a href="../index.html#proyectos" class="btn ghost">Volver al portafolio</a>
+
+      <a href="https://www.figma.com/proto/riKsfkN37qsKX4NbQn5zOh/Nutricampus-V2?node-id=11-144"
+         target="_blank" class="btn case">Ver prototipo en Figma</a>
+    </div>
+
   </main>
+
+  <!-- ============================
+       SCRIPT TABS UX
+  ============================= -->
+  <script>
+    const tabs = document.querySelectorAll(".ux-tab");
+    const sections = document.querySelectorAll(".ux-section");
+
+    tabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+
+        tabs.forEach(t => t.classList.remove("active"));
+        sections.forEach(s => s.classList.remove("active"));
+
+        tab.classList.add("active");
+        document.getElementById(tab.dataset.target).classList.add("active");
+      });
+    });
+  </script>
+
 </body>
 </html>
