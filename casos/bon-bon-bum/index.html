@@ -2,45 +2,12 @@
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bon Bon Bum · Estudio de Caso</title>
 
-  <link rel="stylesheet" href="../CSS/estilos.css">
-  <style>
-    body.case-page {
-      background: var(--cream-2);
-      padding-top: 40px;
-    }
-    .case-content {
-      background: var(--glass-strong);
-      padding: 32px;
-      border-radius: 16px;
-      box-shadow: 0 8px 20px rgba(0,0,0,.08);
-    }
-    .case-title { text-align:center; margin-bottom:20px; }
-    .ux-tabs { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
-    .ux-tab {
-      padding:10px 18px;
-      border-radius:40px;
-      background:#e8dfd2;
-      border:1px solid #cfc4b4;
-      cursor:pointer;
-      font-weight:600;
-      transition:.25s;
-    }
-    .ux-tab:hover { transform:scale(1.05); }
-    .ux-tab.active { background:#000; color:#fff; }
-
-    .ux-section { display:none; margin-top:20px; }
-
-    .case-links {
-      margin-top: 38px;
-      display: flex;
-      justify-content: center;
-      gap: 18px;
-    }
-  </style>
+  <!-- CSS en la MISMA carpeta -->
+  <link rel="stylesheet" href="Style.css" />
 </head>
 
 <body class="case-page">
@@ -49,73 +16,58 @@
 
     <h1 class="case-title">Bon Bon Bum</h1>
 
-    <!-- BOTONES SUPERIORES -->
+    <!-- ==========================
+         TABS UX
+    =========================== -->
     <div class="ux-tabs">
-      <a class="ux-tab" href="bon-bon-bum.html?tab=ux-research" target="_blank">UX Research</a>
-      <a class="ux-tab" href="bon-bon-bum.html?tab=ux-design" target="_blank">UX Design</a>
-      <a class="ux-tab" href="bon-bon-bum.html?tab=prototipado" target="_blank">Prototipado</a>
-      <a class="ux-tab" href="bon-bon-bum.html?tab=product-design" target="_blank">Product Design</a>
-      <a class="ux-tab" href="bon-bon-bum.html?tab=accesibilidad" target="_blank">Accesibilidad</a>
+      <button class="ux-tab active" data-target="ux-research">UX Research</button>
+      <button class="ux-tab" data-target="ux-design">UX Design</button>
+      <button class="ux-tab" data-target="prototipado">Prototipado</button>
+      <button class="ux-tab" data-target="product-design">Product Design</button>
+      <button class="ux-tab" data-target="accesibilidad">Accesibilidad</button>
     </div>
 
-    <!-- CONTENIDO (INICIALMENTE VACÍO) -->
-    <section id="content"></section>
+    <!-- ==========================
+         SECCIONES
+    =========================== -->
 
-    <!-- BOTONES INFERIORES -->
+    <section id="ux-research" class="ux-section active">
+      <h2>Investigación · UX Research</h2>
+      <p>Contenido…</p>
+    </section>
+
+    <section id="ux-design" class="ux-section">
+      <h2>UX Design</h2>
+      <p>Contenido…</p>
+    </section>
+
+    <section id="prototipado" class="ux-section">
+      <h2>Prototipado</h2>
+      <p>Contenido…</p>
+    </section>
+
+    <section id="product-design" class="ux-section">
+      <h2>Product Design</h2>
+      <p>Contenido…</p>
+    </section>
+
+    <section id="accesibilidad" class="ux-section">
+      <h2>Accesibilidad</h2>
+      <p>Contenido…</p>
+    </section>
+
+    <!-- BOTONES -->
     <div class="case-links">
-      <a href="../index.html#proyectos" class="btn ghost">Volver al portafolio</a>
-      <a href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma" 
-         target="_blank" class="btn case">Ver prototipo en Figma</a>
+      <a href="../../index.html#proyectos" class="btn ghost">Volver al portafolio</a>
+
+      <a href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma"
+         target="_blank" class="btn case">Ver prototipo</a>
     </div>
 
   </main>
 
-  <!-- SCRIPT QUE CARGA EL CONTENIDO SEGÚN LA URL -->
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const tab = params.get("tab");
-    const content = document.getElementById("content");
-
-    const pages = {
-
-      "ux-research": `
-        <h2>Investigación · UX Research</h2>
-        <p>Este proyecto comenzó con un análisis estructural del contenido de Bon Bon Bum...</p>
-      `,
-
-      "ux-design": `
-        <h2>UX Design</h2>
-        <p>Contenido de UX Design…</p>
-      `,
-
-      "prototipado": `
-        <h2>Prototipado</h2>
-        <p>Contenido de Prototipado…</p>
-      `,
-
-      "product-design": `
-        <h2>Product Design</h2>
-        <p>Contenido de Product Design…</p>
-      `,
-
-      "accesibilidad": `
-        <h2>Accesibilidad</h2>
-        <p>Contenido de Accesibilidad…</p>
-      `
-    };
-
-    if (pages[tab]) {
-      content.innerHTML = pages[tab];
-      document.querySelector(`[href*="${tab}"]`)?.classList.add("active");
-    } else {
-      // Sin tab solo muestra botones y nada más
-      content.innerHTML = `
-        <p style="text-align:center; opacity:.7;">
-          Selecciona una categoría para ver la información del caso.
-        </p>
-      `;
-    }
-  </script>
+  <!-- JS en la MISMA carpeta -->
+  <script src="tabs.js"></script>
 
 </body>
 </html>
