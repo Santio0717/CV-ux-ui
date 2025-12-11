@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bon Bon Bum · Estudio de Caso</title>
 
+  <!-- IMPORTA TU CSS CORRECTAMENTE -->
   <link rel="stylesheet" href="../Css/style.css">
 </head>
 
@@ -29,12 +30,12 @@
     <section id="ux-research" class="ux-section active">
       <h2>Investigación · UX Research</h2>
       <p>
-        Este proyecto comenzó con un análisis estructural del contenido de Bon Bon Bum,
-        identificando pilares narrativos como: historia, sabores y presencia digital.
+        Este proyecto inició con un análisis estructural del contenido de Bon Bon Bum,
+        identificando pilares narrativos como historia, sabores y presencia digital.
       </p>
       <p>
-        Se evaluaron referentes y se definió una arquitectura de información basada en claridad,
-        jerarquía visual y navegación para usuarios ocasionales.
+        Se analizaron referentes y se creó una arquitectura de información basada en claridad
+        y navegación intuitiva.
       </p>
     </section>
 
@@ -42,10 +43,10 @@
     <section id="ux-design" class="ux-section">
       <h2>UX/UI y Diseño</h2>
       <ul>
-        <li><strong>Organización del contenido:</strong> “Sabores”, “Historia”, “Curiosidades”, “Contactar”.</li>
-        <li><strong>UI visual:</strong> Uso de colores de la marca Colombina.</li>
-        <li><strong>Jerarquía visual:</strong> Curiosidades divididas en 6 módulos visuales.</li>
-        <li><strong>Navegación:</strong> Footer con acciones rápidas: inicio, redes, contacto.</li>
+        <li><strong>Organización de contenido:</strong> Sabores, Historia, Curiosidades, Contactar.</li>
+        <li><strong>UI visual:</strong> Colores oficiales de la marca Colombina.</li>
+        <li><strong>Jerarquía visual:</strong> Curiosidades divididas en módulos visuales.</li>
+        <li><strong>Navegación:</strong> Footer con accesos directos.</li>
       </ul>
     </section>
 
@@ -53,8 +54,8 @@
     <section id="prototipado" class="ux-section">
       <h2>Prototipado</h2>
       <p>
-        El prototipo se realizó en Figma bajo MacBook Pro 16", empleando wireframes de alta fidelidad,
-        carruseles y microinteracciones funcionales.
+        El prototipo se realizó en Figma bajo MacBook Pro 16", empleando wireframes de alta fidelidad
+        con carruseles e interacciones funcionales.
       </p>
     </section>
 
@@ -62,9 +63,9 @@
     <section id="product-design" class="ux-section">
       <h2>Product Design</h2>
       <ul>
-        <li>Storytelling claro y visual.</li>
-        <li>Jerarquía pensada en captar atención.</li>
-        <li>Diseño modular escalable para otras marcas.</li>
+        <li>Storytelling visual.</li>
+        <li>Diseño escalable a otros productos de Colombina.</li>
+        <li>Jerarquía orientada al marketing digital.</li>
       </ul>
     </section>
 
@@ -72,13 +73,13 @@
     <section id="accesibilidad" class="ux-section">
       <h2>Accesibilidad</h2>
       <ul>
-        <li>Contrastes adecuados.</li>
-        <li>Estructura limpia para lectura rápida.</li>
-        <li>Elementos visuales segmentados.</li>
+        <li>Contraste correcto en textos.</li>
+        <li>Estructura clara para lectura rápida.</li>
+        <li>Bases de accesibilidad nivel A.</li>
       </ul>
     </section>
 
-    <!-- Botones inferiores -->
+    <!-- Botones -->
     <div class="case-links">
       <a href="../../index.html#proyectos" class="btn ghost">Volver al portafolio</a>
       <a href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma"
@@ -87,6 +88,7 @@
 
   </main>
 
+  <!-- IMPORTA TU JS CORRECTAMENTE -->
   <script src="../Js/tabs.js"></script>
 </body>
 </html>
