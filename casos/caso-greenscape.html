@@ -1,44 +1,203 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Greenscape · Estudio de Caso</title>
+
   <link rel="stylesheet" href="../CSS/estilos.css">
+
+  <style>
+    /* ======================
+       ESTILOS PARA LOS CASOS
+    ====================== */
+    body.case-page {
+      background: var(--cream-2);
+      padding-top: 40px;
+    }
+
+    .case-content {
+      background: var(--glass-strong);
+      padding: 32px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
+    }
+
+    .case-title {
+      font-size: 2rem;
+      margin-bottom: 18px;
+      text-align: center;
+    }
+
+    /* Botones UX */
+    .ux-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 25px 0 35px;
+      justify-content: center;
+    }
+
+    .ux-tab {
+      padding: 10px 18px;
+      border-radius: 40px;
+      background: #e8dfd2;
+      border: 1px solid #cfc4b4;
+      cursor: pointer;
+      font-weight: 600;
+      transition: .25s;
+    }
+
+    .ux-tab.active {
+      background: #000;
+      color: #fff;
+      transform: scale(1.05);
+    }
+
+    /* Secciones filtrables */
+    .ux-section {
+      display: none;
+      animation: fadeIn .4s ease;
+    }
+
+    .ux-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .case-links {
+      margin-top: 38px;
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+    }
+  </style>
 </head>
 
 <body class="case-page">
+
   <main class="case-content container">
+
     <h1 class="case-title">Greenscape</h1>
 
-    <h2>Tipo de Proyecto</h2>
-    <p>Prototipo de Aplicación Móvil de Comercio Electrónico Agrícola.</p>
-
-    <h2>Contexto</h2>
-    <p>
-      Proyecto académico para la Universidad Autónoma de Occidente, con el objetivo de crear una plataforma que promueva
-      la compra y venta de productos agrícolas a precios más justos.
-      <br>Plataforma/Modelo: Figma (Diseño para iOS).
-    </p>
-
-    <h2>UX/UI y Diseño</h2>
-    <ul>
-      <li><strong>Diseño Centrado en el Usuario (UX):</strong> La aplicación soporta dos perfiles clave: Vendedor y Comprador, cada uno con pantallas de inicio y funcionalidades adaptadas a sus necesidades.</li>
-      <li><strong>Flujo del Vendedor (UX):</strong> Se facilita la gestión de productos, permitiendo al vendedor subir la imagen, descripción y precio. El sistema incluye un mecanismo de recompensa (“GREENPOINTS”) canjeable por ventas, incentivando su uso. Además, se añadió un apartado de “Cooperativa” para afiliación y beneficios.</li>
-      <li><strong>Flujo del Comprador (UX):</strong> Se incluyen funcionalidades estándar de comercio electrónico como el “Carrito” (con previsualización de datos de envío), “Favoritos” y un apartado de “Descuentos” para redimir cupones en supermercados.</li>
-      <li><strong>Usabilidad y Soporte (UX):</strong> Incorpora scroll y animaciones para un flujo visualmente claro. Un “Chat de Soporte 24/7” y un “Historial de Pedidos” mejoran la experiencia post-compra.</li>
-    </ul>
-
-    <h2>Mi Contribución</h2>
-    <ul>
-      <li><strong>Investigación y Recursos:</strong> Realicé la investigación de mercado y la recolección de imágenes e íconos libres de derechos de autor.</li>
-      <li><strong>Diseño de Interacción (UX/UI):</strong> Trabajé en las interacciones de varios apartados y definí el comportamiento de desplazamiento (scroll) en secciones clave para optimizar la usabilidad móvil.</li>
-    </ul>
-
-    <div class="case-links">
-      <a href="../index.html#proyectos" class="btn ghost"> Volver al portafolio</a>
-      <a href="https://www.figma.com/proto/iYuZ5f1XPOvGDWncfB739r/HCI?node-id=385-6" target="_blank" class="btn case">Ver prototipo en Figma</a>
+    <!-- =====================
+         TABS UX
+    ====================== -->
+    <div class="ux-tabs">
+      <button class="ux-tab active" data-target="ux-research">UX Research</button>
+      <button class="ux-tab" data-target="ux-design">UX Design</button>
+      <button class="ux-tab" data-target="prototipado">Prototipado</button>
     </div>
+
+    <!-- =====================
+         UX RESEARCH
+    ====================== -->
+    <section id="ux-research" class="ux-section active">
+
+      <h2>Investigación · UX Research</h2>
+
+      <p>
+        El proyecto inició con una investigación del mercado agrícola colombiano,
+        identificando la brecha entre productores y compradores debido a intermediarios.
+      </p>
+
+      <ul>
+        <li>Análisis de usuarios para definir dos perfiles clave: <strong>Vendedor</strong> y <strong>Comprador</strong>.</li>
+        <li>Estudio de motivaciones del vendedor: vender directamente, eficiencia y beneficios.</li>
+        <li>Estudio de necesidades del comprador: precios justos, rapidez, acceso a productos frescos.</li>
+        <li>Revisión de apps referencia (e-commerce + agricultura digital).</li>
+      </ul>
+
+      <p>
+        Estos hallazgos permitieron definir una estructura basada en tareas, considerando procesos simples
+        y rápidos para un público rural y urbano.
+      </p>
+    </section>
+
+    <!-- =====================
+         UX DESIGN
+    ====================== -->
+    <section id="ux-design" class="ux-section">
+
+      <h2>UX/UI y Diseño</h2>
+
+      <ul>
+        <li><strong>Diseño centrado en el usuario:</strong> Se diseñaron pantallas únicas para Vendedor y Comprador.</li>
+
+        <li><strong>Flujo del vendedor:</strong>
+          Gestión de productos, subida de imágenes, precios, descripción y sistema de recompensas
+          “GREENPOINTS”, agregado para incentivar fidelidad.
+        </li>
+
+        <li><strong>Funcionalidades del comprador:</strong>
+          Carrito, favoritos, cupones, historial de pedidos y vista de productos.
+        </li>
+
+        <li><strong>Usabilidad:</strong>
+          Navegación intuitiva, microinteracciones y scroll definido cuidadosamente para iOS.
+        </li>
+
+        <li><strong>Soporte:</strong>
+          Chat interno 24/7 para resolver dudas dentro de la app.
+        </li>
+      </ul>
+    </section>
+
+    <!-- =====================
+         PROTOTIPADO
+    ====================== -->
+    <section id="prototipado" class="ux-section">
+
+      <h2>Prototipado</h2>
+
+      <p>
+        El prototipo fue desarrollado en <strong>Figma</strong> bajo diseño móvil iOS con enfoque en
+        simplicidad, claridad y fluidez visual.
+      </p>
+
+      <ul>
+        <li>Interacciones suaves entre pantallas.</li>
+        <li>Componentes reutilizables para catálogos y listados.</li>
+        <li>Animaciones de scroll para mejorar la experiencia.</li>
+      </ul>
+
+    </section>
+
+    <!-- =====================
+         BOTONES INFERIORES
+    ====================== -->
+    <div class="case-links">
+      <a href="../index.html#proyectos" class="btn ghost">Volver al portafolio</a>
+
+      <a href="https://www.figma.com/proto/iYuZ5f1XPOvGDWncfB739r/HCI"
+         target="_blank" class="btn case">Ver prototipo en Figma</a>
+    </div>
+
   </main>
+
+  <!-- =====================
+       SCRIPT TABS
+  ====================== -->
+  <script>
+    const tabs = document.querySelectorAll(".ux-tab");
+    const sections = document.querySelectorAll(".ux-section");
+
+    tabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+
+        tabs.forEach(t => t.classList.remove("active"));
+        sections.forEach(s => s.classList.remove("active"));
+
+        tab.classList.add("active");
+        document.getElementById(tab.dataset.target).classList.add("active");
+      });
+    });
+  </script>
+
 </body>
 </html>
