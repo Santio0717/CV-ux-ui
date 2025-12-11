@@ -1,1 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bon Bon Bum · Estudio de Caso</title>
+
+  <link rel="stylesheet" href="../CSS/estilos.css">
+
+  <style>
+    /* ======================
+       ESTILOS ESPECÍFICOS PARA CASOS DE ESTUDIO
+    ====================== */
+
+    body.case-page {
+      background: var(--cream-2);
+      padding-top: 40px;
+    }
+
+    .case-content {
+      background: var(--glass-strong);
+      padding: 32px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
+      margin-bottom: 50px;
+    }
+
+    .case-title {
+      font-size: 2.1rem;
+      text-align: center;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    /* ---------- BOTONES DE TABS ---------- */
+    .ux-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin: 25px 0 35px;
+    }
+
+    .ux-tab {
+      padding: 10px 20px;
+      border-radius: 40px;
+      background: #e8dfd2;
+      border: 1px solid #cfc4b4;
+      cursor: pointer;
+      font-weight: 600;
+      transition: .25s;
+      font-size: .95rem;
+    }
+
+    .ux-tab:hover {
+      background: #d8cebf;
+    }
+
+    .ux-tab.active {
+      background: #000;
+      color: #fff;
+      transform: scale(1.05);
+    }
+
+    /* ---------- SECCIONES DE CONTENIDO ---------- */
+    .ux-section {
+      display: none;
+      animation: fadeIn .35s ease;
+    }
+
+    .ux-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ---------- BOTONES INFERIORES ---------- */
+    .case-links {
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+    }
+  </style>
+</head>
+
+<body class="case-page">
+  <main class="case-content container">
+
+    <h1 class="case-title">Bon Bon Bum</h1>
+
+    <!-- =====================
+         TABS DE CATEGORÍAS UX
+    ===================== -->
+    <div class="ux-tabs">
+      <button class="ux-tab active" data-target="ux-research">UX Research</button>
+      <button class="ux-tab" data-target="ux-design">UX Design</button>
+      <button class="ux-tab" data-target="prototipado">Prototipado</button>
+      <button class="ux-tab" data-target="product-design">Product Design</button>
+      <button class="ux-tab" data-target="accesibilidad">Accesibilidad</button>
+    </div>
+
+    <!-- =====================
+         SECCIÓN UX RESEARCH
+    ===================== -->
+    <section id="ux-research" class="ux-section active">
+      <h2>Investigación · UX Research</h2>
+      <p>
+        Este proyecto inició con un análisis estructural del contenido digital de Bon Bon Bum,
+        identificando oportunidades en su arquitectura informacional, narrativa visual y orden de
+        presentación de elementos clave como sabores, historia y datos curiosos.
+      </p>
+
+      <p>
+        Se estudiaron referencias de marcas similares para definir una estructura más clara,
+        orientada a usuarios de navegación rápida y exploración visual.
+      </p>
+    </section>
+
+    <!-- =====================
+         SECCIÓN UX DESIGN
+    ===================== -->
+    <section id="ux-design" class="ux-section">
+      <h2>UX/UI y Diseño</h2>
+
+      <ul>
+        <li><strong>Arquitectura de contenido:</strong> Se definieron secciones principales para estructurar el flujo narrativo.</li>
+
+        <li><strong>Componentes visuales:</strong> Se aplicó una paleta coherente con la identidad de la marca.</li>
+
+        <li><strong>Jerarquía visual clara:</strong> Contenido dividido en bloques de fácil lectura.</li>
+
+        <li><strong>Navegación intuitiva:</strong> Footer con accesos directos a redes y contacto.</li>
+      </ul>
+    </section>
+
+    <!-- =====================
+         SECCIÓN PROTOTIPADO
+    ===================== -->
+    <section id="prototipado" class="ux-section">
+      <h2>Prototipado</h2>
+
+      <p>
+        El prototipo se creó en Figma utilizando un modelo MacBook Pro 16”.
+        Incluye carruseles animados, navegación simulada y una estructura altamente estética.
+      </p>
+
+      <p>
+        La experiencia prioriza una lectura fluida, inspirada en patrones modernos de interfaces web.
+      </p>
+    </section>
+
+    <!-- =====================
+         SECCIÓN PRODUCT DESIGN
+    ===================== -->
+    <section id="product-design" class="ux-section">
+      <h2>Product Design</h2>
+
+      <p>El diseño se enfocó en reforzar tres pilares:</p>
+
+      <ul>
+        <li>Storytelling atractivo y comercial.</li>
+        <li>Estructura modular para escalar a otras líneas de producto.</li>
+        <li>Consistencia sólida con la marca Colombina.</li>
+      </ul>
+    </section>
+
+    <!-- =====================
+         SECCIÓN ACCESIBILIDAD
+    ===================== -->
+    <section id="accesibilidad" class="ux-section">
+      <h2>Accesibilidad</h2>
+
+      <p>
+        Aunque no fue un rediseño accesible completo, se aplicaron varias prácticas UX:
+      </p>
+
+      <ul>
+        <li>Contraste de colores adecuado.</li>
+        <li>Textos con buen espaciamiento.</li>
+        <li>Navegación simple y predecible.</li>
+      </ul>
+    </section>
+
+    <!-- =====================
+         BOTONES INFERIORES
+    ===================== -->
+    <div class="case-links">
+      <a href="../index.html#proyectos" class="btn ghost">Volver al portafolio</a>
+
+      <a href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma?node-id=0-1"
+         target="_blank" class="btn case">Ver prototipo en Figma</a>
+    </div>
+
+  </main>
+
+  <!-- =====================
+       SCRIPT PARA TABS UX
+  ===================== -->
+  <script>
+    const tabs = document.querySelectorAll(".ux-tab");
+    const sections = document.querySelectorAll(".ux-section");
+
+    tabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+
+        tabs.forEach(t => t.classList.remove("active"));
+        sections.forEach(s => s.classList.remove("active"));
+
+        tab.classList.add("active");
+        document.getElementById(tab.dataset.target).classList.add("active");
+      });
+    });
+  </script>
+
+</body>
+
+</html>
