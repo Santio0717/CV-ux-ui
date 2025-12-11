@@ -1,3 +1,6 @@
+/* ================================
+   FONDO Y LAYOUT GENERAL
+================================ */
 body.case-page {
   background: #f2dfc2;
   padding-top: 40px;
@@ -20,7 +23,9 @@ body.case-page {
   font-weight: 700;
 }
 
-/* TABS */
+/* ================================
+   TABS
+================================ */
 .ux-tabs {
   display: flex;
   flex-wrap: wrap;
@@ -45,7 +50,17 @@ body.case-page {
   transform: scale(1.05);
 }
 
-/* SECCIONES */
+/* ======== TAB ACTIVO (CORREGIDO) ========= */
+.ux-tab.active {
+  background: #000 !important;
+  color: #fff !important;
+  border-color: #000 !important;
+  transform: scale(1.05);
+}
+
+/* ================================
+   SECCIONES
+================================ */
 .case-section {
   margin-top: 22px;
 }
@@ -59,7 +74,9 @@ body.case-page {
   margin-top: 10px;
 }
 
-/* BOTONES FINALES */
+/* ================================
+   BOTONES FINALES
+================================ */
 .case-links {
   margin-top: 38px;
   display: flex;
