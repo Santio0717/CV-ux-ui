@@ -10,9 +10,9 @@
   --ink:#222;
 
   --uxui:#f39c12;
+  --docs:#2ecc71;
   --frontend:#3498db;
   --motion:#9b59b6;
-  --docs:#2ecc71;
   --prod:#e74c3c;
 
   --case-1:#b85c38;
@@ -23,9 +23,9 @@
 }
 
 /* =====================================================
-   RESET & BASE
+   RESET / BASE
 ===================================================== */
-*{
+* {
   margin:0;
   padding:0;
   box-sizing:border-box;
@@ -35,7 +35,13 @@ body{
   font-family:'Inter',sans-serif;
   color:var(--ink);
   line-height:1.6;
-  background:linear-gradient(120deg,var(--cream-1),var(--cream-2),var(--cream-3),var(--cream-4));
+  background:linear-gradient(
+    120deg,
+    var(--cream-1),
+    var(--cream-2),
+    var(--cream-3),
+    var(--cream-4)
+  );
   background-size:400% 400%;
   animation:bgMove 30s ease infinite;
   background-attachment:fixed;
@@ -47,7 +53,10 @@ body{
   100%{background-position:0% 50%}
 }
 
-a{ text-decoration:none; color:inherit; }
+a{
+  text-decoration:none;
+  color:inherit;
+}
 
 .container{
   width:92%;
@@ -55,7 +64,9 @@ a{ text-decoration:none; color:inherit; }
   margin:auto;
 }
 
-.section{ padding:64px 0; }
+.section{
+  padding:64px 0;
+}
 
 .section.alt{
   background:rgba(255,255,255,.08);
@@ -98,7 +109,9 @@ a{ text-decoration:none; color:inherit; }
   transition:.25s;
 }
 
-.main-nav a:hover{ color:var(--uxui); }
+.main-nav a:hover{
+  color:var(--uxui);
+}
 
 /* =====================================================
    HERO
@@ -123,9 +136,19 @@ a{ text-decoration:none; color:inherit; }
   object-fit:cover;
 }
 
-.kicker{ font-weight:600; opacity:.8; }
-.display{ font-size:1.35rem; }
-.sub{ opacity:.9; margin-bottom:10px; }
+.kicker{
+  font-weight:600;
+  opacity:.8;
+}
+
+.display{
+  font-size:1.35rem;
+}
+
+.sub{
+  opacity:.9;
+  margin-bottom:10px;
+}
 
 /* =====================================================
    BOTONES GENERALES
@@ -140,7 +163,9 @@ a{ text-decoration:none; color:inherit; }
   transition:.25s;
 }
 
-.btn:hover{ transform:translateY(-3px); }
+.btn:hover{
+  transform:translateY(-3px);
+}
 
 .btn.red{
   background:linear-gradient(135deg,#d72638,#b71c1c);
@@ -210,7 +235,9 @@ a{ text-decoration:none; color:inherit; }
   transition:.6s;
 }
 
-.project:hover .thumb img{ transform:scale(1.06); }
+.project:hover .thumb img{
+  transform:scale(1.06);
+}
 
 .tag-row{
   display:flex;
@@ -237,6 +264,7 @@ a{ text-decoration:none; color:inherit; }
   margin-top:40px;
 }
 
+/* DONA */
 .donut-wrapper{
   position:relative;
   width:260px;
@@ -249,22 +277,20 @@ a{ text-decoration:none; color:inherit; }
   height:260px !important;
 }
 
-/* TOOLTIP FLOTANTE SOBRE ARCO */
+/* TOOLTIP (DINÁMICO, NO FIJO) */
 .donut-tooltip{
   position:absolute;
-  padding:6px 10px;
-  background:#111;
+  background:#000;
   color:#fff;
+  padding:6px 12px;
+  border-radius:8px;
   font-weight:700;
   font-size:.85rem;
-  border-radius:6px;
   white-space:nowrap;
   pointer-events:none;
   opacity:0;
-  transform:translate(-50%, -50%);
-  transition:opacity .15s ease;
-  box-shadow:0 6px 18px rgba(0,0,0,.35);
-  z-index:5;
+  transition:opacity .2s ease;
+  z-index:20;
 }
 
 /* BOTONES TECNOLOGÍAS */
