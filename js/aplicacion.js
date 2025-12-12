@@ -1,27 +1,27 @@
 document.addEventListener("DOMContentLoaded", () => {
   const canvas = document.getElementById("skillsDonut");
-  const tooltip = document.getElementById("donutTooltip");
-  if (!canvas || !tooltip) return;
+  if (!canvas) return;
 
-  const ctx = canvas.getContext("2d");
+  const tooltip = document.getElementById("donutTooltip");
 
   const skills = {
-    uxui: { value: 35, color: "#f39c12", label: "UX/UI — 35%" },
-    docs: { value: 20, color: "#2ecc71", label: "Documentación — 20%" },
-    front: { value: 15, color: "#3498db", label: "Frontend — 15%" },
-    motion: { value: 30, color: "#9b59b6", label: "Motion — 30%" },
-    prod: { value: 10, color: "#e74c3c", label: "Producción — 10%" }
+    uxui: { label: "UX/UI", value: 35, color: "#f39c12" },
+    docs: { label: "Documentación", value: 20, color: "#2ecc71" },
+    front: { label: "Frontend", value: 15, color: "#3498db" },
+    motion: { label: "Motion", value: 30, color: "#9b59b6" },
+    prod: { label: "Producción", value: 10, color: "#e74c3c" }
   };
 
-  let currentSkill = skills.uxui;
+  let mode = "single";
+  let activeSkill = skills.uxui;
 
-  const chart = new Chart(ctx, {
+  const chart = new Chart(canvas, {
     type: "doughnut",
     data: {
-      labels: [currentSkill.label],
+      labels: Object.values(skills).map(s => s.label),
       datasets: [{
-        data: [currentSkill.value, 100 - currentSkill.value],
-        backgroundColor: [currentSkill.color, "#ddd"],
+        data: [0, 100],
+        backgroundColor: [activeSkill.color, "#e6e6e6"],
         borderWidth: 0
       }]
     },
@@ -38,40 +38,66 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
         }
 
-        const arc = elements[0].element;
-        const angle = (arc.startAngle + arc.endAngle) / 2;
-        const radius = (arc.outerRadius + arc.innerRadius) / 2;
+        const el = elements[0];
+        const index = el.index;
 
-        const x = arc.x + Math.cos(angle) * radius;
-        const y = arc.y + Math.sin(angle) * radius;
+        let label, color;
 
-        tooltip.textContent = currentSkill.label;
-        tooltip.style.left = `${x}px`;
-        tooltip.style.top = `${y - 12}px`; // 👈 SIEMPRE ENCIMA
-        tooltip.style.background = currentSkill.color;
+        if (mode === "single") {
+          label = `${activeSkill.label} — ${activeSkill.value}%`;
+          color = activeSkill.color;
+        } else {
+          const skill = Object.values(skills)[index];
+          label = `${skill.label} — ${skill.value}%`;
+          color = skill.color;
+        }
+
+        const rect = canvas.getBoundingClientRect();
+        tooltip.textContent = label;
+        tooltip.style.background = color;
+        tooltip.style.left = `${event.x - rect.left}px`;
+        tooltip.style.top = `${event.y - rect.top}px`;
         tooltip.style.opacity = 1;
       }
     }
   });
 
-  function updateDonut(skill) {
-    currentSkill = skill;
-    chart.data.datasets[0].data = [skill.value, 100 - skill.value];
-    chart.data.datasets[0].backgroundColor = [skill.color, "#ddd"];
+  function animateSingle(skill) {
+    mode = "single";
+    activeSkill = skill;
+
+    let progress = 0;
+    const target = skill.value;
+    const step = Math.max(1, target / 20);
+
+    const interval = setInterval(() => {
+      progress += step;
+      if (progress >= target) {
+        progress = target;
+        clearInterval(interval);
+      }
+
+      chart.data.datasets[0].data = [progress, 100 - progress];
+      chart.data.datasets[0].backgroundColor = [skill.color, "#e6e6e6"];
+      chart.update();
+    }, 16);
+  }
+
+  function showAll() {
+    mode = "all";
+    chart.data.datasets[0].data = Object.values(skills).map(s => s.value);
+    chart.data.datasets[0].backgroundColor = Object.values(skills).map(s => s.color);
     chart.update();
   }
 
   document.querySelectorAll(".tech-btn[data-key]").forEach(btn => {
     btn.addEventListener("click", () => {
-      updateDonut(skills[btn.dataset.key]);
+      animateSingle(skills[btn.dataset.key]);
     });
   });
 
-  document.getElementById("showAll").addEventListener("click", () => {
-    chart.data.datasets[0].data = Object.values(skills).map(s => s.value);
-    chart.data.datasets[0].backgroundColor = Object.values(skills).map(s => s.color);
-    chart.update();
+  document.getElementById("showAll").addEventListener("click", showAll);
 
-    currentSkill = { label: "Diseñador UX/UI", color: "#000" };
-  });
+  // Estado inicial
+  animateSingle(skills.uxui);
 });
