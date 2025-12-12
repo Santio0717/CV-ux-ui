@@ -187,80 +187,85 @@ a { text-decoration:none; color:inherit; }
 /* =====================================================
    TECNOLOGÍAS — DONITAS 5
 ===================================================== */
-.tech-layout{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:60px;
-  margin-top:40px;
+/* ===============================
+   TECNOLOGÍAS — LAYOUT
+================================ */
+.tech-layout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+  margin-top: 40px;
 }
 
 /* DONA */
-.donut-wrapper{
-  position:relative;
-  width:260px;
-  height:260px;
+.donut-wrapper {
+  position: relative;
+  width: 260px;
+  height: 260px;
+  flex-shrink: 0;
 }
 
-#skillsDonut{
-  width:260px !important;
-  height:260px !important;
+#skillsDonut {
+  width: 260px !important;
+  height: 260px !important;
 }
 
-/* TOOLTIP */
-.donut-tooltip{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  background:#222;
-  color:#fff;
-  padding:10px 16px;
-  border-radius:14px;
-  font-weight:600;
-  font-size:.9rem;
-  opacity:0;
-  pointer-events:none;
-  transition:.25s;
+/* TOOLTIP CENTRADO */
+.donut-tooltip {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,.75);
+  color: #fff;
+  font-weight: 600;
+  font-size: .95rem;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease;
 }
 
-/* BOTONES */
-.tech-controls{
-  display:flex;
-  flex-direction:column;
-  gap:12px;
+/* BOTONES TECNOLOGÍAS */
+.tech-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.tech-btn{
-  padding:12px 20px;
-  border-radius:14px;
-  font-weight:600;
-  cursor:pointer;
-  background:linear-gradient(135deg,#b85c38,#8f4428); /* MISMO DE CASO DE ESTUDIO */
-  color:#fff;
-  border:none;
-  transition:.25s;
+.tech-btn {
+  padding: 12px 20px;
+  border-radius: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  background: linear-gradient(135deg,#b85c38,#8f4428);
+  color: #fff;
+  transition: .25s;
 }
 
-.tech-btn:hover{
-  transform:translateY(-2px);
-  opacity:.9;
+.tech-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
 }
 
-.tech-btn.special{
-  background:#222;
+/* MISMO ESTILO, SOLO VARIANTE */
+.tech-btn.special {
+  background: linear-gradient(135deg,#b85c38,#8f4428);
 }
 
-.tech-btn.ghost{
-  background:transparent;
-  color:#222;
-  border:2px solid #222;
+.tech-btn.ghost {
+  background: transparent;
+  color: #8f4428;
+  border: 2px solid #8f4428;
 }
 
 /* RESPONSIVE */
-@media(max-width:820px){
-  .tech-layout{
-    flex-direction:column;
+@media (max-width: 820px) {
+  .tech-layout {
+    flex-direction: column;
   }
 }
 
