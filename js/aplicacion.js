@@ -1,73 +1,87 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
 
   const canvas = document.getElementById("skillsDonut");
   if (!canvas) return;
 
-  const ctx = canvas.getContext("2d");
-  const skillDescription = document.getElementById("skillDescription");
+  const skillText = document.getElementById("skillText");
 
   const skills = {
-    uxui: { value: 35, color: "#f39c12", text: "UX/UI — 35%" },
-    docs: { value: 20, color: "#2ecc71", text: "Documentación — 20%" },
-    front: { value: 15, color: "#3498db", text: "Frontend — 15%" },
-    motion: { value: 30, color: "#9b59b6", text: "Motion — 30%" },
-    prod: { value: 10, color: "#e74c3c", text: "Producción — 10%" }
+    uxui: { value: 35, color: "#f39c12", label: "UX/UI — 35%" },
+    docs: { value: 20, color: "#2ecc71", label: "Documentación — 20%" },
+    front: { value: 15, color: "#3498db", label: "Frontend — 15%" },
+    motion: { value: 30, color: "#9b59b6", label: "Motion — 30%" },
+    prod: { value: 10, color: "#e74c3c", label: "Producción — 10%" }
   };
 
-  const donutChart = new Chart(ctx, {
+  let chart = new Chart(canvas, {
     type: "doughnut",
     data: {
       datasets: [{
-        data: [skills.uxui.value, 100 - skills.uxui.value],
+        data: [0, 100],
         backgroundColor: [skills.uxui.color, "#ddd"],
         borderWidth: 0
       }]
     },
     options: {
       cutout: "65%",
+      animation: { animateRotate: false },
       plugins: {
         legend: { display: false },
         tooltip: {
           callbacks: {
-            label: function () { return skills.uxui.text; }
+            label: () => skills.uxui.label
           }
         }
       }
     }
   });
 
-  function updateSkill(key) {
-    const s = skills[key];
-    donutChart.data.datasets[0].data = [s.value, 100 - s.value];
-    donutChart.data.datasets[0].backgroundColor = [s.color, "#ddd"];
-    donutChart.options.plugins.tooltip.callbacks.label = () => s.text;
-    donutChart.update();
-    skillDescription.textContent = s.text;
-  }
+  /* 🔥 ANIMACIÓN SUAVE */
+  function animateDonut(value, color, label) {
+    let progress = 0;
+    const step = Math.max(1, value / 25);
 
-  function showAllSkills() {
-    donutChart.data.datasets[0].data = Object.values(skills).map(s => s.value);
-    donutChart.data.datasets[0].backgroundColor = Object.values(skills).map(s => s.color);
+    const interval = setInterval(() => {
+      progress += step;
+      if (progress >= value) {
+        progress = value;
+        clearInterval(interval);
+      }
 
-    donutChart.options.plugins.tooltip.callbacks.label = (ctx) => {
-      return Object.values(skills)[ctx.dataIndex].text;
-    };
+      chart.data.datasets[0].data = [progress, 100 - progress];
+      chart.data.datasets[0].backgroundColor = [color, "#ddd"];
+      chart.options.plugins.tooltip.callbacks.label = () => label;
+      chart.update();
+    }, 16);
 
-    donutChart.update();
-
-    skillDescription.textContent =
-      "Resumen: UX/UI, Documentación, Frontend, Motion y Producción.";
+    skillText.textContent = label;
   }
 
   /* BOTONES INDIVIDUALES */
-  document.querySelectorAll(".skill-btn[data-skill]").forEach(btn => {
-    btn.addEventListener("click", () => updateSkill(btn.dataset.skill));
+  document.querySelectorAll(".skill-btn[data-key]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const s = skills[btn.dataset.key];
+      animateDonut(s.value, s.color, s.label);
+    });
   });
 
-  /* RESUMEN DISEÑADOR */
-  document.getElementById("btn-designer").addEventListener("click", showAllSkills);
+  /* MOSTRAR TODO */
+  document.getElementById("showAll").addEventListener("click", () => {
+    chart.data.datasets[0].data = Object.values(skills).map(s => s.value);
+    chart.data.datasets[0].backgroundColor = Object.values(skills).map(s => s.color);
+    chart.options.plugins.tooltip.callbacks.label = ctx =>
+      Object.values(skills)[ctx.dataIndex].label;
+    chart.update();
+    skillText.textContent = "Resumen completo de habilidades como Diseñador UX/UI";
+  });
 
   /* REGRESAR */
-  document.getElementById("btn-reset").addEventListener("click", () => updateSkill("uxui"));
+  document.getElementById("resetDonut").addEventListener("click", () => {
+    const s = skills.uxui;
+    animateDonut(s.value, s.color, s.label);
+  });
+
+  /* ESTADO INICIAL */
+  animateDonut(skills.uxui.value, skills.uxui.color, skills.uxui.label);
 
 });
