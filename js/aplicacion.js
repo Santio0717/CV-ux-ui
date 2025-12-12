@@ -7,7 +7,8 @@ if (yearEl) {
 }
 
 /* =====================================================
-   DONA INTERACTIVA
+   DONA INTERACTIVA — OPCIÓN B
+   (Solo si existe el canvas en esta página)
 ===================================================== */
 document.addEventListener("DOMContentLoaded", function () {
 
