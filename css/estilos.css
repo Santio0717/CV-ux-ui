@@ -187,59 +187,82 @@ a { text-decoration:none; color:inherit; }
 /* =====================================================
    TECNOLOGÍAS — DONITAS 5
 ===================================================== */
-
-.donut-grid-5 {
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  justify-items:center;
-  align-items:flex-start;
-  gap:70px 40px;
+.tech-layout{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:60px;
   margin-top:40px;
 }
 
-.donut-item {
+/* DONA */
+.donut-wrapper{
   position:relative;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  text-align:center;
-  gap:6px;
-  min-height:180px;
+  width:260px;
+  height:260px;
 }
 
-.mini-donut {
-  width:150px;
-  height:150px;
+#skillsDonut{
+  width:260px !important;
+  height:260px !important;
 }
 
-.donut-title-5 {
-  margin-top:4px;
-  font-weight:600;
-  font-size:.95rem;
-}
-
-/* Tooltip fijo */
-.donut-fixed-tooltip {
+/* TOOLTIP */
+.donut-tooltip{
   position:absolute;
   top:50%;
-  left:175px;
-  transform:translateY(-50%);
-  background:#000;
+  left:50%;
+  transform:translate(-50%,-50%);
+  background:#222;
   color:#fff;
-  padding:10px 14px;
-  border-radius:10px;
+  padding:10px 16px;
+  border-radius:14px;
+  font-weight:600;
+  font-size:.9rem;
   opacity:0;
   pointer-events:none;
-  white-space:nowrap;
-  font-size:.9rem;
-  box-shadow:0 0 12px rgba(0,0,0,0.4);
-  transition:opacity .25s ease;
+  transition:.25s;
 }
 
-.donut-item.show-tooltip .donut-fixed-tooltip {
-  opacity:1;
+/* BOTONES */
+.tech-controls{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
 }
 
+.tech-btn{
+  padding:12px 20px;
+  border-radius:14px;
+  font-weight:600;
+  cursor:pointer;
+  background:linear-gradient(135deg,#b85c38,#8f4428); /* MISMO DE CASO DE ESTUDIO */
+  color:#fff;
+  border:none;
+  transition:.25s;
+}
+
+.tech-btn:hover{
+  transform:translateY(-2px);
+  opacity:.9;
+}
+
+.tech-btn.special{
+  background:#222;
+}
+
+.tech-btn.ghost{
+  background:transparent;
+  color:#222;
+  border:2px solid #222;
+}
+
+/* RESPONSIVE */
+@media(max-width:820px){
+  .tech-layout{
+    flex-direction:column;
+  }
+}
 
 /* =====================================================
    CERTIFICADOS
