@@ -1,77 +1,87 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  const ctx = document.getElementById("skillsDonut");
-  const tooltip = document.getElementById("donutTooltip");
+  const canvas = document.getElementById("skillsDonut");
+  if (!canvas) return;
 
-  const skills = [
-    { label: "UX/UI", value: 35, color: "#f39c12" },
-    { label: "Documentación", value: 20, color: "#2ecc71" },
-    { label: "Frontend", value: 15, color: "#3498db" },
-    { label: "Motion", value: 30, color: "#9b59b6" },
-    { label: "Producción", value: 10, color: "#e74c3c" }
-  ];
+  const skillText = document.getElementById("skillText");
 
-  let donut = new Chart(ctx, {
+  const skills = {
+    uxui: { value: 35, color: "#f39c12", label: "UX/UI — 35%" },
+    docs: { value: 20, color: "#2ecc71", label: "Documentación — 20%" },
+    front: { value: 15, color: "#3498db", label: "Frontend — 15%" },
+    motion: { value: 30, color: "#9b59b6", label: "Motion — 30%" },
+    prod: { value: 10, color: "#e74c3c", label: "Producción — 10%" }
+  };
+
+  let chart = new Chart(canvas, {
     type: "doughnut",
     data: {
-      labels: ["UX/UI"],
       datasets: [{
-        data: [35, 65],
-        backgroundColor: ["#f39c12", "#e0e0e0"],
+        data: [0, 100],
+        backgroundColor: [skills.uxui.color, "#ddd"],
         borderWidth: 0
       }]
     },
     options: {
-      cutout: "70%",
+      cutout: "65%",
+      animation: { animateRotate: false },
       plugins: {
         legend: { display: false },
-        tooltip: { enabled: false }
+        tooltip: {
+          callbacks: {
+            label: () => skills.uxui.label
+          }
+        }
       }
     }
   });
 
-  function animateTo(value, color, label) {
-    let current = 0;
-    tooltip.textContent = `${label} — ${value}%`;
-    tooltip.style.opacity = 1;
+  /* 🔥 ANIMACIÓN SUAVE */
+  function animateDonut(value, color, label) {
+    let progress = 0;
+    const step = Math.max(1, value / 25);
 
     const interval = setInterval(() => {
-      current += 2;
-      if (current >= value) {
-        current = value;
+      progress += step;
+      if (progress >= value) {
+        progress = value;
         clearInterval(interval);
       }
 
-      donut.data.datasets[0].data = [current, 100 - current];
-      donut.data.datasets[0].backgroundColor = [color, "#e0e0e0"];
-      donut.update();
-    }, 15);
+      chart.data.datasets[0].data = [progress, 100 - progress];
+      chart.data.datasets[0].backgroundColor = [color, "#ddd"];
+      chart.options.plugins.tooltip.callbacks.label = () => label;
+      chart.update();
+    }, 16);
+
+    skillText.textContent = label;
   }
 
-  document.querySelectorAll(".tech-btn[data-skill]").forEach(btn => {
+  /* BOTONES INDIVIDUALES */
+  document.querySelectorAll(".skill-btn[data-key]").forEach(btn => {
     btn.addEventListener("click", () => {
-      animateTo(
-        btn.dataset.value,
-        btn.dataset.color,
-        btn.dataset.skill
-      );
+      const s = skills[btn.dataset.key];
+      animateDonut(s.value, s.color, s.label);
     });
   });
 
+  /* MOSTRAR TODO */
   document.getElementById("showAll").addEventListener("click", () => {
-    donut.data.labels = skills.map(s => s.label);
-    donut.data.datasets[0].data = skills.map(s => s.value);
-    donut.data.datasets[0].backgroundColor = skills.map(s => s.color);
-    donut.update();
-    tooltip.style.opacity = 0;
+    chart.data.datasets[0].data = Object.values(skills).map(s => s.value);
+    chart.data.datasets[0].backgroundColor = Object.values(skills).map(s => s.color);
+    chart.options.plugins.tooltip.callbacks.label = ctx =>
+      Object.values(skills)[ctx.dataIndex].label;
+    chart.update();
+    skillText.textContent = "Resumen completo de habilidades como Diseñador UX/UI";
   });
 
+  /* REGRESAR */
   document.getElementById("resetDonut").addEventListener("click", () => {
-    donut.data.labels = ["UX/UI"];
-    donut.data.datasets[0].data = [35, 65];
-    donut.data.datasets[0].backgroundColor = ["#f39c12", "#e0e0e0"];
-    donut.update();
-    tooltip.style.opacity = 0;
+    const s = skills.uxui;
+    animateDonut(s.value, s.color, s.label);
   });
+
+  /* ESTADO INICIAL */
+  animateDonut(skills.uxui.value, skills.uxui.color, skills.uxui.label);
 
 });
