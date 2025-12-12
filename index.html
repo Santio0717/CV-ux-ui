@@ -162,8 +162,8 @@
       </div>
     </section>
 
-    <!-- ================= TECNOLOGÍAS ================= -->
-   <section id="tecnologias" class="section tecnologias-section">
+ <!-- ================= TECNOLOGÍAS ================= -->
+<section id="tecnologias" class="section tecnologias-section">
   <div class="container">
     <h2 class="section-title">Tecnologías</h2>
 
@@ -171,20 +171,29 @@
 
       <!-- DONA -->
       <div class="single-donut-box">
-        <canvas id="skillsDonut"></canvas>
+        <canvas id="skillsDonut" width="260" height="260"></canvas>
       </div>
 
-      <!-- LISTA DE HABILIDADES -->
+      <!-- BOTONES -->
       <div class="skills-list">
-        <div class="skill-item" data-skill="UX/UI" data-value="35" data-color="#f39c12">UX/UI — 35%</div>
-        <div class="skill-item" data-skill="Documentación" data-value="20" data-color="#2ecc71">Documentación — 20%</div>
-        <div class="skill-item" data-skill="Frontend" data-value="15" data-color="#3498db">Frontend — 15%</div>
-        <div class="skill-item" data-skill="Motion" data-value="30" data-color="#9b59b6">Motion — 30%</div>
-        <div class="skill-item" data-skill="Producción" data-value="10" data-color="#e74c3c">Producción — 10%</div>
+        <button class="skill-btn" data-key="uxui">UX/UI — 35%</button>
+        <button class="skill-btn" data-key="docs">Documentación — 20%</button>
+        <button class="skill-btn" data-key="front">Frontend — 15%</button>
+        <button class="skill-btn" data-key="motion">Motion — 30%</button>
+        <button class="skill-btn" data-key="prod">Producción — 10%</button>
+
+        <button id="showAll" class="skill-btn summary">
+          Diseñador UX/UI
+        </button>
+
+        <button id="resetDonut" class="skill-btn back">
+          Regresar
+        </button>
       </div>
 
     </div>
 
+    <p id="skillText" class="skill-description"></p>
   </div>
 </section>
    <!-- ================= CERTIFICADOS ================= -->
