@@ -1,10 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   const canvas = document.getElementById("skillsDonut");
-  const tooltip = document.querySelector(".donut-tooltip");
-
   if (!canvas) return;
 
+  const tooltip = document.getElementById("donutTooltip");
+
+  /* ============================
+     DATA
+  ============================ */
   const skills = {
     uxui: { value: 35, color: "#f39c12", label: "UX/UI — 35%" },
     docs: { value: 20, color: "#2ecc71", label: "Documentación — 20%" },
@@ -13,12 +16,17 @@ document.addEventListener("DOMContentLoaded", () => {
     prod: { value: 10, color: "#e74c3c", label: "Producción — 10%" }
   };
 
+  let mode = "empty"; // empty | single | all
+
+  /* ============================
+     CHART INIT (VACÍO)
+  ============================ */
   const chart = new Chart(canvas, {
     type: "doughnut",
     data: {
       datasets: [{
-        data: [0, 100],
-        backgroundColor: ["#ddd", "#eee"],
+        data: [100],
+        backgroundColor: ["#ddd"],
         borderWidth: 0
       }]
     },
@@ -27,70 +35,89 @@ document.addEventListener("DOMContentLoaded", () => {
       animation: false,
       plugins: {
         legend: { display: false },
-        tooltip: { enabled: false }
+        tooltip: { enabled: false } // ❌ desactivamos tooltip nativo
+      },
+      onHover: (event, elements) => {
+        if (elements.length && mode !== "empty") {
+          const index = elements[0].index;
+          let label = "";
+
+          if (mode === "single") {
+            label = chart.$activeLabel;
+          } else if (mode === "all") {
+            label = Object.values(skills)[index].label;
+          }
+
+          showTooltip(event.native, label);
+        } else {
+          hideTooltip();
+        }
       }
     }
   });
 
-  /* ======================
-     FUNCIONES
-  ====================== */
-  function animateSkill(skill) {
-    let progress = 0;
-    const step = Math.max(1, skill.value / 25);
-
-    tooltip.textContent = skill.label;
-
-    const interval = setInterval(() => {
-      progress += step;
-      if (progress >= skill.value) {
-        progress = skill.value;
-        clearInterval(interval);
-      }
-
-      chart.data.datasets[0].data = [progress, 100 - progress];
-      chart.data.datasets[0].backgroundColor = [skill.color, "#ddd"];
-      chart.update();
-    }, 16);
+  /* ============================
+     TOOLTIP FLOTANTE (EXTERNO)
+  ============================ */
+  function showTooltip(event, text) {
+    tooltip.textContent = text;
+    tooltip.style.opacity = 1;
+    tooltip.style.left = event.offsetX + 20 + "px";
+    tooltip.style.top = event.offsetY + 20 + "px";
   }
 
-  function resetDonut() {
-    chart.data.datasets[0].data = [0, 100];
-    chart.data.datasets[0].backgroundColor = ["#ddd", "#eee"];
-    chart.update();
+  function hideTooltip() {
     tooltip.style.opacity = 0;
   }
 
+  /* ============================
+     DONA INDIVIDUAL
+  ============================ */
+  function showSingle(skill) {
+    mode = "single";
+    chart.$activeLabel = skill.label;
+
+    chart.data.datasets[0].data = [skill.value, 100 - skill.value];
+    chart.data.datasets[0].backgroundColor = [skill.color, "#ddd"];
+    chart.update();
+  }
+
+  /* ============================
+     RESUMEN (TODOS)
+  ============================ */
   function showAll() {
+    mode = "all";
     chart.data.datasets[0].data = Object.values(skills).map(s => s.value);
     chart.data.datasets[0].backgroundColor = Object.values(skills).map(s => s.color);
     chart.update();
-    tooltip.textContent = "Diseñador UX/UI";
   }
 
-  /* ======================
-     EVENTOS BOTONES
-  ====================== */
+  /* ============================
+     RESET (VACÍO)
+  ============================ */
+  function resetDonut() {
+    mode = "empty";
+    hideTooltip();
+    chart.data.datasets[0].data = [100];
+    chart.data.datasets[0].backgroundColor = ["#ddd"];
+    chart.update();
+  }
+
+  /* ============================
+     BOTONES
+  ============================ */
   document.querySelectorAll(".tech-btn[data-key]").forEach(btn => {
     btn.addEventListener("click", () => {
-      animateSkill(skills[btn.dataset.key]);
+      showSingle(skills[btn.dataset.key]);
     });
   });
 
   document.getElementById("showAll").addEventListener("click", showAll);
   document.getElementById("resetDonut").addEventListener("click", resetDonut);
 
-  /* ======================
-     TOOLTIP HOVER DONA
-  ====================== */
-  canvas.addEventListener("mouseenter", () => {
-    if (tooltip.textContent) tooltip.style.opacity = 1;
-  });
-
-  canvas.addEventListener("mouseleave", () => {
-    tooltip.style.opacity = 0;
-  });
-
-  /* ESTADO INICIAL */
+  /* ============================
+     ESTADO INICIAL → VACÍO
+  ============================ */
   resetDonut();
+
 });
