@@ -1,106 +1,73 @@
-/* =====================================================
-   AÑO AUTOMÁTICO
-===================================================== */
-const yearEl = document.getElementById("year");
-if (yearEl) {
-  yearEl.textContent = new Date().getFullYear();
-}
-
-/* =====================================================
-   DONA INTERACTIVA — OPCIÓN B
-   (Solo si existe el canvas en esta página)
-===================================================== */
 document.addEventListener("DOMContentLoaded", function () {
 
-  const donutCanvas = document.getElementById("skillsDonut");
-  if (!donutCanvas) return; // ← evita errores en páginas sin dona
+  const canvas = document.getElementById("skillsDonut");
+  if (!canvas) return;
 
-  const ctx = donutCanvas.getContext("2d");
+  const ctx = canvas.getContext("2d");
+  const skillDescription = document.getElementById("skillDescription");
 
-  let donutChart = new Chart(ctx, {
+  const skills = {
+    uxui: { value: 35, color: "#f39c12", text: "UX/UI — 35%" },
+    docs: { value: 20, color: "#2ecc71", text: "Documentación — 20%" },
+    front: { value: 15, color: "#3498db", text: "Frontend — 15%" },
+    motion: { value: 30, color: "#9b59b6", text: "Motion — 30%" },
+    prod: { value: 10, color: "#e74c3c", text: "Producción — 10%" }
+  };
+
+  const donutChart = new Chart(ctx, {
     type: "doughnut",
     data: {
-      labels: ["Nivel"],
       datasets: [{
-        data: [35, 65],                  // Valor inicial
-        backgroundColor: ["#f39c12", "#ddd"],
+        data: [skills.uxui.value, 100 - skills.uxui.value],
+        backgroundColor: [skills.uxui.color, "#ddd"],
         borderWidth: 0
       }]
     },
     options: {
       cutout: "65%",
-      plugins: { legend: { display: false } }
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: function () { return skills.uxui.text; }
+          }
+        }
+      }
     }
   });
 
-  /* ==============================
-     ANIMACIÓN PROGRESIVA
-  ============================== */
-
-  function animateDonut(finalValue, color) {
-    let progress = 0;
-    const step = 2;
-
-    const interval = setInterval(() => {
-      progress += step;
-
-      if (progress >= finalValue) {
-        progress = finalValue;
-        clearInterval(interval);
-      }
-
-      donutChart.data.datasets[0].data = [progress, 100 - progress];
-      donutChart.data.datasets[0].backgroundColor = [color, "#ddd"];
-      donutChart.update();
-    }, 20);
+  function updateSkill(key) {
+    const s = skills[key];
+    donutChart.data.datasets[0].data = [s.value, 100 - s.value];
+    donutChart.data.datasets[0].backgroundColor = [s.color, "#ddd"];
+    donutChart.options.plugins.tooltip.callbacks.label = () => s.text;
+    donutChart.update();
+    skillDescription.textContent = s.text;
   }
 
-  /* ==============================
-     EVENTOS DE HABILIDADES
-  ============================== */
-  const skillItems = document.querySelectorAll(".skill-item");
+  function showAllSkills() {
+    donutChart.data.datasets[0].data = Object.values(skills).map(s => s.value);
+    donutChart.data.datasets[0].backgroundColor = Object.values(skills).map(s => s.color);
 
-  skillItems.forEach(item => {
-    item.addEventListener("mouseenter", () => {
-      const value = Number(item.dataset.value);
-      const color = item.dataset.color;
+    donutChart.options.plugins.tooltip.callbacks.label = (ctx) => {
+      return Object.values(skills)[ctx.dataIndex].text;
+    };
 
-      animateDonut(value, color);
-    });
+    donutChart.update();
+
+    skillDescription.textContent =
+      "Resumen: UX/UI, Documentación, Frontend, Motion y Producción.";
+  }
+
+  /* BOTONES INDIVIDUALES */
+  document.querySelectorAll(".skill-btn[data-skill]").forEach(btn => {
+    btn.addEventListener("click", () => updateSkill(btn.dataset.skill));
   });
+
+  /* RESUMEN DISEÑADOR */
+  document.getElementById("btn-designer").addEventListener("click", showAllSkills);
+
+  /* REGRESAR */
+  document.getElementById("btn-reset").addEventListener("click", () => updateSkill("uxui"));
 
 });
-
-/* =====================================================
-   FILTRO UX / CATEGORÍAS – PORTAFOLIO
-===================================================== */
-const filterButtons = document.querySelectorAll(".ux-btn");
-const projectCards = document.querySelectorAll(".project");
-
-if (filterButtons.length > 0) {
-  filterButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
-
-      filterButtons.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-
-      const category = btn.dataset.filter;
-
-      if (category === "all") {
-        projectCards.forEach(card => card.classList.remove("hide"));
-        return;
-      }
-
-      projectCards.forEach(card => {
-        const tags = card.dataset.category.split(" ");
-
-        if (tags.includes(category)) {
-          card.classList.remove("hide");
-        } else {
-          card.classList.add("hide");
-        }
-      });
-
-    });
-  });
-}
