@@ -1,87 +1,118 @@
+/* =====================================================
+   AÑO AUTOMÁTICO
+===================================================== */
+const yearEl = document.getElementById("year");
+if (yearEl) {
+  yearEl.textContent = new Date().getFullYear();
+}
+
+/* =====================================================
+   DONA DE TECNOLOGÍAS — UNA SOLA
+===================================================== */
 document.addEventListener("DOMContentLoaded", () => {
 
   const canvas = document.getElementById("skillsDonut");
   if (!canvas) return;
 
-  const skillText = document.getElementById("skillText");
+  const ctx = canvas.getContext("2d");
 
-  const skills = {
-    uxui: { value: 35, color: "#f39c12", label: "UX/UI — 35%" },
-    docs: { value: 20, color: "#2ecc71", label: "Documentación — 20%" },
-    front: { value: 15, color: "#3498db", label: "Frontend — 15%" },
-    motion: { value: 30, color: "#9b59b6", label: "Motion — 30%" },
-    prod: { value: 10, color: "#e74c3c", label: "Producción — 10%" }
-  };
+  /* DATA BASE */
+  const skills = [
+    { label: "UX/UI", value: 35, color: "#f39c12" },
+    { label: "Documentación", value: 20, color: "#2ecc71" },
+    { label: "Frontend", value: 15, color: "#3498db" },
+    { label: "Motion", value: 30, color: "#9b59b6" },
+    { label: "Producción", value: 10, color: "#e74c3c" }
+  ];
 
-  let chart = new Chart(canvas, {
+  /* ESTADO INICIAL */
+  let activeSkill = skills[0];
+
+  const donut = new Chart(ctx, {
     type: "doughnut",
     data: {
+      labels: [activeSkill.label, "Restante"],
       datasets: [{
         data: [0, 100],
-        backgroundColor: [skills.uxui.color, "#ddd"],
+        backgroundColor: [activeSkill.color, "#e0e0e0"],
         borderWidth: 0
       }]
     },
     options: {
-      cutout: "65%",
-      animation: { animateRotate: false },
+      cutout: "68%",
+      animation: false,
       plugins: {
         legend: { display: false },
         tooltip: {
           callbacks: {
-            label: () => skills.uxui.label
+            label: (context) => {
+              if (context.dataIndex === 0) {
+                return `${activeSkill.label} — ${activeSkill.value}%`;
+              }
+              return "";
+            }
           }
         }
       }
     }
   });
 
-  /* 🔥 ANIMACIÓN SUAVE */
-  function animateDonut(value, color, label) {
+  /* =====================================================
+     ANIMACIÓN PROGRESIVA
+  ===================================================== */
+  function animateTo(value, color, label) {
     let progress = 0;
-    const step = Math.max(1, value / 25);
+    activeSkill = { label, value, color };
 
     const interval = setInterval(() => {
-      progress += step;
+      progress += 2;
+
       if (progress >= value) {
         progress = value;
         clearInterval(interval);
       }
 
-      chart.data.datasets[0].data = [progress, 100 - progress];
-      chart.data.datasets[0].backgroundColor = [color, "#ddd"];
-      chart.options.plugins.tooltip.callbacks.label = () => label;
-      chart.update();
-    }, 16);
-
-    skillText.textContent = label;
+      donut.data.datasets[0].data = [progress, 100 - progress];
+      donut.data.datasets[0].backgroundColor = [color, "#e0e0e0"];
+      donut.data.labels[0] = label;
+      donut.update();
+    }, 14);
   }
 
-  /* BOTONES INDIVIDUALES */
-  document.querySelectorAll(".skill-btn[data-key]").forEach(btn => {
+  /* ANIMACIÓN INICIAL */
+  animateTo(activeSkill.value, activeSkill.color, activeSkill.label);
+
+  /* =====================================================
+     BOTONES DE HABILIDADES
+  ===================================================== */
+  document.querySelectorAll(".skill-btn").forEach(btn => {
+
     btn.addEventListener("click", () => {
-      const s = skills[btn.dataset.key];
-      animateDonut(s.value, s.color, s.label);
+
+      const type = btn.dataset.type;
+
+      /* MOSTRAR TODAS */
+      if (type === "summary") {
+        donut.data.labels = skills.map(s => s.label);
+        donut.data.datasets[0].data = skills.map(s => s.value);
+        donut.data.datasets[0].backgroundColor = skills.map(s => s.color);
+        donut.update();
+        return;
+      }
+
+      /* REGRESAR */
+      if (type === "back") {
+        animateTo(skills[0].value, skills[0].color, skills[0].label);
+        return;
+      }
+
+      /* HABILIDAD INDIVIDUAL */
+      const skill = skills.find(s => s.label === type);
+      if (skill) {
+        animateTo(skill.value, skill.color, skill.label);
+      }
+
     });
   });
-
-  /* MOSTRAR TODO */
-  document.getElementById("showAll").addEventListener("click", () => {
-    chart.data.datasets[0].data = Object.values(skills).map(s => s.value);
-    chart.data.datasets[0].backgroundColor = Object.values(skills).map(s => s.color);
-    chart.options.plugins.tooltip.callbacks.label = ctx =>
-      Object.values(skills)[ctx.dataIndex].label;
-    chart.update();
-    skillText.textContent = "Resumen completo de habilidades como Diseñador UX/UI";
-  });
-
-  /* REGRESAR */
-  document.getElementById("resetDonut").addEventListener("click", () => {
-    const s = skills.uxui;
-    animateDonut(s.value, s.color, s.label);
-  });
-
-  /* ESTADO INICIAL */
-  animateDonut(skills.uxui.value, skills.uxui.color, skills.uxui.label);
 
 });
