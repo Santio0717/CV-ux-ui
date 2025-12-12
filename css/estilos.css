@@ -224,49 +224,51 @@ a{ text-decoration:none; color:inherit; }
 /* =====================================================
    TECNOLOGÍAS — DONUTS
 ===================================================== */
-.donut-grid-5{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  justify-items:center;
-  gap:60px 40px;
+/* =====================================================
+   TECNOLOGÍAS – DONA INTERACTIVA (Opción B)
+===================================================== */
+
+.single-donut-wrapper{
   margin-top:40px;
+  display:flex;
+  gap:40px;
+  justify-content:center;
+  align-items:center;
+  flex-wrap:wrap;
 }
 
-.donut-item{
-  position:relative;
+.single-donut-box{
+  width:260px;
+  height:260px;
+}
+
+.skills-list{
   display:flex;
   flex-direction:column;
-  align-items:center;
-  text-align:center;
-  gap:6px;
+  gap:14px;
 }
 
-.mini-donut{
-  width:150px;
-  height:150px;
-}
-
-.donut-title-5{
+.skill-item{
+  padding:10px 18px;
+  background:var(--glass-strong);
+  border-radius:12px;
   font-weight:600;
-  font-size:.95rem;
+  cursor:pointer;
+  transition:.25s;
+  border:1px solid rgba(0,0,0,.12);
 }
 
-/* Tooltip fijo */
-.donut-fixed-tooltip{
-  position:absolute;
-  top:50%;
-  left:170px;
-  transform:translateY(-50%);
-  background:#111;
-  color:#fff;
-  padding:10px 12px;
-  border-radius:10px;
-  opacity:0;
-  pointer-events:none;
-  transition:.2s;
+.skill-item:hover{
+  transform:translateX(6px);
+  background:rgba(0,0,0,.08);
 }
-.donut-item.show-tooltip .donut-fixed-tooltip{ opacity:1; }
 
+/* Responsive */
+@media(max-width:820px){
+  .single-donut-wrapper{
+    flex-direction:column;
+  }
+}
 /* =====================================================
    CERTIFICADOS
 ===================================================== */
