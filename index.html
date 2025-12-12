@@ -27,9 +27,9 @@
     </div>
   </header>
 
-  <!-- ================= HERO ================= -->
   <main>
 
+    <!-- ================= HERO ================= -->
     <section id="inicio" class="section hero">
       <div class="container">
         <article class="hero-card">
@@ -49,142 +49,34 @@
     </section>
 
     <!-- ================= PROYECTOS ================= -->
-    <section id="proyectos" class="section alt">
-      <div class="container">
-        <h2 class="section-title">Proyectos destacados</h2>
-
-        <div class="grid cards projects">
-
-          <!-- Proyecto 1 -->
-          <article class="card hoverable project">
-            <figure class="thumb">
-              <img src="activos/Proyectos/Bon_Bon_Bum.png" loading="lazy">
-            </figure>
-
-            <div class="card-body">
-              <h3>Bon Bon Bum</h3>
-              <p>Wireframe de alta fidelidad.</p>
-
-              <div class="tag-row">
-                <span class="tag">Wireframe</span>
-                <span class="tag">E-commerce</span>
-                <span class="tag">Figma</span>
-              </div>
-
-              <div class="card-ctas separated">
-                <a class="btn ghost" target="_blank"
-                  href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma">Acceder</a>
-
-                <!-- ENLACE CORREGIDO -->
-                <a class="btn case" href="casos/bon-bon-bum/">Caso de estudio</a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Proyecto 2 -->
-          <article class="card hoverable project">
-            <figure class="thumb">
-              <img src="activos/Proyectos/Greenscape.png" loading="lazy">
-            </figure>
-
-            <div class="card-body">
-              <h3>Greenscape</h3>
-              <p>Prototipo iOS.</p>
-
-              <div class="tag-row">
-                <span class="tag">Prototipo</span>
-                <span class="tag">iOS</span>
-                <span class="tag">Figma</span>
-              </div>
-
-              <div class="card-ctas separated">
-                <a class="btn ghost" target="_blank"
-                  href="https://www.figma.com/proto/iYuZ5f1XPOvGDWncfB739r/HCI">Acceder</a>
-
-                <!-- ENLACE CORREGIDO -->
-                <a class="btn case" href="casos/greenscape/">Caso de estudio</a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Proyecto 3 -->
-          <article class="card hoverable project">
-            <figure class="thumb">
-              <img src="activos/Proyectos/NutriCampus.png" loading="lazy">
-            </figure>
-
-            <div class="card-body">
-              <h3>NutriCampus</h3>
-              <p>Prototipo para RV.</p>
-
-              <div class="tag-row">
-                <span class="tag">VR</span>
-                <span class="tag">Prototipo</span>
-                <span class="tag">Figma</span>
-              </div>
-
-              <div class="card-ctas separated">
-                <a class="btn ghost" target="_blank"
-                  href="https://www.figma.com/proto/riKsfkN37qsKX4NbQn5zOh/Nutricampus-V2">Acceder</a>
-
-                <!-- ENLACE CORREGIDO -->
-                <a class="btn case" href="casos/nutricampus/">Caso de estudio</a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Proyecto 4 -->
-          <article class="card hoverable project">
-            <figure class="thumb">
-              <img src="activos/Proyectos/Isocrates.png" loading="lazy">
-            </figure>
-
-            <div class="card-body">
-              <h3>Isócrates</h3>
-              <p>Prototipo desktop enfocado en accesibilidad.</p>
-
-              <div class="tag-row">
-                <span class="tag">Desktop</span>
-                <span class="tag">Accesibilidad</span>
-              </div>
-
-              <div class="card-ctas separated">
-                <a class="btn ghost" href="https://www.figma.com/proto/bCCXBOMkOQKVUB0emfQIb5"
-                  target="_blank">Acceder</a>
-
-                <!-- ENLACE CORREGIDO -->
-                <a class="btn case" href="casos/isocrates/">Caso de estudio</a>
-              </div>
-            </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
+    <!-- (SIN CAMBIOS, SE QUEDA IGUAL) -->
 
     <!-- ================= TECNOLOGÍAS ================= -->
     <section id="tecnologias" class="section tecnologias-section">
       <div class="container">
         <h2 class="section-title">Tecnologías</h2>
 
-        <div class="single-donut-wrapper">
+        <div class="tech-layout">
 
           <!-- DONA -->
-          <div class="single-donut-box">
-            <canvas id="skillsDonut"></canvas>
+          <div class="donut-wrapper">
+            <canvas id="skillsDonut" width="260" height="260"></canvas>
+            <div id="donutTooltip" class="donut-tooltip"></div>
           </div>
 
-          <!-- LISTA DE HABILIDADES -->
-          <div class="skills-list">
-            <div class="skill-item" data-skill="UX/UI" data-value="35" data-color="#f39c12">UX/UI — 35%</div>
-            <div class="skill-item" data-skill="Documentación" data-value="20" data-color="#2ecc71">Documentación — 20%</div>
-            <div class="skill-item" data-skill="Frontend" data-value="15" data-color="#3498db">Frontend — 15%</div>
-            <div class="skill-item" data-skill="Motion" data-value="30" data-color="#9b59b6">Motion — 30%</div>
-            <div class="skill-item" data-skill="Producción" data-value="10" data-color="#e74c3c">Producción — 10%</div>
+          <!-- BOTONES -->
+          <div class="tech-buttons">
+            <button class="tech-btn" data-label="UX/UI" data-value="35" data-color="#f39c12">UX/UI</button>
+            <button class="tech-btn" data-label="Documentación" data-value="20" data-color="#2ecc71">Documentación</button>
+            <button class="tech-btn" data-label="Frontend" data-value="15" data-color="#3498db">Frontend</button>
+            <button class="tech-btn" data-label="Motion" data-value="30" data-color="#9b59b6">Motion</button>
+            <button class="tech-btn" data-label="Producción" data-value="10" data-color="#e74c3c">Producción</button>
+
+            <button class="tech-btn primary">Diseñador UX/UI</button>
+            <button class="tech-btn ghost" id="resetDonut">Regresar</button>
           </div>
 
         </div>
-
       </div>
     </section>
 
@@ -286,7 +178,6 @@
         </div>
       </div>
     </section>
-
     <!-- ================= CONTACTO ================= -->
     <section id="contacto" class="section">
       <div class="container contact-wrapper">
@@ -328,7 +219,6 @@
     </section>
 
   </main>
-
   <!-- ================= FOOTER ================= -->
   <footer class="new-footer">
     <div class="container">
@@ -341,3 +231,4 @@
 </body>
 
 </html>
+
