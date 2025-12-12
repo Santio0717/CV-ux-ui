@@ -5,23 +5,21 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!canvas || !tooltip) return;
 
   const skills = {
-    uxui: { value: 35, color: "#f39c12", percent: "35%" },
-    docs: { value: 20, color: "#2ecc71", percent: "20%" },
-    front: { value: 15, color: "#3498db", percent: "15%" },
-    motion: { value: 30, color: "#9b59b6", percent: "30%" },
-    prod: { value: 10, color: "#e74c3c", percent: "10%" }
+    uxui:   { value: 35, color: "#f39c12", label: "UX/UI — 35%" },
+    docs:   { value: 20, color: "#2ecc71", label: "Documentación — 20%" },
+    front:  { value: 15, color: "#3498db", label: "Frontend — 15%" },
+    motion: { value: 30, color: "#9b59b6", label: "Motion — 30%" },
+    prod:   { value: 10, color: "#e74c3c", label: "Producción — 10%" }
   };
 
-  let currentMode = "all";
   let activeSkill = null;
 
   const chart = new Chart(canvas, {
     type: "doughnut",
     data: {
-      labels: Object.keys(skills),
       datasets: [{
-        data: Object.values(skills).map(s => s.value),
-        backgroundColor: Object.values(skills).map(s => s.color),
+        data: [],
+        backgroundColor: [],
         borderWidth: 0
       }]
     },
@@ -33,18 +31,24 @@ document.addEventListener("DOMContentLoaded", () => {
         tooltip: { enabled: false }
       },
       onHover: (event, elements) => {
-        if (!elements.length) {
+
+        // ❌ No hover
+        if (!elements.length || !activeSkill) {
           tooltip.style.opacity = 0;
           return;
         }
 
         const el = elements[0];
-        const value = chart.data.datasets[0].data[el.index];
-        const percent = value + "%";
+
+        // 🔥 SOLO parte pintada
+        if (el.index !== 0) {
+          tooltip.style.opacity = 0;
+          return;
+        }
 
         const rect = canvas.getBoundingClientRect();
         const angle = (el.startAngle + el.endAngle) / 2;
-        const radius = el.outerRadius + 12; // 🔥 salir del arco
+        const radius = el.outerRadius + 14;
 
         const x =
           rect.left +
@@ -57,9 +61,9 @@ document.addEventListener("DOMContentLoaded", () => {
           window.scrollY +
           canvas.height / 2 +
           Math.sin(angle) * radius -
-          14; // 🔥 subir el tooltip
+          18; // 🔥 siempre arriba
 
-        tooltip.textContent = percent;
+        tooltip.textContent = activeSkill.label;
         tooltip.style.left = `${x}px`;
         tooltip.style.top = `${y}px`;
         tooltip.style.opacity = 1;
@@ -67,29 +71,36 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  /* ============================
+  /* =========================
+     FUNCIONES
+  ========================= */
+  function showSkill(skill) {
+    activeSkill = skill;
+
+    chart.data.datasets[0].data = [skill.value, 100 - skill.value];
+    chart.data.datasets[0].backgroundColor = [skill.color, "#e6e6e6"];
+    chart.update();
+  }
+
+  function showAll() {
+    activeSkill = { label: "Diseñador UX/UI" };
+
+    chart.data.datasets[0].data = Object.values(skills).map(s => s.value);
+    chart.data.datasets[0].backgroundColor = Object.values(skills).map(s => s.color);
+    chart.update();
+  }
+
+  /* =========================
      BOTONES
-  ============================ */
+  ========================= */
   document.querySelectorAll(".tech-btn[data-key]").forEach(btn => {
     btn.addEventListener("click", () => {
-      const skill = skills[btn.dataset.key];
-
-      chart.data.datasets[0].data = [skill.value, 100 - skill.value];
-      chart.data.datasets[0].backgroundColor = [skill.color, "#e6e6e6"];
-      chart.update();
-
-      activeSkill = skill;
+      showSkill(skills[btn.dataset.key]);
     });
   });
 
-  const showAllBtn = document.getElementById("showAll");
-  if (showAllBtn) {
-    showAllBtn.addEventListener("click", () => {
-      chart.data.datasets[0].data = Object.values(skills).map(s => s.value);
-      chart.data.datasets[0].backgroundColor = Object.values(skills).map(s => s.color);
-      chart.update();
-      activeSkill = null;
-    });
-  }
+  document.getElementById("showAll").addEventListener("click", showAll);
 
+  // Estado inicial
+  showAll();
 });
