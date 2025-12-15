@@ -59,15 +59,15 @@ body {
 }
 
 @keyframes bgMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  body { animation: none; }
-  * { transition: none !important; }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 a {
@@ -237,7 +237,7 @@ a {
 }
 
 /* =====================================================
-   RESPONSIVE
+   LAYOUT Y RESPONSIVE
 ===================================================== */
 @media (max-width: 900px) {
   .hero-card {
@@ -250,18 +250,8 @@ a {
     width: 120px;
     height: 120px;
   }
-
-  .contact-wrapper {
-    grid-template-columns: 1fr;
-  }
 }
 
 @media (max-width: 820px) {
-  .section.alt {
-    padding: 28px;
-  }
-
-  .tech-layout {
-    flex-direction: column;
-  }
+  .section.alt { padding: 28px; }
 }
