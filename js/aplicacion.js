@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Año footer
+  /* ================= FOOTER ================= */
   const year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
 
-  // Dona
+  /* ================= ELEMENTOS ================= */
   const canvas = document.getElementById("skillsDonut");
   const wrapper = canvas?.closest(".donut-wrapper");
   const tooltip = document.getElementById("donutTooltip");
@@ -11,30 +11,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!canvas || !wrapper || !tooltip || typeof Chart === "undefined") return;
 
-  // Datos
+  /* ================= DATA ================= */
   const skills = [
-    { key: "uxui",   label: "UX/UI",           value: 35, color: "#f39c12" },
-    { key: "docs",   label: "Documentación",   value: 20, color: "#2ecc71" },
-    { key: "front",  label: "Frontend",        value: 15, color: "#3498db" },
-    { key: "motion", label: "Motion",          value: 30, color: "#9b59b6" },
-    { key: "prod",   label: "Producción",      value: 10, color: "#e74c3c" }
+    { key: "uxui",   label: "UX/UI",         value: 35, color: "#f39c12" },
+    { key: "docs",   label: "Documentación", value: 20, color: "#2ecc71" },
+    { key: "front",  label: "Frontend",      value: 15, color: "#3498db" },
+    { key: "motion", label: "Motion",        value: 30, color: "#9b59b6" },
+    { key: "prod",   label: "Producción",    value: 10, color: "#e74c3c" }
   ];
 
   const remainderColor = "#e6e6e6";
 
-  // Estado
-  let mode = "all"; // "all" | "single"
-  let active = skills[0];
-  let raf = null;
+  let mode = "all"; // all | single
+  let activeSkill = null;
 
-  // Helpers
-  const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
+  /* ================= HELPERS ================= */
+  const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
 
-  function setTooltip({ text, x, y, bg }) {
+  function showTooltip({ text, x, y, bg }) {
     tooltip.textContent = text;
     tooltip.style.left = `${x}px`;
     tooltip.style.top = `${y}px`;
-    tooltip.style.background = bg || "rgba(0,0,0,.9)";
+    tooltip.style.background = bg;
     tooltip.style.opacity = "1";
   }
 
@@ -42,58 +40,49 @@ document.addEventListener("DOMContentLoaded", () => {
     tooltip.style.opacity = "0";
   }
 
-  function getArcPoint(chart, index) {
-    const meta = chart.getDatasetMeta(0);
-    const arc = meta?.data?.[index];
+  function getTooltipPosition(chart, arcIndex) {
+    const arc = chart.getDatasetMeta(0)?.data?.[arcIndex];
     if (!arc) return null;
 
-    // tooltipPosition() devuelve punto “en el arco”
-    const p = arc.tooltipPosition();
-    return { x: p.x, y: p.y };
+    const { x, y } = arc.tooltipPosition();
+
+    const canvasRect = canvas.getBoundingClientRect();
+    const wrapperRect = wrapper.getBoundingClientRect();
+
+    // Offset radial hacia afuera (encima del arco)
+    const angle = (arc.startAngle + arc.endAngle) / 2;
+    const offset = 18;
+
+    const posX =
+      x + Math.cos(angle) * offset + (canvasRect.left - wrapperRect.left);
+    const posY =
+      y + Math.sin(angle) * offset + (canvasRect.top - wrapperRect.top);
+
+    return { x: posX, y: posY };
   }
 
-  function positionAboveArc(chart, index) {
-    const p = getArcPoint(chart, index);
-    if (!p) return null;
+  /* ================= DATASETS ================= */
+  const datasetAll = () => ({
+    labels: skills.map(s => s.label),
+    datasets: [{
+      data: skills.map(s => s.value),
+      backgroundColor: skills.map(s => s.color),
+      borderWidth: 0,
+      hoverOffset: 8
+    }]
+  });
 
-    // Convertimos coords del canvas a coords dentro del wrapper
-    // (wrapper es relative; tooltip absolute dentro)
-    const rect = canvas.getBoundingClientRect();
-    const wRect = wrapper.getBoundingClientRect();
+  const datasetSingle = (skill) => ({
+    labels: [skill.label, "Resto"],
+    datasets: [{
+      data: [skill.value, 100 - skill.value],
+      backgroundColor: [skill.color, remainderColor],
+      borderWidth: 0,
+      hoverOffset: 8
+    }]
+  });
 
-    const cx = p.x + (rect.left - wRect.left);
-    const cy = p.y + (rect.top - wRect.top);
-
-    // Lo subimos un poco para que quede “encima” del arco
-    return { x: cx, y: cy };
-  }
-
-  // Construcción de datasets
-  function datasetAll() {
-    return {
-      labels: skills.map(s => s.label),
-      datasets: [{
-        data: skills.map(s => s.value),
-        backgroundColor: skills.map(s => s.color),
-        borderWidth: 0,
-        hoverOffset: 6
-      }]
-    };
-  }
-
-  function datasetSingle(skill) {
-    return {
-      labels: [skill.label, "Resto"],
-      datasets: [{
-        data: [skill.value, 100 - skill.value],
-        backgroundColor: [skill.color, remainderColor],
-        borderWidth: 0,
-        hoverOffset: 6
-      }]
-    };
-  }
-
-  // Chart
+  /* ================= CHART ================= */
   const chart = new Chart(canvas, {
     type: "doughnut",
     data: datasetAll(),
@@ -101,61 +90,39 @@ document.addEventListener("DOMContentLoaded", () => {
       responsive: true,
       maintainAspectRatio: false,
       cutout: "68%",
-      animation: { duration: 650, easing: "easeOutQuart" },
+      animation: { duration: 600, easing: "easeOutQuart" },
       plugins: {
         legend: { display: false },
-        tooltip: { enabled: false } // usamos tooltip custom
+        tooltip: { enabled: false }
       }
     }
   });
 
-  // Animación suave al cambiar SINGLE (sin “parpadeo”)
-  function animateToSingle(skill) {
-    mode = "single";
-    active = skill;
-
-    const target = skill.value;
-    const start = chart.data.datasets[0].data?.[0] ?? 0;
-
-    const t0 = performance.now();
-    const duration = 520;
-
-    const step = (t) => {
-      const k = clamp((t - t0) / duration, 0, 1);
-      // easeOutCubic
-      const eased = 1 - Math.pow(1 - k, 3);
-      const val = start + (target - start) * eased;
-
-      chart.data = datasetSingle(skill);
-      chart.data.datasets[0].data = [val, 100 - val];
-      chart.update("none");
-
-      if (k < 1) raf = requestAnimationFrame(step);
-    };
-
-    if (raf) cancelAnimationFrame(raf);
-    raf = requestAnimationFrame(step);
-  }
-
+  /* ================= MODES ================= */
   function showAll() {
     mode = "all";
+    activeSkill = null;
     chart.data = datasetAll();
     chart.update();
     hideTooltip();
   }
 
-  // BOTONES skills
+  function showSingle(skill) {
+    mode = "single";
+    activeSkill = skill;
+    chart.data = datasetSingle(skill);
+    chart.update();
+    hideTooltip();
+  }
+
+  /* ================= BOTONES ================= */
   document.querySelectorAll(".tech-btn[data-key]").forEach(btn => {
     btn.addEventListener("click", () => {
-      const key = btn.dataset.key;
-      const s = skills.find(x => x.key === key);
-      if (!s) return;
-      animateToSingle(s);
-      hideTooltip();
+      const skill = skills.find(s => s.key === btn.dataset.key);
+      if (skill) showSingle(skill);
     });
 
-    // Accesibilidad: permitir Enter/Espacio
-    btn.addEventListener("keydown", (e) => {
+    btn.addEventListener("keydown", e => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
         btn.click();
@@ -163,18 +130,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Botón “Diseñador UX/UI” (lo dejamos como modo ALL)
   if (showAllBtn) {
     showAllBtn.addEventListener("click", showAll);
-    showAllBtn.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        showAllBtn.click();
-      }
-    });
   }
 
-  // --- Hover: SOLO mostrar tooltip cuando estás sobre segmento pintado ---
+  /* ================= HOVER ================= */
   function handleHover(evt) {
     const points = chart.getElementsAtEventForMode(
       evt,
@@ -183,48 +143,40 @@ document.addEventListener("DOMContentLoaded", () => {
       true
     );
 
-    if (!points.length) {
-      hideTooltip();
-      return;
-    }
+    if (!points.length) return hideTooltip();
 
     const { index } = points[0];
 
-    // Si estás en modo single, index 1 es el gris -> NO mostrar
-    if (mode === "single" && index === 1) {
-      hideTooltip();
-      return;
-    }
+    // En modo single, NO mostrar tooltip en el gris
+    if (mode === "single" && index === 1) return hideTooltip();
 
-    // Texto y color según modo
-    let text = "";
-    let bg = "rgba(0,0,0,.9)";
+    let skill, text, color;
 
     if (mode === "all") {
-      const s = skills[index];
-      if (!s) return hideTooltip();
-      text = `${s.label} — ${s.value}%`;
-      bg = s.color;
+      skill = skills[index];
     } else {
-      // single: index 0 es el segmento pintado
-      text = `${active.label} — ${active.value}%`;
-      bg = active.color;
+      skill = activeSkill;
     }
 
-    const pos = positionAboveArc(chart, index);
+    if (!skill) return hideTooltip();
+
+    const pos = getTooltipPosition(chart, index);
     if (!pos) return hideTooltip();
 
-    setTooltip({
+    text = `${skill.label} — ${skill.value}%`;
+    color = skill.color;
+
+    showTooltip({
       text,
       x: pos.x,
       y: pos.y,
-      bg
+      bg: color
     });
   }
 
   canvas.addEventListener("mousemove", handleHover);
   canvas.addEventListener("mouseleave", hideTooltip);
 
-  // Estado inicial: “Diseñador UX/UI” (ALL) como pediste
+  /* ================= INIT ================= */
   showAll();
 });
