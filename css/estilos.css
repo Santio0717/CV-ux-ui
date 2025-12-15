@@ -249,28 +249,45 @@ a{ text-decoration:none; color:inherit; }
   width:260px;
   height:260px;
   flex-shrink:0;
+
+  /* clave: mantiene el tooltip dentro y evita que “se vaya” */
+  overflow:visible;
 }
 
 #skillsDonut{
   width:260px !important;
   height:260px !important;
+  display:block;
 }
 
-/* TOOLTIP — FLOTANTE, SOLO SOBRE SEGMENTO */
+/* TOOLTIP — flotante real, controlado por JS */
 .donut-tooltip{
   position:absolute;
-  transform:translate(-50%, -140%);
+
+  /* el JS setea left/top en PIXELES dentro de donut-wrapper */
+  left:0;
+  top:0;
+
   background:#000;
   color:#fff;
   padding:6px 12px;
-  border-radius:8px;
-  font-weight:700;
+  border-radius:10px;
+  font-weight:800;
   font-size:.85rem;
   white-space:nowrap;
+
   pointer-events:none;
   opacity:0;
-  transition:opacity .15s ease;
-  z-index:30;
+  z-index:200;
+
+  /* animación suave */
+  transition: opacity .12s ease, transform .12s ease;
+  transform: translate(-50%, -120%);
+}
+
+/* clase que el JS activa */
+.donut-tooltip.show{
+  opacity:1;
 }
 
 /* BOTONES TECNOLOGÍAS */
