@@ -1,86 +1,94 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const canvas = document.getElementById("skillsDonut");
-  if (!canvas) return;
 
+  const canvas = document.getElementById("skillsDonut");
   const tooltip = document.getElementById("donutTooltip");
+  if (!canvas || !tooltip) return;
 
   const skills = {
-    uxui: { label: "UX/UI", value: 35, color: "#f39c12" },
-    docs: { label: "Documentación", value: 20, color: "#2ecc71" },
-    front: { label: "Frontend", value: 15, color: "#3498db" },
-    motion: { label: "Motion", value: 30, color: "#9b59b6" },
-    prod: { label: "Producción", value: 10, color: "#e74c3c" }
+    uxui:   { value: 35, color: "#f39c12", label: "UX/UI — 35%" },
+    docs:   { value: 20, color: "#2ecc71", label: "Documentación — 20%" },
+    front:  { value: 15, color: "#3498db", label: "Frontend — 15%" },
+    motion: { value: 30, color: "#9b59b6", label: "Motion — 30%" },
+    prod:   { value: 10, color: "#e74c3c", label: "Producción — 10%" }
   };
 
   let mode = "single";
   let activeSkill = skills.uxui;
 
+  /* ============================
+     CHART
+  ============================ */
   const chart = new Chart(canvas, {
     type: "doughnut",
     data: {
-      labels: Object.values(skills).map(s => s.label),
       datasets: [{
-        data: [0, 100],
-        backgroundColor: [activeSkill.color, "#e6e6e6"],
+        data: [activeSkill.value, 100 - activeSkill.value],
+        backgroundColor: [activeSkill.color, "#e5e5e5"],
         borderWidth: 0
       }]
     },
     options: {
       cutout: "65%",
-      animation: false,
+      animation: {
+        animateRotate: true,
+        duration: 700,
+        easing: "easeOutCubic"
+      },
       plugins: {
         legend: { display: false },
-        tooltip: { enabled: false }
-      },
-      onHover: (event, elements) => {
-        if (!elements.length) {
-          tooltip.style.opacity = 0;
-          return;
+        tooltip: {
+          enabled: false,
+          external: (ctx) => externalTooltip(ctx)
         }
-
-        const el = elements[0];
-        const index = el.index;
-
-        let label, color;
-
-        if (mode === "single") {
-          label = `${activeSkill.label} — ${activeSkill.value}%`;
-          color = activeSkill.color;
-        } else {
-          const skill = Object.values(skills)[index];
-          label = `${skill.label} — ${skill.value}%`;
-          color = skill.color;
-        }
-
-        const rect = canvas.getBoundingClientRect();
-        tooltip.textContent = label;
-        tooltip.style.background = color;
-        tooltip.style.left = `${event.x - rect.left}px`;
-        tooltip.style.top = `${event.y - rect.top}px`;
-        tooltip.style.opacity = 1;
       }
     }
   });
 
-  function animateSingle(skill) {
+  /* ============================
+     TOOLTIP EXTERNO (REAL)
+  ============================ */
+  function externalTooltip({ tooltip: t }) {
+
+    if (!t || !t.opacity) {
+      tooltip.classList.remove("show");
+      return;
+    }
+
+    const index = t.dataPoints[0].dataIndex;
+
+    // ❌ NO MOSTRAR PARTE GRIS
+    if (mode === "single" && index === 1) {
+      tooltip.classList.remove("show");
+      return;
+    }
+
+    let label;
+
+    if (mode === "single") {
+      label = activeSkill.label;
+    } else {
+      label = Object.values(skills)[index].label;
+    }
+
+    tooltip.textContent = label;
+
+    const rect = canvas.getBoundingClientRect();
+    tooltip.style.left = `${t.caretX}px`;
+    tooltip.style.top  = `${t.caretY}px`;
+
+    tooltip.classList.add("show");
+  }
+
+  /* ============================
+     MODOS
+  ============================ */
+  function showSingle(skill) {
     mode = "single";
     activeSkill = skill;
 
-    let progress = 0;
-    const target = skill.value;
-    const step = Math.max(1, target / 20);
-
-    const interval = setInterval(() => {
-      progress += step;
-      if (progress >= target) {
-        progress = target;
-        clearInterval(interval);
-      }
-
-      chart.data.datasets[0].data = [progress, 100 - progress];
-      chart.data.datasets[0].backgroundColor = [skill.color, "#e6e6e6"];
-      chart.update();
-    }, 16);
+    chart.data.datasets[0].data = [skill.value, 100 - skill.value];
+    chart.data.datasets[0].backgroundColor = [skill.color, "#e5e5e5"];
+    chart.update();
   }
 
   function showAll() {
@@ -90,14 +98,17 @@ document.addEventListener("DOMContentLoaded", () => {
     chart.update();
   }
 
+  /* ============================
+     BOTONES
+  ============================ */
   document.querySelectorAll(".tech-btn[data-key]").forEach(btn => {
     btn.addEventListener("click", () => {
-      animateSingle(skills[btn.dataset.key]);
+      showSingle(skills[btn.dataset.key]);
     });
   });
 
   document.getElementById("showAll").addEventListener("click", showAll);
 
-  // Estado inicial
-  animateSingle(skills.uxui);
+  /* INICIAL */
+  showSingle(skills.uxui);
 });
