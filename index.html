@@ -3,9 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Portafolio · Santiago Murillo</title>
 
+  <title>Portafolio UX/UI · Santiago Murillo</title>
+  <meta name="description" content="Portafolio de Santiago Murillo, UX/UI Designer enfocado en accesibilidad, prototipado, investigación y diseño centrado en el usuario.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="CSS/estilos.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -16,7 +21,8 @@
 <header class="site-header">
   <div class="container nav-wrap">
     <a href="#inicio" class="brand">SM·UX</a>
-    <nav class="main-nav">
+
+    <nav class="main-nav" aria-label="Navegación principal">
       <a href="#proyectos">Proyectos</a>
       <a href="#tecnologias">Tecnologías</a>
       <a href="#certificados">Certificados</a>
@@ -25,18 +31,34 @@
   </div>
 </header>
 
-<main>
+<main id="inicio">
 
 <!-- ================= HERO ================= -->
-<section id="inicio" class="section hero">
+<section class="section hero">
   <div class="container">
     <article class="hero-card">
-      <img class="avatar" src="activos/imagen/foto de perfil.jfif" alt="Foto de Santiago Murillo" />
+      <img
+        class="avatar"
+        src="activos/imagen/foto de perfil.jfif"
+        alt="Foto de Santiago Murillo, UX/UI Designer"
+      />
+
       <div class="hero-copy">
         <p class="kicker">UX/UI Designer</p>
-        <h1 class="display">Diseños claros, accesibles y medibles.</h1>
-        <p class="sub">Transformo requisitos en experiencias que convierten.</p>
-        <a class="btn red" href="CV_Santiago_Murillo.pdf" download>Descargar CV</a>
+
+        <h1 class="display">
+          Diseño experiencias digitales claras, accesibles y medibles
+        </h1>
+
+        <p class="sub">
+          Trabajo en el diseño de productos digitales centrados en el usuario,
+          combinando investigación, prototipado y validación para generar
+          soluciones funcionales y alineadas con objetivos de negocio.
+        </p>
+
+        <a class="btn red" href="CV_Santiago_Murillo.pdf" download>
+          Descargar CV
+        </a>
       </div>
     </article>
   </div>
@@ -50,76 +72,100 @@
     <div class="grid cards projects">
 
       <!-- Bon Bon Bum -->
-      <article class="card hoverable project">
+      <article class="card project">
         <figure class="thumb">
-          <img src="activos/Proyectos/Bon_Bon_Bum.png" loading="lazy">
+          <img src="activos/Proyectos/Bon_Bon_Bum.png" alt="Proyecto Bon Bon Bum" loading="lazy">
         </figure>
         <h3>Bon Bon Bum</h3>
-        <p>Wireframe de alta fidelidad.</p>
+        <p>
+          Diseño de wireframes de alta fidelidad para una plataforma de
+          e-commerce, enfocado en jerarquía visual y conversión.
+        </p>
         <div class="tag-row">
-          <span class="tag">Wireframe</span>
+          <span class="tag">Wireframes</span>
           <span class="tag">E-commerce</span>
+          <span class="tag">UX/UI</span>
           <span class="tag">Figma</span>
         </div>
         <div class="card-ctas separated">
           <a class="btn ghost" target="_blank"
-            href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma">Acceder</a>
+            href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma">
+            Acceder
+          </a>
           <a class="btn case" href="casos/bon-bon-bum/">Caso de estudio</a>
         </div>
       </article>
 
       <!-- Greenscape -->
-      <article class="card hoverable project">
+      <article class="card project">
         <figure class="thumb">
-          <img src="activos/Proyectos/Greenscape.png" loading="lazy">
+          <img src="activos/Proyectos/Greenscape.png" alt="Proyecto Greenscape" loading="lazy">
         </figure>
         <h3>Greenscape</h3>
-        <p>Prototipo iOS.</p>
+        <p>
+          Prototipo móvil iOS diseñado a partir de principios de usabilidad,
+          navegación intuitiva y experiencia mobile-first.
+        </p>
         <div class="tag-row">
           <span class="tag">iOS</span>
-          <span class="tag">Prototipo</span>
+          <span class="tag">Prototipado</span>
+          <span class="tag">UX/UI</span>
           <span class="tag">Figma</span>
         </div>
         <div class="card-ctas separated">
           <a class="btn ghost" target="_blank"
-            href="https://www.figma.com/proto/iYuZ5f1XPOvGDWncfB739r/HCI">Acceder</a>
+            href="https://www.figma.com/proto/iYuZ5f1XPOvGDWncfB739r/HCI">
+            Acceder
+          </a>
           <a class="btn case" href="casos/greenscape/">Caso de estudio</a>
         </div>
       </article>
 
       <!-- NutriCampus -->
-      <article class="card hoverable project">
+      <article class="card project">
         <figure class="thumb">
-          <img src="activos/Proyectos/NutriCampus.png" loading="lazy">
+          <img src="activos/Proyectos/NutriCampus.png" alt="Proyecto NutriCampus" loading="lazy">
         </figure>
         <h3>NutriCampus</h3>
-        <p>Prototipo para RV.</p>
+        <p>
+          Diseño de experiencia para un entorno de realidad virtual enfocado en
+          educación nutricional e interacción inmersiva.
+        </p>
         <div class="tag-row">
           <span class="tag">VR</span>
+          <span class="tag">UX</span>
           <span class="tag">Prototipo</span>
           <span class="tag">Figma</span>
         </div>
         <div class="card-ctas separated">
           <a class="btn ghost" target="_blank"
-            href="https://www.figma.com/proto/riKsfkN37qsKX4NbQn5zOh/Nutricampus-V2">Acceder</a>
+            href="https://www.figma.com/proto/riKsfkN37qsKX4NbQn5zOh/Nutricampus-V2">
+            Acceder
+          </a>
           <a class="btn case" href="casos/nutricampus/">Caso de estudio</a>
         </div>
       </article>
 
       <!-- Isócrates -->
-      <article class="card hoverable project">
+      <article class="card project">
         <figure class="thumb">
-          <img src="activos/Proyectos/Isocrates.png" loading="lazy">
+          <img src="activos/Proyectos/Isocrates.png" alt="Proyecto Isócrates" loading="lazy">
         </figure>
         <h3>Isócrates</h3>
-        <p>Prototipo desktop enfocado en accesibilidad.</p>
+        <p>
+          Prototipo desktop enfocado en accesibilidad, lectura clara y navegación
+          inclusiva para usuarios con diferentes capacidades.
+        </p>
         <div class="tag-row">
           <span class="tag">Desktop</span>
           <span class="tag">Accesibilidad</span>
+          <span class="tag">UX</span>
         </div>
         <div class="card-ctas separated">
           <a class="btn ghost" target="_blank"
-            href="https://www.figma.com/proto/bCCXBOMkOQKVUB0emfQIb5">Acceder</a>
+            href="https://www.figma.com/proto/bCCXBOMkOQKVUB0emfQIb5">
+            Acceder
+          </a>
           <a class="btn case" href="casos/isocrates/">Caso de estudio</a>
         </div>
       </article>
@@ -129,9 +175,9 @@
 </section>
 
 <!-- ================= TECNOLOGÍAS ================= -->
-<section id="tecnologias" class="section tecnologias-section">
+<section id="tecnologias" class="section">
   <div class="container">
-    <h2 class="section-title">Tecnologías</h2>
+    <h2 class="section-title">Tecnologías y habilidades</h2>
 
     <div class="tech-layout">
       <div class="donut-wrapper">
@@ -145,22 +191,22 @@
         <button class="tech-btn" data-key="front">Frontend</button>
         <button class="tech-btn" data-key="motion">Motion</button>
         <button class="tech-btn" data-key="prod">Producción</button>
-        <button id="showAll" class="tech-btn">Diseñador UX/UI</button>
+        <button id="showAll" class="tech-btn">Perfil completo</button>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ================= CERTIFICADOS ================= -->
-<section id="certificados" class="section">
+<section id="certificados" class="section alt">
   <div class="container">
     <h2 class="section-title">Certificados</h2>
 
     <div class="grid cards diplomas-grid">
 
-      <!-- EF SET -->
-      <article class="card hoverable">
-        <h3>Certificado EF SET</h3>
+      <article class="card">
+        <h3>EF SET English Certificate</h3>
+        <p>Nivel de inglés intermedio-alto certificado.</p>
         <div class="tag-row">
           <span class="tag">Inglés</span>
           <span class="tag">B2</span>
@@ -172,107 +218,42 @@
         </a>
       </article>
 
-      <!-- Dreamweaver -->
-      <article class="card hoverable">
+      <article class="card">
         <h3>Diseño Web con Adobe Dreamweaver</h3>
+        <p>Fundamentos de diseño web, prototipado y análisis de requisitos.</p>
         <div class="tag-row">
           <span class="tag">Diseño web</span>
-          <span class="tag">Prototipado rápido</span>
-          <span class="tag">Análisis de requisitos</span>
-          <span class="tag">Requisitos funcionales</span>
+          <span class="tag">Prototipado</span>
           <span class="tag">Design Thinking</span>
         </div>
-        <a class="btn primary"
-           href="activos/diplomas/Diseño_Web_Con_Adobe_Dreamweaver.pdf"
-           target="_blank">
+        <a class="btn primary" href="activos/diplomas/Diseño_Web_Con_Adobe_Dreamweaver.pdf" target="_blank">
           Ver certificado
         </a>
       </article>
 
-      <!-- Fundamentos programación -->
-      <article class="card hoverable">
-        <h3>Fundamentos de programación</h3>
+      <article class="card">
+        <h3>Fundamentos de Programación</h3>
+        <p>Introducción a lógica, estructuras y lenguajes de programación.</p>
         <div class="tag-row">
           <span class="tag">Java</span>
-          <span class="tag">Python</span>
           <span class="tag">JavaScript</span>
+          <span class="tag">Python</span>
           <span class="tag">C++</span>
-          <span class="tag">PHP</span>
-          <span class="tag">Ruby</span>
-          <span class="tag">C#</span>
-          <span class="tag">Go</span>
         </div>
-        <a class="btn primary"
-           href="activos/diplomas/Fundamentos_de_programacion.jpeg"
-           target="_blank">
+        <a class="btn primary" href="activos/diplomas/Fundamentos_de_programacion.jpeg" target="_blank">
           Ver certificado
         </a>
       </article>
 
-      <!-- Design Thinking ideas -->
-      <article class="card hoverable">
-        <h3>Generación de ideas innovadoras con Design Thinking</h3>
+      <article class="card">
+        <h3>Design Thinking</h3>
+        <p>Generación y validación de ideas centradas en el usuario.</p>
         <div class="tag-row">
-          <span class="tag">Innovación</span>
           <span class="tag">UX</span>
-          <span class="tag">Design Thinking</span>
+          <span class="tag">Investigación</span>
           <span class="tag">Ideación</span>
-          <span class="tag">Propuesta de valor</span>
         </div>
-        <a class="btn primary"
-           href="activos/diplomas/Generacion_De_Ideas_Innovadoras_Con_Desing_Thinking.pdf"
-           target="_blank">
-          Ver certificado
-        </a>
-      </article>
-
-      <!-- Illustrator -->
-      <article class="card hoverable">
-        <h3>Manejo de Adobe Illustrator</h3>
-        <div class="tag-row">
-          <span class="tag">Illustrator</span>
-          <span class="tag">Diseño gráfico</span>
-          <span class="tag">Teoría del color</span>
-          <span class="tag">Composición</span>
-          <span class="tag">Branding</span>
-        </div>
-        <a class="btn primary"
-           href="activos/diplomas/Manejo_Adobe_Illustrator.pdf"
-           target="_blank">
-          Ver certificado
-        </a>
-      </article>
-
-      <!-- Photoshop -->
-      <article class="card hoverable">
-        <h3>Manejo de Adobe Photoshop</h3>
-        <div class="tag-row">
-          <span class="tag">Photoshop</span>
-          <span class="tag">Edición de imagen</span>
-          <span class="tag">Diseño visual</span>
-          <span class="tag">Ilustración</span>
-          <span class="tag">Retoque</span>
-        </div>
-        <a class="btn primary"
-           href="activos/diplomas/Manejo_Adobe_Photoshop.pdf"
-           target="_blank">
-          Ver certificado
-        </a>
-      </article>
-
-      <!-- Validación prototipos -->
-      <article class="card hoverable">
-        <h3>Validación de ideas y prototipos con Design Thinking</h3>
-        <div class="tag-row">
-          <span class="tag">UX Research</span>
-          <span class="tag">Prototipado</span>
-          <span class="tag">Testing</span>
-          <span class="tag">Validación</span>
-          <span class="tag">Design Thinking</span>
-        </div>
-        <a class="btn primary"
-           href="activos/diplomas/Validacion_De_Ideas_y_Prototipos_Con_Desing_Thinking.pdf"
-           target="_blank">
+        <a class="btn primary" href="activos/diplomas/Generacion_De_Ideas_Innovadoras_Con_Desing_Thinking.pdf" target="_blank">
           Ver certificado
         </a>
       </article>
@@ -287,7 +268,7 @@
 
     <div class="contact-info">
       <h2 class="section-title">Contacto</h2>
-      <p><strong>Email:</strong> <a href="mailto:santiagomr2003@gmail.com">santiagomr2003@gmail.com</a></p>
+      <p><strong>Email:</strong> santiagomr2003@gmail.com</p>
 
       <div class="botones-contacto">
         <a class="btn whatsapp big" href="https://wa.me/573228182311" target="_blank">WhatsApp</a>
