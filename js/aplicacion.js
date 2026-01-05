@@ -20,18 +20,16 @@ document.addEventListener("DOMContentLoaded", () => {
     { key: "motion", label: "Motion", value: 30, color: "#9b59b6" },
     { key: "prod", label: "Producción", value: 10, color: "#e74c3c" }
   ];
-  
-  const remainderColor = "#e6e6e6";  // Color para el espacio vacío de la dona
-  
+
+  const remainderColor = "#e6e6e6";
+
   // Estado inicial
-  let mode = "all";  // Modo puede ser "all" o "single"
-  let active = skills[0];  // Habilidad activa por defecto
+  let mode = "all";
+  let active = skills[0];
   let raf = null;
 
-  // Función de ayuda para restringir un valor entre dos valores
   const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
 
-  // Función para actualizar el tooltip
   function setTooltip({ text, x, y, bg }) {
     tooltip.textContent = text;
     tooltip.style.left = `${x}px`;
@@ -40,22 +38,18 @@ document.addEventListener("DOMContentLoaded", () => {
     tooltip.style.opacity = "1";
   }
 
-  // Función para ocultar el tooltip
   function hideTooltip() {
     tooltip.style.opacity = "0";
   }
 
-  // Función para obtener el punto de un arco (usado para el tooltip)
   function getArcPoint(chart, index) {
     const meta = chart.getDatasetMeta(0);
     const arc = meta?.data?.[index];
     if (!arc) return null;
-    // tooltipPosition() devuelve la posición sobre el arco
     const p = arc.tooltipPosition();
     return { x: p.x, y: p.y };
   }
 
-  // Función para posicionar el tooltip sobre el arco
   function positionAboveArc(chart, index) {
     const p = getArcPoint(chart, index);
     if (!p) return null;
@@ -66,11 +60,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const cx = p.x + (rect.left - wRect.left);
     const cy = p.y + (rect.top - wRect.top);
 
-    // Lo subimos un poco para que quede “encima” del arco
     return { x: cx, y: cy };
   }
 
-  // Crear datasets para el gráfico de todas las habilidades
   function datasetAll() {
     return {
       labels: skills.map(s => s.label),
@@ -83,7 +75,6 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 
-  // Crear dataset para el gráfico de una sola habilidad
   function datasetSingle(skill) {
     return {
       labels: [skill.label, "Resto"],
@@ -96,7 +87,6 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 
-  // Crear gráfico de tipo Doughnut
   const chart = new Chart(canvas, {
     type: "doughnut",
     data: datasetAll(),
@@ -107,12 +97,11 @@ document.addEventListener("DOMContentLoaded", () => {
       animation: { duration: 650, easing: "easeOutQuart" },
       plugins: {
         legend: { display: false },
-        tooltip: { enabled: false }  // Usamos el tooltip personalizado
+        tooltip: { enabled: false }
       }
     }
   });
 
-  // Animación suave para cambiar entre el modo "single" (una habilidad) sin parpadeos
   function animateToSingle(skill) {
     mode = "single";
     active = skill;
@@ -125,7 +114,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const step = (t) => {
       const k = clamp((t - t0) / duration, 0, 1);
-      // Ease-out cubic
       const eased = 1 - Math.pow(1 - k, 3);
       const val = start + (target - start) * eased;
 
@@ -140,7 +128,6 @@ document.addEventListener("DOMContentLoaded", () => {
     raf = requestAnimationFrame(step);
   }
 
-  // Mostrar todas las habilidades (modo "all")
   function showAll() {
     mode = "all";
     chart.data = datasetAll();
@@ -148,7 +135,6 @@ document.addEventListener("DOMContentLoaded", () => {
     hideTooltip();
   }
 
-  // Eventos para los botones de habilidades
   document.querySelectorAll(".tech-btn[data-key]").forEach(btn => {
     btn.addEventListener("click", () => {
       const key = btn.dataset.key;
@@ -158,7 +144,6 @@ document.addEventListener("DOMContentLoaded", () => {
       hideTooltip();
     });
 
-    // Accesibilidad: permitir Enter/Espacio
     btn.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
@@ -167,7 +152,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Botón "Diseñador UX/UI" (deja el modo "all")
   if (showAllBtn) {
     showAllBtn.addEventListener("click", showAll);
     showAllBtn.addEventListener("keydown", (e) => {
@@ -178,7 +162,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Hover: Solo mostrar tooltip cuando estamos sobre el segmento pintado
   function handleHover(evt) {
     const points = chart.getElementsAtEventForMode(
       evt,
@@ -194,13 +177,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const { index } = points[0];
 
-    // Si estamos en el modo "single", el índice 1 es el gris (vacío) -> NO mostrar
     if (mode === "single" && index === 1) {
       hideTooltip();
       return;
     }
 
-    // Texto y color del tooltip según el modo
     let text = "";
     let bg = "rgba(0,0,0,.9)";
 
@@ -210,7 +191,6 @@ document.addEventListener("DOMContentLoaded", () => {
       text = `${s.label} — ${s.value}%`;
       bg = s.color;
     } else {
-      // En "single", el índice 0 es el segmento pintado
       text = `${active.label} — ${active.value}%`;
       bg = active.color;
     }
@@ -226,10 +206,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Eventos de hover para el gráfico
   canvas.addEventListener("mousemove", handleHover);
   canvas.addEventListener("mouseleave", hideTooltip);
 
-  // Estado inicial: “Diseñador UX/UI” (modo ALL) como pediste
   showAll();
 });
