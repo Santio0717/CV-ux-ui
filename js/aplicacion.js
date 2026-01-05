@@ -1,9 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // ==============================
   // Año footer
+  // ==============================
   const year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
 
+  // ==============================
   // Selección de elementos DOM
+  // ==============================
   const canvas = document.getElementById("skillsDonut");
   const wrapper = canvas?.closest(".donut-wrapper");
   const tooltip = document.getElementById("donutTooltip");
@@ -12,7 +16,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // Validación de la existencia de los elementos necesarios
   if (!canvas || !wrapper || !tooltip || typeof Chart === "undefined") return;
 
+  // ==============================
   // Datos de las habilidades
+  // ==============================
   const skills = [
     { key: "uxui", label: "UX/UI", value: 35, color: "#f39c12" },
     { key: "docs", label: "Documentación", value: 20, color: "#2ecc71" },
@@ -21,13 +27,18 @@ document.addEventListener("DOMContentLoaded", () => {
     { key: "prod", label: "Producción", value: 10, color: "#e74c3c" }
   ];
 
-  const remainderColor = "#e6e6e6";
+  const remainderColor = "#e6e6e6"; // Color para el espacio vacío de la dona
 
+  // ==============================
   // Estado inicial
-  let mode = "all";
-  let active = skills[0];
+  // ==============================
+  let mode = "all";            // "all" o "single"
+  let active = skills[0];      // habilidad activa por defecto
   let raf = null;
 
+  // ==============================
+  // Helpers
+  // ==============================
   const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
 
   function setTooltip({ text, x, y, bg }) {
@@ -63,6 +74,9 @@ document.addEventListener("DOMContentLoaded", () => {
     return { x: cx, y: cy };
   }
 
+  // ==============================
+  // Datasets
+  // ==============================
   function datasetAll() {
     return {
       labels: skills.map(s => s.label),
@@ -87,6 +101,9 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   }
 
+  // ==============================
+  // Crear gráfico
+  // ==============================
   const chart = new Chart(canvas, {
     type: "doughnut",
     data: datasetAll(),
@@ -102,6 +119,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // ==============================
+  // Animación suave: single
+  // ==============================
   function animateToSingle(skill) {
     mode = "single";
     active = skill;
@@ -128,6 +148,9 @@ document.addEventListener("DOMContentLoaded", () => {
     raf = requestAnimationFrame(step);
   }
 
+  // ==============================
+  // Mostrar todo (all)
+  // ==============================
   function showAll() {
     mode = "all";
     chart.data = datasetAll();
@@ -135,11 +158,24 @@ document.addEventListener("DOMContentLoaded", () => {
     hideTooltip();
   }
 
+  // ==============================
+  // UI: Manejo de botones activos
+  // ==============================
+  function setActiveButton(btn) {
+    document.querySelectorAll(".tech-btn").forEach(b => b.classList.remove("is-active"));
+    btn.classList.add("is-active");
+  }
+
+  // ==============================
+  // Eventos botones skills
+  // ==============================
   document.querySelectorAll(".tech-btn[data-key]").forEach(btn => {
     btn.addEventListener("click", () => {
       const key = btn.dataset.key;
       const s = skills.find(x => x.key === key);
       if (!s) return;
+
+      setActiveButton(btn);
       animateToSingle(s);
       hideTooltip();
     });
@@ -152,8 +188,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // ==============================
+  // Botón perfil completo
+  // ==============================
   if (showAllBtn) {
-    showAllBtn.addEventListener("click", showAll);
+    showAllBtn.addEventListener("click", () => {
+      setActiveButton(showAllBtn);
+      showAll();
+    });
+
     showAllBtn.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
@@ -162,6 +205,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // ==============================
+  // Hover: tooltip solo sobre segmento
+  // ==============================
   function handleHover(evt) {
     const points = chart.getElementsAtEventForMode(
       evt,
@@ -177,6 +223,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const { index } = points[0];
 
+    // En modo single, ignorar el segmento gris
     if (mode === "single" && index === 1) {
       hideTooltip();
       return;
@@ -209,5 +256,9 @@ document.addEventListener("DOMContentLoaded", () => {
   canvas.addEventListener("mousemove", handleHover);
   canvas.addEventListener("mouseleave", hideTooltip);
 
+  // ==============================
+  // Estado inicial: Perfil completo activo
+  // ==============================
   showAll();
+  if (showAllBtn) showAllBtn.classList.add("is-active");
 });
