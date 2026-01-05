@@ -1,20 +1,23 @@
 :root{
-  --bg-1:#f6ead8;
-  --bg-2:#f3e1c5;
+  --bg-1:#f8eddc;   /* más suave */
+  --bg-2:#f2dbc0;   /* más suave */
 
   --ink:#1f2933;
 
   --primary:#d72638;
   --accent:#8f4428;
 
-  --glass:rgba(255,255,255,.75);
+  /* Glass más elegante */
+  --glass:rgba(255,255,255,.72);
 
   --radius-sm:12px;
   --radius-md:16px;
   --radius-lg:22px;
 
-  --shadow-sm:0 6px 20px rgba(0,0,0,.08);
-  --shadow-md:0 16px 40px rgba(0,0,0,.12);
+  /* Sombras más suaves y premium */
+  --shadow-sm:0 8px 24px rgba(0,0,0,.06);
+  --shadow-md:0 18px 44px rgba(0,0,0,.10);
+  --shadow-glow:0 10px 30px rgba(0,0,0,.08);
 }
 
 *{
@@ -27,7 +30,11 @@ body{
   font-family:'Inter',sans-serif;
   color:var(--ink);
   line-height:1.6;
-  background:linear-gradient(120deg,var(--bg-1),var(--bg-2));
+
+  /* Fondo suave con más profundidad */
+  background: radial-gradient(circle at top left, #fff6ea 0%, transparent 45%),
+              radial-gradient(circle at bottom right, #f3d6b8 0%, transparent 50%),
+              linear-gradient(120deg,var(--bg-1),var(--bg-2));
 }
 
 .container{
@@ -36,17 +43,12 @@ body{
 }
 
 .section{
-  padding:80px 0;
-}
-
-.section.alt{
-  background:rgba(255,255,255,.35);
-  border-radius:var(--radius-lg);
+  padding:90px 0;
 }
 
 .section-title{
   font-size:clamp(1.6rem,2.4vw,2rem);
-  margin-bottom:32px;
+  margin-bottom:40px;
   font-weight:800;
 }
 
@@ -54,8 +56,8 @@ body{
 .site-header{
   position:sticky;
   top:0;
-  background:rgba(255,255,255,.85);
-  backdrop-filter:blur(10px);
+  background:rgba(255,255,255,.86);
+  backdrop-filter:blur(14px);
   border-bottom:1px solid rgba(0,0,0,.06);
   z-index:10;
 }
@@ -67,7 +69,6 @@ body{
   padding:16px 0;
 }
 
-/* Fix nav links sin subrayado */
 .brand,
 .main-nav a{
   text-decoration:none;
@@ -95,10 +96,11 @@ body{
   display:grid;
   grid-template-columns:120px 1fr;
   gap:28px;
-  padding:40px;
+  padding:44px;
   background:var(--glass);
   border-radius:var(--radius-lg);
   box-shadow:var(--shadow-md);
+  border:1px solid rgba(255,255,255,.45);
 }
 
 .avatar{
@@ -161,6 +163,10 @@ body{
   padding:16px 30px;
 }
 
+/* WhatsApp y LinkedIn */
+.btn.whatsapp{ background:#25D366; }
+.btn.linkedin{ background:#0077B5; }
+
 /* ================= CARDS ================= */
 .grid.cards{
   display:grid;
@@ -170,11 +176,20 @@ body{
 
 .card{
   background:var(--glass);
-  padding:24px;
+  padding:26px;
   border-radius:var(--radius-md);
   box-shadow:var(--shadow-sm);
+  border:1px solid rgba(255,255,255,.45);
+  transition:transform .25s ease, box-shadow .25s ease;
 }
 
+/* Hover premium para cards (certificados / proyectos) */
+.card:hover{
+  transform:translateY(-4px);
+  box-shadow:var(--shadow-glow);
+}
+
+/* Thumb */
 .thumb{
   aspect-ratio:16/9;
   border-radius:var(--radius-sm);
@@ -197,23 +212,41 @@ body{
 
 .tag{
   font-size:.75rem;
-  background:rgba(0,0,0,.08);
+  background:rgba(0,0,0,.06);
   padding:4px 10px;
   border-radius:999px;
 }
 
-/* ================= TECNOLOGÍAS Y HABILIDADES ================= */
+/* ================= BLOQUES POR SECCIÓN ================= */
+#proyectos .container,
+#tecnologias .container,
+#certificados .container,
+#contacto .container{
+  background:rgba(255,255,255,.32);
+  border-radius:var(--radius-lg);
+  padding:52px 46px;
+  box-shadow:var(--shadow-md);
+  border:1px solid rgba(255,255,255,.55);
+}
 
-/* Centrado real de todo el bloque */
+/* Separación clara */
+#proyectos,
+#tecnologias,
+#certificados,
+#contacto{
+  padding-top:70px;
+  padding-bottom:70px;
+}
+
+/* ================= TECNOLOGÍAS ================= */
 .tech-layout{
   display:flex;
   align-items:center;
-  justify-content:center; /* 🔥 centra el conjunto */
+  justify-content:center;
   gap:44px;
   margin-top:28px;
 }
 
-/* Dona centrada y estable */
 .donut-wrapper{
   position:relative;
   width:260px;
@@ -225,7 +258,6 @@ body{
   justify-content:center;
 }
 
-/* Canvas con hover controlado */
 #skillsDonut{
   width:260px !important;
   height:260px !important;
@@ -236,10 +268,9 @@ body{
 }
 
 #skillsDonut:hover{
-  transform:scale(1.04); /* más sutil */
+  transform:scale(1.04);
 }
 
-/* Tooltip */
 .donut-tooltip{
   position:absolute;
   padding:8px 12px;
@@ -255,7 +286,6 @@ body{
   box-shadow:0 8px 20px rgba(0,0,0,.15);
 }
 
-/* Botones: mismo estilo todos */
 .tech-controls{
   display:flex;
   flex-wrap:wrap;
@@ -264,13 +294,12 @@ body{
   max-width:360px;
 }
 
-/* Botón base tipo UI */
 .tech-btn{
   padding:10px 14px;
   border:none;
   border-radius:999px;
   font-weight:700;
-  background:rgba(255,255,255,.65);
+  background:rgba(255,255,255,.72);
   cursor:pointer;
   transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
   box-shadow:var(--shadow-sm);
@@ -279,17 +308,15 @@ body{
 
 .tech-btn:hover{
   transform:translateY(-2px);
-  background:rgba(255,255,255,.85);
+  background:rgba(255,255,255,.92);
 }
 
-/* Perfil completo: igual a los otros, NO café */
 #showAll{
-  background:rgba(255,255,255,.65);
-  color:var(--ink);
-  border:2px solid rgba(0,0,0,.08);
+  background:rgba(255,255,255,.72);
+  border:2px solid rgba(0,0,0,.07);
 }
 
-/* Botón activo (se controla con JS) */
+/* Botón activo */
 .tech-btn.is-active{
   background:var(--ink);
   color:#fff;
@@ -306,9 +333,10 @@ body{
   width:100%;
   padding:14px;
   border-radius:var(--radius-sm);
-  border:1px solid #ccc;
+  border:1px solid rgba(0,0,0,.18);
   margin-bottom:14px;
   font:inherit;
+  background:rgba(255,255,255,.78);
 }
 
 .full-btn{
@@ -321,22 +349,11 @@ body{
   margin-top:16px;
 }
 
-/* WhatsApp y LinkedIn con colores reales */
-.btn.whatsapp{
-  background:#25D366;
-  color:#fff;
-}
-
-.btn.linkedin{
-  background:#0077B5;
-  color:#fff;
-}
-
 /* ================= FOOTER ================= */
 .new-footer{
   text-align:center;
   padding:32px 0;
-  background:rgba(255,255,255,.8);
+  background:rgba(255,255,255,.82);
   border-top:1px solid rgba(0,0,0,.08);
 }
 
@@ -354,8 +371,14 @@ body{
   }
 }
 
-/* Responsive tecnologías */
 @media(max-width:720px){
+  #proyectos .container,
+  #tecnologias .container,
+  #certificados .container,
+  #contacto .container{
+    padding:36px 22px;
+  }
+
   .tech-layout{
     flex-direction:column;
     gap:22px;
