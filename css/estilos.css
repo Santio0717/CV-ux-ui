@@ -1,20 +1,18 @@
 :root{
-  --bg-1:#f8eddc;   /* más suave */
-  --bg-2:#f2dbc0;   /* más suave */
+  --bg-1:#f8eddc;
+  --bg-2:#f2dbc0;
 
   --ink:#1f2933;
 
   --primary:#d72638;
   --accent:#8f4428;
 
-  /* Glass más elegante */
   --glass:rgba(255,255,255,.72);
 
   --radius-sm:12px;
   --radius-md:16px;
   --radius-lg:22px;
 
-  /* Sombras más suaves y premium */
   --shadow-sm:0 8px 24px rgba(0,0,0,.06);
   --shadow-md:0 18px 44px rgba(0,0,0,.10);
   --shadow-glow:0 10px 30px rgba(0,0,0,.08);
@@ -30,8 +28,6 @@ body{
   font-family:'Inter',sans-serif;
   color:var(--ink);
   line-height:1.6;
-
-  /* Fondo suave con más profundidad */
   background: radial-gradient(circle at top left, #fff6ea 0%, transparent 45%),
               radial-gradient(circle at bottom right, #f3d6b8 0%, transparent 50%),
               linear-gradient(120deg,var(--bg-1),var(--bg-2));
@@ -163,7 +159,6 @@ body{
   padding:16px 30px;
 }
 
-/* WhatsApp y LinkedIn */
 .btn.whatsapp{ background:#25D366; }
 .btn.linkedin{ background:#0077B5; }
 
@@ -180,13 +175,24 @@ body{
   border-radius:var(--radius-md);
   box-shadow:var(--shadow-sm);
   border:1px solid rgba(255,255,255,.45);
-  transition:transform .25s ease, box-shadow .25s ease;
+
+  /* Fade/Slide al aparecer */
+  opacity:0;
+  transform: translateY(18px) scale(.98);
+  transition: opacity .65s ease, transform .65s ease;
+  will-change: transform, opacity;
 }
 
-/* Hover premium para cards (certificados / proyectos) */
+/* Visibilidad por viewport (JS) */
+.card.is-visible{
+  opacity:1;
+  transform: translateY(0) scale(1);
+}
+
+/* Micro tilt hover pro */
 .card:hover{
-  transform:translateY(-4px);
-  box-shadow:var(--shadow-glow);
+  transform: translateY(-6px) rotateX(2deg) rotateY(-2deg) scale(1.01);
+  box-shadow: var(--shadow-glow);
 }
 
 /* Thumb */
@@ -217,6 +223,27 @@ body{
   border-radius:999px;
 }
 
+/* ================= FIX: Separar botones en cards de proyectos ================= */
+.card-ctas{
+  display:flex;
+  flex-direction:column;
+  gap:12px;            /* ✅ separación vertical */
+  margin-top:14px;
+}
+
+.card-ctas .btn{
+  width:fit-content;
+}
+
+/* Si quieres que se vuelvan fila en pantallas grandes */
+@media(min-width:900px){
+  .card-ctas.separated{
+    flex-direction:row;
+    flex-wrap:wrap;
+    gap:14px;          /* ✅ separación horizontal */
+  }
+}
+
 /* ================= BLOQUES POR SECCIÓN ================= */
 #proyectos .container,
 #tecnologias .container,
@@ -229,7 +256,6 @@ body{
   border:1px solid rgba(255,255,255,.55);
 }
 
-/* Separación clara */
 #proyectos,
 #tecnologias,
 #certificados,
@@ -316,7 +342,6 @@ body{
   border:2px solid rgba(0,0,0,.07);
 }
 
-/* Botón activo */
 .tech-btn.is-active{
   background:var(--ink);
   color:#fff;
@@ -355,6 +380,18 @@ body{
   padding:32px 0;
   background:rgba(255,255,255,.82);
   border-top:1px solid rgba(0,0,0,.08);
+}
+
+/* ================= ACCESIBILIDAD ================= */
+@media (prefers-reduced-motion: reduce){
+  .card{
+    transition:none !important;
+    opacity:1 !important;
+    transform:none !important;
+  }
+  .card:hover{
+    transform:none !important;
+  }
 }
 
 /* ================= RESPONSIVE ================= */
