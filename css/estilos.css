@@ -227,7 +227,7 @@ body{
 .card-ctas{
   display:flex;
   flex-direction:column;
-  gap:12px;            /* ✅ separación vertical */
+  gap:12px;
   margin-top:14px;
 }
 
@@ -235,12 +235,11 @@ body{
   width:fit-content;
 }
 
-/* Si quieres que se vuelvan fila en pantallas grandes */
 @media(min-width:900px){
   .card-ctas.separated{
     flex-direction:row;
     flex-wrap:wrap;
-    gap:14px;          /* ✅ separación horizontal */
+    gap:14px;
   }
 }
 
@@ -337,14 +336,24 @@ body{
   background:rgba(255,255,255,.92);
 }
 
+/* Perfil completo igual a los demás */
 #showAll{
   background:rgba(255,255,255,.72);
   border:2px solid rgba(0,0,0,.07);
+  color:var(--ink);
 }
 
-.tech-btn.is-active{
+/* ✅ FIX COMPLETO: Solo skills activos (con data-key) son oscuros */
+.tech-btn.is-active[data-key]{
   background:var(--ink);
   color:#fff;
+}
+
+/* ✅ Perfil completo activo: se mantiene claro y texto negro */
+#showAll.is-active{
+  background:rgba(255,255,255,.72);
+  color:var(--ink);
+  border:2px solid rgba(0,0,0,.07);
 }
 
 /* ================= CONTACTO ================= */
