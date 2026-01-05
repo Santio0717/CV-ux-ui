@@ -50,7 +50,7 @@ body{
   font-weight:800;
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
 .site-header{
   position:sticky;
   top:0;
@@ -67,9 +67,17 @@ body{
   padding:16px 0;
 }
 
-.brand{
+/* Fix nav links sin subrayado */
+.brand,
+.main-nav a{
+  text-decoration:none;
   font-weight:800;
-  letter-spacing:.4px;
+  color:var(--ink);
+}
+
+.brand:visited,
+.main-nav a:visited{
+  color:var(--ink);
 }
 
 .main-nav{
@@ -77,11 +85,12 @@ body{
   gap:20px;
 }
 
-.main-nav a{
-  font-weight:600;
+.main-nav a:hover,
+.brand:hover{
+  opacity:.7;
 }
 
-/* HERO */
+/* ================= HERO ================= */
 .hero-card{
   display:grid;
   grid-template-columns:120px 1fr;
@@ -118,7 +127,7 @@ body{
   margin-bottom:24px;
 }
 
-/* BOTONES */
+/* ================= BOTONES ================= */
 .btn{
   display:inline-flex;
   align-items:center;
@@ -130,7 +139,7 @@ body{
   cursor:pointer;
   text-decoration:none;
   color:#fff;
-  transition:transform .2s ease, box-shadow .2s ease;
+  transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
 }
 
 .btn:hover{
@@ -152,7 +161,7 @@ body{
   padding:16px 30px;
 }
 
-/* CARDS */
+/* ================= CARDS ================= */
 .grid.cards{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
@@ -193,7 +202,100 @@ body{
   border-radius:999px;
 }
 
-/* CONTACTO */
+/* ================= TECNOLOGÍAS Y HABILIDADES ================= */
+
+/* Centrado real de todo el bloque */
+.tech-layout{
+  display:flex;
+  align-items:center;
+  justify-content:center; /* 🔥 centra el conjunto */
+  gap:44px;
+  margin-top:28px;
+}
+
+/* Dona centrada y estable */
+.donut-wrapper{
+  position:relative;
+  width:260px;
+  height:260px;
+  flex:0 0 auto;
+  transform:none !important;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* Canvas con hover controlado */
+#skillsDonut{
+  width:260px !important;
+  height:260px !important;
+  display:block;
+  transform:scale(1);
+  transition:transform .25s ease;
+  will-change:transform;
+}
+
+#skillsDonut:hover{
+  transform:scale(1.04); /* más sutil */
+}
+
+/* Tooltip */
+.donut-tooltip{
+  position:absolute;
+  padding:8px 12px;
+  border-radius:999px;
+  font-size:.85rem;
+  font-weight:700;
+  color:#fff;
+  pointer-events:none;
+  transform:translate(-50%, -120%);
+  opacity:0;
+  transition:opacity .2s ease;
+  white-space:nowrap;
+  box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+
+/* Botones: mismo estilo todos */
+.tech-controls{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:12px;
+  max-width:360px;
+}
+
+/* Botón base tipo UI */
+.tech-btn{
+  padding:10px 14px;
+  border:none;
+  border-radius:999px;
+  font-weight:700;
+  background:rgba(255,255,255,.65);
+  cursor:pointer;
+  transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+  box-shadow:var(--shadow-sm);
+  color:var(--ink);
+}
+
+.tech-btn:hover{
+  transform:translateY(-2px);
+  background:rgba(255,255,255,.85);
+}
+
+/* Perfil completo: igual a los otros, NO café */
+#showAll{
+  background:rgba(255,255,255,.65);
+  color:var(--ink);
+  border:2px solid rgba(0,0,0,.08);
+}
+
+/* Botón activo (se controla con JS) */
+.tech-btn.is-active{
+  background:var(--ink);
+  color:#fff;
+}
+
+/* ================= CONTACTO ================= */
 .contact-wrapper{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -219,7 +321,18 @@ body{
   margin-top:16px;
 }
 
-/* FOOTER */
+/* WhatsApp y LinkedIn con colores reales */
+.btn.whatsapp{
+  background:#25D366;
+  color:#fff;
+}
+
+.btn.linkedin{
+  background:#0077B5;
+  color:#fff;
+}
+
+/* ================= FOOTER ================= */
 .new-footer{
   text-align:center;
   padding:32px 0;
@@ -227,7 +340,7 @@ body{
   border-top:1px solid rgba(0,0,0,.08);
 }
 
-/* RESPONSIVE */
+/* ================= RESPONSIVE ================= */
 @media(max-width:900px){
   .hero-card{
     grid-template-columns:1fr;
@@ -241,100 +354,15 @@ body{
   }
 }
 
-
-/* ================= TECNOLOGÍAS Y HABILIDADES (FIX COMPLETO) ================= */
-
-.tech-layout{
-  display:flex;
-  align-items:center;
-  justify-content:flex-start;
-  gap:32px;
-  margin-top:28px;
-}
-
-/* Contenedor de la dona */
-.donut-wrapper{
-  position:relative;
-  width:260px;
-  height:260px;
-  flex:0 0 auto;
-
-  /* IMPORTANTE: evitar escalado infinito */
-  transform:none !important;
-}
-
-/* Canvas del donut */
-#skillsDonut{
-  width:260px !important;
-  height:260px !important;
-  display:block;
-
-  /* Fix para hover infinito */
-  transform:scale(1);
-  transition:transform .25s ease;
-  will-change: transform;
-}
-
-/* Hover controlado */
-#skillsDonut:hover{
-  transform:scale(1.05);
-}
-
-/* Tooltip */
-.donut-tooltip{
-  position:absolute;
-  padding:8px 12px;
-  border-radius:999px;
-  font-size:.85rem;
-  font-weight:700;
-  color:#fff;
-  pointer-events:none;
-  transform:translate(-50%, -120%);
-  opacity:0;
-  transition:opacity .2s ease;
-  white-space:nowrap;
-  box-shadow:0 8px 20px rgba(0,0,0,.15);
-}
-
-/* Controles/botones */
-.tech-controls{
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-  max-width:360px;
-}
-
-/* Botones */
-.tech-btn{
-  padding:10px 14px;
-  border:none;
-  border-radius:var(--radius-sm);
-  font-weight:700;
-  background:rgba(255,255,255,.55);
-  cursor:pointer;
-  transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
-  box-shadow:var(--shadow-sm);
-}
-
-.tech-btn:hover{
-  transform:translateY(-2px);
-  background:rgba(255,255,255,.75);
-}
-
-/* Perfil completo */
-#showAll{
-  background:var(--accent);
-  color:#fff;
-}
-
 /* Responsive tecnologías */
 @media(max-width:720px){
   .tech-layout{
     flex-direction:column;
-    align-items:flex-start;
+    gap:22px;
   }
 
   .tech-controls{
     max-width:100%;
+    justify-content:flex-start;
   }
 }
