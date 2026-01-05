@@ -240,3 +240,101 @@ body{
     grid-template-columns:1fr;
   }
 }
+
+
+/* ================= TECNOLOGÍAS Y HABILIDADES (FIX COMPLETO) ================= */
+
+.tech-layout{
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  gap:32px;
+  margin-top:28px;
+}
+
+/* Contenedor de la dona */
+.donut-wrapper{
+  position:relative;
+  width:260px;
+  height:260px;
+  flex:0 0 auto;
+
+  /* IMPORTANTE: evitar escalado infinito */
+  transform:none !important;
+}
+
+/* Canvas del donut */
+#skillsDonut{
+  width:260px !important;
+  height:260px !important;
+  display:block;
+
+  /* Fix para hover infinito */
+  transform:scale(1);
+  transition:transform .25s ease;
+  will-change: transform;
+}
+
+/* Hover controlado */
+#skillsDonut:hover{
+  transform:scale(1.05);
+}
+
+/* Tooltip */
+.donut-tooltip{
+  position:absolute;
+  padding:8px 12px;
+  border-radius:999px;
+  font-size:.85rem;
+  font-weight:700;
+  color:#fff;
+  pointer-events:none;
+  transform:translate(-50%, -120%);
+  opacity:0;
+  transition:opacity .2s ease;
+  white-space:nowrap;
+  box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+
+/* Controles/botones */
+.tech-controls{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  max-width:360px;
+}
+
+/* Botones */
+.tech-btn{
+  padding:10px 14px;
+  border:none;
+  border-radius:var(--radius-sm);
+  font-weight:700;
+  background:rgba(255,255,255,.55);
+  cursor:pointer;
+  transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+  box-shadow:var(--shadow-sm);
+}
+
+.tech-btn:hover{
+  transform:translateY(-2px);
+  background:rgba(255,255,255,.75);
+}
+
+/* Perfil completo */
+#showAll{
+  background:var(--accent);
+  color:#fff;
+}
+
+/* Responsive tecnologías */
+@media(max-width:720px){
+  .tech-layout{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .tech-controls{
+    max-width:100%;
+  }
+}
