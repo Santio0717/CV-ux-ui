@@ -6,11 +6,90 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bon Bon Bum · Estudio de Caso</title>
 
+  <!-- ✅ CSS global del portafolio (para toolbar + botones + layout) -->
+  <link rel="stylesheet" href="../../CSS/estilos.css">
+
+  <!-- CSS local del caso (mantiene estilos propios de tabs y contenido) -->
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="case-page">
 
+  <!-- ✅ HEADER GLOBAL + NAV + TOOLBAR -->
+  <header class="site-header">
+    <div class="container nav-wrap">
+
+      <a href="../../index.html" class="brand">SM·UX</a>
+
+      <nav class="main-nav" aria-label="Navegación principal">
+        <a href="../../index.html#proyectos" data-i18n="nav_projects">Proyectos</a>
+        <a href="../../index.html#tecnologias" data-i18n="nav_skills">Tecnologías</a>
+        <a href="../../index.html#certificados" data-i18n="nav_certificates">Certificados</a>
+        <a href="../../index.html#contacto" data-i18n="nav_contact">Contacto</a>
+      </nav>
+
+      <!-- ✅ TOOLBAR DROPDOWNS -->
+      <div class="toolbar">
+
+        <!-- Dropdown Idioma -->
+        <div class="dropdown" id="langDropdown">
+          <button class="drop-btn" type="button" aria-haspopup="true" aria-expanded="false">
+            🌍 <span data-i18n="toolbar_language">Idioma</span>
+          </button>
+
+          <div class="drop-panel" role="menu" aria-label="Selector de idioma">
+            <button class="lang-btn" data-lang="es" type="button">ES</button>
+            <button class="lang-btn" data-lang="en" type="button">EN</button>
+            <button class="lang-btn" data-lang="fr" type="button">FR</button>
+            <button class="lang-btn" data-lang="pt" type="button">PT</button>
+            <button class="lang-btn" data-lang="de" type="button">DE</button>
+            <button class="lang-btn" data-lang="zh" type="button">中文</button>
+
+            <div class="drop-sep"></div>
+
+            <button id="resetLang" class="drop-reset" type="button" data-i18n="toolbar_reset_language">
+              Restablecer idioma
+            </button>
+          </div>
+        </div>
+
+        <!-- Dropdown Accesibilidad -->
+        <div class="dropdown" id="a11yDropdown">
+          <button class="drop-btn" type="button" aria-haspopup="true" aria-expanded="false">
+            ♿ <span data-i18n="toolbar_accessibility">Accesibilidad</span>
+          </button>
+
+          <div class="drop-panel" role="menu" aria-label="Opciones de accesibilidad">
+
+            <div class="a11y-row">
+              <button id="fontMinus" class="a11y-btn" type="button">A-</button>
+              <button id="fontPlus" class="a11y-btn" type="button">A+</button>
+            </div>
+
+            <label class="toggle">
+              <input type="checkbox" id="toggleContrast" />
+              <span data-i18n="toolbar_contrast">Alto contraste</span>
+            </label>
+
+            <label class="toggle">
+              <input type="checkbox" id="toggleReadable" />
+              <span data-i18n="toolbar_readable">Fuente legible</span>
+            </label>
+
+            <div class="drop-sep"></div>
+
+            <button id="resetA11y" class="drop-reset" type="button" data-i18n="toolbar_reset_accessibility">
+              Restablecer accesibilidad
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ✅ CONTENIDO DEL CASO -->
   <main class="case-content container">
 
     <h1 class="case-title">Bon Bon Bum</h1>
@@ -19,24 +98,32 @@
     <div class="ux-tabs">
       <a class="ux-tab" href="ux-research.html">UX Research</a>
       <a class="ux-tab" href="ux-design.html">UX Design</a>
-      <a class="ux-tab" href="prototipado.html">Prototipado</a>
+      <a class="ux-tab" href="prototipado.html" data-i18n="tab_prototype">Prototipado</a>
       <a class="ux-tab" href="product-design.html">Product Design</a>
-      <a class="ux-tab" href="accesibilidad.html">Accesibilidad</a>
+      <a class="ux-tab" href="accesibilidad.html" data-i18n="tab_accessibility">Accesibilidad</a>
     </div>
 
-    <!-- Tabs -->
-    <p style="text-align:center; max-width:600px; margin:0 auto 24px;">
+    <!-- Texto introductorio -->
+    <p class="case-intro" data-i18n="case_select_phase">
       Selecciona una categoría para explorar cada fase del proceso.
     </p>
 
     <!-- BOTONES INFERIORES -->
     <div class="case-links">
-      <a href="../../index.html#proyectos" class="btn ghost">Volver al portafolio</a>
+      <a href="../../index.html#proyectos" class="btn ghost" data-i18n="case_back">
+        Volver al portafolio
+      </a>
+
       <a href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma"
-         target="_blank" class="btn case">Ver prototipo en Figma</a>
+         target="_blank" class="btn case" data-i18n="case_figma">
+        Ver prototipo en Figma
+      </a>
     </div>
 
   </main>
+
+  <!-- ✅ JS GLOBAL (TRADUCCIÓN + ACCESIBILIDAD + DROPDOWNS) -->
+  <script src="../../js/aplicacion.js" defer></script>
 
 </body>
 </html>
