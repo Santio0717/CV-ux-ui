@@ -1,26 +1,24 @@
-/* ======================================
-   BON BON BUM / CASO - STYLE
-   ✅ Compatible con estilos globales
-   ✅ No rompe el header sticky del portafolio
-====================================== */
-
 /* Fondo y layout general */
 body.case-page {
   background: #f2dfc2;
   font-family: 'Inter', sans-serif;
-  padding-top: 0; /* ✅ NO usar padding-top porque header es sticky */
+  padding-top: 0; /* ✅ El header sticky ya maneja el espacio */
 }
 
-/* ✅ Separación real debajo del header sticky */
+/* ✅ Separación estable debajo del header sticky */
+.case-page main {
+  padding-top: 90px; /* ✅ Más estable que margin-top solo */
+}
+
+/* ✅ Contenedor principal del caso */
 .case-content {
-  margin-top: 90px; /* ✅ espacio perfecto */
   background: rgba(255, 255, 255, 0.35);
   padding: 40px;
   border-radius: 18px;
-  max-width: 1100px; /* ✅ más ancho para que no se rompa en idiomas */
-  margin-inline: auto;
+  max-width: 1100px; /* ✅ amplio para textos largos */
+  margin: 0 auto 70px;
   box-shadow: 0 14px 34px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(255,255,255,.45);
+  border: 1px solid rgba(255, 255, 255, 0.45);
 }
 
 /* Título */
@@ -45,31 +43,31 @@ body.case-page {
 .ux-tab {
   padding: 10px 18px;
   border-radius: 999px;
-  background: rgba(255,255,255,.65);
-  border: 1px solid rgba(0,0,0,.12);
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(0, 0, 0, 0.12);
   cursor: pointer;
   font-weight: 700;
-  transition: transform .22s ease, box-shadow .22s ease, background .22s ease;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
   text-decoration: none !important;
   color: #1f2933 !important;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 6px 16px rgba(0,0,0,.06);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
 }
 
 /* Hover */
 .ux-tab:hover {
   transform: translateY(-2px);
-  background: rgba(255,255,255,.88);
-  box-shadow: 0 10px 22px rgba(0,0,0,.08);
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
 }
 
 /* Activo */
 .ux-tab.active {
   background: #1f2933;
   color: #fff !important;
-  border: 1px solid rgba(0,0,0,.35);
+  border: 1px solid rgba(0, 0, 0, 0.35);
 }
 
 /* Texto introductorio */
