@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es" translate="no" class="notranslate">
+<html lang="es" translate="no">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,9 +7,10 @@
   <title>Portafolio UX/UI · Santiago Murillo</title>
   <meta name="description" content="Portafolio de Santiago Murillo, UX/UI Designer enfocado en accesibilidad, prototipado, investigación y diseño centrado en el usuario.">
 
-  <!-- ✅ Bloquea Google Translate -->
+  <!-- ✅ Bloquear Google Translate -->
   <meta name="google" content="notranslate">
   <meta name="googlebot" content="notranslate">
+  <meta http-equiv="Content-Language" content="es">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,9 +20,10 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body translate="no" class="notranslate">
+<body translate="no">
 
-<header class="site-header">
+<!-- ================= HEADER ================= -->
+<header class="site-header" translate="no">
   <div class="container nav-wrap">
 
     <a href="#inicio" class="brand" aria-label="Ir al inicio">SM·UX</a>
@@ -33,7 +35,7 @@
       <a href="#contacto" data-i18n="nav_contact">Contacto</a>
     </nav>
 
-    <!-- ✅ TOOLBAR -->
+    <!-- ================= TOOLBAR DROPDOWNS ================= -->
     <div class="toolbar" aria-label="Herramientas de idioma y accesibilidad">
 
       <!-- ✅ Dropdown Idioma -->
@@ -94,20 +96,17 @@
       </div>
 
     </div>
+
   </div>
 </header>
 
 <main id="inicio">
 
-  <!-- HERO -->
+  <!-- ================= HERO ================= -->
   <section class="section hero" aria-label="Presentación">
     <div class="container">
       <article class="hero-card">
-
-        <img class="avatar"
-          src="activos/imagen/foto de perfil.jfif"
-          alt="Foto de Santiago Murillo, UX/UI Designer"
-        />
+        <img class="avatar" src="activos/imagen/foto de perfil.jfif" alt="Foto de Santiago Murillo, UX/UI Designer"/>
 
         <div class="hero-copy">
           <p class="kicker" data-i18n="hero_role">UX/UI Designer</p>
@@ -125,12 +124,11 @@
             Descargar CV
           </a>
         </div>
-
       </article>
     </div>
   </section>
 
-  <!-- PROYECTOS -->
+  <!-- ================= PROYECTOS ================= -->
   <section id="proyectos" class="section alt" aria-label="Proyectos destacados">
     <div class="container">
       <h2 class="section-title" data-i18n="projects_title">Proyectos destacados</h2>
@@ -142,18 +140,73 @@
             <img src="activos/Proyectos/Bon_Bon_Bum.png" alt="Proyecto Bon Bon Bum" loading="lazy">
           </figure>
           <h3>Bon Bon Bum</h3>
-          <p data-i18n="project_bon_desc">
-            Diseño de wireframes de alta fidelidad para una plataforma de e-commerce, enfocado en jerarquía visual y conversión.
-          </p>
+          <p data-i18n="project_bon_desc">Diseño de wireframes de alta fidelidad para una plataforma de e-commerce, enfocado en jerarquía visual y conversión.</p>
           <div class="tag-row">
-            <span class="tag" data-i18n="tag_wireframes">Wireframes</span>
-            <span class="tag" data-i18n="tag_ecommerce">E-commerce</span>
-            <span class="tag" data-i18n="tag_uxui">UX/UI</span>
+            <span class="tag">Wireframes</span>
+            <span class="tag">E-commerce</span>
+            <span class="tag">UX/UI</span>
             <span class="tag">Figma</span>
           </div>
+
           <div class="card-ctas separated">
             <a class="btn ghost" target="_blank" rel="noopener" href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma" data-i18n="btn_access">Acceder</a>
             <a class="btn case" href="casos/bon-bon-bum/" data-i18n="btn_case">Caso de estudio</a>
+          </div>
+        </article>
+
+        <article class="card project">
+          <figure class="thumb">
+            <img src="activos/Proyectos/Greenscape.png" alt="Proyecto Greenscape" loading="lazy">
+          </figure>
+          <h3>Greenscape</h3>
+          <p data-i18n="project_green_desc">Prototipo móvil iOS diseñado a partir de principios de usabilidad, navegación intuitiva y experiencia mobile-first.</p>
+          <div class="tag-row">
+            <span class="tag">iOS</span>
+            <span class="tag" data-i18n="tab_prototype">Prototipado</span>
+            <span class="tag">UX/UI</span>
+            <span class="tag">Figma</span>
+          </div>
+
+          <div class="card-ctas separated">
+            <a class="btn ghost" target="_blank" rel="noopener" href="https://www.figma.com/proto/iYuZ5f1XPOvGDWncfB739r/HCI" data-i18n="btn_access">Acceder</a>
+            <a class="btn case" href="casos/greenscape/" data-i18n="btn_case">Caso de estudio</a>
+          </div>
+        </article>
+
+        <article class="card project">
+          <figure class="thumb">
+            <img src="activos/Proyectos/NutriCampus.png" alt="Proyecto NutriCampus" loading="lazy">
+          </figure>
+          <h3>NutriCampus</h3>
+          <p data-i18n="project_nutri_desc">Diseño de experiencia para un entorno de realidad virtual enfocado en educación nutricional e interacción inmersiva.</p>
+          <div class="tag-row">
+            <span class="tag">VR</span>
+            <span class="tag">UX</span>
+            <span class="tag" data-i18n="tab_prototype">Prototipado</span>
+            <span class="tag">Figma</span>
+          </div>
+
+          <div class="card-ctas separated">
+            <a class="btn ghost" target="_blank" rel="noopener" href="https://www.figma.com/proto/riKsfkN37qsKX4NbQn5zOh/Nutricampus-V2" data-i18n="btn_access">Acceder</a>
+            <a class="btn case" href="casos/nutricampus/" data-i18n="btn_case">Caso de estudio</a>
+          </div>
+        </article>
+
+        <article class="card project">
+          <figure class="thumb">
+            <img src="activos/Proyectos/Isocrates.png" alt="Proyecto Isócrates" loading="lazy">
+          </figure>
+          <h3>Isócrates</h3>
+          <p data-i18n="project_iso_desc">Prototipo desktop enfocado en accesibilidad, lectura clara y navegación inclusiva para usuarios con diferentes capacidades.</p>
+          <div class="tag-row">
+            <span class="tag">Desktop</span>
+            <span class="tag" data-i18n="tab_accessibility">Accesibilidad</span>
+            <span class="tag">UX</span>
+          </div>
+
+          <div class="card-ctas separated">
+            <a class="btn ghost" target="_blank" rel="noopener" href="https://www.figma.com/proto/bCCXBOMkOQKVUB0emfQIb5" data-i18n="btn_access">Acceder</a>
+            <a class="btn case" href="casos/isocrates/" data-i18n="btn_case">Caso de estudio</a>
           </div>
         </article>
 
@@ -161,7 +214,7 @@
     </div>
   </section>
 
-  <!-- TECNOLOGÍAS -->
+  <!-- ================= TECNOLOGÍAS ================= -->
   <section id="tecnologias" class="section" aria-label="Tecnologías y habilidades">
     <div class="container">
       <h2 class="section-title" data-i18n="skills_title">Tecnologías y habilidades</h2>
@@ -169,7 +222,7 @@
       <div class="tech-layout">
         <div class="donut-wrapper">
           <canvas id="skillsDonut" width="260" height="260"></canvas>
-          <div class="donut-tooltip" id="donutTooltip" role="status" aria-live="polite"></div>
+          <div class="donut-tooltip" id="donutTooltip"></div>
         </div>
 
         <div class="tech-controls">
@@ -184,13 +237,126 @@
     </div>
   </section>
 
-  <!-- CONTACTO -->
+  <!-- ================= CERTIFICADOS ================= -->
+  <section id="certificados" class="section" aria-label="Certificados">
+    <div class="container">
+      <h2 class="section-title" data-i18n="cert_title">Certificados</h2>
+
+      <div class="grid cards diplomas-grid">
+
+        <article class="card hoverable">
+          <h3>Certificado EF SET</h3>
+          <div class="tag-row">
+            <span class="tag" data-i18n="tag_english">Inglés</span>
+            <span class="tag">B2</span>
+          </div>
+          <a class="btn primary" href="activos/diplomas/Certificado_EF_SET.pdf" target="_blank" rel="noopener" data-i18n="btn_certificate">
+            Ver certificado
+          </a>
+        </article>
+
+        <article class="card hoverable">
+          <h3>Diseño Web con Adobe Dreamweaver</h3>
+          <div class="tag-row">
+            <span class="tag" data-i18n="tag_webdesign">Diseño web</span>
+            <span class="tag" data-i18n="tag_prototyping">Prototipado</span>
+            <span class="tag" data-i18n="tag_requirements">Requisitos</span>
+          </div>
+          <a class="btn primary" href="activos/diplomas/Diseño_Web_Con_Adobe_Dreamweaver.pdf" target="_blank" rel="noopener" data-i18n="btn_certificate">
+            Ver certificado
+          </a>
+        </article>
+
+        <article class="card hoverable">
+          <h3>Fundamentos de Programación</h3>
+          <div class="tag-row">
+            <span class="tag">Java</span>
+            <span class="tag">Python</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">C++</span>
+          </div>
+          <a class="btn primary" href="activos/diplomas/Fundamentos_de_programacion.jpeg" target="_blank" rel="noopener" data-i18n="btn_certificate">
+            Ver certificado
+          </a>
+        </article>
+
+        <article class="card hoverable">
+          <h3>Generación de Ideas Innovadoras</h3>
+          <div class="tag-row">
+            <span class="tag">Design Thinking</span>
+            <span class="tag" data-i18n="tag_innovation">Innovación</span>
+          </div>
+          <a class="btn primary" href="activos/diplomas/Generacion_De_Ideas_Innovadoras_Con_Desing_Thinking.pdf" target="_blank" rel="noopener" data-i18n="btn_certificate">
+            Ver certificado
+          </a>
+        </article>
+
+        <article class="card hoverable">
+          <h3>Validación de Ideas y Prototipos</h3>
+          <div class="tag-row">
+            <span class="tag">Design Thinking</span>
+            <span class="tag" data-i18n="tag_validation">Validación</span>
+            <span class="tag" data-i18n="tag_prototypes">Prototipos</span>
+          </div>
+          <a class="btn primary" href="activos/diplomas/Validacion_De_Ideas_y_Prototipos_Con_Desing_Thinking.pdf" target="_blank" rel="noopener" data-i18n="btn_certificate">
+            Ver certificado
+          </a>
+        </article>
+
+        <article class="card hoverable">
+          <h3>Manejo Adobe Illustrator</h3>
+          <div class="tag-row">
+            <span class="tag" data-i18n="tag_graphicdesign">Diseño gráfico</span>
+            <span class="tag" data-i18n="tag_illustration">Ilustración</span>
+          </div>
+          <a class="btn primary" href="activos/diplomas/Manejo_Adobe_Illustrator.pdf" target="_blank" rel="noopener" data-i18n="btn_certificate">
+            Ver certificado
+          </a>
+        </article>
+
+        <article class="card hoverable">
+          <h3>Manejo Adobe Photoshop</h3>
+          <div class="tag-row">
+            <span class="tag" data-i18n="tag_editing">Edición</span>
+            <span class="tag" data-i18n="tag_retouch">Retoque</span>
+          </div>
+          <a class="btn primary" href="activos/diplomas/Manejo_Adobe_Photoshop.pdf" target="_blank" rel="noopener" data-i18n="btn_certificate">
+            Ver certificado
+          </a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACTO ================= -->
   <section id="contacto" class="section" aria-label="Contacto">
     <div class="container contact-wrapper">
+
       <div class="contact-info">
         <h2 class="section-title" data-i18n="contact_title">Contacto</h2>
-        <p><strong data-i18n="contact_email_label">Email:</strong> <a href="mailto:santiagomr2003@gmail.com">santiagomr2003@gmail.com</a></p>
+
+        <p><strong data-i18n="contact_email_label">Email:</strong>
+          <a href="mailto:santiagomr2003@gmail.com">santiagomr2003@gmail.com</a>
+        </p>
+
+        <div class="botones-contacto">
+          <a class="btn whatsapp big" href="https://wa.me/573228182311" target="_blank" rel="noopener">WhatsApp</a>
+          <a class="btn linkedin big" href="https://www.linkedin.com/in/santiago-murillo-ramírez-795447235" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
       </div>
+
+      <!-- ✅ FORMULARIO RESTAURADO -->
+      <form class="card contact-form" action="https://formspree.io/f/myznakow" method="POST">
+        <h3 data-i18n="contact_form_title">Escríbeme</h3>
+
+        <input class="input-field full" type="text" name="nombre" data-i18n-placeholder="contact_name" placeholder="Nombre" required>
+        <input class="input-field full" type="email" name="email" data-i18n-placeholder="contact_email" placeholder="Email" required>
+        <textarea class="input-field full" name="mensaje" rows="4" data-i18n-placeholder="contact_msg" placeholder="Mensaje" required></textarea>
+
+        <button class="btn primary full-btn" type="submit" data-i18n="contact_send">Enviar</button>
+      </form>
+
     </div>
   </section>
 
