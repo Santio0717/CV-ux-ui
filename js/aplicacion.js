@@ -1,23 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   // ======================================
-  // 1) Año footer
+  // 1) Año footer (si existe)
   // ======================================
   const year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
 
   // ======================================
-  // 2) DROPDOWNS
+  // 2) DROPDOWNS (Idioma / Accesibilidad)
   // ======================================
   const langDropdown = document.getElementById("langDropdown");
   const a11yDropdown = document.getElementById("a11yDropdown");
 
-  function closeAllDropdowns() {
+  function closeAllDropdowns(){
     document.querySelectorAll(".dropdown.open").forEach(d => d.classList.remove("open"));
     document.querySelectorAll(".drop-btn").forEach(btn => btn.setAttribute("aria-expanded", "false"));
   }
 
-  function toggleDropdown(drop) {
+  function toggleDropdown(drop){
     if (!drop) return;
     const btn = drop.querySelector(".drop-btn");
     const isOpen = drop.classList.contains("open");
@@ -26,18 +26,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!isOpen) {
       drop.classList.add("open");
-      btn?.setAttribute("aria-expanded", "true");
+      if(btn) btn.setAttribute("aria-expanded", "true");
     }
   }
 
-  if (langDropdown) {
+  if(langDropdown){
     langDropdown.querySelector(".drop-btn")?.addEventListener("click", (e) => {
       e.stopPropagation();
       toggleDropdown(langDropdown);
     });
   }
 
-  if (a11yDropdown) {
+  if(a11yDropdown){
     a11yDropdown.querySelector(".drop-btn")?.addEventListener("click", (e) => {
       e.stopPropagation();
       toggleDropdown(a11yDropdown);
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ======================================
-  // 3) ACCESIBILIDAD
+  // 3) ACCESIBILIDAD: Tamaño / Contraste / Fuente legible
   // ======================================
   const fontMinus = document.getElementById("fontMinus");
   const fontPlus = document.getElementById("fontPlus");
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let contrast = localStorage.getItem("contrast") === "true";
   let readable = localStorage.getItem("readable") === "true";
 
-  function applyA11y() {
+  function applyA11y(){
     document.documentElement.style.fontSize = fontSize + "px";
     localStorage.setItem("fontSize", fontSize);
 
@@ -76,42 +76,52 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.toggle("readable-font", readable);
     localStorage.setItem("readable", readable);
 
-    if (toggleContrast) toggleContrast.checked = contrast;
-    if (toggleReadable) toggleReadable.checked = readable;
+    if(toggleContrast) toggleContrast.checked = contrast;
+    if(toggleReadable) toggleReadable.checked = readable;
   }
 
-  fontPlus?.addEventListener("click", () => {
-    fontSize = Math.min(fontSize + 2, 22);
-    applyA11y();
-  });
+  if(fontPlus){
+    fontPlus.addEventListener("click", () => {
+      fontSize = Math.min(fontSize + 2, 22);
+      applyA11y();
+    });
+  }
 
-  fontMinus?.addEventListener("click", () => {
-    fontSize = Math.max(fontSize - 2, 14);
-    applyA11y();
-  });
+  if(fontMinus){
+    fontMinus.addEventListener("click", () => {
+      fontSize = Math.max(fontSize - 2, 14);
+      applyA11y();
+    });
+  }
 
-  toggleContrast?.addEventListener("change", () => {
-    contrast = toggleContrast.checked;
-    applyA11y();
-  });
+  if(toggleContrast){
+    toggleContrast.addEventListener("change", () => {
+      contrast = toggleContrast.checked;
+      applyA11y();
+    });
+  }
 
-  toggleReadable?.addEventListener("change", () => {
-    readable = toggleReadable.checked;
-    applyA11y();
-  });
+  if(toggleReadable){
+    toggleReadable.addEventListener("change", () => {
+      readable = toggleReadable.checked;
+      applyA11y();
+    });
+  }
 
-  resetA11y?.addEventListener("click", () => {
-    fontSize = 16;
-    contrast = false;
-    readable = false;
-    applyA11y();
-    closeAllDropdowns();
-  });
+  if(resetA11y){
+    resetA11y.addEventListener("click", () => {
+      fontSize = 16;
+      contrast = false;
+      readable = false;
+      applyA11y();
+      closeAllDropdowns();
+    });
+  }
 
   applyA11y();
 
   // ======================================
-  // 4) TRADUCCIONES
+  // 4) TRADUCCIONES (GLOBAL)
   // ======================================
   const translations = {
     es: {
@@ -150,7 +160,34 @@ document.addEventListener("DOMContentLoaded", () => {
       skill_prod: "Producción",
       skill_all: "Perfil completo",
 
-      donut_rest: "Resto"
+      contact_form_title: "Escríbeme",
+      contact_send: "Enviar",
+      contact_name: "Nombre",
+      contact_email: "Email",
+      contact_msg: "Mensaje",
+
+      tag_english: "Inglés",
+      tag_webdesign: "Diseño web",
+      tag_prototyping: "Prototipado",
+      tag_requirements: "Requisitos",
+      tag_innovation: "Innovación",
+      tag_validation: "Validación",
+      tag_prototypes: "Prototipos",
+      tag_graphicdesign: "Diseño gráfico",
+      tag_illustration: "Ilustración",
+      tag_editing: "Edición",
+      tag_retouch: "Retoque",
+
+      project_bon_desc: "Diseño de wireframes de alta fidelidad para una plataforma de e-commerce, enfocado en jerarquía visual y conversión.",
+      project_green_desc: "Prototipo móvil iOS diseñado a partir de principios de usabilidad, navegación intuitiva y experiencia mobile-first.",
+      project_nutri_desc: "Diseño de experiencia para un entorno de realidad virtual enfocado en educación nutricional e interacción inmersiva.",
+      project_iso_desc: "Prototipo desktop enfocado en accesibilidad, lectura clara y navegación inclusiva para usuarios con diferentes capacidades.",
+
+      case_select_phase: "Selecciona una categoría para explorar cada fase del proceso.",
+      case_back: "Volver al portafolio",
+      case_figma: "Ver prototipo en Figma",
+      tab_prototype: "Prototipado",
+      tab_accessibility: "Accesibilidad"
     },
 
     en: {
@@ -189,14 +226,41 @@ document.addEventListener("DOMContentLoaded", () => {
       skill_prod: "Production",
       skill_all: "Full profile",
 
-      donut_rest: "Other"
+      contact_form_title: "Write to me",
+      contact_send: "Send",
+      contact_name: "Name",
+      contact_email: "Email",
+      contact_msg: "Message",
+
+      tag_english: "English",
+      tag_webdesign: "Web design",
+      tag_prototyping: "Prototyping",
+      tag_requirements: "Requirements",
+      tag_innovation: "Innovation",
+      tag_validation: "Validation",
+      tag_prototypes: "Prototypes",
+      tag_graphicdesign: "Graphic design",
+      tag_illustration: "Illustration",
+      tag_editing: "Editing",
+      tag_retouch: "Retouching",
+
+      project_bon_desc: "High-fidelity wireframes for an e-commerce platform, focused on visual hierarchy and conversion.",
+      project_green_desc: "iOS mobile prototype based on usability principles, intuitive navigation, and a mobile-first approach.",
+      project_nutri_desc: "Experience design for a virtual reality environment focused on nutrition education and immersive interaction.",
+      project_iso_desc: "Desktop prototype focused on accessibility, clear reading, and inclusive navigation for diverse users.",
+
+      case_select_phase: "Select a category to explore each phase of the process.",
+      case_back: "Back to portfolio",
+      case_figma: "View prototype in Figma",
+      tab_prototype: "Prototyping",
+      tab_accessibility: "Accessibility"
     },
 
     fr: {
       toolbar_language: "Langue",
       toolbar_reset_language: "Réinitialiser la langue",
       toolbar_accessibility: "Accessibilité",
-      toolbar_reset_accessibility: "Réinitialiser",
+      toolbar_reset_accessibility: "Réinitialiser l'accessibilité",
       toolbar_contrast: "Haut contraste",
       toolbar_readable: "Police lisible",
 
@@ -228,14 +292,41 @@ document.addEventListener("DOMContentLoaded", () => {
       skill_prod: "Production",
       skill_all: "Profil complet",
 
-      donut_rest: "Reste"
+      contact_form_title: "Écris-moi",
+      contact_send: "Envoyer",
+      contact_name: "Nom",
+      contact_email: "Email",
+      contact_msg: "Message",
+
+      tag_english: "Anglais",
+      tag_webdesign: "Web design",
+      tag_prototyping: "Prototypage",
+      tag_requirements: "Exigences",
+      tag_innovation: "Innovation",
+      tag_validation: "Validation",
+      tag_prototypes: "Prototypes",
+      tag_graphicdesign: "Design graphique",
+      tag_illustration: "Illustration",
+      tag_editing: "Édition",
+      tag_retouch: "Retouche",
+
+      project_bon_desc: "Wireframes haute fidélité pour une plateforme e-commerce, centrés sur la hiérarchie visuelle et la conversion.",
+      project_green_desc: "Prototype mobile iOS basé sur des principes d’utilisabilité et une navigation intuitive.",
+      project_nutri_desc: "Conception d’expérience pour un environnement VR axé sur l’éducation nutritionnelle.",
+      project_iso_desc: "Prototype desktop axé sur l’accessibilité, la lisibilité et une navigation inclusive.",
+
+      case_select_phase: "Sélectionnez une catégorie pour explorer chaque phase du processus.",
+      case_back: "Retour au portfolio",
+      case_figma: "Voir le prototype sur Figma",
+      tab_prototype: "Prototypage",
+      tab_accessibility: "Accessibilité"
     },
 
     pt: {
       toolbar_language: "Idioma",
       toolbar_reset_language: "Redefinir idioma",
       toolbar_accessibility: "Acessibilidade",
-      toolbar_reset_accessibility: "Redefinir",
+      toolbar_reset_accessibility: "Redefinir acessibilidade",
       toolbar_contrast: "Alto contraste",
       toolbar_readable: "Fonte legível",
 
@@ -267,7 +358,34 @@ document.addEventListener("DOMContentLoaded", () => {
       skill_prod: "Produção",
       skill_all: "Perfil completo",
 
-      donut_rest: "Resto"
+      contact_form_title: "Escreva para mim",
+      contact_send: "Enviar",
+      contact_name: "Nome",
+      contact_email: "Email",
+      contact_msg: "Mensagem",
+
+      tag_english: "Inglês",
+      tag_webdesign: "Design web",
+      tag_prototyping: "Prototipagem",
+      tag_requirements: "Requisitos",
+      tag_innovation: "Inovação",
+      tag_validation: "Validação",
+      tag_prototypes: "Protótipos",
+      tag_graphicdesign: "Design gráfico",
+      tag_illustration: "Ilustração",
+      tag_editing: "Edição",
+      tag_retouch: "Retoque",
+
+      project_bon_desc: "Wireframes de alta fidelidade para uma plataforma de e-commerce, com foco em hierarquia visual e conversão.",
+      project_green_desc: "Protótipo móvel iOS baseado em princípios de usabilidade e navegação intuitiva.",
+      project_nutri_desc: "Design de experiência para um ambiente de realidade virtual focado em educação nutricional.",
+      project_iso_desc: "Protótipo desktop focado em acessibilidade e navegação inclusiva.",
+
+      case_select_phase: "Selecione uma categoria para explorar cada etapa do processo.",
+      case_back: "Voltar ao portfólio",
+      case_figma: "Ver protótipo no Figma",
+      tab_prototype: "Prototipagem",
+      tab_accessibility: "Acessibilidade"
     },
 
     de: {
@@ -306,7 +424,34 @@ document.addEventListener("DOMContentLoaded", () => {
       skill_prod: "Produktion",
       skill_all: "Vollständiges Profil",
 
-      donut_rest: "Rest"
+      contact_form_title: "Schreib mir",
+      contact_send: "Senden",
+      contact_name: "Name",
+      contact_email: "E-Mail",
+      contact_msg: "Nachricht",
+
+      tag_english: "Englisch",
+      tag_webdesign: "Webdesign",
+      tag_prototyping: "Prototyping",
+      tag_requirements: "Anforderungen",
+      tag_innovation: "Innovation",
+      tag_validation: "Validierung",
+      tag_prototypes: "Prototypen",
+      tag_graphicdesign: "Grafikdesign",
+      tag_illustration: "Illustration",
+      tag_editing: "Bearbeitung",
+      tag_retouch: "Retusche",
+
+      project_bon_desc: "High-Fidelity-Wireframes für eine E-Commerce-Plattform mit Fokus auf visueller Hierarchie und Conversion.",
+      project_green_desc: "iOS-Prototyp basierend auf Usability-Prinzipien und intuitiver Navigation.",
+      project_nutri_desc: "Experience Design für eine VR-Umgebung mit Fokus auf Ernährungsbildung.",
+      project_iso_desc: "Desktop-Prototyp mit Fokus auf Barrierefreiheit und inklusive Navigation.",
+
+      case_select_phase: "Wähle eine Kategorie, um jede Phase des Prozesses zu erkunden.",
+      case_back: "Zurück zum Portfolio",
+      case_figma: "Prototyp in Figma ansehen",
+      tab_prototype: "Prototyping",
+      tab_accessibility: "Barrierefreiheit"
     },
 
     zh: {
@@ -345,26 +490,51 @@ document.addEventListener("DOMContentLoaded", () => {
       skill_prod: "制作",
       skill_all: "完整档案",
 
-      donut_rest: "其他"
+      contact_form_title: "给我留言",
+      contact_send: "发送",
+      contact_name: "姓名",
+      contact_email: "邮箱",
+      contact_msg: "消息",
+
+      tag_english: "英语",
+      tag_webdesign: "网页设计",
+      tag_prototyping: "原型设计",
+      tag_requirements: "需求",
+      tag_innovation: "创新",
+      tag_validation: "验证",
+      tag_prototypes: "原型",
+      tag_graphicdesign: "平面设计",
+      tag_illustration: "插画",
+      tag_editing: "编辑",
+      tag_retouch: "修图",
+
+      project_bon_desc: "为电商平台设计高保真线框图，专注于视觉层级与转化。",
+      project_green_desc: "基于可用性原则和直观导航的 iOS 移动原型。",
+      project_nutri_desc: "为虚拟现实环境设计体验，聚焦营养教育。",
+      project_iso_desc: "桌面端原型，聚焦无障碍和包容性导航。",
+
+      case_select_phase: "选择一个类别来探索流程的每个阶段。",
+      case_back: "返回作品集",
+      case_figma: "在 Figma 查看原型",
+      tab_prototype: "原型设计",
+      tab_accessibility: "无障碍"
     }
   };
 
   const langButtons = document.querySelectorAll(".lang-btn");
   const resetLang = document.getElementById("resetLang");
 
-  let currentLang = localStorage.getItem("lang") || "es";
-
-  function translatePage(lang) {
+  function setLanguage(lang){
     const dict = translations[lang] || translations.es;
 
-    document.querySelectorAll("[data-i18n]").forEach(el => {
+    document.querySelectorAll("[data-i18n]").forEach(el=>{
       const key = el.dataset.i18n;
-      if (dict[key]) el.textContent = dict[key];
+      if(dict[key]) el.textContent = dict[key];
     });
 
-    document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(el=>{
       const key = el.dataset.i18nPlaceholder;
-      if (dict[key]) el.setAttribute("placeholder", dict[key]);
+      if(dict[key]) el.setAttribute("placeholder", dict[key]);
     });
 
     langButtons.forEach(btn => btn.classList.remove("is-active"));
@@ -373,69 +543,90 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("lang", lang);
     document.documentElement.lang = lang;
 
-    currentLang = lang;
     closeAllDropdowns();
-
-    // ✅ actualizar donut si existe
-    if (window.skillsChart) updateDonutLanguage(dict);
   }
 
-  langButtons.forEach(btn => {
-    btn.addEventListener("click", () => translatePage(btn.dataset.lang));
+  langButtons.forEach(btn=>{
+    btn.addEventListener("click", ()=> setLanguage(btn.dataset.lang));
   });
 
-  resetLang?.addEventListener("click", () => translatePage("es"));
+  if(resetLang){
+    resetLang.addEventListener("click", () => {
+      localStorage.setItem("lang","es");
+      setLanguage("es");
+    });
+  }
 
-  translatePage(currentLang);
+  const savedLang = localStorage.getItem("lang") || "es";
+  setLanguage(savedLang);
 
   // ======================================
-  // 5) DONUT CHART + TOOLTIP (RESTO)
+  // 5) DONUT CHART (tooltip hover restaurado)
   // ======================================
   const canvas = document.getElementById("skillsDonut");
-  const tooltip = document.getElementById("donutTooltip");
   const wrapper = canvas?.closest(".donut-wrapper");
+  const tooltip = document.getElementById("donutTooltip");
   const showAllBtn = document.getElementById("showAll");
 
-  if (canvas && tooltip && wrapper && typeof Chart !== "undefined") {
+  if (canvas && wrapper && tooltip && typeof Chart !== "undefined") {
 
-    const baseSkills = [
-      { key: "uxui", value: 35, color: "#f39c12" },
-      { key: "docs", value: 20, color: "#2ecc71" },
-      { key: "front", value: 15, color: "#3498db" },
-      { key: "motion", value: 30, color: "#9b59b6" },
-      { key: "prod", value: 10, color: "#e74c3c" }
+    const skills = [
+      { key: "uxui", label: "UX/UI", value: 35, color: "#f39c12" },
+      { key: "docs", label: "Documentación", value: 20, color: "#2ecc71" },
+      { key: "front", label: "Frontend", value: 15, color: "#3498db" },
+      { key: "motion", label: "Motion", value: 30, color: "#9b59b6" },
+      { key: "prod", label: "Producción", value: 10, color: "#e74c3c" }
     ];
 
     const remainderColor = "#e6e6e6";
     let mode = "all";
-    let active = baseSkills[0];
+    let active = skills[0];
 
-    function getLabel(skillKey, dict) {
-      return dict["skill_" + skillKey] || skillKey;
+    function setTooltip({ text, x, y, bg }) {
+      tooltip.textContent = text;
+      tooltip.style.left = `${x}px`;
+      tooltip.style.top = `${y}px`;
+      tooltip.style.background = bg || "rgba(0,0,0,.9)";
+      tooltip.style.opacity = "1";
     }
 
-    function updateDonutLanguage(dict) {
-      // Actualiza labels del donut
-      const labels = baseSkills.map(s => getLabel(s.key, dict));
-      window.skillsChart.data.labels = labels;
-      window.skillsChart.update();
+    function hideTooltip() { tooltip.style.opacity = "0"; }
+
+    function getArcPoint(chart, index) {
+      const meta = chart.getDatasetMeta(0);
+      const arc = meta?.data?.[index];
+      if (!arc) return null;
+      return arc.tooltipPosition();
     }
 
-    function datasetAll(dict) {
+    function positionAboveArc(chart, index) {
+      const p = getArcPoint(chart, index);
+      if (!p) return null;
+
+      const rect = canvas.getBoundingClientRect();
+      const wRect = wrapper.getBoundingClientRect();
+
       return {
-        labels: baseSkills.map(s => getLabel(s.key, dict)),
+        x: p.x + (rect.left - wRect.left),
+        y: p.y + (rect.top - wRect.top)
+      };
+    }
+
+    function datasetAll() {
+      return {
+        labels: skills.map(s => s.label),
         datasets: [{
-          data: baseSkills.map(s => s.value),
-          backgroundColor: baseSkills.map(s => s.color),
+          data: skills.map(s => s.value),
+          backgroundColor: skills.map(s => s.color),
           borderWidth: 0,
           hoverOffset: 6
         }]
       };
     }
 
-    function datasetSingle(skill, dict) {
+    function datasetSingle(skill) {
       return {
-        labels: [getLabel(skill.key, dict), dict.donut_rest || "Resto"],
+        labels: [skill.label, "Resto"],
         datasets: [{
           data: [skill.value, 100 - skill.value],
           backgroundColor: [skill.color, remainderColor],
@@ -445,81 +636,111 @@ document.addEventListener("DOMContentLoaded", () => {
       };
     }
 
-    const dictInit = translations[currentLang] || translations.es;
-
-    window.skillsChart = new Chart(canvas, {
+    const chart = new Chart(canvas, {
       type: "doughnut",
-      data: datasetAll(dictInit),
+      data: datasetAll(),
       options: {
         responsive: true,
         maintainAspectRatio: false,
         cutout: "68%",
-        plugins: { legend: { display: false }, tooltip: { enabled: false } }
+        animation: { duration: 650, easing: "easeOutQuart" },
+        plugins: {
+          legend: { display: false },
+          tooltip: { enabled: false }
+        }
       }
     });
 
-    function showTooltip(text, x, y, bg) {
-      tooltip.textContent = text;
-      tooltip.style.left = `${x}px`;
-      tooltip.style.top = `${y}px`;
-      tooltip.style.background = bg;
-      tooltip.style.opacity = "1";
-    }
-
-    function hideTooltip() {
-      tooltip.style.opacity = "0";
-    }
-
-    function handleHover(evt) {
-      const points = window.skillsChart.getElementsAtEventForMode(evt, "nearest", { intersect: true }, true);
-      if (!points.length) return hideTooltip();
-
-      const { index } = points[0];
-      if (mode === "single" && index === 1) return hideTooltip();
-
-      const dict = translations[currentLang] || translations.es;
-
-      if (mode === "all") {
-        const s = baseSkills[index];
-        const label = getLabel(s.key, dict);
-        showTooltip(`${label} — ${s.value}%`, evt.offsetX, evt.offsetY, s.color);
-      } else {
-        const label = getLabel(active.key, dict);
-        showTooltip(`${label} — ${active.value}%`, evt.offsetX, evt.offsetY, active.color);
-      }
-    }
-
-    canvas.addEventListener("mousemove", handleHover);
-    canvas.addEventListener("mouseleave", hideTooltip);
-
     function showAll() {
       mode = "all";
-      const dict = translations[currentLang] || translations.es;
-      window.skillsChart.data = datasetAll(dict);
-      window.skillsChart.update();
+      chart.data = datasetAll();
+      chart.update();
       hideTooltip();
     }
 
     function animateToSingle(skill) {
       mode = "single";
       active = skill;
-      const dict = translations[currentLang] || translations.es;
-      window.skillsChart.data = datasetSingle(skill, dict);
-      window.skillsChart.update();
+      chart.data = datasetSingle(skill);
+      chart.update();
       hideTooltip();
+    }
+
+    function setActiveButton(btn) {
+      document.querySelectorAll(".tech-btn").forEach(b => b.classList.remove("is-active"));
+      btn.classList.add("is-active");
     }
 
     document.querySelectorAll(".tech-btn[data-key]").forEach(btn => {
       btn.addEventListener("click", () => {
-        const skill = baseSkills.find(s => s.key === btn.dataset.key);
-        if (!skill) return;
-        animateToSingle(skill);
+        const key = btn.dataset.key;
+        const s = skills.find(x => x.key === key);
+        if (!s) return;
+
+        setActiveButton(btn);
+        animateToSingle(s);
       });
     });
 
-    showAllBtn?.addEventListener("click", showAll);
+    if (showAllBtn) {
+      showAllBtn.addEventListener("click", () => {
+        setActiveButton(showAllBtn);
+        showAll();
+      });
+    }
+
+    function handleHover(evt) {
+      const points = chart.getElementsAtEventForMode(evt, "nearest", { intersect: true }, true);
+      if (!points.length) return hideTooltip();
+
+      const { index } = points[0];
+
+      if (mode === "single" && index === 1) return hideTooltip();
+
+      let text = "";
+      let bg = "rgba(0,0,0,.9)";
+
+      if (mode === "all") {
+        const s = skills[index];
+        if (!s) return hideTooltip();
+        text = `${s.label} — ${s.value}%`;
+        bg = s.color;
+      } else {
+        text = `${active.label} — ${active.value}%`;
+        bg = active.color;
+      }
+
+      const pos = positionAboveArc(chart, index);
+      if (!pos) return hideTooltip();
+
+      setTooltip({ text, x: pos.x, y: pos.y, bg });
+    }
+
+    canvas.addEventListener("mousemove", handleHover);
+    canvas.addEventListener("mouseleave", hideTooltip);
 
     showAll();
+    if (showAllBtn) showAllBtn.classList.add("is-active");
+  }
+
+  // ======================================
+  // 6) Animación Cards (si existen)
+  // ======================================
+  const cards = document.querySelectorAll(".card");
+  if(cards.length){
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    cards.forEach((card, i) => {
+      card.style.transitionDelay = `${i * 0.06}s`;
+      observer.observe(card);
+    });
   }
 
 });
