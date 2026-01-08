@@ -28,9 +28,10 @@ body{
   font-family:'Inter',sans-serif;
   color:var(--ink);
   line-height:1.6;
-  background: radial-gradient(circle at top left, #fff6ea 0%, transparent 45%),
-              radial-gradient(circle at bottom right, #f3d6b8 0%, transparent 50%),
-              linear-gradient(120deg,var(--bg-1),var(--bg-2));
+  background:
+    radial-gradient(circle at top left, #fff6ea 0%, transparent 45%),
+    radial-gradient(circle at bottom right, #f3d6b8 0%, transparent 50%),
+    linear-gradient(120deg,var(--bg-1),var(--bg-2));
 }
 
 .container{
@@ -62,6 +63,7 @@ body{
   display:flex;
   justify-content:space-between;
   align-items:center;
+  gap:18px;
   padding:16px 0;
 }
 
@@ -80,11 +82,62 @@ body{
 .main-nav{
   display:flex;
   gap:20px;
+  align-items:center;
 }
 
 .main-nav a:hover,
 .brand:hover{
   opacity:.7;
+}
+
+/* ================= TOOLBAR IDIOMA + ACCESIBILIDAD ================= */
+.toolbar{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+
+.lang-switch,
+.a11y-controls{
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+
+.lang-btn,
+.a11y-btn{
+  padding:8px 10px;
+  border-radius:999px;
+  border:1px solid rgba(0,0,0,.12);
+  background:rgba(255,255,255,.75);
+  cursor:pointer;
+  font-weight:800;
+  font-size:.85rem;
+  color:var(--ink);
+  transition:transform .15s ease, background .15s ease, box-shadow .15s ease;
+}
+
+.lang-btn:hover,
+.a11y-btn:hover{
+  transform:translateY(-1px);
+  background:rgba(255,255,255,.95);
+  box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.lang-btn.is-active{
+  background:var(--ink);
+  color:#fff;
+  border-color:rgba(0,0,0,.18);
+}
+
+/* Focus accesible para teclado */
+a:focus-visible,
+button:focus-visible{
+  outline:3px solid rgba(215,38,56,.35);
+  outline-offset:3px;
+  border-radius:10px;
 }
 
 /* ================= HERO ================= */
@@ -189,9 +242,9 @@ body{
   transform: translateY(0) scale(1);
 }
 
-/* Micro tilt hover pro */
+/* Micro tilt hover pro (más suave) */
 .card:hover{
-  transform: translateY(-6px) rotateX(2deg) rotateY(-2deg) scale(1.01);
+  transform: translateY(-6px) scale(1.01);
   box-shadow: var(--shadow-glow);
 }
 
@@ -409,11 +462,30 @@ body{
     grid-template-columns:1fr;
     text-align:center;
   }
+
   .avatar{
     margin:auto;
   }
+
   .contact-wrapper{
     grid-template-columns:1fr;
+  }
+
+  /* Header responsive */
+  .nav-wrap{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:14px;
+  }
+
+  .main-nav{
+    flex-wrap:wrap;
+    gap:14px;
+  }
+
+  .toolbar{
+    width:100%;
+    justify-content:flex-start;
   }
 }
 
