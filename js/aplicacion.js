@@ -13,12 +13,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const langDropdown = document.getElementById("langDropdown");
   const a11yDropdown = document.getElementById("a11yDropdown");
 
-  function closeAllDropdowns(){
+  function closeAllDropdowns() {
     document.querySelectorAll(".dropdown.open").forEach(d => d.classList.remove("open"));
     document.querySelectorAll(".drop-btn").forEach(btn => btn.setAttribute("aria-expanded", "false"));
   }
 
-  function toggleDropdown(drop){
+  function toggleDropdown(drop) {
     if (!drop) return;
     const btn = drop.querySelector(".drop-btn");
     const isOpen = drop.classList.contains("open");
@@ -27,18 +27,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!isOpen) {
       drop.classList.add("open");
-      if(btn) btn.setAttribute("aria-expanded", "true");
+      if (btn) btn.setAttribute("aria-expanded", "true");
     }
   }
 
-  if(langDropdown){
+  if (langDropdown) {
     langDropdown.querySelector(".drop-btn")?.addEventListener("click", (e) => {
       e.stopPropagation();
       toggleDropdown(langDropdown);
     });
   }
 
-  if(a11yDropdown){
+  if (a11yDropdown) {
     a11yDropdown.querySelector(".drop-btn")?.addEventListener("click", (e) => {
       e.stopPropagation();
       toggleDropdown(a11yDropdown);
@@ -72,53 +72,53 @@ document.addEventListener("DOMContentLoaded", () => {
   let contrast = localStorage.getItem("contrast") === "true";
   let readable = localStorage.getItem("readable") === "true";
 
-  function applyA11y(){
-    // font size
+  function applyA11y() {
+    // tamaño fuente
     document.documentElement.style.fontSize = fontSize + "px";
     localStorage.setItem("fontSize", fontSize);
 
-    // contrast
+    // contraste alto
     document.body.classList.toggle("high-contrast", contrast);
     localStorage.setItem("contrast", contrast);
 
-    // readable font
+    // fuente legible
     document.body.classList.toggle("readable-font", readable);
     localStorage.setItem("readable", readable);
 
-    // checkbox states
-    if(toggleContrast) toggleContrast.checked = contrast;
-    if(toggleReadable) toggleReadable.checked = readable;
+    // mantener checkboxes sincronizados
+    if (toggleContrast) toggleContrast.checked = contrast;
+    if (toggleReadable) toggleReadable.checked = readable;
   }
 
-  if(fontPlus){
+  if (fontPlus) {
     fontPlus.addEventListener("click", () => {
       fontSize = Math.min(fontSize + 2, 22);
       applyA11y();
     });
   }
 
-  if(fontMinus){
+  if (fontMinus) {
     fontMinus.addEventListener("click", () => {
       fontSize = Math.max(fontSize - 2, 14);
       applyA11y();
     });
   }
 
-  if(toggleContrast){
+  if (toggleContrast) {
     toggleContrast.addEventListener("change", () => {
       contrast = toggleContrast.checked;
       applyA11y();
     });
   }
 
-  if(toggleReadable){
+  if (toggleReadable) {
     toggleReadable.addEventListener("change", () => {
       readable = toggleReadable.checked;
       applyA11y();
     });
   }
 
-  if(resetA11y){
+  if (resetA11y) {
     resetA11y.addEventListener("click", () => {
       fontSize = 16;
       contrast = false;
@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   // ======================================
-  // 4) TRADUCCIONES (GLOBAL)
+  // 4) TRADUCCIONES (GLOBAL + CASOS)
   // ======================================
   const translations = {
 
@@ -183,7 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
       project_nutri_desc: "Diseño de experiencia para un entorno de realidad virtual enfocado en educación nutricional e interacción inmersiva.",
       project_iso_desc: "Prototipo desktop enfocado en accesibilidad, lectura clara y navegación inclusiva para usuarios con diferentes capacidades.",
 
-      // Caso Bon Bon Bum
+      // Casos
       case_select_phase: "Selecciona una categoría para explorar cada fase del proceso.",
       case_back: "Volver al portafolio",
       case_figma: "Ver prototipo en Figma",
@@ -465,17 +465,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const langButtons = document.querySelectorAll(".lang-btn");
   const resetLang = document.getElementById("resetLang");
 
-  function setLanguage(lang){
+  function setLanguage(lang) {
     const dict = translations[lang] || translations.es;
 
-    document.querySelectorAll("[data-i18n]").forEach(el=>{
+    document.querySelectorAll("[data-i18n]").forEach(el => {
       const key = el.dataset.i18n;
-      if(dict[key]) el.textContent = dict[key];
+      if (dict[key]) el.textContent = dict[key];
     });
 
-    document.querySelectorAll("[data-i18n-placeholder]").forEach(el=>{
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
       const key = el.dataset.i18nPlaceholder;
-      if(dict[key]) el.setAttribute("placeholder", dict[key]);
+      if (dict[key]) el.setAttribute("placeholder", dict[key]);
     });
 
     langButtons.forEach(btn => btn.classList.remove("is-active"));
@@ -487,13 +487,13 @@ document.addEventListener("DOMContentLoaded", () => {
     closeAllDropdowns();
   }
 
-  langButtons.forEach(btn=>{
-    btn.addEventListener("click", ()=> setLanguage(btn.dataset.lang));
+  langButtons.forEach(btn => {
+    btn.addEventListener("click", () => setLanguage(btn.dataset.lang));
   });
 
-  if(resetLang){
+  if (resetLang) {
     resetLang.addEventListener("click", () => {
-      localStorage.setItem("lang","es");
+      localStorage.setItem("lang", "es");
       setLanguage("es");
     });
   }
@@ -503,14 +503,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   // ======================================
-  // 5) DONUT CHART (si existe)
+  // 5) DONUT CHART ✅ TOOLTIP RESTAURADO
   // ======================================
-  const canvas = document.getElementById("skillsDonut");
-  const wrapper = canvas?.closest(".donut-wrapper");
-  const tooltip = document.getElementById("donutTooltip");
-  const showAllBtn = document.getElementById("showAll");
+  const donutCanvas = document.getElementById("skillsDonut");
+  const donutWrapper = donutCanvas?.closest(".donut-wrapper");
+  const donutTooltip = document.getElementById("donutTooltip");
+  const donutShowAllBtn = document.getElementById("showAll");
 
-  if (canvas && wrapper && tooltip && typeof Chart !== "undefined") {
+  if (donutCanvas && donutWrapper && donutTooltip && typeof Chart !== "undefined") {
 
     const skills = [
       { key: "uxui", label: "UX/UI", value: 35, color: "#f39c12" },
@@ -524,9 +524,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let mode = "all";
     let active = skills[0];
 
-    const chart = new Chart(canvas, {
-      type: "doughnut",
-      data: {
+    function datasetAll() {
+      return {
         labels: skills.map(s => s.label),
         datasets: [{
           data: skills.map(s => s.value),
@@ -534,26 +533,7 @@ document.addEventListener("DOMContentLoaded", () => {
           borderWidth: 0,
           hoverOffset: 6
         }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        cutout: "68%",
-        animation: { duration: 650, easing: "easeOutQuart" },
-        plugins: {
-          legend: { display: false },
-          tooltip: { enabled: false }
-        }
-      }
-    });
-
-    function showAll() {
-      mode = "all";
-      chart.data.labels = skills.map(s => s.label);
-      chart.data.datasets[0].data = skills.map(s => s.value);
-      chart.data.datasets[0].backgroundColor = skills.map(s => s.color);
-      chart.update();
-      tooltip.style.opacity = "0";
+      };
     }
 
     function datasetSingle(skill) {
@@ -568,12 +548,34 @@ document.addEventListener("DOMContentLoaded", () => {
       };
     }
 
-    function animateToSingle(skill) {
+    const chart = new Chart(donutCanvas, {
+      type: "doughnut",
+      data: datasetAll(),
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: "68%",
+        animation: { duration: 650, easing: "easeOutQuart" },
+        plugins: {
+          legend: { display: false },
+          tooltip: { enabled: false }
+        }
+      }
+    });
+
+    function showAll() {
+      mode = "all";
+      chart.data = datasetAll();
+      chart.update();
+      hideTooltip();
+    }
+
+    function showSingle(skill) {
       mode = "single";
       active = skill;
       chart.data = datasetSingle(skill);
       chart.update();
-      tooltip.style.opacity = "0";
+      hideTooltip();
     }
 
     function setActiveButton(btn) {
@@ -587,19 +589,84 @@ document.addEventListener("DOMContentLoaded", () => {
         const s = skills.find(x => x.key === key);
         if (!s) return;
         setActiveButton(btn);
-        animateToSingle(s);
+        showSingle(s);
       });
     });
 
-    if (showAllBtn) {
-      showAllBtn.addEventListener("click", () => {
-        setActiveButton(showAllBtn);
+    if (donutShowAllBtn) {
+      donutShowAllBtn.addEventListener("click", () => {
+        setActiveButton(donutShowAllBtn);
         showAll();
       });
     }
 
+    function setTooltip({ text, x, y, bg }) {
+      donutTooltip.textContent = text;
+      donutTooltip.style.left = `${x}px`;
+      donutTooltip.style.top = `${y}px`;
+      donutTooltip.style.background = bg;
+      donutTooltip.style.opacity = "1";
+    }
+
+    function hideTooltip() {
+      donutTooltip.style.opacity = "0";
+    }
+
+    function positionTooltip(chart, index) {
+      const meta = chart.getDatasetMeta(0);
+      const arc = meta?.data?.[index];
+      if (!arc) return null;
+
+      const p = arc.tooltipPosition();
+
+      const rect = donutCanvas.getBoundingClientRect();
+      const wRect = donutWrapper.getBoundingClientRect();
+
+      return {
+        x: p.x + (rect.left - wRect.left),
+        y: p.y + (rect.top - wRect.top)
+      };
+    }
+
+    function handleHover(evt) {
+      const points = chart.getElementsAtEventForMode(evt, "nearest", { intersect: true }, true);
+
+      if (!points.length) {
+        hideTooltip();
+        return;
+      }
+
+      const { index } = points[0];
+
+      if (mode === "single" && index === 1) {
+        hideTooltip();
+        return;
+      }
+
+      let text = "";
+      let bg = "rgba(0,0,0,.9)";
+
+      if (mode === "all") {
+        const s = skills[index];
+        if (!s) return hideTooltip();
+        text = `${s.label} — ${s.value}%`;
+        bg = s.color;
+      } else {
+        text = `${active.label} — ${active.value}%`;
+        bg = active.color;
+      }
+
+      const pos = positionTooltip(chart, index);
+      if (!pos) return hideTooltip();
+
+      setTooltip({ text, x: pos.x, y: pos.y, bg });
+    }
+
+    donutCanvas.addEventListener("mousemove", handleHover);
+    donutCanvas.addEventListener("mouseleave", hideTooltip);
+
     showAll();
-    if (showAllBtn) showAllBtn.classList.add("is-active");
+    if (donutShowAllBtn) donutShowAllBtn.classList.add("is-active");
   }
 
 
@@ -607,10 +674,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // 6) Animación Cards (si existen)
   // ======================================
   const cards = document.querySelectorAll(".card");
-  if(cards.length){
+  if (cards.length) {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if(entry.isIntersecting){
+        if (entry.isIntersecting) {
           entry.target.classList.add("is-visible");
           observer.unobserve(entry.target);
         }
