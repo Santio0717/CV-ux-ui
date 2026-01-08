@@ -1,50 +1,137 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  // ==============================
-  // Año footer
-  // ==============================
+  // ======================================
+  // 1) Año footer (si existe)
+  // ======================================
   const year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
 
-  // ==============================
-  // ACCESIBILIDAD: tamaño de letra
-  // ==============================
+  // ======================================
+  // 2) DROPDOWNS (Idioma / Accesibilidad)
+  // ======================================
+  const langDropdown = document.getElementById("langDropdown");
+  const a11yDropdown = document.getElementById("a11yDropdown");
+
+  function closeAllDropdowns(){
+    document.querySelectorAll(".dropdown.open").forEach(d => d.classList.remove("open"));
+    document.querySelectorAll(".drop-btn").forEach(btn => btn.setAttribute("aria-expanded", "false"));
+  }
+
+  function toggleDropdown(drop){
+    if (!drop) return;
+    const btn = drop.querySelector(".drop-btn");
+    const isOpen = drop.classList.contains("open");
+
+    closeAllDropdowns();
+
+    if (!isOpen) {
+      drop.classList.add("open");
+      if(btn) btn.setAttribute("aria-expanded", "true");
+    }
+  }
+
+  if(langDropdown){
+    langDropdown.querySelector(".drop-btn")?.addEventListener("click", () => toggleDropdown(langDropdown));
+  }
+  if(a11yDropdown){
+    a11yDropdown.querySelector(".drop-btn")?.addEventListener("click", () => toggleDropdown(a11yDropdown));
+  }
+
+  // cerrar dropdown con click fuera
+  document.addEventListener("click", (e) => {
+    const target = e.target;
+    const isInside = target.closest(".dropdown");
+    if (!isInside) closeAllDropdowns();
+  });
+
+  // cerrar con ESC
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeAllDropdowns();
+  });
+
+  // ======================================
+  // 3) ACCESIBILIDAD: Tamaño / Contraste / Fuente legible
+  // ======================================
   const fontMinus = document.getElementById("fontMinus");
   const fontPlus = document.getElementById("fontPlus");
-  const fontReset = document.getElementById("fontReset");
+  const resetA11y = document.getElementById("resetA11y");
+
+  const toggleContrast = document.getElementById("toggleContrast");
+  const toggleReadable = document.getElementById("toggleReadable");
 
   let fontSize = parseInt(localStorage.getItem("fontSize")) || 16;
+  let contrast = localStorage.getItem("contrast") === "true";
+  let readable = localStorage.getItem("readable") === "true";
 
-  function applyFontSize(){
+  function applyA11y(){
+    // font size
     document.documentElement.style.fontSize = fontSize + "px";
     localStorage.setItem("fontSize", fontSize);
+
+    // contrast
+    document.body.classList.toggle("high-contrast", contrast);
+    localStorage.setItem("contrast", contrast);
+
+    // readable font
+    document.body.classList.toggle("readable-font", readable);
+    localStorage.setItem("readable", readable);
+
+    // checkbox states
+    if(toggleContrast) toggleContrast.checked = contrast;
+    if(toggleReadable) toggleReadable.checked = readable;
   }
 
-  if (fontPlus && fontMinus && fontReset) {
+  if(fontPlus){
     fontPlus.addEventListener("click", () => {
       fontSize = Math.min(fontSize + 2, 22);
-      applyFontSize();
+      applyA11y();
     });
-
-    fontMinus.addEventListener("click", () => {
-      fontSize = Math.max(fontSize - 2, 14);
-      applyFontSize();
-    });
-
-    fontReset.addEventListener("click", () => {
-      fontSize = 16;
-      applyFontSize();
-    });
-
-    applyFontSize();
   }
 
-  // ==============================
-  // TRADUCCIONES COMPLETAS
-  // ==============================
-  const translations = {
+  if(fontMinus){
+    fontMinus.addEventListener("click", () => {
+      fontSize = Math.max(fontSize - 2, 14);
+      applyA11y();
+    });
+  }
 
+  if(toggleContrast){
+    toggleContrast.addEventListener("change", () => {
+      contrast = toggleContrast.checked;
+      applyA11y();
+    });
+  }
+
+  if(toggleReadable){
+    toggleReadable.addEventListener("change", () => {
+      readable = toggleReadable.checked;
+      applyA11y();
+    });
+  }
+
+  if(resetA11y){
+    resetA11y.addEventListener("click", () => {
+      fontSize = 16;
+      contrast = false;
+      readable = false;
+      applyA11y();
+    });
+  }
+
+  applyA11y();
+
+  // ======================================
+  // 4) TRADUCCIONES (GLOBAL)
+  // ======================================
+  const translations = {
     es: {
+      toolbar_language: "Idioma",
+      toolbar_reset_language: "Restablecer idioma",
+      toolbar_accessibility: "Accesibilidad",
+      toolbar_reset_accessibility: "Restablecer accesibilidad",
+      toolbar_contrast: "Alto contraste",
+      toolbar_readable: "Fuente legible",
+
       nav_projects: "Proyectos",
       nav_skills: "Tecnologías",
       nav_certificates: "Certificados",
@@ -82,22 +169,17 @@ document.addEventListener("DOMContentLoaded", () => {
       project_bon_desc: "Diseño de wireframes de alta fidelidad para una plataforma de e-commerce, enfocado en jerarquía visual y conversión.",
       project_green_desc: "Prototipo móvil iOS diseñado a partir de principios de usabilidad, navegación intuitiva y experiencia mobile-first.",
       project_nutri_desc: "Diseño de experiencia para un entorno de realidad virtual enfocado en educación nutricional e interacción inmersiva.",
-      project_iso_desc: "Prototipo desktop enfocado en accesibilidad, lectura clara y navegación inclusiva para usuarios con diferentes capacidades.",
-
-      tag_english: "Inglés",
-      tag_webdesign: "Diseño web",
-      tag_prototyping: "Prototipado",
-      tag_requirements: "Requisitos",
-      tag_innovation: "Innovación",
-      tag_validation: "Validación",
-      tag_prototypes: "Prototipos",
-      tag_graphicdesign: "Diseño gráfico",
-      tag_illustration: "Ilustración",
-      tag_editing: "Edición",
-      tag_retouch: "Retoque"
+      project_iso_desc: "Prototipo desktop enfocado en accesibilidad, lectura clara y navegación inclusiva para usuarios con diferentes capacidades."
     },
 
     en: {
+      toolbar_language: "Language",
+      toolbar_reset_language: "Reset language",
+      toolbar_accessibility: "Accessibility",
+      toolbar_reset_accessibility: "Reset accessibility",
+      toolbar_contrast: "High contrast",
+      toolbar_readable: "Readable font",
+
       nav_projects: "Projects",
       nav_skills: "Skills",
       nav_certificates: "Certificates",
@@ -135,22 +217,17 @@ document.addEventListener("DOMContentLoaded", () => {
       project_bon_desc: "High-fidelity wireframes for an e-commerce platform, focused on visual hierarchy and conversion.",
       project_green_desc: "iOS mobile prototype based on usability principles, intuitive navigation, and a mobile-first approach.",
       project_nutri_desc: "Experience design for a virtual reality environment focused on nutrition education and immersive interaction.",
-      project_iso_desc: "Desktop prototype focused on accessibility, clear reading, and inclusive navigation for diverse users.",
-
-      tag_english: "English",
-      tag_webdesign: "Web design",
-      tag_prototyping: "Prototyping",
-      tag_requirements: "Requirements",
-      tag_innovation: "Innovation",
-      tag_validation: "Validation",
-      tag_prototypes: "Prototypes",
-      tag_graphicdesign: "Graphic design",
-      tag_illustration: "Illustration",
-      tag_editing: "Editing",
-      tag_retouch: "Retouching"
+      project_iso_desc: "Desktop prototype focused on accessibility, clear reading, and inclusive navigation for diverse users."
     },
 
     fr: {
+      toolbar_language: "Langue",
+      toolbar_reset_language: "Réinitialiser la langue",
+      toolbar_accessibility: "Accessibilité",
+      toolbar_reset_accessibility: "Réinitialiser l'accessibilité",
+      toolbar_contrast: "Haut contraste",
+      toolbar_readable: "Police lisible",
+
       nav_projects: "Projets",
       nav_skills: "Compétences",
       nav_certificates: "Certificats",
@@ -158,7 +235,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       hero_role: "Designer UX/UI",
       hero_title: "Je conçois des expériences numériques claires, accessibles et orientées résultats",
-      hero_sub: "Je transforme des idées en solutions fonctionnelles grâce à la recherche, au prototypage et au design visuel, en créant des produits qui connectent avec les personnes et apportent de la valeur.",
+      hero_sub: "Je transforme des idées en solutions fonctionnelles grâce à la recherche, au prototypage et au design visuel.",
       hero_cta: "Télécharger CV",
 
       projects_title: "Projets en vedette",
@@ -186,24 +263,19 @@ document.addEventListener("DOMContentLoaded", () => {
       contact_msg: "Message",
 
       project_bon_desc: "Wireframes haute fidélité pour une plateforme e-commerce, centrés sur la hiérarchie visuelle et la conversion.",
-      project_green_desc: "Prototype mobile iOS basé sur des principes d’utilisabilité, une navigation intuitive et une approche mobile-first.",
-      project_nutri_desc: "Conception d’expérience pour un environnement VR axé sur l’éducation nutritionnelle et l’interaction immersive.",
-      project_iso_desc: "Prototype desktop axé sur l’accessibilité, la lisibilité et une navigation inclusive pour différents utilisateurs.",
-
-      tag_english: "Anglais",
-      tag_webdesign: "Design web",
-      tag_prototyping: "Prototypage",
-      tag_requirements: "Exigences",
-      tag_innovation: "Innovation",
-      tag_validation: "Validation",
-      tag_prototypes: "Prototypes",
-      tag_graphicdesign: "Design graphique",
-      tag_illustration: "Illustration",
-      tag_editing: "Édition",
-      tag_retouch: "Retouche"
+      project_green_desc: "Prototype mobile iOS basé sur des principes d’utilisabilité et une navigation intuitive.",
+      project_nutri_desc: "Conception d’expérience pour un environnement VR axé sur l’éducation nutritionnelle.",
+      project_iso_desc: "Prototype desktop axé sur l’accessibilité, la lisibilité et une navigation inclusive."
     },
 
     pt: {
+      toolbar_language: "Idioma",
+      toolbar_reset_language: "Redefinir idioma",
+      toolbar_accessibility: "Acessibilidade",
+      toolbar_reset_accessibility: "Redefinir acessibilidade",
+      toolbar_contrast: "Alto contraste",
+      toolbar_readable: "Fonte legível",
+
       nav_projects: "Projetos",
       nav_skills: "Tecnologias",
       nav_certificates: "Certificados",
@@ -211,7 +283,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       hero_role: "Designer UX/UI",
       hero_title: "Eu crio experiências digitais claras, acessíveis e focadas em resultados",
-      hero_sub: "Transformo ideias em soluções funcionais por meio de pesquisa, prototipação e design visual, criando produtos que se conectam com as pessoas e geram valor para o negócio.",
+      hero_sub: "Transformo ideias em soluções funcionais com pesquisa, prototipação e design visual.",
       hero_cta: "Baixar CV",
 
       projects_title: "Projetos em destaque",
@@ -239,24 +311,19 @@ document.addEventListener("DOMContentLoaded", () => {
       contact_msg: "Mensagem",
 
       project_bon_desc: "Wireframes de alta fidelidade para uma plataforma de e-commerce, com foco em hierarquia visual e conversão.",
-      project_green_desc: "Protótipo móvel iOS baseado em princípios de usabilidade, navegação intuitiva e abordagem mobile-first.",
-      project_nutri_desc: "Design de experiência para um ambiente de realidade virtual focado em educação nutricional e interação imersiva.",
-      project_iso_desc: "Protótipo desktop focado em acessibilidade, leitura clara e navegação inclusiva para usuários diversos.",
-
-      tag_english: "Inglês",
-      tag_webdesign: "Design web",
-      tag_prototyping: "Prototipação",
-      tag_requirements: "Requisitos",
-      tag_innovation: "Inovação",
-      tag_validation: "Validação",
-      tag_prototypes: "Protótipos",
-      tag_graphicdesign: "Design gráfico",
-      tag_illustration: "Ilustração",
-      tag_editing: "Edição",
-      tag_retouch: "Retoque"
+      project_green_desc: "Protótipo móvel iOS baseado em princípios de usabilidade e navegação intuitiva.",
+      project_nutri_desc: "Design de experiência para um ambiente de realidade virtual focado em educação nutricional.",
+      project_iso_desc: "Protótipo desktop focado em acessibilidade e navegação inclusiva."
     },
 
     de: {
+      toolbar_language: "Sprache",
+      toolbar_reset_language: "Sprache zurücksetzen",
+      toolbar_accessibility: "Barrierefreiheit",
+      toolbar_reset_accessibility: "Zurücksetzen",
+      toolbar_contrast: "Hoher Kontrast",
+      toolbar_readable: "Lesbare Schrift",
+
       nav_projects: "Projekte",
       nav_skills: "Fähigkeiten",
       nav_certificates: "Zertifikate",
@@ -264,7 +331,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       hero_role: "UX/UI Designer",
       hero_title: "Ich gestalte klare, barrierefreie und ergebnisorientierte digitale Erlebnisse",
-      hero_sub: "Ich verwandle Ideen durch Research, Prototyping und visuelles Design in funktionale Lösungen—und entwickle Produkte, die Menschen verbinden und geschäftlichen Mehrwert schaffen.",
+      hero_sub: "Ich verwandle Ideen durch Research, Prototyping und visuelles Design in funktionale Lösungen.",
       hero_cta: "Lebenslauf herunterladen",
 
       projects_title: "Ausgewählte Projekte",
@@ -292,24 +359,19 @@ document.addEventListener("DOMContentLoaded", () => {
       contact_msg: "Nachricht",
 
       project_bon_desc: "High-Fidelity-Wireframes für eine E-Commerce-Plattform mit Fokus auf visueller Hierarchie und Conversion.",
-      project_green_desc: "iOS-Mobilprototyp basierend auf Usability-Prinzipien, intuitiver Navigation und Mobile-First-Ansatz.",
-      project_nutri_desc: "Experience Design für eine VR-Umgebung mit Fokus auf Ernährungserziehung und immersiver Interaktion.",
-      project_iso_desc: "Desktop-Prototyp mit Fokus auf Barrierefreiheit, klare Lesbarkeit und inklusive Navigation.",
-
-      tag_english: "Englisch",
-      tag_webdesign: "Webdesign",
-      tag_prototyping: "Prototyping",
-      tag_requirements: "Anforderungen",
-      tag_innovation: "Innovation",
-      tag_validation: "Validierung",
-      tag_prototypes: "Prototypen",
-      tag_graphicdesign: "Grafikdesign",
-      tag_illustration: "Illustration",
-      tag_editing: "Bearbeitung",
-      tag_retouch: "Retusche"
+      project_green_desc: "iOS-Prototyp basierend auf Usability-Prinzipien und intuitiver Navigation.",
+      project_nutri_desc: "Experience Design für eine VR-Umgebung mit Fokus auf Ernährungsbildung.",
+      project_iso_desc: "Desktop-Prototyp mit Fokus auf Barrierefreiheit und inklusive Navigation."
     },
 
     zh: {
+      toolbar_language: "语言",
+      toolbar_reset_language: "重置语言",
+      toolbar_accessibility: "无障碍",
+      toolbar_reset_accessibility: "重置无障碍",
+      toolbar_contrast: "高对比度",
+      toolbar_readable: "易读字体",
+
       nav_projects: "项目",
       nav_skills: "技能",
       nav_certificates: "证书",
@@ -317,7 +379,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       hero_role: "UX/UI 设计师",
       hero_title: "我设计清晰、无障碍且以结果为导向的数字体验",
-      hero_sub: "我通过研究、原型设计与视觉设计将想法转化为可落地的解决方案，打造能够与用户产生连接并为业务创造价值的产品。",
+      hero_sub: "我通过研究、原型设计与视觉设计将想法转化为可落地的解决方案。",
       hero_cta: "下载简历",
 
       projects_title: "精选项目",
@@ -345,25 +407,14 @@ document.addEventListener("DOMContentLoaded", () => {
       contact_msg: "消息",
 
       project_bon_desc: "为电商平台设计高保真线框图，专注于视觉层级与转化。",
-      project_green_desc: "基于可用性原则、直观导航与移动优先理念的 iOS 移动原型。",
-      project_nutri_desc: "为虚拟现实环境设计体验，聚焦营养教育与沉浸式交互。",
-      project_iso_desc: "桌面端原型，聚焦无障碍、清晰阅读与包容性导航。",
-
-      tag_english: "英语",
-      tag_webdesign: "网页设计",
-      tag_prototyping: "原型设计",
-      tag_requirements: "需求",
-      tag_innovation: "创新",
-      tag_validation: "验证",
-      tag_prototypes: "原型",
-      tag_graphicdesign: "平面设计",
-      tag_illustration: "插画",
-      tag_editing: "编辑",
-      tag_retouch: "修图"
+      project_green_desc: "基于可用性原则和直观导航的 iOS 移动原型。",
+      project_nutri_desc: "为虚拟现实环境设计体验，聚焦营养教育。",
+      project_iso_desc: "桌面端原型，聚焦无障碍和包容性导航。"
     }
   };
 
   const langButtons = document.querySelectorAll(".lang-btn");
+  const resetLang = document.getElementById("resetLang");
 
   function setLanguage(lang){
     const dict = translations[lang] || translations.es;
@@ -382,21 +433,25 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(`.lang-btn[data-lang="${lang}"]`)?.classList.add("is-active");
 
     localStorage.setItem("lang", lang);
-
-    // Cambiar atributo lang del HTML
     document.documentElement.lang = lang;
+
+    closeAllDropdowns();
   }
 
   langButtons.forEach(btn=>{
     btn.addEventListener("click", ()=> setLanguage(btn.dataset.lang));
   });
 
+  if(resetLang){
+    resetLang.addEventListener("click", () => setLanguage("es"));
+  }
+
   const savedLang = localStorage.getItem("lang") || "es";
   setLanguage(savedLang);
 
-  // ==============================
-  // DONUT CHART (Tecnologías)
-  // ==============================
+  // ======================================
+  // 5) DONUT CHART (solo si existe en la página)
+  // ======================================
   const canvas = document.getElementById("skillsDonut");
   const wrapper = canvas?.closest(".donut-wrapper");
   const tooltip = document.getElementById("donutTooltip");
@@ -427,9 +482,7 @@ document.addEventListener("DOMContentLoaded", () => {
       tooltip.style.opacity = "1";
     }
 
-    function hideTooltip() {
-      tooltip.style.opacity = "0";
-    }
+    function hideTooltip() { tooltip.style.opacity = "0"; }
 
     function getArcPoint(chart, index) {
       const meta = chart.getDatasetMeta(0);
@@ -496,7 +549,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const target = skill.value;
       const start = chart.data.datasets[0].data?.[0] ?? 0;
-
       const t0 = performance.now();
       const duration = 520;
 
@@ -548,24 +600,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function handleHover(evt) {
-      const points = chart.getElementsAtEventForMode(
-        evt,
-        "nearest",
-        { intersect: true },
-        true
-      );
+      const points = chart.getElementsAtEventForMode(evt,"nearest",{ intersect:true },true);
 
-      if (!points.length) {
-        hideTooltip();
-        return;
-      }
+      if (!points.length) { hideTooltip(); return; }
 
       const { index } = points[0];
-
-      if (mode === "single" && index === 1) {
-        hideTooltip();
-        return;
-      }
+      if (mode === "single" && index === 1) { hideTooltip(); return; }
 
       let text = "";
       let bg = "rgba(0,0,0,.9)";
@@ -587,27 +627,30 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     canvas.addEventListener("mousemove", handleHover);
-    canvas.addEventListener("mouseleave", () => hideTooltip());
+    canvas.addEventListener("mouseleave", hideTooltip);
 
     showAll();
     if (showAllBtn) showAllBtn.classList.add("is-active");
   }
 
-  // ==============================
-  // Animación al aparecer (Cards)
-  // ==============================
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting){
-        entry.target.classList.add("is-visible");
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
+  // ======================================
+  // 6) Animación al aparecer (Cards)
+  // ======================================
+  const cards = document.querySelectorAll(".card");
+  if(cards.length){
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
 
-  document.querySelectorAll(".card").forEach((card, i) => {
-    card.style.transitionDelay = `${i * 0.06}s`;
-    observer.observe(card);
-  });
+    cards.forEach((card, i) => {
+      card.style.transitionDelay = `${i * 0.06}s`;
+      observer.observe(card);
+    });
+  }
 
 });
