@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /* ==========================
-     0) HABILITAR FALLBACK ANIMACIONES
+     0) activar fallback animaciones
   ========================== */
   document.body.classList.add("js");
 
@@ -53,11 +53,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "Escape") closeAllDropdowns();
   });
 
+
   /* ==========================
      3) ACCESIBILIDAD
   ========================== */
   const fontMinus = document.getElementById("fontMinus");
-  const fontPlus = document.getElementById("fontPlus");
+  const fontPlus  = document.getElementById("fontPlus");
   const resetA11y = document.getElementById("resetA11y");
 
   const toggleContrast = document.getElementById("toggleContrast");
@@ -111,8 +112,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   applyA11y();
 
+
+
   /* ==========================
-     4) TRADUCCIONES (OBJETO PRINCIPAL)
+     4) TRADUCCIONES (diccionario completo)
   ========================== */
   const translations = {
     es: {
@@ -127,6 +130,11 @@ document.addEventListener("DOMContentLoaded", () => {
       toolbar_reset_accessibility: "Restablecer accesibilidad",
       toolbar_contrast: "Alto contraste",
       toolbar_readable: "Fuente legible",
+
+      hero_role: "UX/UI Designer",
+      hero_title: "Diseño experiencias digitales claras, accesibles y enfocadas en resultados",
+      hero_sub: "Transformo ideas en soluciones funcionales mediante investigación, prototipado y diseño visual, creando productos que conectan con las personas y aportan valor al negocio.",
+      hero_cta: "Descargar CV",
 
       projects_title: "Proyectos destacados",
       skills_title: "Tecnologías y habilidades",
@@ -144,6 +152,11 @@ document.addEventListener("DOMContentLoaded", () => {
       skill_prod: "Producción",
       skill_all: "Perfil completo",
 
+      project_bon_desc: "Diseño de wireframes de alta fidelidad para una plataforma de e-commerce, enfocado en jerarquía visual y conversión.",
+      project_green_desc: "Prototipo móvil iOS diseñado a partir de principios de usabilidad, navegación intuitiva y experiencia mobile-first.",
+      project_nutri_desc: "Diseño de experiencia para un entorno de realidad virtual enfocado en educación nutricional e interacción inmersiva.",
+      project_iso_desc: "Prototipo desktop enfocado en accesibilidad, lectura clara y navegación inclusiva para usuarios con diferentes capacidades.",
+
       contact_form_title: "Escríbeme",
       contact_send: "Enviar",
       contact_name: "Nombre",
@@ -153,7 +166,6 @@ document.addEventListener("DOMContentLoaded", () => {
       footer_text: "Portafolio de Santiago Murillo",
       contact_email_label: "Email:",
 
-      // TAGS certificados
       tag_english: "Inglés",
       tag_webdesign: "Diseño web",
       tag_prototyping: "Prototipado",
@@ -182,6 +194,11 @@ document.addEventListener("DOMContentLoaded", () => {
       toolbar_contrast: "High contrast",
       toolbar_readable: "Readable font",
 
+      hero_role: "UX/UI Designer",
+      hero_title: "I design clear, accessible and results-driven digital experiences",
+      hero_sub: "I transform ideas into functional solutions through research, prototyping and visual design, creating products that connect with people and bring business value.",
+      hero_cta: "Download CV",
+
       projects_title: "Featured projects",
       skills_title: "Skills & technologies",
       cert_title: "Certificates",
@@ -197,6 +214,11 @@ document.addEventListener("DOMContentLoaded", () => {
       skill_motion: "Motion",
       skill_prod: "Production",
       skill_all: "Full profile",
+
+      project_bon_desc: "High-fidelity wireframes for an e-commerce platform, focused on visual hierarchy and conversion.",
+      project_green_desc: "iOS mobile prototype based on usability principles, intuitive navigation, and a mobile-first approach.",
+      project_nutri_desc: "Experience design for a virtual reality environment focused on nutrition education and immersive interaction.",
+      project_iso_desc: "Desktop prototype focused on accessibility, clear reading, and inclusive navigation for diverse users.",
 
       contact_form_title: "Write to me",
       contact_send: "Send",
@@ -251,27 +273,12 @@ document.addEventListener("DOMContentLoaded", () => {
       skill_prod: "Production",
       skill_all: "Profil complet",
 
-      contact_form_title: "Écris-moi",
-      contact_send: "Envoyer",
-      contact_name: "Nom",
-      contact_email: "Email",
-      contact_msg: "Message",
-
       footer_text: "Portfolio de Santiago Murillo",
       contact_email_label: "Email:",
 
-      tag_english: "Anglais",
-      tag_webdesign: "Web design",
-      tag_prototyping: "Prototypage",
-      tag_requirements: "Exigences",
       tag_innovation: "Innovation",
       tag_validation: "Validation",
       tag_prototypes: "Prototypes",
-      tag_graphicdesign: "Design graphique",
-      tag_illustration: "Illustration",
-      tag_editing: "Édition",
-      tag_retouch: "Retouche",
-
       tag_designthinking: "Design Thinking"
     },
 
@@ -307,6 +314,9 @@ document.addEventListener("DOMContentLoaded", () => {
       footer_text: "Portfólio de Santiago Murillo",
       contact_email_label: "Email:",
 
+      tag_innovation: "Inovação",
+      tag_validation: "Validação",
+      tag_prototypes: "Protótipos",
       tag_designthinking: "Design Thinking"
     },
 
@@ -342,6 +352,9 @@ document.addEventListener("DOMContentLoaded", () => {
       footer_text: "Portfolio von Santiago Murillo",
       contact_email_label: "E-Mail:",
 
+      tag_innovation: "Innovation",
+      tag_validation: "Validierung",
+      tag_prototypes: "Prototypen",
       tag_designthinking: "Design Thinking"
     },
 
@@ -377,35 +390,33 @@ document.addEventListener("DOMContentLoaded", () => {
       footer_text: "Santiago Murillo 作品集",
       contact_email_label: "邮箱：",
 
+      tag_innovation: "创新",
+      tag_validation: "验证",
+      tag_prototypes: "原型",
       tag_designthinking: "设计思维"
     }
   };
 
 
   /* ==========================
-     5) IDIOMA ACTUAL
-  ========================== */
-  let currentLang = localStorage.getItem("lang") || "es";
-  let currentDict = translations[currentLang] || translations.es;
-
-
-  /* ==========================
-     6) DONUT CHART + TOOLTIP + FILTER
+     5) DONUT (NO se rompe al filtrar)
   ========================== */
   const canvas = document.getElementById("skillsDonut");
   const wrapper = canvas?.closest(".donut-wrapper");
   const tooltip = document.getElementById("donutTooltip");
 
-  const allSkills = [
-    { key: "uxui",   labelKey: "skill_uxui",   value: 35, color: "#f39c12" },
-    { key: "docs",   labelKey: "skill_docs",   value: 20, color: "#2ecc71" },
-    { key: "front",  labelKey: "skill_front",  value: 15, color: "#3498db" },
+  let chart = null;
+
+  const skills = [
+    { key: "uxui", labelKey: "skill_uxui", value: 35, color: "#f39c12" },
+    { key: "docs", labelKey: "skill_docs", value: 20, color: "#2ecc71" },
+    { key: "front", labelKey: "skill_front", value: 15, color: "#3498db" },
     { key: "motion", labelKey: "skill_motion", value: 30, color: "#9b59b6" },
-    { key: "prod",   labelKey: "skill_prod",   value: 10, color: "#e74c3c" }
+    { key: "prod", labelKey: "skill_prod", value: 10, color: "#e74c3c" }
   ];
 
-  let currentSkills = [...allSkills];
-  let chart = null;
+  let currentLang = localStorage.getItem("lang") || "es";
+  let currentDict = translations[currentLang] || translations.es;
 
   function buildDonut(){
     if (!canvas || !wrapper || !tooltip || typeof Chart === "undefined") return;
@@ -413,22 +424,19 @@ document.addEventListener("DOMContentLoaded", () => {
     chart = new Chart(canvas, {
       type: "doughnut",
       data: {
-        labels: currentSkills.map(s => currentDict[s.labelKey] || s.key),
+        labels: skills.map(s => currentDict[s.labelKey] || s.key),
         datasets: [{
-          data: currentSkills.map(s => s.value),
-          backgroundColor: currentSkills.map(s => s.color),
+          data: skills.map(s => s.value),
+          backgroundColor: skills.map(s => s.color),
           borderWidth: 0,
-          hoverOffset: 6
+          hoverOffset: 8
         }]
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
         cutout: "68%",
-        plugins: {
-          legend: { display: false },
-          tooltip: { enabled: false }
-        }
+        plugins: { legend: { display: false }, tooltip: { enabled: false } }
       }
     });
 
@@ -443,8 +451,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!points.length) return tooltip.style.opacity = "0";
 
       const i = points[0].index;
-      const skill = currentSkills[i];
-
+      const skill = skills[i];
       tooltip.textContent = `${currentDict[skill.labelKey] || skill.key} — ${skill.value}%`;
       tooltip.style.background = skill.color;
       tooltip.style.opacity = "1";
@@ -453,76 +460,78 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.addEventListener("mouseleave", () => tooltip.style.opacity = "0");
   }
 
-  function updateDonut(){
+  // ✅ resaltar una sección (sin romper donut)
+  function highlightSkill(key){
     if (!chart) return;
 
-    chart.data.labels = currentSkills.map(s => currentDict[s.labelKey] || s.key);
-    chart.data.datasets[0].data = currentSkills.map(s => s.value);
-    chart.data.datasets[0].backgroundColor = currentSkills.map(s => s.color);
+    chart.data.datasets[0].backgroundColor = skills.map(s => {
+      if (key === "all") return s.color;
+      return s.key === key ? s.color : "rgba(0,0,0,.08)";
+    });
+
     chart.update();
   }
 
-  function filterDonut(key){
-    if (key === "all") {
-      currentSkills = [...allSkills];
-    } else {
-      // IMPORTANTE: mantiene donut visible, no rellena completo
-      currentSkills = allSkills.filter(s => s.key === key);
-    }
-    updateDonut();
+  function updateDonutLanguage(){
+    if (!chart) return;
+    chart.data.labels = skills.map(s => currentDict[s.labelKey] || s.key);
+    chart.update();
   }
 
-  function setActive(btn){
-    document.querySelectorAll(".tech-btn").forEach(b => b.classList.remove("is-active"));
-    btn.classList.add("is-active");
-  }
-
-  // botones filtro
-  document.querySelectorAll(".tech-btn[data-key]").forEach(btn => {
-    btn.addEventListener("click", () => {
-      setActive(btn);
-      filterDonut(btn.dataset.key);
-    });
-  });
-
-  document.getElementById("showAll")?.addEventListener("click", () => {
-    const btn = document.getElementById("showAll");
-    if(btn) setActive(btn);
-    filterDonut("all");
-  });
 
 
   /* ==========================
-     7) APLICAR TRADUCCIÓN
+     6) TRADUCTOR GLOBAL
   ========================== */
   function applyTranslations(lang){
     currentLang = lang;
     currentDict = translations[lang] || translations.es;
 
-    // textos normales
     document.querySelectorAll("[data-i18n]").forEach(el => {
       const key = el.dataset.i18n;
       if (currentDict[key]) el.textContent = currentDict[key];
     });
 
-    // placeholders
     document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
       const key = el.dataset.i18nPlaceholder;
       if (currentDict[key]) el.setAttribute("placeholder", currentDict[key]);
     });
 
-    // botón activo idioma
     document.querySelectorAll(".lang-btn").forEach(btn => btn.classList.remove("is-active"));
     document.querySelector(`.lang-btn[data-lang="${lang}"]`)?.classList.add("is-active");
 
     localStorage.setItem("lang", lang);
     document.documentElement.lang = lang;
 
-    // actualizar donut labels + tooltip idioma
-    updateDonut();
+    // ✅ actualiza labels + tooltip donut
+    updateDonutLanguage();
 
     closeAllDropdowns();
   }
+
+
+
+  /* ==========================
+     7) BOTONES DONUT
+  ========================== */
+  function setActive(btn){
+    document.querySelectorAll(".tech-btn").forEach(b => b.classList.remove("is-active"));
+    btn.classList.add("is-active");
+  }
+
+  document.querySelectorAll(".tech-btn[data-key]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      setActive(btn);
+      highlightSkill(btn.dataset.key);
+    });
+  });
+
+  document.getElementById("showAll")?.addEventListener("click", () => {
+    const btn = document.getElementById("showAll");
+    setActive(btn);
+    highlightSkill("all");
+  });
+
 
 
   /* ==========================
@@ -544,6 +553,7 @@ document.addEventListener("DOMContentLoaded", () => {
       observer.observe(card);
     });
   }
+
 
 
   /* ==========================
