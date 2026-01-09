@@ -325,21 +325,33 @@ body{
   gap:28px;
 }
 
+/* ✅ Fallback: si JS falla, igual se ven */
 .card{
   background:var(--glass);
   padding:26px;
   border-radius:var(--radius-md);
   box-shadow:var(--shadow-sm);
   border:1px solid rgba(255,255,255,.45);
-
-  opacity:0;
-  transform: translateY(18px) scale(.98);
-  transition: opacity .65s ease, transform .65s ease;
+  opacity:1;
+  transform:none;
 }
 
-.card.is-visible{
+/* ✅ Animación SOLO si el body tiene .js */
+body.js .card{
+  opacity:0;
+  transform:translateY(18px) scale(.98);
+  transition:opacity .65s ease, transform .65s ease;
+}
+
+body.js .card.is-visible{
   opacity:1;
-  transform: translateY(0) scale(1);
+  transform:translateY(0) scale(1);
+}
+
+/* ✅ hover que tenías antes */
+.card:hover{
+  transform:translateY(-6px) scale(1.01);
+  box-shadow:var(--shadow-glow);
 }
 
 .thumb{
@@ -367,6 +379,7 @@ body{
   background:rgba(0,0,0,.06);
   padding:4px 10px;
   border-radius:999px;
+  white-space:nowrap;
 }
 
 /* ================= FIX: CTA ================= */
@@ -405,16 +418,17 @@ body{
   margin-top:28px;
 }
 
+/* ✅ FIX DONUT (para que nunca desaparezca) */
 .donut-wrapper{
   position:relative;
   width:260px;
   height:260px;
+  min-width:260px;
+  min-height:260px;
   flex:0 0 auto;
   display:flex;
   align-items:center;
   justify-content:center;
-  min-width:260px;
-  min-height:260px;
 }
 
 #skillsDonut{
@@ -436,6 +450,7 @@ body{
   transition:opacity .2s ease;
   white-space:nowrap;
   box-shadow:0 8px 20px rgba(0,0,0,.15);
+  z-index:20;
 }
 
 .tech-controls{
@@ -467,6 +482,10 @@ body{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:40px;
+}
+
+.contact-form{
+  display:block;
 }
 
 .input-field{
