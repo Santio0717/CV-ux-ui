@@ -15,16 +15,19 @@
   --shadow-glow:0 10px 30px rgba(0,0,0,.08);
 }
 
-*{margin:0;padding:0;box-sizing:border-box;}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
 body{
   font-family:'Inter',sans-serif;
   color:var(--ink);
   line-height:1.6;
-  background:
-    radial-gradient(circle at top left, #fff6ea 0%, transparent 45%),
-    radial-gradient(circle at bottom right, #f3d6b8 0%, transparent 50%),
-    linear-gradient(120deg,var(--bg-1),var(--bg-2));
+  background: radial-gradient(circle at top left, #fff6ea 0%, transparent 45%),
+              radial-gradient(circle at bottom right, #f3d6b8 0%, transparent 50%),
+              linear-gradient(120deg,var(--bg-1),var(--bg-2));
 }
 
 .container{
@@ -32,7 +35,9 @@ body{
   margin-inline:auto;
 }
 
-.section{padding:90px 0;}
+.section{
+  padding:90px 0;
+}
 
 .section-title{
   font-size:clamp(1.6rem,2.4vw,2rem);
@@ -65,13 +70,20 @@ body{
   color:var(--ink);
 }
 
+.brand:visited,
+.main-nav a:visited{
+  color:var(--ink);
+}
+
 .main-nav{
   display:flex;
   gap:20px;
 }
 
 .main-nav a:hover,
-.brand:hover{opacity:.7;}
+.brand:hover{
+  opacity:.7;
+}
 
 /* ================= TOOLBAR (DROPDOWNS) ================= */
 .toolbar{
@@ -81,7 +93,9 @@ body{
   margin-left:auto;
 }
 
-.dropdown{position:relative;}
+.dropdown{
+  position:relative;
+}
 
 .drop-btn{
   display:inline-flex;
@@ -105,7 +119,10 @@ body{
   box-shadow:0 12px 24px rgba(0,0,0,.08);
 }
 
-.drop-icon{font-size:.8rem;opacity:.8;}
+.drop-icon{
+  font-size:.8rem;
+  opacity:.8;
+}
 
 .drop-panel{
   position:absolute;
@@ -179,10 +196,11 @@ body{
 }
 
 .drop-reset:hover{
-  background:#fff;
+  background:rgba(255,255,255,1);
   transform:translateY(-1px);
 }
 
+/* A11y rows */
 .a11y-row{
   display:flex;
   gap:10px;
@@ -216,8 +234,14 @@ body{
   font-weight:700;
 }
 
-.toggle:hover{background:rgba(0,0,0,.05);}
-.toggle input{width:18px;height:18px;}
+.toggle:hover{
+  background:rgba(0,0,0,.05);
+}
+
+.toggle input{
+  width:18px;
+  height:18px;
+}
 
 /* ================= HERO ================= */
 .hero-card{
@@ -277,9 +301,9 @@ body{
   box-shadow:var(--shadow-sm);
 }
 
-.btn.red{background:var(--primary);}
-.btn.case{background:var(--accent);}
-.btn.primary{background:#0077b6;}
+.btn.red{ background:var(--primary); }
+.btn.case{ background:var(--accent); }
+.btn.primary{ background:#0077b6; }
 
 .btn.ghost{
   background:transparent;
@@ -287,9 +311,12 @@ body{
   border:2px solid var(--accent);
 }
 
-.btn.big{padding:16px 30px;}
-.btn.whatsapp{background:#25D366;}
-.btn.linkedin{background:#0077B5;}
+.btn.big{
+  padding:16px 30px;
+}
+
+.btn.whatsapp{ background:#25D366; }
+.btn.linkedin{ background:#0077B5; }
 
 /* ================= CARDS ================= */
 .grid.cards{
@@ -304,6 +331,15 @@ body{
   border-radius:var(--radius-md);
   box-shadow:var(--shadow-sm);
   border:1px solid rgba(255,255,255,.45);
+
+  opacity:0;
+  transform: translateY(18px) scale(.98);
+  transition: opacity .65s ease, transform .65s ease;
+}
+
+.card.is-visible{
+  opacity:1;
+  transform: translateY(0) scale(1);
 }
 
 .thumb{
@@ -333,6 +369,7 @@ body{
   border-radius:999px;
 }
 
+/* ================= FIX: CTA ================= */
 .card-ctas{
   display:flex;
   flex-direction:column;
@@ -343,12 +380,11 @@ body{
 @media(min-width:900px){
   .card-ctas.separated{
     flex-direction:row;
-    flex-wrap:wrap;
     gap:14px;
   }
 }
 
-/* ================= BLOQUES POR SECCIÓN ================= */
+/* ================= BLOQUES ================= */
 #proyectos .container,
 #tecnologias .container,
 #certificados .container,
@@ -373,15 +409,18 @@ body{
   position:relative;
   width:260px;
   height:260px;
+  flex:0 0 auto;
   display:flex;
   align-items:center;
   justify-content:center;
+  min-width:260px;
+  min-height:260px;
 }
 
 #skillsDonut{
   width:260px !important;
   height:260px !important;
-  display:block;
+  display:block !important;
 }
 
 .donut-tooltip{
@@ -440,7 +479,9 @@ body{
   background:rgba(255,255,255,.78);
 }
 
-.full-btn{width:100%;}
+.full-btn{
+  width:100%;
+}
 
 .botones-contacto{
   display:flex;
@@ -462,12 +503,10 @@ body{
     flex-wrap:wrap;
     justify-content:center;
   }
-
   .main-nav{
     justify-content:center;
     flex-wrap:wrap;
   }
-
   .toolbar{
     width:100%;
     justify-content:center;
@@ -480,9 +519,9 @@ body{
     grid-template-columns:1fr;
     text-align:center;
   }
-
-  .avatar{margin:auto;}
-
+  .avatar{
+    margin:auto;
+  }
   .contact-wrapper{
     grid-template-columns:1fr;
   }
@@ -499,6 +538,11 @@ body{
   .tech-layout{
     flex-direction:column;
     gap:22px;
+  }
+
+  .tech-controls{
+    max-width:100%;
+    justify-content:flex-start;
   }
 
   .drop-panel{
