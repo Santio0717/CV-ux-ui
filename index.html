@@ -7,15 +7,19 @@
   <title>Portafolio UX/UI · Santiago Murillo</title>
   <meta name="description" content="Portafolio de Santiago Murillo, UX/UI Designer enfocado en accesibilidad, prototipado, investigación y diseño centrado en el usuario.">
 
+  <!-- ✅ Esto ayuda a que Chrome NO ofrezca traducir automáticamente -->
+  <meta name="google" content="notranslate">
+  <meta http-equiv="Content-Language" content="es">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="CSS/estilos.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body>
+<body class="notranslate">
 
 <!-- ================= HEADER ================= -->
 <header class="site-header">
@@ -101,12 +105,7 @@
   <section class="section hero" aria-label="Presentación">
     <div class="container">
       <article class="hero-card">
-
-        <img class="avatar"
-          src="activos/imagen/foto de perfil.jfif"
-          alt="Foto de Santiago Murillo, UX/UI Designer"
-        />
-
+        <img class="avatar" src="activos/imagen/foto de perfil.jfif" alt="Foto de Santiago Murillo, UX/UI Designer"/>
         <div class="hero-copy">
           <p class="kicker" data-i18n="hero_role">UX/UI Designer</p>
 
@@ -123,113 +122,96 @@
             Descargar CV
           </a>
         </div>
-
       </article>
     </div>
   </section>
 
   <!-- ================= PROYECTOS ================= -->
-  <section id="proyectos" class="section alt" aria-label="Proyectos destacados">
+  <section id="proyectos" class="section alt">
     <div class="container">
       <h2 class="section-title" data-i18n="projects_title">Proyectos destacados</h2>
 
       <div class="grid cards projects">
 
-        <!-- Bon Bon Bum -->
         <article class="card project">
           <figure class="thumb">
             <img src="activos/Proyectos/Bon_Bon_Bum.png" alt="Proyecto Bon Bon Bum" loading="lazy">
           </figure>
+
           <h3>Bon Bon Bum</h3>
-          <p data-i18n="project_bon_desc">
-            Diseño de wireframes de alta fidelidad para una plataforma de e-commerce, enfocado en jerarquía visual y conversión.
-          </p>
+          <p data-i18n="project_bon_desc">Diseño de wireframes de alta fidelidad para una plataforma de e-commerce, enfocado en jerarquía visual y conversión.</p>
+
           <div class="tag-row">
             <span class="tag" data-i18n="tag_wireframes">Wireframes</span>
             <span class="tag" data-i18n="tag_ecommerce">E-commerce</span>
             <span class="tag" data-i18n="tag_uxui">UX/UI</span>
-            <span class="tag" data-i18n="tag_figma">Figma</span>
+            <span class="tag">Figma</span>
           </div>
+
           <div class="card-ctas separated">
-            <a class="btn ghost" target="_blank" rel="noopener"
-               href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma"
-               data-i18n="btn_access">
-              Acceder
-            </a>
+            <a class="btn ghost" target="_blank" rel="noopener" href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma" data-i18n="btn_access">Acceder</a>
             <a class="btn case" href="casos/bon-bon-bum/" data-i18n="btn_case">Caso de estudio</a>
           </div>
         </article>
 
-        <!-- Greenscape -->
         <article class="card project">
           <figure class="thumb">
             <img src="activos/Proyectos/Greenscape.png" alt="Proyecto Greenscape" loading="lazy">
           </figure>
+
           <h3>Greenscape</h3>
-          <p data-i18n="project_green_desc">
-            Prototipo móvil iOS diseñado a partir de principios de usabilidad, navegación intuitiva y experiencia mobile-first.
-          </p>
+          <p data-i18n="project_green_desc">Prototipo móvil iOS diseñado a partir de principios de usabilidad, navegación intuitiva y experiencia mobile-first.</p>
+
           <div class="tag-row">
             <span class="tag" data-i18n="tag_ios">iOS</span>
             <span class="tag" data-i18n="tag_prototyping">Prototipado</span>
             <span class="tag" data-i18n="tag_uxui">UX/UI</span>
-            <span class="tag" data-i18n="tag_figma">Figma</span>
+            <span class="tag">Figma</span>
           </div>
+
           <div class="card-ctas separated">
-            <a class="btn ghost" target="_blank" rel="noopener"
-               href="https://www.figma.com/proto/iYuZ5f1XPOvGDWncfB739r/HCI"
-               data-i18n="btn_access">
-              Acceder
-            </a>
+            <a class="btn ghost" target="_blank" rel="noopener" href="https://www.figma.com/proto/iYuZ5f1XPOvGDWncfB739r/HCI" data-i18n="btn_access">Acceder</a>
             <a class="btn case" href="casos/greenscape/" data-i18n="btn_case">Caso de estudio</a>
           </div>
         </article>
 
-        <!-- NutriCampus -->
         <article class="card project">
           <figure class="thumb">
             <img src="activos/Proyectos/NutriCampus.png" alt="Proyecto NutriCampus" loading="lazy">
           </figure>
+
           <h3>NutriCampus</h3>
-          <p data-i18n="project_nutri_desc">
-            Diseño de experiencia para un entorno de realidad virtual enfocado en educación nutricional e interacción inmersiva.
-          </p>
+          <p data-i18n="project_nutri_desc">Diseño de experiencia para un entorno de realidad virtual enfocado en educación nutricional e interacción inmersiva.</p>
+
           <div class="tag-row">
-            <span class="tag" data-i18n="tag_vr">VR</span>
+            <span class="tag">VR</span>
             <span class="tag" data-i18n="tag_ux">UX</span>
             <span class="tag" data-i18n="tag_prototype">Prototipo</span>
-            <span class="tag" data-i18n="tag_figma">Figma</span>
+            <span class="tag">Figma</span>
           </div>
+
           <div class="card-ctas separated">
-            <a class="btn ghost" target="_blank" rel="noopener"
-               href="https://www.figma.com/proto/riKsfkN37qsKX4NbQn5zOh/Nutricampus-V2"
-               data-i18n="btn_access">
-              Acceder
-            </a>
+            <a class="btn ghost" target="_blank" rel="noopener" href="https://www.figma.com/proto/riKsfkN37qsKX4NbQn5zOh/Nutricampus-V2" data-i18n="btn_access">Acceder</a>
             <a class="btn case" href="casos/nutricampus/" data-i18n="btn_case">Caso de estudio</a>
           </div>
         </article>
 
-        <!-- Isócrates -->
         <article class="card project">
           <figure class="thumb">
             <img src="activos/Proyectos/Isocrates.png" alt="Proyecto Isócrates" loading="lazy">
           </figure>
+
           <h3>Isócrates</h3>
-          <p data-i18n="project_iso_desc">
-            Prototipo desktop enfocado en accesibilidad, lectura clara y navegación inclusiva para usuarios con diferentes capacidades.
-          </p>
+          <p data-i18n="project_iso_desc">Prototipo desktop enfocado en accesibilidad, lectura clara y navegación inclusiva para usuarios con diferentes capacidades.</p>
+
           <div class="tag-row">
             <span class="tag" data-i18n="tag_desktop">Desktop</span>
             <span class="tag" data-i18n="tag_accessibility">Accesibilidad</span>
             <span class="tag" data-i18n="tag_ux">UX</span>
           </div>
+
           <div class="card-ctas separated">
-            <a class="btn ghost" target="_blank" rel="noopener"
-               href="https://www.figma.com/proto/bCCXBOMkOQKVUB0emfQIb5"
-               data-i18n="btn_access">
-              Acceder
-            </a>
+            <a class="btn ghost" target="_blank" rel="noopener" href="https://www.figma.com/proto/bCCXBOMkOQKVUB0emfQIb5" data-i18n="btn_access">Acceder</a>
             <a class="btn case" href="casos/isocrates/" data-i18n="btn_case">Caso de estudio</a>
           </div>
         </article>
@@ -239,17 +221,17 @@
   </section>
 
   <!-- ================= TECNOLOGÍAS ================= -->
-  <section id="tecnologias" class="section" aria-label="Tecnologías y habilidades">
+  <section id="tecnologias" class="section">
     <div class="container">
       <h2 class="section-title" data-i18n="skills_title">Tecnologías y habilidades</h2>
 
       <div class="tech-layout">
         <div class="donut-wrapper">
-          <canvas id="skillsDonut" width="260" height="260" aria-label="Gráfico de habilidades"></canvas>
-          <div class="donut-tooltip" id="donutTooltip" role="status" aria-live="polite"></div>
+          <canvas id="skillsDonut" width="260" height="260"></canvas>
+          <div class="donut-tooltip" id="donutTooltip"></div>
         </div>
 
-        <div class="tech-controls" aria-label="Botones de habilidades">
+        <div class="tech-controls">
           <button class="tech-btn" data-key="uxui" data-i18n="skill_uxui">UX/UI</button>
           <button class="tech-btn" data-key="docs" data-i18n="skill_docs">Documentación</button>
           <button class="tech-btn" data-key="front" data-i18n="skill_front">Frontend</button>
@@ -262,7 +244,7 @@
   </section>
 
   <!-- ================= CERTIFICADOS ================= -->
-  <section id="certificados" class="section" aria-label="Certificados">
+  <section id="certificados" class="section">
     <div class="container">
       <h2 class="section-title" data-i18n="cert_title">Certificados</h2>
 
@@ -271,26 +253,22 @@
         <article class="card hoverable">
           <h3>Certificado EF SET</h3>
           <div class="tag-row">
-            <span class="tag">English</span>
+            <span class="tag" data-i18n="tag_english">Inglés</span>
             <span class="tag">B2</span>
           </div>
           <a class="btn primary" href="activos/diplomas/Certificado_EF_SET.pdf" target="_blank" rel="noopener"
-            data-i18n="btn_certificate">
-            Ver certificado
-          </a>
+            data-i18n="btn_certificate">Ver certificado</a>
         </article>
 
         <article class="card hoverable">
           <h3>Diseño Web con Adobe Dreamweaver</h3>
           <div class="tag-row">
-            <span class="tag">Web Design</span>
+            <span class="tag" data-i18n="tag_webdesign">Diseño web</span>
             <span class="tag" data-i18n="tag_prototyping">Prototipado</span>
-            <span class="tag">Requirements</span>
+            <span class="tag" data-i18n="tag_requirements">Requisitos</span>
           </div>
           <a class="btn primary" href="activos/diplomas/Diseño_Web_Con_Adobe_Dreamweaver.pdf" target="_blank" rel="noopener"
-            data-i18n="btn_certificate">
-            Ver certificado
-          </a>
+            data-i18n="btn_certificate">Ver certificado</a>
         </article>
 
         <article class="card hoverable">
@@ -302,58 +280,48 @@
             <span class="tag">C++</span>
           </div>
           <a class="btn primary" href="activos/diplomas/Fundamentos_de_programacion.jpeg" target="_blank" rel="noopener"
-            data-i18n="btn_certificate">
-            Ver certificado
-          </a>
+            data-i18n="btn_certificate">Ver certificado</a>
         </article>
 
         <article class="card hoverable">
           <h3>Generación de Ideas Innovadoras</h3>
           <div class="tag-row">
             <span class="tag">Design Thinking</span>
-            <span class="tag">Innovation</span>
+            <span class="tag" data-i18n="tag_innovation">Innovación</span>
           </div>
           <a class="btn primary" href="activos/diplomas/Generacion_De_Ideas_Innovadoras_Con_Desing_Thinking.pdf" target="_blank" rel="noopener"
-            data-i18n="btn_certificate">
-            Ver certificado
-          </a>
+            data-i18n="btn_certificate">Ver certificado</a>
         </article>
 
         <article class="card hoverable">
           <h3>Validación de Ideas y Prototipos</h3>
           <div class="tag-row">
             <span class="tag">Design Thinking</span>
-            <span class="tag">Validation</span>
-            <span class="tag">Prototypes</span>
+            <span class="tag" data-i18n="tag_validation">Validación</span>
+            <span class="tag" data-i18n="tag_prototypes">Prototipos</span>
           </div>
           <a class="btn primary" href="activos/diplomas/Validacion_De_Ideas_y_Prototipos_Con_Desing_Thinking.pdf" target="_blank" rel="noopener"
-            data-i18n="btn_certificate">
-            Ver certificado
-          </a>
+            data-i18n="btn_certificate">Ver certificado</a>
         </article>
 
         <article class="card hoverable">
           <h3>Manejo Adobe Illustrator</h3>
           <div class="tag-row">
-            <span class="tag">Graphic Design</span>
-            <span class="tag">Illustration</span>
+            <span class="tag" data-i18n="tag_graphicdesign">Diseño gráfico</span>
+            <span class="tag" data-i18n="tag_illustration">Ilustración</span>
           </div>
           <a class="btn primary" href="activos/diplomas/Manejo_Adobe_Illustrator.pdf" target="_blank" rel="noopener"
-            data-i18n="btn_certificate">
-            Ver certificado
-          </a>
+            data-i18n="btn_certificate">Ver certificado</a>
         </article>
 
         <article class="card hoverable">
           <h3>Manejo Adobe Photoshop</h3>
           <div class="tag-row">
-            <span class="tag">Editing</span>
-            <span class="tag">Retouch</span>
+            <span class="tag" data-i18n="tag_editing">Edición</span>
+            <span class="tag" data-i18n="tag_retouch">Retoque</span>
           </div>
           <a class="btn primary" href="activos/diplomas/Manejo_Adobe_Photoshop.pdf" target="_blank" rel="noopener"
-            data-i18n="btn_certificate">
-            Ver certificado
-          </a>
+            data-i18n="btn_certificate">Ver certificado</a>
         </article>
 
       </div>
@@ -361,14 +329,12 @@
   </section>
 
   <!-- ================= CONTACTO ================= -->
-  <section id="contacto" class="section" aria-label="Contacto">
+  <section id="contacto" class="section">
     <div class="container contact-wrapper">
 
       <div class="contact-info">
         <h2 class="section-title" data-i18n="contact_title">Contacto</h2>
-
-        <p>
-          <strong data-i18n="email_label">Email:</strong>
+        <p><strong data-i18n="contact_email_label">Email:</strong>
           <a href="mailto:santiagomr2003@gmail.com">santiagomr2003@gmail.com</a>
         </p>
 
@@ -378,21 +344,12 @@
         </div>
       </div>
 
-      <form class="card contact-form" action="https://formspree.io/f/myznakow" method="POST" aria-label="Formulario de contacto">
+      <form class="card contact-form" action="https://formspree.io/f/myznakow" method="POST">
         <h3 data-i18n="contact_form_title">Escríbeme</h3>
-
-        <input class="input-field full" type="text" name="nombre"
-          data-i18n-placeholder="contact_name" placeholder="Nombre" required>
-
-        <input class="input-field full" type="email" name="email"
-          data-i18n-placeholder="contact_email" placeholder="Email" required>
-
-        <textarea class="input-field full" name="mensaje" rows="4"
-          data-i18n-placeholder="contact_msg" placeholder="Mensaje" required></textarea>
-
-        <button class="btn primary full-btn" type="submit" data-i18n="contact_send">
-          Enviar
-        </button>
+        <input class="input-field full" type="text" name="nombre" data-i18n-placeholder="contact_name" placeholder="Nombre" required>
+        <input class="input-field full" type="email" name="email" data-i18n-placeholder="contact_email" placeholder="Email" required>
+        <textarea class="input-field full" name="mensaje" rows="4" data-i18n-placeholder="contact_msg" placeholder="Mensaje" required></textarea>
+        <button class="btn primary full-btn" type="submit" data-i18n="contact_send">Enviar</button>
       </form>
 
     </div>
