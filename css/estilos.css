@@ -30,33 +30,6 @@ body{
               linear-gradient(120deg,var(--bg-1),var(--bg-2));
 }
 
-/* ✅ ACCESIBILIDAD */
-body.high-contrast{
-  background:#0b0b0b !important;
-  color:#ffffff !important;
-}
-
-body.high-contrast .card,
-body.high-contrast .hero-card,
-body.high-contrast #proyectos .container,
-body.high-contrast #tecnologias .container,
-body.high-contrast #certificados .container,
-body.high-contrast #contacto .container{
-  background:#111 !important;
-  border:1px solid rgba(255,255,255,.2) !important;
-  color:#fff !important;
-}
-
-body.high-contrast a,
-body.high-contrast .btn{
-  color:#fff !important;
-}
-
-body.readable-font{
-  font-family: Arial, Helvetica, sans-serif !important;
-  letter-spacing: .02em;
-}
-
 .container{
   width:min(1150px, 92%);
   margin-inline:auto;
@@ -176,6 +149,100 @@ body.readable-font{
   pointer-events:auto;
 }
 
+.drop-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:10px;
+  margin-bottom:10px;
+}
+
+.lang-btn{
+  border:none;
+  background:rgba(0,0,0,.06);
+  padding:10px 0;
+  border-radius:999px;
+  cursor:pointer;
+  font-weight:900;
+  font-size:.85rem;
+  color:var(--ink);
+  transition:transform .18s ease, background .18s ease;
+}
+
+.lang-btn:hover{
+  transform:translateY(-1px);
+  background:rgba(0,0,0,.10);
+}
+
+.lang-btn.is-active{
+  background:var(--ink);
+  color:#fff;
+}
+
+.drop-sep{
+  height:1px;
+  background:rgba(0,0,0,.10);
+  margin:12px 0;
+}
+
+.drop-reset{
+  width:100%;
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid rgba(0,0,0,.10);
+  background:rgba(255,255,255,.85);
+  cursor:pointer;
+  font-weight:800;
+  transition:background .18s ease, transform .18s ease;
+}
+
+.drop-reset:hover{
+  background:rgba(255,255,255,1);
+  transform:translateY(-1px);
+}
+
+/* A11y rows */
+.a11y-row{
+  display:flex;
+  gap:10px;
+  margin-bottom:12px;
+}
+
+.a11y-btn{
+  flex:1;
+  padding:10px;
+  border:none;
+  border-radius:999px;
+  background:rgba(0,0,0,.06);
+  font-weight:900;
+  cursor:pointer;
+  transition:.18s;
+}
+
+.a11y-btn:hover{
+  background:rgba(0,0,0,.12);
+  transform:translateY(-1px);
+}
+
+.toggle{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 8px;
+  border-radius:12px;
+  cursor:pointer;
+  user-select:none;
+  font-weight:700;
+}
+
+.toggle:hover{
+  background:rgba(0,0,0,.05);
+}
+
+.toggle input{
+  width:18px;
+  height:18px;
+}
+
 /* ================= HERO ================= */
 .hero-card{
   display:grid;
@@ -203,13 +270,161 @@ body.readable-font{
   margin-bottom:6px;
 }
 
-/* ================= DONUT ================= */
+.display{
+  font-size:clamp(1.6rem,2.4vw,2.2rem);
+  line-height:1.25;
+  margin-bottom:12px;
+}
+
+.sub{
+  max-width:52ch;
+  margin-bottom:24px;
+}
+
+/* ================= BOTONES ================= */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:14px 26px;
+  border-radius:var(--radius-sm);
+  font-weight:700;
+  border:none;
+  cursor:pointer;
+  text-decoration:none;
+  color:#fff;
+  transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+  box-shadow:var(--shadow-sm);
+}
+
+.btn.red{ background:var(--primary); }
+.btn.case{ background:var(--accent); }
+.btn.primary{ background:#0077b6; }
+
+.btn.ghost{
+  background:transparent;
+  color:var(--accent);
+  border:2px solid var(--accent);
+}
+
+.btn.big{
+  padding:16px 30px;
+}
+
+.btn.whatsapp{ background:#25D366; }
+.btn.linkedin{ background:#0077B5; }
+
+/* ================= CARDS ================= */
+.grid.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:28px;
+}
+
+/* ✅ Fallback: si JS falla, igual se ven */
+.card{
+  background:var(--glass);
+  padding:26px;
+  border-radius:var(--radius-md);
+  box-shadow:var(--shadow-sm);
+  border:1px solid rgba(255,255,255,.45);
+  opacity:1;
+  transform:none;
+}
+
+/* ✅ Animación SOLO si el body tiene .js */
+body.js .card{
+  opacity:0;
+  transform:translateY(18px) scale(.98);
+  transition:opacity .65s ease, transform .65s ease;
+}
+
+body.js .card.is-visible{
+  opacity:1;
+  transform:translateY(0) scale(1);
+}
+
+/* hover */
+.card:hover{
+  transform:translateY(-6px) scale(1.01);
+  box-shadow:var(--shadow-glow);
+}
+
+.thumb{
+  aspect-ratio:16/9;
+  border-radius:var(--radius-sm);
+  overflow:hidden;
+  margin-bottom:16px;
+}
+
+.thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.tag-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:12px 0;
+}
+
+.tag{
+  font-size:.75rem;
+  background:rgba(0,0,0,.06);
+  padding:4px 10px;
+  border-radius:999px;
+  white-space:nowrap;
+}
+
+/* ================= FIX: CTA ================= */
+.card-ctas{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-top:14px;
+}
+
+@media(min-width:900px){
+  .card-ctas.separated{
+    flex-direction:row;
+    gap:14px;
+  }
+}
+
+/* ================= BLOQUES ================= */
+#proyectos .container,
+#tecnologias .container,
+#certificados .container,
+#contacto .container{
+  background:rgba(255,255,255,.32);
+  border-radius:var(--radius-lg);
+  padding:52px 46px;
+  box-shadow:var(--shadow-md);
+  border:1px solid rgba(255,255,255,.55);
+}
+
+/* ================= TECNOLOGÍAS ================= */
+.tech-layout{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:44px;
+  margin-top:28px;
+}
+
 .donut-wrapper{
   position:relative;
   width:260px;
   height:260px;
   min-width:260px;
   min-height:260px;
+  flex:0 0 auto;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -226,7 +441,7 @@ body.readable-font{
   padding:8px 12px;
   border-radius:999px;
   font-size:.85rem;
-  font-weight:800;
+  font-weight:700;
   color:#fff;
   pointer-events:none;
   transform:translate(-50%, -120%);
@@ -234,5 +449,195 @@ body.readable-font{
   transition:opacity .2s ease;
   white-space:nowrap;
   box-shadow:0 8px 20px rgba(0,0,0,.15);
-  z-index:50;
+  z-index:20;
+}
+
+.tech-controls{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:12px;
+  max-width:360px;
+}
+
+.tech-btn{
+  padding:10px 14px;
+  border:none;
+  border-radius:999px;
+  font-weight:700;
+  background:rgba(255,255,255,.72);
+  cursor:pointer;
+  box-shadow:var(--shadow-sm);
+  color:var(--ink);
+}
+
+.tech-btn.is-active{
+  background:var(--ink);
+  color:#fff;
+}
+
+/* ================= CONTACTO ================= */
+.contact-wrapper{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+}
+
+.input-field{
+  width:100%;
+  padding:14px;
+  border-radius:var(--radius-sm);
+  border:1px solid rgba(0,0,0,.18);
+  margin-bottom:14px;
+  font:inherit;
+  background:rgba(255,255,255,.78);
+}
+
+.full-btn{
+  width:100%;
+}
+
+.botones-contacto{
+  display:flex;
+  gap:12px;
+  margin-top:16px;
+}
+
+/* ================= FOOTER ================= */
+.new-footer{
+  text-align:center;
+  padding:32px 0;
+  background:rgba(255,255,255,.82);
+  border-top:1px solid rgba(0,0,0,.08);
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:980px){
+  .nav-wrap{
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+  .main-nav{
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+  .toolbar{
+    width:100%;
+    justify-content:center;
+    margin-top:10px;
+  }
+}
+
+@media(max-width:900px){
+  .hero-card{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+  .avatar{
+    margin:auto;
+  }
+  .contact-wrapper{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:720px){
+  #proyectos .container,
+  #tecnologias .container,
+  #certificados .container,
+  #contacto .container{
+    padding:36px 22px;
+  }
+
+  .tech-layout{
+    flex-direction:column;
+    gap:22px;
+  }
+
+  .tech-controls{
+    max-width:100%;
+    justify-content:flex-start;
+  }
+
+  .drop-panel{
+    right:auto;
+    left:0;
+  }
+}
+
+/* ========================== */
+/* ✅ ACCESIBILIDAD */
+/* ========================== */
+
+/* ✅ Alto contraste (blanco + negro REAL) */
+body.high-contrast{
+  background:#ffffff !important;
+  color:#000000 !important;
+}
+
+body.high-contrast *{
+  color:#000000 !important;
+  border-color:#000000 !important;
+}
+
+body.high-contrast .site-header{
+  background:#ffffff !important;
+  border-bottom:2px solid #000 !important;
+}
+
+body.high-contrast .hero-card,
+body.high-contrast .card,
+body.high-contrast #proyectos .container,
+body.high-contrast #tecnologias .container,
+body.high-contrast #certificados .container,
+body.high-contrast #contacto .container{
+  background:#ffffff !important;
+  border:2px solid #000 !important;
+  box-shadow:none !important;
+}
+
+body.high-contrast .drop-btn,
+body.high-contrast .tech-btn,
+body.high-contrast .lang-btn{
+  background:#ffffff !important;
+  border:2px solid #000 !important;
+  box-shadow:none !important;
+}
+
+/* ✅ Botones conservan color original */
+body.high-contrast .btn.red{
+  background:#d72638 !important;
+  color:#fff !important;
+  border:2px solid #000 !important;
+}
+
+body.high-contrast .btn.case{
+  background:#8f4428 !important;
+  color:#fff !important;
+  border:2px solid #000 !important;
+}
+
+body.high-contrast .btn.primary{
+  background:#0077b6 !important;
+  color:#fff !important;
+  border:2px solid #000 !important;
+}
+
+body.high-contrast .btn.ghost{
+  background:#ffffff !important;
+  color:#000000 !important;
+  border:2px solid #000 !important;
+}
+
+/* Links */
+body.high-contrast a{
+  color:#000 !important;
+  text-decoration: underline !important;
+}
+
+/* ✅ Fuente legible (sin dañar diseño) */
+body.readable-font{
+  font-family: "Inter", system-ui, Arial, sans-serif !important;
+  letter-spacing: .01em;
+  line-height: 1.8;
 }
