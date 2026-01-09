@@ -12,12 +12,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const langDropdown = document.getElementById("langDropdown");
   const a11yDropdown = document.getElementById("a11yDropdown");
 
-  function closeAllDropdowns() {
+  function closeAllDropdowns(){
     document.querySelectorAll(".dropdown.open").forEach(d => d.classList.remove("open"));
     document.querySelectorAll(".drop-btn").forEach(btn => btn.setAttribute("aria-expanded", "false"));
   }
 
-  function toggleDropdown(drop) {
+  function toggleDropdown(drop){
     if (!drop) return;
     const btn = drop.querySelector(".drop-btn");
     const isOpen = drop.classList.contains("open");
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!isOpen) {
       drop.classList.add("open");
-      if (btn) btn.setAttribute("aria-expanded", "true");
+      if(btn) btn.setAttribute("aria-expanded", "true");
     }
   }
 
@@ -48,7 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "Escape") closeAllDropdowns();
   });
 
-
   /* ==========================
      3) ACCESIBILIDAD
   ========================== */
@@ -63,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let contrast = localStorage.getItem("contrast") === "true";
   let readable = localStorage.getItem("readable") === "true";
 
-  function applyA11y() {
+  function applyA11y(){
     document.documentElement.style.fontSize = fontSize + "px";
     localStorage.setItem("fontSize", fontSize);
 
@@ -73,8 +72,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.classList.toggle("readable-font", readable);
     localStorage.setItem("readable", readable);
 
-    if (toggleContrast) toggleContrast.checked = contrast;
-    if (toggleReadable) toggleReadable.checked = readable;
+    if(toggleContrast) toggleContrast.checked = contrast;
+    if(toggleReadable) toggleReadable.checked = readable;
   }
 
   fontPlus?.addEventListener("click", () => {
@@ -107,470 +106,54 @@ document.addEventListener("DOMContentLoaded", () => {
 
   applyA11y();
 
-
   /* ==========================
      4) TRADUCCIONES
   ========================== */
-  const translations = {
-    es: {
-      nav_projects: "Proyectos",
-      nav_skills: "Tecnologías",
-      nav_certificates: "Certificados",
-      nav_contact: "Contacto",
-
-      toolbar_language: "Idioma",
-      toolbar_reset_language: "Restablecer idioma",
-      toolbar_accessibility: "Accesibilidad",
-      toolbar_reset_accessibility: "Restablecer accesibilidad",
-      toolbar_contrast: "Alto contraste",
-      toolbar_readable: "Fuente legible",
-
-      hero_role: "UX/UI Designer",
-      hero_title: "Diseño experiencias digitales claras, accesibles y enfocadas en resultados",
-      hero_sub: "Transformo ideas en soluciones funcionales mediante investigación, prototipado y diseño visual, creando productos que conectan con las personas y aportan valor al negocio.",
-      hero_cta: "Descargar CV",
-
-      projects_title: "Proyectos destacados",
-      skills_title: "Tecnologías y habilidades",
-      cert_title: "Certificados",
-      contact_title: "Contacto",
-
-      btn_access: "Acceder",
-      btn_case: "Caso de estudio",
-      btn_certificate: "Ver certificado",
-
-      skill_uxui: "UX/UI",
-      skill_docs: "Documentación",
-      skill_front: "Frontend",
-      skill_motion: "Motion",
-      skill_prod: "Producción",
-      skill_all: "Perfil completo",
-
-      project_bon_desc: "Diseño de wireframes de alta fidelidad para una plataforma de e-commerce, enfocado en jerarquía visual y conversión.",
-      project_green_desc: "Prototipo móvil iOS diseñado a partir de principios de usabilidad, navegación intuitiva y experiencia mobile-first.",
-      project_nutri_desc: "Diseño de experiencia para un entorno de realidad virtual enfocado en educación nutricional e interacción inmersiva.",
-      project_iso_desc: "Prototipo desktop enfocado en accesibilidad, lectura clara y navegación inclusiva para usuarios con diferentes capacidades.",
-
-      contact_form_title: "Escríbeme",
-      contact_send: "Enviar",
-      contact_name: "Nombre",
-      contact_email: "Email",
-      contact_msg: "Mensaje",
-
-      footer_text: "Portafolio de Santiago Murillo",
-
-      contact_email_label: "Email:",
-
-      /* ✅ TAGS GRIS */
-      tag_wireframes: "Wireframes",
-      tag_ecommerce: "E-commerce",
-      tag_uxui: "UX/UI",
-      tag_figma: "Figma",
-      tag_ios: "iOS",
-      tag_prototyping: "Prototipado",
-      tag_ux: "UX",
-      tag_prototype: "Prototipo",
-      tag_desktop: "Desktop",
-      tag_accessibility: "Accesibilidad",
-
-      tag_english: "Inglés",
-      tag_webdesign: "Diseño web",
-      tag_requirements: "Requisitos",
-      tag_innovation: "Innovación",
-      tag_validation: "Validación",
-      tag_prototypes: "Prototipos",
-      tag_graphicdesign: "Diseño gráfico",
-      tag_illustration: "Ilustración",
-      tag_editing: "Edición",
-      tag_retouch: "Retoque"
-    },
-
-    en: {
-      nav_projects: "Projects",
-      nav_skills: "Skills",
-      nav_certificates: "Certificates",
-      nav_contact: "Contact",
-
-      toolbar_language: "Language",
-      toolbar_reset_language: "Reset language",
-      toolbar_accessibility: "Accessibility",
-      toolbar_reset_accessibility: "Reset accessibility",
-      toolbar_contrast: "High contrast",
-      toolbar_readable: "Readable font",
-
-      hero_role: "UX/UI Designer",
-      hero_title: "I design clear, accessible, and results-driven digital experiences",
-      hero_sub: "I turn ideas into functional solutions through research, prototyping, and visual design—creating products that connect with people and add value to the business.",
-      hero_cta: "Download CV",
-
-      projects_title: "Featured projects",
-      skills_title: "Skills & technologies",
-      cert_title: "Certificates",
-      contact_title: "Contact",
-
-      btn_access: "Open",
-      btn_case: "Case study",
-      btn_certificate: "View certificate",
-
-      skill_uxui: "UX/UI",
-      skill_docs: "Documentation",
-      skill_front: "Frontend",
-      skill_motion: "Motion",
-      skill_prod: "Production",
-      skill_all: "Full profile",
-
-      project_bon_desc: "High-fidelity wireframes for an e-commerce platform, focused on visual hierarchy and conversion.",
-      project_green_desc: "iOS mobile prototype based on usability principles, intuitive navigation, and a mobile-first approach.",
-      project_nutri_desc: "Experience design for a virtual reality environment focused on nutrition education and immersive interaction.",
-      project_iso_desc: "Desktop prototype focused on accessibility, clear reading, and inclusive navigation for diverse users.",
-
-      contact_form_title: "Write to me",
-      contact_send: "Send",
-      contact_name: "Name",
-      contact_email: "Email",
-      contact_msg: "Message",
-
-      footer_text: "Santiago Murillo Portfolio",
-
-      contact_email_label: "Email:",
-
-      tag_wireframes: "Wireframes",
-      tag_ecommerce: "E-commerce",
-      tag_uxui: "UX/UI",
-      tag_figma: "Figma",
-      tag_ios: "iOS",
-      tag_prototyping: "Prototyping",
-      tag_ux: "UX",
-      tag_prototype: "Prototype",
-      tag_desktop: "Desktop",
-      tag_accessibility: "Accessibility",
-
-      tag_english: "English",
-      tag_webdesign: "Web design",
-      tag_requirements: "Requirements",
-      tag_innovation: "Innovation",
-      tag_validation: "Validation",
-      tag_prototypes: "Prototypes",
-      tag_graphicdesign: "Graphic design",
-      tag_illustration: "Illustration",
-      tag_editing: "Editing",
-      tag_retouch: "Retouch"
-    },
-
-    fr: {
-      nav_projects: "Projets",
-      nav_skills: "Compétences",
-      nav_certificates: "Certificats",
-      nav_contact: "Contact",
-
-      toolbar_language: "Langue",
-      toolbar_reset_language: "Réinitialiser la langue",
-      toolbar_accessibility: "Accessibilité",
-      toolbar_reset_accessibility: "Réinitialiser",
-      toolbar_contrast: "Haut contraste",
-      toolbar_readable: "Police lisible",
-
-      hero_role: "Designer UX/UI",
-      hero_title: "Je conçois des expériences numériques claires, accessibles et orientées résultats",
-      hero_sub: "Je transforme des idées en solutions fonctionnelles grâce à la recherche, au prototypage et au design visuel.",
-      hero_cta: "Télécharger CV",
-
-      projects_title: "Projets en vedette",
-      skills_title: "Compétences & technologies",
-      cert_title: "Certificats",
-      contact_title: "Contact",
-
-      btn_access: "Accéder",
-      btn_case: "Étude de cas",
-      btn_certificate: "Voir le certificat",
-
-      skill_uxui: "UX/UI",
-      skill_docs: "Documentation",
-      skill_front: "Frontend",
-      skill_motion: "Motion",
-      skill_prod: "Production",
-      skill_all: "Profil complet",
-
-      project_bon_desc: "Wireframes haute fidélité pour une plateforme e-commerce, centrés sur la hiérarchie visuelle et la conversion.",
-      project_green_desc: "Prototype mobile iOS basé sur des principes d’utilisabilité et une navigation intuitive.",
-      project_nutri_desc: "Conception d’expérience pour un environnement VR axé sur l’éducation nutritionnelle.",
-      project_iso_desc: "Prototype desktop axé sur l’accessibilité et la navigation inclusive.",
-
-      contact_form_title: "Écris-moi",
-      contact_send: "Envoyer",
-      contact_name: "Nom",
-      contact_email: "Email",
-      contact_msg: "Message",
-
-      footer_text: "Portfolio de Santiago Murillo",
-
-      contact_email_label: "Email :",     
-
-      tag_wireframes: "Wireframes",
-      tag_ecommerce: "E-commerce",
-      tag_uxui: "UX/UI",
-      tag_figma: "Figma",
-      tag_ios: "iOS",
-      tag_prototyping: "Prototypage",
-      tag_ux: "UX",
-      tag_prototype: "Prototype",
-      tag_desktop: "Desktop",
-      tag_accessibility: "Accessibilité",
-
-      tag_english: "Anglais",
-      tag_webdesign: "Design web",
-      tag_requirements: "Exigences",
-      tag_innovation: "Innovation",
-      tag_validation: "Validation",
-      tag_prototypes: "Prototypes",
-      tag_graphicdesign: "Design graphique",
-      tag_illustration: "Illustration",
-      tag_editing: "Édition",
-      tag_retouch: "Retouche"
-    },
-
-    pt: {
-      nav_projects: "Projetos",
-      nav_skills: "Tecnologias",
-      nav_certificates: "Certificados",
-      nav_contact: "Contato",
-
-      toolbar_language: "Idioma",
-      toolbar_reset_language: "Redefinir idioma",
-      toolbar_accessibility: "Acessibilidade",
-      toolbar_reset_accessibility: "Redefinir",
-      toolbar_contrast: "Alto contraste",
-      toolbar_readable: "Fonte legível",
-
-      hero_role: "Designer UX/UI",
-      hero_title: "Eu crio experiências digitais claras, acessíveis e focadas em resultados",
-      hero_sub: "Transformo ideias em soluções funcionais com pesquisa, prototipação e design visual.",
-      hero_cta: "Baixar CV",
-
-      projects_title: "Projetos em destaque",
-      skills_title: "Tecnologias e habilidades",
-      cert_title: "Certificados",
-      contact_title: "Contato",
-
-      btn_access: "Acessar",
-      btn_case: "Estudo de caso",
-      btn_certificate: "Ver certificado",
-
-      skill_uxui: "UX/UI",
-      skill_docs: "Documentação",
-      skill_front: "Frontend",
-      skill_motion: "Motion",
-      skill_prod: "Produção",
-      skill_all: "Perfil completo",
-
-      project_bon_desc: "Wireframes de alta fidelidade para uma plataforma de e-commerce, com foco em hierarquia visual e conversão.",
-      project_green_desc: "Protótipo móvel iOS baseado em princípios de usabilidade e navegação intuitiva.",
-      project_nutri_desc: "Design de experiência para um ambiente VR focado em educação nutricional.",
-      project_iso_desc: "Protótipo desktop focado em acessibilidade e navegação inclusiva.",
-
-      contact_form_title: "Escreva para mim",
-      contact_send: "Enviar",
-      contact_name: "Nome",
-      contact_email: "Email",
-      contact_msg: "Mensagem",
-
-      footer_text: "Portfólio de Santiago Murillo",
-
-      contact_email_label: "Email:",
-
-      tag_wireframes: "Wireframes",
-      tag_ecommerce: "E-commerce",
-      tag_uxui: "UX/UI",
-      tag_figma: "Figma",
-      tag_ios: "iOS",
-      tag_prototyping: "Prototipação",
-      tag_ux: "UX",
-      tag_prototype: "Protótipo",
-      tag_desktop: "Desktop",
-      tag_accessibility: "Acessibilidade",
-
-      tag_english: "Inglês",
-      tag_webdesign: "Design web",
-      tag_requirements: "Requisitos",
-      tag_innovation: "Inovação",
-      tag_validation: "Validação",
-      tag_prototypes: "Protótipos",
-      tag_graphicdesign: "Design gráfico",
-      tag_illustration: "Ilustração",
-      tag_editing: "Edição",
-      tag_retouch: "Retoque"
-    },
-
-    de: {
-      nav_projects: "Projekte",
-      nav_skills: "Fähigkeiten",
-      nav_certificates: "Zertifikate",
-      nav_contact: "Kontakt",
-
-      toolbar_language: "Sprache",
-      toolbar_reset_language: "Sprache zurücksetzen",
-      toolbar_accessibility: "Barrierefreiheit",
-      toolbar_reset_accessibility: "Zurücksetzen",
-      toolbar_contrast: "Hoher Kontrast",
-      toolbar_readable: "Lesbare Schrift",
-
-      hero_role: "UX/UI Designer",
-      hero_title: "Ich gestalte klare, barrierefreie und ergebnisorientierte digitale Erlebnisse",
-      hero_sub: "Ich verwandle Ideen durch Research, Prototyping und visuelles Design in funktionale Lösungen.",
-      hero_cta: "Lebenslauf herunterladen",
-
-      projects_title: "Ausgewählte Projekte",
-      skills_title: "Fähigkeiten & Technologien",
-      cert_title: "Zertifikate",
-      contact_title: "Kontakt",
-
-      btn_access: "Öffnen",
-      btn_case: "Fallstudie",
-      btn_certificate: "Zertifikat ansehen",
-
-      skill_uxui: "UX/UI",
-      skill_docs: "Dokumentation",
-      skill_front: "Frontend",
-      skill_motion: "Motion",
-      skill_prod: "Produktion",
-      skill_all: "Vollständiges Profil",
-
-      project_bon_desc: "High-Fidelity-Wireframes für eine E-Commerce-Plattform mit Fokus auf Hierarchie und Conversion.",
-      project_green_desc: "iOS-Prototyp basierend auf Usability-Prinzipien und intuitiver Navigation.",
-      project_nutri_desc: "Experience Design für eine VR-Umgebung mit Fokus auf Ernährungsbildung.",
-      project_iso_desc: "Desktop-Prototyp mit Fokus auf Barrierefreiheit und inklusive Navigation.",
-
-      contact_form_title: "Schreib mir",
-      contact_send: "Senden",
-      contact_name: "Name",
-      contact_email: "E-Mail",
-      contact_msg: "Nachricht",
-
-      footer_text: "Portfolio von Santiago Murillo",
-
-      contact_email_label: "E-Mail:",
-
-      tag_wireframes: "Wireframes",
-      tag_ecommerce: "E-Commerce",
-      tag_uxui: "UX/UI",
-      tag_figma: "Figma",
-      tag_ios: "iOS",
-      tag_prototyping: "Prototyping",
-      tag_ux: "UX",
-      tag_prototype: "Prototyp",
-      tag_desktop: "Desktop",
-      tag_accessibility: "Barrierefreiheit",
-
-      tag_english: "Englisch",
-      tag_webdesign: "Webdesign",
-      tag_requirements: "Anforderungen",
-      tag_innovation: "Innovation",
-      tag_validation: "Validierung",
-      tag_prototypes: "Prototypen",
-      tag_graphicdesign: "Grafikdesign",
-      tag_illustration: "Illustration",
-      tag_editing: "Bearbeitung",
-      tag_retouch: "Retusche"
-    },
-
-    zh: {
-      nav_projects: "项目",
-      nav_skills: "技能",
-      nav_certificates: "证书",
-      nav_contact: "联系",
-
-      toolbar_language: "语言",
-      toolbar_reset_language: "重置语言",
-      toolbar_accessibility: "无障碍",
-      toolbar_reset_accessibility: "重置无障碍",
-      toolbar_contrast: "高对比度",
-      toolbar_readable: "易读字体",
-
-      hero_role: "UX/UI 设计师",
-      hero_title: "我设计清晰、无障碍且以结果为导向的数字体验",
-      hero_sub: "我通过研究、原型设计与视觉设计将想法转化为可落地的解决方案。",
-      hero_cta: "下载简历",
-
-      projects_title: "精选项目",
-      skills_title: "技能与技术",
-      cert_title: "证书",
-      contact_title: "联系",
-
-      btn_access: "打开",
-      btn_case: "案例研究",
-      btn_certificate: "查看证书",
-
-      skill_uxui: "UX/UI",
-      skill_docs: "文档",
-      skill_front: "前端",
-      skill_motion: "动效",
-      skill_prod: "制作",
-      skill_all: "完整档案",
-
-      project_bon_desc: "为电商平台设计高保真线框图，专注于视觉层级与转化。",
-      project_green_desc: "基于可用性原则和直观导航的 iOS 移动原型。",
-      project_nutri_desc: "为虚拟现实环境设计体验，聚焦营养教育。",
-      project_iso_desc: "桌面端原型，聚焦无障碍与包容性导航。",
-
-      contact_form_title: "给我留言",
-      contact_send: "发送",
-      contact_name: "姓名",
-      contact_email: "邮箱",
-      contact_msg: "消息",
-
-      footer_text: "Santiago Murillo 作品集",
-
-      contact_email_label: "邮箱：",
-
-      tag_wireframes: "线框图",
-      tag_ecommerce: "电商",
-      tag_uxui: "UX/UI",
-      tag_figma: "Figma",
-      tag_ios: "iOS",
-      tag_prototyping: "原型设计",
-      tag_ux: "UX",
-      tag_prototype: "原型",
-      tag_desktop: "桌面端",
-      tag_accessibility: "无障碍",
-
-      tag_english: "英语",
-      tag_webdesign: "网页设计",
-      tag_requirements: "需求",
-      tag_innovation: "创新",
-      tag_validation: "验证",
-      tag_prototypes: "原型",
-      tag_graphicdesign: "平面设计",
-      tag_illustration: "插画",
-      tag_editing: "编辑",
-      tag_retouch: "修图"
-    }
-  };
-
+  const translations = window.translations || {}; 
+  // Si en tu archivo ya tienes translations dentro del JS,
+  // NO necesitas window.translations. Déjalo como está.
+
+  // ✅ Si translations ya está definido abajo en tu JS, quita el window.translations.
+  // Para que no se rompa, lo detectamos:
+  const dicts = (typeof translations === "object" && Object.keys(translations).length) ? translations : {};
 
   /* ==========================
-     ✅ FIX IMPORTANTE
-     currentDict debe existir antes
+     5) DONUT + TOOLTIP (Y FILTRO)
   ========================== */
-  let currentDict = translations.es;
+  const canvas = document.getElementById("skillsDonut");
+  const wrapper = canvas?.closest(".donut-wrapper");
+  const tooltip = document.getElementById("donutTooltip");
 
-  function updateDonutLanguage(dict) {
+  let chart = null;
+
+  const allSkills = [
+    { key: "uxui", labelKey: "skill_uxui", value: 35, color: "#f39c12" },
+    { key: "docs", labelKey: "skill_docs", value: 20, color: "#2ecc71" },
+    { key: "front", labelKey: "skill_front", value: 15, color: "#3498db" },
+    { key: "motion", labelKey: "skill_motion", value: 30, color: "#9b59b6" },
+    { key: "prod", labelKey: "skill_prod", value: 10, color: "#e74c3c" }
+  ];
+
+  let currentSkills = [...allSkills];
+  let currentDict = dicts.es || {};
+
+  function applyTranslations(lang){
+    const dict = dicts[lang] || dicts.es;
     currentDict = dict;
-  }
 
-
-  function setLanguage(lang) {
-    const dict = translations[lang] || translations.es;
-
+    // ✅ textos normales
     document.querySelectorAll("[data-i18n]").forEach(el => {
       const key = el.dataset.i18n;
       if (dict[key]) el.textContent = dict[key];
     });
 
+    // ✅ placeholders
     document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
       const key = el.dataset.i18nPlaceholder;
       if (dict[key]) el.setAttribute("placeholder", dict[key]);
     });
 
+    // ✅ botón activo
     document.querySelectorAll(".lang-btn").forEach(btn => btn.classList.remove("is-active"));
     document.querySelector(`.lang-btn[data-lang="${lang}"]`)?.classList.add("is-active");
 
@@ -579,45 +162,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     closeAllDropdowns();
 
-    updateDonutLanguage(dict);
+    // ✅ actualizar donut
+    updateDonut();
   }
 
-  document.querySelectorAll(".lang-btn").forEach(btn => {
-    btn.addEventListener("click", () => setLanguage(btn.dataset.lang));
-  });
+  function createDonut(){
+    if (!canvas || typeof Chart === "undefined") return;
 
-  document.getElementById("resetLang")?.addEventListener("click", () => {
-    setLanguage("es");
-  });
-
-  const savedLang = localStorage.getItem("lang") || "es";
-  setLanguage(savedLang);
-
-
-  /* ==========================
-     5) DONUT CHART + TOOLTIP TRADUCIDO
-  ========================== */
-  const canvas = document.getElementById("skillsDonut");
-  const wrapper = canvas?.closest(".donut-wrapper");
-  const tooltip = document.getElementById("donutTooltip");
-
-  if (canvas && wrapper && tooltip && typeof Chart !== "undefined") {
-
-    const skills = [
-      { key: "uxui", labelKey: "skill_uxui", value: 35, color: "#f39c12" },
-      { key: "docs", labelKey: "skill_docs", value: 20, color: "#2ecc71" },
-      { key: "front", labelKey: "skill_front", value: 15, color: "#3498db" },
-      { key: "motion", labelKey: "skill_motion", value: 30, color: "#9b59b6" },
-      { key: "prod", labelKey: "skill_prod", value: 10, color: "#e74c3c" }
-    ];
-
-    const chart = new Chart(canvas, {
+    chart = new Chart(canvas, {
       type: "doughnut",
       data: {
-        labels: skills.map(s => currentDict[s.labelKey] || s.key),
+        labels: currentSkills.map(s => currentDict[s.labelKey] || s.key),
         datasets: [{
-          data: skills.map(s => s.value),
-          backgroundColor: skills.map(s => s.color),
+          data: currentSkills.map(s => s.value),
+          backgroundColor: currentSkills.map(s => s.color),
           borderWidth: 0,
           hoverOffset: 6
         }]
@@ -630,10 +188,11 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    wrapper.addEventListener("mousemove", (e) => {
+    // ✅ tooltip
+    wrapper?.addEventListener("mousemove", (e) => {
       const rect = wrapper.getBoundingClientRect();
       tooltip.style.left = (e.clientX - rect.left) + "px";
-      tooltip.style.top = (e.clientY - rect.top) + "px";
+      tooltip.style.top  = (e.clientY - rect.top) + "px";
     });
 
     canvas.addEventListener("mousemove", (evt) => {
@@ -641,7 +200,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!points.length) return tooltip.style.opacity = "0";
 
       const i = points[0].index;
-      const skill = skills[i];
+      const skill = currentSkills[i];
 
       tooltip.textContent = `${currentDict[skill.labelKey] || skill.key} — ${skill.value}%`;
       tooltip.style.background = skill.color;
@@ -649,31 +208,56 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     canvas.addEventListener("mouseleave", () => tooltip.style.opacity = "0");
-
-
-    // ✅ Cuando cambias idioma, actualiza también etiquetas del chart
-    function refreshDonutLabels() {
-      chart.data.labels = skills.map(s => currentDict[s.labelKey] || s.key);
-      chart.update();
-    }
-
-    // ✅ Hook dentro de updateDonutLanguage
-    const originalUpdate = updateDonutLanguage;
-    updateDonutLanguage = function(dict){
-      originalUpdate(dict);
-      refreshDonutLabels();
-    };
   }
 
+  function updateDonut(){
+    if (!chart) return;
+
+    chart.data.labels = currentSkills.map(s => currentDict[s.labelKey] || s.key);
+    chart.data.datasets[0].data = currentSkills.map(s => s.value);
+    chart.data.datasets[0].backgroundColor = currentSkills.map(s => s.color);
+    chart.update();
+  }
+
+  // ✅ filtros donut desde botones
+  function filterDonut(key){
+    if (key === "all") {
+      currentSkills = [...allSkills];
+    } else {
+      currentSkills = allSkills.filter(s => s.key === key);
+    }
+    updateDonut();
+  }
+
+  // ✅ activar botones
+  function setActive(btn){
+    document.querySelectorAll(".tech-btn").forEach(b => b.classList.remove("is-active"));
+    btn.classList.add("is-active");
+  }
+
+  document.querySelectorAll(".tech-btn[data-key]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      setActive(btn);
+      filterDonut(btn.dataset.key);
+    });
+  });
+
+  document.getElementById("showAll")?.addEventListener("click", () => {
+    setActive(document.getElementById("showAll"));
+    filterDonut("all");
+  });
+
+  // ✅ inicializar donut
+  if (canvas && wrapper && tooltip) createDonut();
 
   /* ==========================
      6) Animación Cards
   ========================== */
   const cards = document.querySelectorAll(".card");
-  if (cards.length) {
+  if(cards.length){
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
+        if(entry.isIntersecting){
           entry.target.classList.add("is-visible");
           observer.unobserve(entry.target);
         }
@@ -685,5 +269,19 @@ document.addEventListener("DOMContentLoaded", () => {
       observer.observe(card);
     });
   }
+
+  /* ==========================
+     7) Idioma al cargar
+  ========================== */
+  const savedLang = localStorage.getItem("lang") || "es";
+  applyTranslations(savedLang);
+
+  document.querySelectorAll(".lang-btn").forEach(btn => {
+    btn.addEventListener("click", () => applyTranslations(btn.dataset.lang));
+  });
+
+  document.getElementById("resetLang")?.addEventListener("click", () => {
+    applyTranslations("es");
+  });
 
 });
