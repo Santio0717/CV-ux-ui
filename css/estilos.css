@@ -273,4 +273,236 @@ body{
 }
 
 .btn:hover{
-  transform:translateY
+  transform:translateY(-2px);
+  box-shadow:var(--shadow-sm);
+}
+
+.btn.red{background:var(--primary);}
+.btn.case{background:var(--accent);}
+.btn.primary{background:#0077b6;}
+
+.btn.ghost{
+  background:transparent;
+  color:var(--accent);
+  border:2px solid var(--accent);
+}
+
+.btn.big{padding:16px 30px;}
+.btn.whatsapp{background:#25D366;}
+.btn.linkedin{background:#0077B5;}
+
+/* ================= CARDS ================= */
+.grid.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:28px;
+}
+
+.card{
+  background:var(--glass);
+  padding:26px;
+  border-radius:var(--radius-md);
+  box-shadow:var(--shadow-sm);
+  border:1px solid rgba(255,255,255,.45);
+}
+
+.thumb{
+  aspect-ratio:16/9;
+  border-radius:var(--radius-sm);
+  overflow:hidden;
+  margin-bottom:16px;
+}
+
+.thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.tag-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:12px 0;
+}
+
+.tag{
+  font-size:.75rem;
+  background:rgba(0,0,0,.06);
+  padding:4px 10px;
+  border-radius:999px;
+}
+
+.card-ctas{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-top:14px;
+}
+
+@media(min-width:900px){
+  .card-ctas.separated{
+    flex-direction:row;
+    flex-wrap:wrap;
+    gap:14px;
+  }
+}
+
+/* ================= BLOQUES POR SECCIÓN ================= */
+#proyectos .container,
+#tecnologias .container,
+#certificados .container,
+#contacto .container{
+  background:rgba(255,255,255,.32);
+  border-radius:var(--radius-lg);
+  padding:52px 46px;
+  box-shadow:var(--shadow-md);
+  border:1px solid rgba(255,255,255,.55);
+}
+
+/* ================= TECNOLOGÍAS ================= */
+.tech-layout{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:44px;
+  margin-top:28px;
+}
+
+.donut-wrapper{
+  position:relative;
+  width:260px;
+  height:260px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+#skillsDonut{
+  width:260px !important;
+  height:260px !important;
+  display:block;
+}
+
+.donut-tooltip{
+  position:absolute;
+  padding:8px 12px;
+  border-radius:999px;
+  font-size:.85rem;
+  font-weight:700;
+  color:#fff;
+  pointer-events:none;
+  transform:translate(-50%, -120%);
+  opacity:0;
+  transition:opacity .2s ease;
+  white-space:nowrap;
+  box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+
+.tech-controls{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:12px;
+  max-width:360px;
+}
+
+.tech-btn{
+  padding:10px 14px;
+  border:none;
+  border-radius:999px;
+  font-weight:700;
+  background:rgba(255,255,255,.72);
+  cursor:pointer;
+  box-shadow:var(--shadow-sm);
+  color:var(--ink);
+}
+
+.tech-btn.is-active{
+  background:var(--ink);
+  color:#fff;
+}
+
+/* ================= CONTACTO ================= */
+.contact-wrapper{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+}
+
+.input-field{
+  width:100%;
+  padding:14px;
+  border-radius:var(--radius-sm);
+  border:1px solid rgba(0,0,0,.18);
+  margin-bottom:14px;
+  font:inherit;
+  background:rgba(255,255,255,.78);
+}
+
+.full-btn{width:100%;}
+
+.botones-contacto{
+  display:flex;
+  gap:12px;
+  margin-top:16px;
+}
+
+/* ================= FOOTER ================= */
+.new-footer{
+  text-align:center;
+  padding:32px 0;
+  background:rgba(255,255,255,.82);
+  border-top:1px solid rgba(0,0,0,.08);
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:980px){
+  .nav-wrap{
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+
+  .main-nav{
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+
+  .toolbar{
+    width:100%;
+    justify-content:center;
+    margin-top:10px;
+  }
+}
+
+@media(max-width:900px){
+  .hero-card{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+
+  .avatar{margin:auto;}
+
+  .contact-wrapper{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:720px){
+  #proyectos .container,
+  #tecnologias .container,
+  #certificados .container,
+  #contacto .container{
+    padding:36px 22px;
+  }
+
+  .tech-layout{
+    flex-direction:column;
+    gap:22px;
+  }
+
+  .drop-panel{
+    right:auto;
+    left:0;
+  }
+}
