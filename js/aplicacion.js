@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
 
+
   /* ==========================
      2) DROPDOWNS (Idioma / Accesibilidad)
   ========================== */
@@ -47,6 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeAllDropdowns();
   });
+
 
   /* ==========================
      3) ACCESIBILIDAD
@@ -106,25 +108,353 @@ document.addEventListener("DOMContentLoaded", () => {
 
   applyA11y();
 
+
   /* ==========================
-     4) TRADUCCIONES
+     4) TRADUCCIONES (COMPLETAS)
   ========================== */
-  const translations = window.translations || {}; 
-  // Si en tu archivo ya tienes translations dentro del JS,
-  // NO necesitas window.translations. Déjalo como está.
+  const translations = {
+    es: {
+      nav_projects: "Proyectos",
+      nav_skills: "Tecnologías",
+      nav_certificates: "Certificados",
+      nav_contact: "Contacto",
 
-  // ✅ Si translations ya está definido abajo en tu JS, quita el window.translations.
-  // Para que no se rompa, lo detectamos:
-  const dicts = (typeof translations === "object" && Object.keys(translations).length) ? translations : {};
+      toolbar_language: "Idioma",
+      toolbar_reset_language: "Restablecer idioma",
+      toolbar_accessibility: "Accesibilidad",
+      toolbar_reset_accessibility: "Restablecer accesibilidad",
+      toolbar_contrast: "Alto contraste",
+      toolbar_readable: "Fuente legible",
+
+      projects_title: "Proyectos destacados",
+      skills_title: "Tecnologías y habilidades",
+      cert_title: "Certificados",
+      contact_title: "Contacto",
+
+      btn_access: "Acceder",
+      btn_case: "Caso de estudio",
+      btn_certificate: "Ver certificado",
+
+      skill_uxui: "UX/UI",
+      skill_docs: "Documentación",
+      skill_front: "Frontend",
+      skill_motion: "Motion",
+      skill_prod: "Producción",
+      skill_all: "Perfil completo",
+
+      project_bon_desc: "Diseño de wireframes de alta fidelidad para una plataforma de e-commerce, enfocado en jerarquía visual y conversión.",
+      project_green_desc: "Prototipo móvil iOS diseñado a partir de principios de usabilidad, navegación intuitiva y experiencia mobile-first.",
+      project_nutri_desc: "Diseño de experiencia para un entorno de realidad virtual enfocado en educación nutricional e interacción inmersiva.",
+      project_iso_desc: "Prototipo desktop enfocado en accesibilidad, lectura clara y navegación inclusiva para usuarios con diferentes capacidades.",
+
+      contact_form_title: "Escríbeme",
+      contact_send: "Enviar",
+      contact_name: "Nombre",
+      contact_email: "Email",
+      contact_msg: "Mensaje",
+
+      footer_text: "Portafolio de Santiago Murillo",
+
+      contact_email_label: "Email:",
+
+      tag_english: "Inglés",
+      tag_webdesign: "Diseño web",
+      tag_requirements: "Requisitos",
+      tag_innovation: "Innovación",
+      tag_validation: "Validación",
+      tag_prototypes: "Prototipos",
+      tag_graphicdesign: "Diseño gráfico",
+      tag_illustration: "Ilustración",
+      tag_editing: "Edición",
+      tag_retouch: "Retoque",
+
+      tag_wireframes: "Wireframes",
+      tag_ecommerce: "E-commerce",
+      tag_ios: "iOS",
+      tag_prototyping: "Prototipado",
+      tag_uxui: "UX/UI",
+      tag_ux: "UX",
+      tag_prototype: "Prototipo",
+      tag_desktop: "Desktop",
+      tag_accessibility: "Accesibilidad",
+
+      tag_designthinking: "Design Thinking"
+    },
+
+    en: {
+      nav_projects: "Projects",
+      nav_skills: "Skills",
+      nav_certificates: "Certificates",
+      nav_contact: "Contact",
+
+      toolbar_language: "Language",
+      toolbar_reset_language: "Reset language",
+      toolbar_accessibility: "Accessibility",
+      toolbar_reset_accessibility: "Reset accessibility",
+      toolbar_contrast: "High contrast",
+      toolbar_readable: "Readable font",
+
+      projects_title: "Featured projects",
+      skills_title: "Skills & technologies",
+      cert_title: "Certificates",
+      contact_title: "Contact",
+
+      btn_access: "Open",
+      btn_case: "Case study",
+      btn_certificate: "View certificate",
+
+      skill_uxui: "UX/UI",
+      skill_docs: "Documentation",
+      skill_front: "Frontend",
+      skill_motion: "Motion",
+      skill_prod: "Production",
+      skill_all: "Full profile",
+
+      project_bon_desc: "High-fidelity wireframes for an e-commerce platform, focused on visual hierarchy and conversion.",
+      project_green_desc: "iOS mobile prototype based on usability principles, intuitive navigation, and a mobile-first approach.",
+      project_nutri_desc: "Experience design for a virtual reality environment focused on nutrition education and immersive interaction.",
+      project_iso_desc: "Desktop prototype focused on accessibility, clear reading, and inclusive navigation for diverse users.",
+
+      contact_form_title: "Write to me",
+      contact_send: "Send",
+      contact_name: "Name",
+      contact_email: "Email",
+      contact_msg: "Message",
+
+      footer_text: "Santiago Murillo Portfolio",
+
+      contact_email_label: "Email:",
+
+      tag_english: "English",
+      tag_webdesign: "Web design",
+      tag_requirements: "Requirements",
+      tag_innovation: "Innovation",
+      tag_validation: "Validation",
+      tag_prototypes: "Prototypes",
+      tag_graphicdesign: "Graphic design",
+      tag_illustration: "Illustration",
+      tag_editing: "Editing",
+      tag_retouch: "Retouch",
+
+      tag_wireframes: "Wireframes",
+      tag_ecommerce: "E-commerce",
+      tag_ios: "iOS",
+      tag_prototyping: "Prototyping",
+      tag_uxui: "UX/UI",
+      tag_ux: "UX",
+      tag_prototype: "Prototype",
+      tag_desktop: "Desktop",
+      tag_accessibility: "Accessibility",
+
+      tag_designthinking: "Design Thinking"
+    },
+
+    fr: {
+      nav_projects: "Projets",
+      nav_skills: "Compétences",
+      nav_certificates: "Certificats",
+      nav_contact: "Contact",
+
+      toolbar_language: "Langue",
+      toolbar_reset_language: "Réinitialiser la langue",
+      toolbar_accessibility: "Accessibilité",
+      toolbar_reset_accessibility: "Réinitialiser",
+      toolbar_contrast: "Haut contraste",
+      toolbar_readable: "Police lisible",
+
+      projects_title: "Projets en vedette",
+      skills_title: "Compétences & technologies",
+      cert_title: "Certificats",
+      contact_title: "Contact",
+
+      btn_access: "Accéder",
+      btn_case: "Étude de cas",
+      btn_certificate: "Voir le certificat",
+
+      skill_uxui: "UX/UI",
+      skill_docs: "Documentation",
+      skill_front: "Frontend",
+      skill_motion: "Motion",
+      skill_prod: "Production",
+      skill_all: "Profil complet",
+
+      contact_form_title: "Écris-moi",
+      contact_send: "Envoyer",
+      contact_name: "Nom",
+      contact_email: "Email",
+      contact_msg: "Message",
+
+      footer_text: "Portfolio de Santiago Murillo",
+
+      contact_email_label: "Email:",
+
+      tag_english: "Anglais",
+      tag_webdesign: "Web design",
+      tag_requirements: "Exigences",
+      tag_innovation: "Innovation",
+      tag_validation: "Validation",
+      tag_prototypes: "Prototypes",
+      tag_graphicdesign: "Design graphique",
+      tag_illustration: "Illustration",
+      tag_editing: "Édition",
+      tag_retouch: "Retouche",
+
+      tag_designthinking: "Design Thinking"
+    },
+
+    pt: {
+      nav_projects: "Projetos",
+      nav_skills: "Tecnologias",
+      nav_certificates: "Certificados",
+      nav_contact: "Contato",
+
+      toolbar_language: "Idioma",
+      toolbar_reset_language: "Redefinir idioma",
+      toolbar_accessibility: "Acessibilidade",
+      toolbar_reset_accessibility: "Redefinir",
+      toolbar_contrast: "Alto contraste",
+      toolbar_readable: "Fonte legível",
+
+      projects_title: "Projetos em destaque",
+      skills_title: "Tecnologias e habilidades",
+      cert_title: "Certificados",
+      contact_title: "Contato",
+
+      btn_access: "Acessar",
+      btn_case: "Estudo de caso",
+      btn_certificate: "Ver certificado",
+
+      skill_uxui: "UX/UI",
+      skill_docs: "Documentação",
+      skill_front: "Frontend",
+      skill_motion: "Motion",
+      skill_prod: "Produção",
+      skill_all: "Perfil completo",
+
+      footer_text: "Portfólio de Santiago Murillo",
+
+      contact_email_label: "Email:",
+
+      tag_designthinking: "Design Thinking"
+    },
+
+    de: {
+      nav_projects: "Projekte",
+      nav_skills: "Fähigkeiten",
+      nav_certificates: "Zertifikate",
+      nav_contact: "Kontakt",
+
+      toolbar_language: "Sprache",
+      toolbar_reset_language: "Sprache zurücksetzen",
+      toolbar_accessibility: "Barrierefreiheit",
+      toolbar_reset_accessibility: "Zurücksetzen",
+      toolbar_contrast: "Hoher Kontrast",
+      toolbar_readable: "Lesbare Schrift",
+
+      projects_title: "Ausgewählte Projekte",
+      skills_title: "Fähigkeiten & Technologien",
+      cert_title: "Zertifikate",
+      contact_title: "Kontakt",
+
+      btn_access: "Öffnen",
+      btn_case: "Fallstudie",
+      btn_certificate: "Zertifikat ansehen",
+
+      skill_uxui: "UX/UI",
+      skill_docs: "Dokumentation",
+      skill_front: "Frontend",
+      skill_motion: "Motion",
+      skill_prod: "Produktion",
+      skill_all: "Vollständiges Profil",
+
+      footer_text: "Portfolio von Santiago Murillo",
+
+      contact_email_label: "E-Mail:",
+
+      tag_designthinking: "Design Thinking"
+    },
+
+    zh: {
+      nav_projects: "项目",
+      nav_skills: "技能",
+      nav_certificates: "证书",
+      nav_contact: "联系",
+
+      toolbar_language: "语言",
+      toolbar_reset_language: "重置语言",
+      toolbar_accessibility: "无障碍",
+      toolbar_reset_accessibility: "重置",
+      toolbar_contrast: "高对比度",
+      toolbar_readable: "易读字体",
+
+      projects_title: "精选项目",
+      skills_title: "技能与技术",
+      cert_title: "证书",
+      contact_title: "联系",
+
+      btn_access: "打开",
+      btn_case: "案例研究",
+      btn_certificate: "查看证书",
+
+      skill_uxui: "UX/UI",
+      skill_docs: "文档",
+      skill_front: "前端",
+      skill_motion: "动效",
+      skill_prod: "制作",
+      skill_all: "完整档案",
+
+      footer_text: "Santiago Murillo 作品集",
+
+      contact_email_label: "邮箱：",
+
+      tag_designthinking: "设计思维"
+    }
+  };
+
+
 
   /* ==========================
-     5) DONUT + TOOLTIP (Y FILTRO)
+     5) APPLY LANGUAGE
+  ========================== */
+  let currentLang = localStorage.getItem("lang") || "es";
+  let currentDict = translations[currentLang] || translations.es;
+
+  function applyTranslations(lang){
+    currentLang = lang;
+    currentDict = translations[lang] || translations.es;
+
+    // textos
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const key = el.dataset.i18n;
+      if (currentDict[key]) el.textContent = currentDict[key];
+    });
+
+    // placeholders
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+      const key = el.dataset.i18nPlaceholder;
+      if (currentDict[key]) el.setAttribute("placeholder", currentDict[key]);
+    });
+
+    // activar botón
+    document.querySelectorAll(".lang-btn").forEach(btn => btn.classList.remove("is-active"));
+    document.querySelector(`.lang-btn[data-lang="${lang}"]`)?.classList.add("is-active");
+
+    localStorage.setItem("lang", lang);
+    document.documentElement.lang = lang;
+
+    // actualizar donut (si existe)
+    updateDonutLabels();
+
+    closeAllDropdowns();
+  }
+
+
+  /* ==========================
+     6) DONUT CHART + TOOLTIP + FILTER
   ========================== */
   const canvas = document.getElementById("skillsDonut");
   const wrapper = canvas?.closest(".donut-wrapper");
   const tooltip = document.getElementById("donutTooltip");
-
-  let chart = null;
 
   const allSkills = [
     { key: "uxui", labelKey: "skill_uxui", value: 35, color: "#f39c12" },
@@ -135,39 +465,10 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   let currentSkills = [...allSkills];
-  let currentDict = dicts.es || {};
+  let chart = null;
 
-  function applyTranslations(lang){
-    const dict = dicts[lang] || dicts.es;
-    currentDict = dict;
-
-    // ✅ textos normales
-    document.querySelectorAll("[data-i18n]").forEach(el => {
-      const key = el.dataset.i18n;
-      if (dict[key]) el.textContent = dict[key];
-    });
-
-    // ✅ placeholders
-    document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
-      const key = el.dataset.i18nPlaceholder;
-      if (dict[key]) el.setAttribute("placeholder", dict[key]);
-    });
-
-    // ✅ botón activo
-    document.querySelectorAll(".lang-btn").forEach(btn => btn.classList.remove("is-active"));
-    document.querySelector(`.lang-btn[data-lang="${lang}"]`)?.classList.add("is-active");
-
-    localStorage.setItem("lang", lang);
-    document.documentElement.lang = lang;
-
-    closeAllDropdowns();
-
-    // ✅ actualizar donut
-    updateDonut();
-  }
-
-  function createDonut(){
-    if (!canvas || typeof Chart === "undefined") return;
+  function buildDonut(){
+    if (!canvas || !wrapper || !tooltip || typeof Chart === "undefined") return;
 
     chart = new Chart(canvas, {
       type: "doughnut",
@@ -188,8 +489,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // ✅ tooltip
-    wrapper?.addEventListener("mousemove", (e) => {
+    wrapper.addEventListener("mousemove", (e) => {
       const rect = wrapper.getBoundingClientRect();
       tooltip.style.left = (e.clientX - rect.left) + "px";
       tooltip.style.top  = (e.clientY - rect.top) + "px";
@@ -210,31 +510,35 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.addEventListener("mouseleave", () => tooltip.style.opacity = "0");
   }
 
-  function updateDonut(){
+  function updateDonutLabels(){
     if (!chart) return;
+    chart.data.labels = currentSkills.map(s => currentDict[s.labelKey] || s.key);
+    chart.update();
+  }
 
+  function updateDonutData(){
+    if (!chart) return;
     chart.data.labels = currentSkills.map(s => currentDict[s.labelKey] || s.key);
     chart.data.datasets[0].data = currentSkills.map(s => s.value);
     chart.data.datasets[0].backgroundColor = currentSkills.map(s => s.color);
     chart.update();
   }
 
-  // ✅ filtros donut desde botones
   function filterDonut(key){
     if (key === "all") {
       currentSkills = [...allSkills];
     } else {
       currentSkills = allSkills.filter(s => s.key === key);
     }
-    updateDonut();
+    updateDonutData();
   }
 
-  // ✅ activar botones
   function setActive(btn){
     document.querySelectorAll(".tech-btn").forEach(b => b.classList.remove("is-active"));
     btn.classList.add("is-active");
   }
 
+  // botones filtro
   document.querySelectorAll(".tech-btn[data-key]").forEach(btn => {
     btn.addEventListener("click", () => {
       setActive(btn);
@@ -243,15 +547,15 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.getElementById("showAll")?.addEventListener("click", () => {
-    setActive(document.getElementById("showAll"));
+    const btn = document.getElementById("showAll");
+    setActive(btn);
     filterDonut("all");
   });
 
-  // ✅ inicializar donut
-  if (canvas && wrapper && tooltip) createDonut();
+
 
   /* ==========================
-     6) Animación Cards
+     7) Animación Cards
   ========================== */
   const cards = document.querySelectorAll(".card");
   if(cards.length){
@@ -270,18 +574,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+
+
   /* ==========================
-     7) Idioma al cargar
+     8) INIT
   ========================== */
-  const savedLang = localStorage.getItem("lang") || "es";
-  applyTranslations(savedLang);
+  buildDonut();
+  applyTranslations(currentLang);
 
   document.querySelectorAll(".lang-btn").forEach(btn => {
     btn.addEventListener("click", () => applyTranslations(btn.dataset.lang));
   });
 
-  document.getElementById("resetLang")?.addEventListener("click", () => {
-    applyTranslations("es");
-  });
+  document.getElementById("resetLang")?.addEventListener("click", () => applyTranslations("es"));
 
 });
