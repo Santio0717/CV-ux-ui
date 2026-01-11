@@ -1,5 +1,5 @@
 /* ===========================
-   FONDO Y LAYOUT GENERAL
+   Fondo y layout general
 =========================== */
 body.case-page {
   background: #f2dfc2;
@@ -11,7 +11,7 @@ body.case-page {
   background: rgba(255, 255, 255, 0.35);
   padding: 32px;
   border-radius: 16px;
-  max-width: 1100px;
+  max-width: 1100px;         /* ← MÁS ANCHO PARA QUE NO SE CORTEN TEXTOS */
   margin: auto;
   box-shadow: 0 8px 20px rgba(0,0,0,.08);
 }
@@ -24,7 +24,7 @@ body.case-page {
 }
 
 /* ===========================
-   TABS
+   Tabs
 =========================== */
 .ux-tabs {
   display: flex;
@@ -34,6 +34,7 @@ body.case-page {
   justify-content: center;
 }
 
+/* QUITAR ESTILOS DE BOTONES/ENLACES DEL NAVEGADOR */
 .ux-tab {
   padding: 10px 18px;
   border-radius: 40px;
@@ -41,10 +42,10 @@ body.case-page {
   border: 1px solid #cfc4b4;
   cursor: pointer;
   font-weight: 600;
-  transition: transform .25s, background .25s;
-  text-decoration: none;
-  color: #000;
-  display: inline-block;
+  transition: .25s;
+  text-decoration: none !important; 
+  color: #000 !important;          /* ← QUITA EL AZUL */
+  display: inline-block;           /* ← EVITA RAYAS RARAS */
 }
 
 .ux-tab:hover {
@@ -53,11 +54,11 @@ body.case-page {
 
 .ux-tab.active {
   background: #000;
-  color: #fff;
+  color: #fff !important;          /* ← FUERZA QUE SEA BLANCO */
 }
 
 /* ===========================
-   SECCIONES
+   Secciones
 =========================== */
 .ux-section {
   display: none;
@@ -74,7 +75,7 @@ body.case-page {
 }
 
 /* ===========================
-   BOTONES INFERIORES
+   Botones inferiores
 =========================== */
 .case-links {
   margin-top: 38px;
@@ -87,14 +88,8 @@ body.case-page {
   padding: 12px 20px;
   border-radius: 10px;
   font-weight: 600;
-  text-decoration: none;
+  text-decoration: none !important;
   display: inline-block;
-  transition: opacity .25s;
-}
-
-.btn.case {
-  background: #b85c38;
-  color: #fff;
 }
 
 .btn.ghost {
@@ -103,91 +98,11 @@ body.case-page {
   color: #333;
 }
 
+.btn.case {
+  background: #b85c38;
+  color: #fff;
+}
+
 .btn:hover {
   opacity: .8;
-}
-
-/* =========================================
-   SECCIÓN TECNOLOGÍAS Y DONA (CORREGIDO)
-========================================= */
-.tech-layout {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 30px;
-  padding: 40px 20px;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-@media (min-width: 768px) {
-  .tech-layout {
-    flex-direction: row; /* Gráfico al lado de botones en desktop */
-  }
-}
-
-.donut-wrapper {
-  position: relative;
-  width: 320px;
-  height: 320px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 20px;
-}
-
-#skillsDonut {
-  display: block;
-  max-width: 100%;
-  max-height: 100%;
-}
-
-/* Tooltip flotante */
-.donut-tooltip {
-  position: absolute;
-  pointer-events: none;
-  background: rgba(0, 0, 0, 0.85);
-  color: #fff;
-  padding: 8px 14px;
-  border-radius: 8px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  z-index: 100;
-  opacity: 0;
-  white-space: nowrap;
-  transform: translate(-50%, -110%);
-  transition: opacity 0.2s ease;
-}
-
-/* Botones tecnologías */
-.tech-controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: center;
-}
-
-.tech-btn {
-  padding: 10px 22px;
-  border-radius: 50px;
-  background: #fff;
-  border: 1px solid #ddd;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  font-family: 'Inter', sans-serif;
-}
-
-.tech-btn:hover {
-  background: #f0f0f0;
-  transform: translateY(-2px);
-}
-
-.tech-btn.is-active {
-  background: #000;
-  color: #fff;
-  border-color: #000;
 }
