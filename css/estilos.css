@@ -1,193 +1,181 @@
 /* ===========================
-   FONDO Y LAYOUT GENERAL
+   RESET BÁSICO
 =========================== */
-body.case-page {
-  background: #f2dfc2;
-  padding-top: 40px;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
   font-family: 'Inter', sans-serif;
-}
-
-.case-content {
-  background: rgba(255, 255, 255, 0.35);
-  padding: 32px;
-  border-radius: 16px;
-  max-width: 1100px;
-  margin: auto;
-  box-shadow: 0 8px 20px rgba(0,0,0,.08);
-}
-
-.case-title {
-  font-size: 2rem;
-  margin-bottom: 18px;
-  text-align: center;
-  font-weight: 700;
+  background: #f3e1c8;
+  color: #111;
+  line-height: 1.6;
 }
 
 /* ===========================
-   TABS
+   HEADER / NAV
 =========================== */
-.ux-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin: 25px auto 35px;
-  justify-content: center;
+.header {
+  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(0,0,0,.05);
 }
 
-.ux-tab {
+.nav {
+  max-width: 1200px;
+  margin: auto;
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #111;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.nav-links a:hover {
+  opacity: .6;
+}
+
+/* ===========================
+   CONTENEDOR GENERAL
+=========================== */
+.main {
+  padding: 80px 20px;
+}
+
+/* ===========================
+   TARJETAS PRINCIPALES
+=========================== */
+.card {
+  max-width: 1100px;
+  margin: 0 auto 80px;
+  padding: 48px;
+  background: #f8ebd9;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0,0,0,.08);
+}
+
+/* ===========================
+   TITULOS
+=========================== */
+.card h1,
+.card h2 {
+  font-weight: 700;
+  margin-bottom: 32px;
+}
+
+.card h1 {
+  font-size: 2rem;
+}
+
+.card h2 {
+  font-size: 1.5rem;
+}
+
+/* ===========================
+   BOTONES / PILLS
+=========================== */
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.pill {
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid #e1d3c1;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: default;
+  transition: all .25s ease;
+}
+
+.pill.active {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+}
+
+/* ===========================
+   PROYECTOS / TABS
+=========================== */
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+.tab {
   padding: 10px 18px;
   border-radius: 40px;
   background: #e8dfd2;
   border: 1px solid #cfc4b4;
-  cursor: pointer;
   font-weight: 600;
-  transition: transform .25s, background .25s;
-  text-decoration: none;
-  color: #000;
-  display: inline-block;
+  cursor: pointer;
+  transition: transform .25s;
 }
 
-.ux-tab:hover {
+.tab:hover {
   transform: scale(1.05);
 }
 
-.ux-tab.active {
-  background: #000;
+.tab.active {
+  background: #111;
   color: #fff;
 }
 
 /* ===========================
-   SECCIONES
+   FOOTER
 =========================== */
-.ux-section {
-  display: none;
-  animation: fadeIn .4s ease;
-}
-
-.ux-section.active {
-  display: block;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* ===========================
-   BOTONES INFERIORES
-=========================== */
-.case-links {
-  margin-top: 38px;
-  display: flex;
-  justify-content: center;
-  gap: 18px;
-}
-
-.btn {
-  padding: 12px 20px;
-  border-radius: 10px;
-  font-weight: 600;
-  text-decoration: none;
-  display: inline-block;
-  transition: opacity .25s;
-}
-
-.btn.case {
-  background: #b85c38;
-  color: #fff;
-}
-
-.btn.ghost {
-  background: transparent;
-  border: 2px solid #333;
-  color: #333;
-}
-
-.btn:hover {
-  opacity: .8;
-}
-
-/* =========================================
-   SECCIÓN TECNOLOGÍAS Y DONA (CORREGIDO)
-========================================= */
-.tech-layout {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 30px;
+.footer {
+  text-align: center;
   padding: 40px 20px;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-@media (min-width: 768px) {
-  .tech-layout {
-    flex-direction: row; /* Gráfico al lado de botones en desktop */
-  }
-}
-
-.donut-wrapper {
-  position: relative;
-  width: 320px;
-  height: 320px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 20px;
-}
-
-#skillsDonut {
-  display: block;
-  max-width: 100%;
-  max-height: 100%;
-}
-
-/* Tooltip flotante */
-.donut-tooltip {
-  position: absolute;
-  pointer-events: none;
-  background: rgba(0, 0, 0, 0.85);
-  color: #fff;
-  padding: 8px 14px;
-  border-radius: 8px;
   font-size: 0.85rem;
-  font-weight: 600;
-  z-index: 100;
-  opacity: 0;
-  white-space: nowrap;
-  transform: translate(-50%, -110%);
-  transition: opacity 0.2s ease;
+  opacity: .6;
 }
 
-/* Botones tecnologías */
-.tech-controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: center;
-}
+/* ===========================
+   RESPONSIVE
+=========================== */
+@media (max-width: 768px) {
+  .card {
+    padding: 32px 24px;
+  }
 
-.tech-btn {
-  padding: 10px 22px;
-  border-radius: 50px;
-  background: #fff;
-  border: 1px solid #ddd;
-  cursor: pointer;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  font-family: 'Inter', sans-serif;
-}
+  .nav {
+    padding: 16px 20px;
+  }
 
-.tech-btn:hover {
-  background: #f0f0f0;
-  transform: translateY(-2px);
-}
-
-.tech-btn.is-active {
-  background: #000;
-  color: #fff;
-  border-color: #000;
+  .nav-links {
+    gap: 16px;
+  }
 }
