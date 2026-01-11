@@ -1,181 +1,402 @@
-/* ===========================
-   RESET BÁSICO
-=========================== */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+/* =====================================================
+   PALETA Y VARIABLES
+===================================================== */
+:root {
+  --cream-1:#f5e4cb;
+  --cream-2:#f2dfc2;
+  --cream-3:#f0d6b1;
+  --cream-4:#fbeed9;
+
+  --ink:#222;
+
+  --uxui:#f39c12;
+  --frontend:#3498db;
+  --motion:#9b59b6;
+  --docs:#2ecc71;
+  --prod:#e74c3c;
+
+  --glass:rgba(255,255,255,0.18);
+  --glass-strong:rgba(255,255,255,0.28);
+
+  --tag-bg:#e5ddd1;
+
+  --filter-bg:#ffffff45;
+  --filter-active:#222;
 }
 
-html {
-  scroll-behavior: smooth;
+/* =====================================================
+   BASE
+===================================================== */
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
 body {
-  font-family: 'Inter', sans-serif;
-  background: #f3e1c8;
-  color: #111;
-  line-height: 1.6;
+  font-family:'Inter',sans-serif;
+  line-height:1.6;
+  color:var(--ink);
+  background:linear-gradient(
+    120deg,
+    var(--cream-1),
+    var(--cream-2),
+    var(--cream-3),
+    var(--cream-4)
+  );
+  background-size:400% 400%;
+  animation:bgMove 30s ease infinite;
+  background-attachment:fixed;
 }
 
-/* ===========================
-   HEADER / NAV
-=========================== */
-.header {
-  background: #fff;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 2px 10px rgba(0,0,0,.05);
+@keyframes bgMove {
+  0% { background-position:0% 50%; }
+  50% { background-position:100% 50%; }
+  100% { background-position:0% 50%; }
 }
 
-.nav {
-  max-width: 1200px;
-  margin: auto;
-  padding: 16px 32px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.container {
+  width:92%;
+  max-width:1150px;
+  margin:auto;
 }
 
-.logo {
-  font-weight: 800;
-  letter-spacing: 1px;
+.section {
+  padding:64px 0;
 }
 
-.nav-links {
-  display: flex;
-  gap: 24px;
+.section.alt {
+  background:rgba(255,255,255,.08);
+  padding:52px;
+  border-radius:16px;
 }
 
-.nav-links a {
-  text-decoration: none;
-  color: #111;
-  font-weight: 600;
-  font-size: 0.9rem;
+h1,h2,h3 {
+  font-weight:700;
+  margin-bottom:12px;
 }
 
-.nav-links a:hover {
-  opacity: .6;
+a {
+  text-decoration:none;
+  color:inherit;
 }
 
-/* ===========================
-   CONTENEDOR GENERAL
-=========================== */
-.main {
-  padding: 80px 20px;
+/* =====================================================
+   HEADER
+===================================================== */
+.site-header {
+  background:rgba(255,255,255,.25);
+  border-bottom:1px solid rgba(0,0,0,.05);
+  backdrop-filter:blur(10px);
+  position:sticky;
+  top:0;
+  z-index:10;
 }
 
-/* ===========================
-   TARJETAS PRINCIPALES
-=========================== */
+.nav-wrap {
+  padding:12px 0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.main-nav {
+  display:flex;
+  gap:18px;
+}
+
+.main-nav a {
+  font-weight:600;
+  transition:.25s;
+}
+
+.main-nav a:hover {
+  color:var(--uxui);
+}
+
+/* =====================================================
+   HERO
+===================================================== */
+.hero-card {
+  background:var(--glass);
+  border-radius:20px;
+  padding:36px 28px;
+  border:1px solid rgba(255,255,255,.3);
+  box-shadow:0 5px 20px rgba(0,0,0,.07);
+  backdrop-filter:blur(14px);
+  max-width:960px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:120px 1fr;
+  gap:22px;
+}
+
+.avatar {
+  width:110px;
+  height:110px;
+  border-radius:12px;
+  object-fit:cover;
+}
+
+.kicker { font-weight:600; opacity:.8; }
+.display { font-size:1.32rem; }
+.sub { opacity:.9; margin-bottom:10px; }
+
+/* =====================================================
+   BOTONES
+===================================================== */
+.btn {
+  display:inline-block;
+  padding:12px 22px;
+  border-radius:12px;
+  font-weight:600;
+  cursor:pointer;
+  color:#fff;
+  transition:.25s;
+}
+
+.btn:hover {
+  transform:translateY(-3px);
+}
+
+.btn.red { background:linear-gradient(135deg,#d72638,#b71c1c); }
+.btn.ghost {
+  background:transparent;
+  color:var(--ink);
+  box-shadow:inset 0 0 0 2px var(--uxui);
+}
+.btn.primary { background:linear-gradient(135deg,#0077b6,#005f87); }
+.btn.whatsapp { background:linear-gradient(135deg,#25D366,#128C7E); }
+.btn.linkedin { background:linear-gradient(135deg,#0077B5,#005a8d); }
+.btn.case { background:linear-gradient(135deg,#b85c38,#8f4428); }
+.btn.big { padding:16px 26px; font-size:1.05rem; }
+
+/* =====================================================
+   PROYECTOS
+===================================================== */
+.grid.cards {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:24px;
+}
+
 .card {
-  max-width: 1100px;
-  margin: 0 auto 80px;
-  padding: 48px;
-  background: #f8ebd9;
-  border-radius: 20px;
-  box-shadow: 0 15px 35px rgba(0,0,0,.08);
+  background:var(--glass-strong);
+  border-radius:16px;
+  padding:20px;
+  border:1px solid rgba(255,255,255,0.3);
+  box-shadow:0 8px 24px rgba(0,0,0,.06);
+  transition:.25s;
 }
 
-/* ===========================
-   TITULOS
-=========================== */
-.card h1,
-.card h2 {
-  font-weight: 700;
-  margin-bottom: 32px;
+.card.hide {
+  opacity:0;
+  pointer-events:none;
+  transform:scale(.92);
 }
 
-.card h1 {
-  font-size: 2rem;
+.card:hover {
+  transform:translateY(-4px);
+  box-shadow:0 16px 32px rgba(0,0,0,.10);
 }
 
-.card h2 {
-  font-size: 1.5rem;
+.thumb {
+  aspect-ratio:16/9;
+  border-radius:12px;
+  overflow:hidden;
+  margin-bottom:12px;
 }
 
-/* ===========================
-   BOTONES / PILLS
-=========================== */
-.pills {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
+.thumb img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transform:scale(1.03);
+  transition:.6s;
 }
 
-.pill {
-  padding: 8px 16px;
-  border-radius: 999px;
-  background: #fff;
-  border: 1px solid #e1d3c1;
-  font-size: 0.85rem;
-  font-weight: 600;
-  cursor: default;
-  transition: all .25s ease;
+.project:hover .thumb img {
+  transform:scale(1.06);
 }
 
-.pill.active {
-  background: #111;
-  color: #fff;
-  border-color: #111;
+/* TAGS */
+.tag-row {
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:12px 0;
 }
 
-/* ===========================
-   PROYECTOS / TABS
-=========================== */
-.tabs {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 40px;
+.tag {
+  background:var(--tag-bg);
+  padding:6px 12px;
+  border-radius:50px;
+  font-size:.82rem;
+  font-weight:500;
 }
 
-.tab {
-  padding: 10px 18px;
-  border-radius: 40px;
-  background: #e8dfd2;
-  border: 1px solid #cfc4b4;
-  font-weight: 600;
-  cursor: pointer;
-  transition: transform .25s;
+/* =====================================================
+   FILTROS UX
+===================================================== */
+.ux-filter {
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin:12px 0 28px;
 }
 
-.tab:hover {
-  transform: scale(1.05);
+.ux-btn {
+  padding:10px 18px;
+  border-radius:30px;
+  background:var(--filter-bg);
+  border:1px solid rgba(0,0,0,0.15);
+  font-weight:600;
+  cursor:pointer;
+  transition:.25s ease;
+  backdrop-filter:blur(6px);
 }
 
-.tab.active {
-  background: #111;
-  color: #fff;
+.ux-btn:hover {
+  background:rgba(0,0,0,0.2);
+  color:#fff;
 }
 
-/* ===========================
+.ux-btn.active {
+  background:var(--filter-active);
+  color:#fff;
+  border-color:#000;
+  box-shadow:0 4px 14px rgba(0,0,0,0.2);
+}
+
+/* =====================================================
+   TECNOLOGÍAS – DONA INTERACTIVA
+===================================================== */
+.single-donut-wrapper {
+  margin-top:40px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:40px;
+  text-align:center;
+}
+
+.single-donut-box {
+  width:260px;
+  height:260px;
+  position:relative;
+}
+
+.skills-list {
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.skill-item {
+  padding:10px 18px;
+  background:var(--glass-strong);
+  border-radius:12px;
+  font-weight:600;
+  cursor:pointer;
+  transition:.25s;
+  border:1px solid rgba(0,0,0,.12);
+}
+
+.skill-item:hover {
+  transform:translateX(6px);
+  background:rgba(0,0,0,.08);
+}
+
+.donut-fixed-tooltip {
+  position:absolute;
+  top:50%;
+  left:170px;
+  transform:translateY(-50%);
+  background:#111;
+  color:#fff;
+  padding:10px 12px;
+  border-radius:10px;
+  opacity:0;
+  transition:.2s;
+}
+
+.donut-item.show-tooltip .donut-fixed-tooltip {
+  opacity:1;
+}
+
+/* =====================================================
+   CERTIFICADOS
+===================================================== */
+.diplomas-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:26px;
+}
+
+/* =====================================================
+   CONTACTO
+===================================================== */
+.contact-wrapper {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+}
+
+.input-field.full {
+  width:100%;
+  padding:12px 14px;
+  border-radius:10px;
+  border:1px solid #ccc;
+  margin-bottom:14px;
+}
+
+.full-btn {
+  width:100%;
+  padding:14px;
+  border-radius:12px;
+}
+
+/* =====================================================
    FOOTER
-=========================== */
-.footer {
-  text-align: center;
-  padding: 40px 20px;
-  font-size: 0.85rem;
-  opacity: .6;
+===================================================== */
+.new-footer {
+  text-align:center;
+  padding:32px 0;
+  background:rgba(255,255,255,0.45);
+  border-top:1px solid rgba(0,0,0,0.1);
 }
 
-/* ===========================
+.footer-main {
+  font-size:1.1rem;
+  font-weight:600;
+}
+
+.footer-sub {
+  opacity:.7;
+  margin-top:6px;
+  font-size:.9rem;
+}
+
+/* =====================================================
    RESPONSIVE
-=========================== */
-@media (max-width: 768px) {
-  .card {
-    padding: 32px 24px;
+===================================================== */
+@media(max-width:820px) {
+  .hero-card {
+    grid-template-columns:1fr;
+    text-align:center;
   }
 
-  .nav {
-    padding: 16px 20px;
+  .avatar {
+    margin:auto;
+    width:120px;
+    height:120px;
   }
 
-  .nav-links {
-    gap: 16px;
+  .contact-wrapper {
+    grid-template-columns:1fr;
+  }
+
+  .ux-filter {
+    justify-content:center;
   }
 }
