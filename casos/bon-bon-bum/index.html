@@ -1,120 +1,40 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bon Bon Bum · Estudio de Caso</title>
 
-  <!-- ✅ CSS GLOBAL (IMPORTANTE) -->
-  <link rel="stylesheet" href="../../CSS/estilos.css" />
-
-  <!-- ✅ CSS SOLO DEL CASO -->
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="case-page">
 
-  <!-- ✅ HEADER GLOBAL -->
-  <header class="site-header">
-    <div class="container nav-wrap">
-
-      <a href="../../index.html" class="brand">SM·UX</a>
-
-      <nav class="main-nav" aria-label="Navegación principal">
-        <a href="../../index.html#proyectos" data-i18n="nav_projects">Proyectos</a>
-        <a href="../../index.html#tecnologias" data-i18n="nav_skills">Tecnologías</a>
-        <a href="../../index.html#certificados" data-i18n="nav_certificates">Certificados</a>
-        <a href="../../index.html#contacto" data-i18n="nav_contact">Contacto</a>
-      </nav>
-
-      <!-- ✅ DROPDOWNS (se verán igual que en la home) -->
-      <div class="toolbar">
-        <div class="dropdown" id="langDropdown">
-          <button class="drop-btn" type="button">
-            <span data-i18n="toolbar_language">Idioma</span>
-          </button>
-
-          <div class="drop-panel">
-            <button class="lang-btn" data-lang="es" type="button">ES</button>
-            <button class="lang-btn" data-lang="en" type="button">EN</button>
-            <button class="lang-btn" data-lang="fr" type="button">FR</button>
-            <button class="lang-btn" data-lang="pt" type="button">PT</button>
-            <button class="lang-btn" data-lang="de" type="button">DE</button>
-            <button class="lang-btn" data-lang="zh" type="button">中文</button>
-
-            <div class="drop-sep"></div>
-
-            <button id="resetLang" class="drop-reset" type="button" data-i18n="toolbar_reset_language">
-              Restablecer idioma
-            </button>
-          </div>
-        </div>
-
-        <div class="dropdown" id="a11yDropdown">
-          <button class="drop-btn" type="button">
-            <span data-i18n="toolbar_accessibility">Accesibilidad</span>
-          </button>
-
-          <div class="drop-panel">
-            <div class="a11y-row">
-              <button id="fontMinus" class="a11y-btn" type="button">A-</button>
-              <button id="fontPlus" class="a11y-btn" type="button">A+</button>
-            </div>
-
-            <label class="toggle">
-              <input type="checkbox" id="toggleContrast" />
-              <span data-i18n="toolbar_contrast">Alto contraste</span>
-            </label>
-
-            <label class="toggle">
-              <input type="checkbox" id="toggleReadable" />
-              <span data-i18n="toolbar_readable">Fuente legible</span>
-            </label>
-
-            <div class="drop-sep"></div>
-
-            <button id="resetA11y" class="drop-reset" type="button" data-i18n="toolbar_reset_accessibility">
-              Restablecer accesibilidad
-            </button>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </header>
-
-  <!-- ✅ CONTENIDO -->
   <main class="case-content container">
 
     <h1 class="case-title">Bon Bon Bum</h1>
 
+    <!-- SOLO LOS BOTONES -->
+    <!-- TABS -->
     <div class="ux-tabs">
       <a class="ux-tab" href="ux-research.html">UX Research</a>
       <a class="ux-tab" href="ux-design.html">UX Design</a>
-      <a class="ux-tab" href="prototipado.html" data-i18n="tab_prototype">Prototipado</a>
+      <a class="ux-tab" href="prototipado.html">Prototipado</a>
       <a class="ux-tab" href="product-design.html">Product Design</a>
-      <a class="ux-tab" href="accesibilidad.html" data-i18n="tab_accessibility">Accesibilidad</a>
+      <a class="ux-tab" href="accesibilidad.html">Accesibilidad</a>
     </div>
 
-    <p class="case-intro" data-i18n="case_select_phase">
+    <!-- Tabs -->
+    <p style="text-align:center; max-width:600px; margin:0 auto 24px;">
       Selecciona una categoría para explorar cada fase del proceso.
     </p>
 
+    <!-- BOTONES INFERIORES -->
     <div class="case-links">
-      <a href="../../index.html#proyectos" class="btn ghost" data-i18n="case_back">
-        Volver al portafolio
-      </a>
-
+      <a href="../../index.html#proyectos" class="btn ghost">Volver al portafolio</a>
       <a href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma"
-         target="_blank"
-         class="btn case"
-         data-i18n="case_figma">
-        Ver prototipo en Figma
-      </a>
+         target="_blank" class="btn case">Ver prototipo en Figma</a>
     </div>
-  </main>
 
-  <!-- ✅ JS GLOBAL -->
-  <script src="../../js/aplicacion.js"></script>
-</body>
-</html>
+  </main>
