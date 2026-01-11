@@ -1,9 +1,12 @@
 :root{
   --bg-1:#f8eddc;
   --bg-2:#f2dbc0;
+
   --ink:#1f2933;
+
   --primary:#d72638;
   --accent:#8f4428;
+
   --glass:rgba(255,255,255,.72);
 
   --radius-sm:12px;
@@ -60,7 +63,6 @@ body{
   justify-content:space-between;
   align-items:center;
   padding:16px 0;
-  gap:18px;
 }
 
 .brand,
@@ -83,164 +85,6 @@ body{
 .main-nav a:hover,
 .brand:hover{
   opacity:.7;
-}
-
-/* ================= TOOLBAR (DROPDOWNS) ================= */
-.toolbar{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  margin-left:auto;
-}
-
-.dropdown{
-  position:relative;
-}
-
-.drop-btn{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:10px 12px;
-  border-radius:999px;
-  border:1px solid rgba(0,0,0,.12);
-  background:rgba(255,255,255,.75);
-  cursor:pointer;
-  font-weight:800;
-  font-size:.85rem;
-  color:var(--ink);
-  box-shadow:0 8px 18px rgba(0,0,0,.06);
-  transition:transform .2s ease, background .2s ease, box-shadow .2s ease;
-}
-
-.drop-btn:hover{
-  transform:translateY(-1px);
-  background:rgba(255,255,255,.92);
-  box-shadow:0 12px 24px rgba(0,0,0,.08);
-}
-
-.drop-icon{
-  font-size:.8rem;
-  opacity:.8;
-}
-
-.drop-panel{
-  position:absolute;
-  top:calc(100% + 10px);
-  right:0;
-  min-width:240px;
-  background:rgba(255,255,255,.92);
-  border:1px solid rgba(0,0,0,.10);
-  border-radius:16px;
-  box-shadow:0 18px 40px rgba(0,0,0,.12);
-  padding:12px;
-  z-index:999;
-  backdrop-filter:blur(14px);
-
-  opacity:0;
-  transform:translateY(-8px);
-  pointer-events:none;
-  transition:opacity .18s ease, transform .18s ease;
-}
-
-.dropdown.open .drop-panel{
-  opacity:1;
-  transform:translateY(0);
-  pointer-events:auto;
-}
-
-.drop-grid{
-  display:grid;
-  grid-template-columns:repeat(3, 1fr);
-  gap:10px;
-  margin-bottom:10px;
-}
-
-.lang-btn{
-  border:none;
-  background:rgba(0,0,0,.06);
-  padding:10px 0;
-  border-radius:999px;
-  cursor:pointer;
-  font-weight:900;
-  font-size:.85rem;
-  color:var(--ink);
-  transition:transform .18s ease, background .18s ease;
-}
-
-.lang-btn:hover{
-  transform:translateY(-1px);
-  background:rgba(0,0,0,.10);
-}
-
-.lang-btn.is-active{
-  background:var(--ink);
-  color:#fff;
-}
-
-.drop-sep{
-  height:1px;
-  background:rgba(0,0,0,.10);
-  margin:12px 0;
-}
-
-.drop-reset{
-  width:100%;
-  padding:10px 12px;
-  border-radius:12px;
-  border:1px solid rgba(0,0,0,.10);
-  background:rgba(255,255,255,.85);
-  cursor:pointer;
-  font-weight:800;
-  transition:background .18s ease, transform .18s ease;
-}
-
-.drop-reset:hover{
-  background:rgba(255,255,255,1);
-  transform:translateY(-1px);
-}
-
-/* A11y rows */
-.a11y-row{
-  display:flex;
-  gap:10px;
-  margin-bottom:12px;
-}
-
-.a11y-btn{
-  flex:1;
-  padding:10px;
-  border:none;
-  border-radius:999px;
-  background:rgba(0,0,0,.06);
-  font-weight:900;
-  cursor:pointer;
-  transition:.18s;
-}
-
-.a11y-btn:hover{
-  background:rgba(0,0,0,.12);
-  transform:translateY(-1px);
-}
-
-.toggle{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:10px 8px;
-  border-radius:12px;
-  cursor:pointer;
-  user-select:none;
-  font-weight:700;
-}
-
-.toggle:hover{
-  background:rgba(0,0,0,.05);
-}
-
-.toggle input{
-  width:18px;
-  height:18px;
 }
 
 /* ================= HERO ================= */
@@ -325,35 +169,33 @@ body{
   gap:28px;
 }
 
-/* ✅ Fallback: si JS falla, igual se ven */
 .card{
   background:var(--glass);
   padding:26px;
   border-radius:var(--radius-md);
   box-shadow:var(--shadow-sm);
   border:1px solid rgba(255,255,255,.45);
-  opacity:1;
-  transform:none;
-}
 
-/* ✅ Animación SOLO si el body tiene .js */
-body.js .card{
+  /* Fade/Slide al aparecer */
   opacity:0;
-  transform:translateY(18px) scale(.98);
-  transition:opacity .65s ease, transform .65s ease;
+  transform: translateY(18px) scale(.98);
+  transition: opacity .65s ease, transform .65s ease;
+  will-change: transform, opacity;
 }
 
-body.js .card.is-visible{
+/* Visibilidad por viewport (JS) */
+.card.is-visible{
   opacity:1;
-  transform:translateY(0) scale(1);
+  transform: translateY(0) scale(1);
 }
 
-/* hover */
+/* Micro tilt hover pro */
 .card:hover{
-  transform:translateY(-6px) scale(1.01);
-  box-shadow:var(--shadow-glow);
+  transform: translateY(-6px) rotateX(2deg) rotateY(-2deg) scale(1.01);
+  box-shadow: var(--shadow-glow);
 }
 
+/* Thumb */
 .thumb{
   aspect-ratio:16/9;
   border-radius:var(--radius-sm);
@@ -379,25 +221,32 @@ body.js .card.is-visible{
   background:rgba(0,0,0,.06);
   padding:4px 10px;
   border-radius:999px;
-  white-space:nowrap;
 }
 
-/* ================= FIX: CTA ================= */
+/* ================= FIX: Separar botones en cards de proyectos ================= */
 .card-ctas{
   display:flex;
   flex-direction:column;
+  gap:12px;            /* ✅ separación vertical */
   gap:12px;
   margin-top:14px;
 }
 
+.card-ctas .btn{
+  width:fit-content;
+}
+
+/* Si quieres que se vuelvan fila en pantallas grandes */
 @media(min-width:900px){
   .card-ctas.separated{
     flex-direction:row;
+    flex-wrap:wrap;
+    gap:14px;          /* ✅ separación horizontal */
     gap:14px;
   }
 }
 
-/* ================= BLOQUES ================= */
+/* ================= BLOQUES POR SECCIÓN ================= */
 #proyectos .container,
 #tecnologias .container,
 #certificados .container,
@@ -407,6 +256,14 @@ body.js .card.is-visible{
   padding:52px 46px;
   box-shadow:var(--shadow-md);
   border:1px solid rgba(255,255,255,.55);
+}
+
+#proyectos,
+#tecnologias,
+#certificados,
+#contacto{
+  padding-top:70px;
+  padding-bottom:70px;
 }
 
 /* ================= TECNOLOGÍAS ================= */
@@ -422,9 +279,8 @@ body.js .card.is-visible{
   position:relative;
   width:260px;
   height:260px;
-  min-width:260px;
-  min-height:260px;
   flex:0 0 auto;
+  transform:none !important;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -433,7 +289,14 @@ body.js .card.is-visible{
 #skillsDonut{
   width:260px !important;
   height:260px !important;
-  display:block !important;
+  display:block;
+  transform:scale(1);
+  transition:transform .25s ease;
+  will-change:transform;
+}
+
+#skillsDonut:hover{
+  transform:scale(1.04);
 }
 
 .donut-tooltip{
@@ -449,7 +312,6 @@ body.js .card.is-visible{
   transition:opacity .2s ease;
   white-space:nowrap;
   box-shadow:0 8px 20px rgba(0,0,0,.15);
-  z-index:20;
 }
 
 .tech-controls{
@@ -467,13 +329,35 @@ body.js .card.is-visible{
   font-weight:700;
   background:rgba(255,255,255,.72);
   cursor:pointer;
+  transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
   box-shadow:var(--shadow-sm);
   color:var(--ink);
 }
 
+.tech-btn:hover{
+  transform:translateY(-2px);
+  background:rgba(255,255,255,.92);
+}
+
+/* Perfil completo igual a los demás */
+#showAll{
+  background:rgba(255,255,255,.72);
+  border:2px solid rgba(0,0,0,.07);
+  color:var(--ink);
+}
+
 .tech-btn.is-active{
+/* ✅ FIX COMPLETO: Solo skills activos (con data-key) son oscuros */
+.tech-btn.is-active[data-key]{
   background:var(--ink);
   color:#fff;
+}
+
+/* ✅ Perfil completo activo: se mantiene claro y texto negro */
+#showAll.is-active{
+  background:rgba(255,255,255,.72);
+  color:var(--ink);
+  border:2px solid rgba(0,0,0,.07);
 }
 
 /* ================= CONTACTO ================= */
@@ -511,23 +395,19 @@ body.js .card.is-visible{
   border-top:1px solid rgba(0,0,0,.08);
 }
 
-/* ================= RESPONSIVE ================= */
-@media(max-width:980px){
-  .nav-wrap{
-    flex-wrap:wrap;
-    justify-content:center;
+/* ================= ACCESIBILIDAD ================= */
+@media (prefers-reduced-motion: reduce){
+  .card{
+    transition:none !important;
+    opacity:1 !important;
+    transform:none !important;
   }
-  .main-nav{
-    justify-content:center;
-    flex-wrap:wrap;
-  }
-  .toolbar{
-    width:100%;
-    justify-content:center;
-    margin-top:10px;
+  .card:hover{
+    transform:none !important;
   }
 }
 
+/* ================= RESPONSIVE ================= */
 @media(max-width:900px){
   .hero-card{
     grid-template-columns:1fr;
@@ -558,86 +438,3 @@ body.js .card.is-visible{
     max-width:100%;
     justify-content:flex-start;
   }
-
-  .drop-panel{
-    right:auto;
-    left:0;
-  }
-}
-
-/* ========================== */
-/* ✅ ACCESIBILIDAD */
-/* ========================== */
-
-/* ✅ Alto contraste (blanco + negro REAL) */
-body.high-contrast{
-  background:#ffffff !important;
-  color:#000000 !important;
-}
-
-body.high-contrast *{
-  color:#000000 !important;
-  border-color:#000000 !important;
-}
-
-body.high-contrast .site-header{
-  background:#ffffff !important;
-  border-bottom:2px solid #000 !important;
-}
-
-body.high-contrast .hero-card,
-body.high-contrast .card,
-body.high-contrast #proyectos .container,
-body.high-contrast #tecnologias .container,
-body.high-contrast #certificados .container,
-body.high-contrast #contacto .container{
-  background:#ffffff !important;
-  border:2px solid #000 !important;
-  box-shadow:none !important;
-}
-
-body.high-contrast .drop-btn,
-body.high-contrast .tech-btn,
-body.high-contrast .lang-btn{
-  background:#ffffff !important;
-  border:2px solid #000 !important;
-  box-shadow:none !important;
-}
-
-/* ✅ Botones conservan color original */
-body.high-contrast .btn.red{
-  background:#d72638 !important;
-  color:#fff !important;
-  border:2px solid #000 !important;
-}
-
-body.high-contrast .btn.case{
-  background:#8f4428 !important;
-  color:#fff !important;
-  border:2px solid #000 !important;
-}
-
-body.high-contrast .btn.primary{
-  background:#0077b6 !important;
-  color:#fff !important;
-  border:2px solid #000 !important;
-}
-
-body.high-contrast .btn.ghost{
-  background:#ffffff !important;
-  color:#000000 !important;
-  border:2px solid #000 !important;
-}
-
-/* Links */
-body.high-contrast a{
-  color:#000 !important;
-  text-decoration: underline !important;
-}
-
-/* ✅ Fuente legible (sin dañar diseño) */
-body.readable-font{
-  font-family: "Inter", system-ui, Arial, sans-serif !important;
-  letter-spacing: .01em;
-  line-height: 1.8;
-}
