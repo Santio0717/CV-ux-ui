@@ -17,7 +17,6 @@ body.case-page{
   padding: 40px 0;
 }
 
-/* ===== Layout simétrico ===== */
 .case-layout{
   width: min(1200px, 92%);
   margin: 0 auto;
@@ -27,7 +26,6 @@ body.case-page{
   align-items: start;
 }
 
-/* ===== Panel izquierdo ===== */
 .case-card{
   background: var(--glass);
   padding: 38px 32px;
@@ -52,7 +50,6 @@ body.case-page{
   opacity: .85;
 }
 
-/* ===== Tabs ===== */
 .ux-tabs{
   display:flex;
   flex-wrap:wrap;
@@ -79,7 +76,6 @@ body.case-page{
   border-color:#000;
 }
 
-/* ✅ Placeholder inicial */
 .case-placeholder{
   margin-top: 18px;
   padding: 22px;
@@ -108,7 +104,6 @@ body.case-page{
   opacity: .85;
 }
 
-/* Contenido cargado */
 .case-body{
   margin-top: 18px;
   flex: 1;
@@ -127,7 +122,6 @@ body.case-page{
   padding-left: 18px;
 }
 
-/* ===== Derecha ===== */
 .case-aside{
   display:flex;
   flex-direction: column;
@@ -168,7 +162,6 @@ body.case-page{
   line-height: 1.6;
 }
 
-/* ✅ Botones dentro de la card */
 .preview-actions{
   display: flex;
   gap: 14px;
@@ -201,7 +194,6 @@ body.case-page{
 
 .btn:hover{ opacity:.85; transform: translateY(-1px); }
 
-/* Responsive */
 @media (max-width: 900px){
   .case-layout{ grid-template-columns: 1fr; }
   .case-card{ min-height: auto; }
