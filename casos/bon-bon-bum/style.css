@@ -1,87 +1,38 @@
-/* Fondo y layout general */
-body.case-page {
-  background: #f2dfc2;
-  padding-top: 40px;
-  font-family: 'Inter', sans-serif;
-}
+document.addEventListener("DOMContentLoaded", () => {
+  const content = document.getElementById("case-content");
+  const tabs = document.querySelectorAll(".ux-tab");
 
-.case-content {
-  background: rgba(255, 255, 255, 0.35);
-  padding: 32px;
-  border-radius: 16px;
-  max-width: 900px;
-  margin: auto;
-  box-shadow: 0 8px 20px rgba(0,0,0,.08);
-}
+  function setActiveTab(activeBtn){
+    tabs.forEach(btn => {
+      const isActive = btn === activeBtn;
+      btn.classList.toggle("active", isActive);
+      btn.setAttribute("aria-selected", isActive ? "true" : "false");
+    });
+  }
 
-.case-title {
-  font-size: 2rem;
-  margin-bottom: 18px;
-  text-align: center;
-  font-weight: 700;
-}
+  async function loadPage(page){
+    try{
+      const res = await fetch(page, { cache: "no-store" });
+      if(!res.ok) throw new Error("No se pudo cargar: " + page);
+      const html = await res.text();
+      content.innerHTML = html;
+    }catch(err){
+      content.innerHTML = `<p style="text-align:center;">Error cargando el contenido.</p>`;
+      console.error(err);
+    }
+  }
 
-/* Tabs */
-.ux-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin: 25px auto 35px;
-  justify-content: center;
-}
+  // Carga inicial (primera tab)
+  const first = document.querySelector(".ux-tab.active") || tabs[0];
+  if(first){
+    setActiveTab(first);
+    loadPage(first.dataset.page);
+  }
 
-.ux-tab {
-  padding: 10px 18px;
-  border-radius: 40px;
-  background: #e8dfd2;
-  border: 1px solid #cfc4b4;
-  cursor: pointer;
-  font-weight: 600;
-  transition: .25s;
-  text-decoration: none;
-  color: #222;
-}
-
-.ux-tab:hover {
-  transform: scale(1.05);
-}
-
-.ux-tab.active {
-  background: #000;
-  color: #fff;
-}
-
-/* Contenido */
-.ux-section {
-  line-height: 1.6;
-}
-
-/* Botones inferiores */
-.case-links {
-  margin-top: 38px;
-  display: flex;
-  justify-content: center;
-  gap: 18px;
-}
-
-.btn {
-  padding: 12px 20px;
-  border-radius: 10px;
-  color: #fff;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.btn.ghost {
-  background: transparent;
-  border: 2px solid #333;
-  color: #333;
-}
-
-.btn.case {
-  background: #b85c38;
-}
-
-.btn:hover {
-  opacity: .8;
-}
+  tabs.forEach(btn => {
+    btn.addEventListener("click", () => {
+      setActiveTab(btn);
+      loadPage(btn.dataset.page);
+    });
+  });
+});
