@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bon Bon Bum · Estudio de Caso</title>
+
   <link rel="stylesheet" href="./style.css" />
 </head>
 
@@ -11,31 +12,38 @@
 
   <main class="case-layout">
 
-    <!-- IZQUIERDA -->
+    <!-- ===== IZQUIERDA ===== -->
     <section class="case-card">
       <h1 class="case-title">Bon Bon Bum</h1>
 
       <nav class="ux-tabs" aria-label="Fases del caso">
-        <button class="ux-tab active" type="button" data-page="ux-research.html">UX Research</button>
-        <button class="ux-tab" type="button" data-page="ux-design.html">UX Design</button>
-        <button class="ux-tab" type="button" data-page="prototipado.html">Prototipado</button>
-        <button class="ux-tab" type="button" data-page="product-design.html">Product Design</button>
-        <button class="ux-tab" type="button" data-page="accesibilidad.html">Accesibilidad</button>
+        <button class="ux-tab active" type="button" data-page="./ux-research.html">UX Research</button>
+        <button class="ux-tab" type="button" data-page="./ux-design.html">UX Design</button>
+        <button class="ux-tab" type="button" data-page="./prototipado.html">Prototipado</button>
+        <button class="ux-tab" type="button" data-page="./product-design.html">Product Design</button>
+        <button class="ux-tab" type="button" data-page="./accesibilidad.html">Accesibilidad</button>
       </nav>
 
       <p class="case-hint">Selecciona una categoría para explorar cada fase del proceso.</p>
 
-      <!-- AQUÍ CAMBIA LA INFO -->
+      <!-- Aquí cambia la info -->
       <div id="case-content" class="case-body"></div>
     </section>
 
-    <!-- DERECHA -->
+    <!-- ===== DERECHA ===== -->
     <aside class="case-aside">
-      <!-- Card tipo imagen 3 -->
+
       <article class="preview-card">
         <div class="preview-thumb">
-          <img src="../../../activos/Proyectos/Bon_Bon_Bum.png"
-               alt="Proyecto Bon Bon Bum" loading="lazy">
+          <!-- ✅ Click abre Figma -->
+          <a class="preview-link"
+             href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma"
+             target="_blank" rel="noopener noreferrer"
+             aria-label="Abrir prototipo en Figma (se abre en nueva pestaña)">
+            <img src="../../../activos/Proyectos/Bon_Bon_Bum.png"
+                 alt="Vista previa del proyecto Bon Bon Bum"
+                 loading="lazy">
+          </a>
         </div>
 
         <h3 class="preview-title">Bon Bon Bum</h3>
@@ -45,13 +53,14 @@
         </p>
       </article>
 
-      <!-- Botones debajo (como pediste) -->
+      <!-- Botones debajo del preview -->
       <div class="case-links">
         <a href="../../../index.html#proyectos" class="btn ghost">Volver al portafolio</a>
         <a href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma"
            target="_blank" rel="noopener noreferrer"
            class="btn case">Ver prototipo en Figma</a>
       </div>
+
     </aside>
 
   </main>
