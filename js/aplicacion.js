@@ -21,25 +21,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const wrapper = canvas?.closest(".donut-wrapper");
   const tooltip = document.getElementById("donutTooltip");
 
-  const keys   = Object.keys(skills);
+  const keys = Object.keys(skills);
   const labels = keys.map(k => skills[k].label);
   const values = keys.map(k => skills[k].value);
   const baseColors = keys.map(k => skills[k].color);
 
-  // Fijar inicio en 12 y dirección a la derecha (horario)
-  const ROTATION_12_PM = -90;
-  const CIRCUMFERENCE_FULL = 360;
+  // Inicio fijo 12 (arriba) y crece a la derecha (horario)
+  const ROTATION_12 = -90;
+  const CIRC_FULL = 360;
 
-  // Estado de selección
-  let selectedIndex = null; // 0..n-1 o null
+  // Selección (opacar/elevación)
+  let selectedIndex = null;
 
-  // Helpers para opacidad
   function hexToRgba(hex, a = 1){
     const h = hex.replace("#", "");
-    const bigint = parseInt(h.length === 3 ? h.split("").map(c=>c+c).join("") : h, 16);
-    const r = (bigint >> 16) & 255;
-    const g = (bigint >> 8) & 255;
-    const b = bigint & 255;
+    const full = (h.length === 3) ? h.split("").map(c => c + c).join("") : h;
+    const n = parseInt(full, 16);
+    const r = (n >> 16) & 255;
+    const g = (n >> 8) & 255;
+    const b = n & 255;
     return `rgba(${r},${g},${b},${a})`;
   }
 
@@ -52,35 +52,19 @@ document.addEventListener("DOMContentLoaded", () => {
       labels,
       datasets: [{
         data: values,
-
-        // ✅ Colores “inteligentes” según selección (scriptable)
         backgroundColor: (ctx) => {
           const i = ctx.dataIndex;
           const base = baseColors[i];
-
-          // Sin selección: normal
           if (selectedIndex === null) return base;
-
-          // Seleccionado: 100% opacidad
-          if (i === selectedIndex) return base;
-
-          // No seleccionado: más opaco
-          return hexToRgba(base, 0.25);
+          return (i === selectedIndex) ? base : hexToRgba(base, 0.25);
         },
-
         borderWidth: 0,
-
-        // ✅ “Elevación” del segmento seleccionado
+        spacing: 2,
         offset: (ctx) => {
           const i = ctx.dataIndex;
           if (selectedIndex === null) return 0;
           return (i === selectedIndex) ? 14 : 0;
         },
-
-        // Separación estética (déjalo bajo para que no se “rompa” visualmente)
-        spacing: 2,
-
-        // Grosor del hover (por si pasa mouse)
         hoverOffset: 10
       }]
     },
@@ -88,59 +72,87 @@ document.addEventListener("DOMContentLoaded", () => {
       responsive: true,
       maintainAspectRatio: false,
       cutout: "75%",
-      rotation: ROTATION_12_PM,
-      circumference: CIRCUMFERENCE_FULL,
-      animation: {
-        animateRotate: true,
-        duration: 450
-      },
-      plugins: {
-        legend: { display: false },
-        tooltip: { enabled: false }
-      }
+      rotation: ROTATION_12,
+      circumference: CIRC_FULL,
+      animation: { duration: 250, animateRotate: false, animateScale: false },
+      plugins: { legend: { display: false }, tooltip: { enabled: false } }
     }
   });
 
   /* ==========================
-     TOOLTIP (mostrar %)
+     TOOLTIP (SOLO SOBRE COLOR)
+     - Aparece solo si hay un arco debajo del mouse
+     - Se posiciona pegado al arco (tooltipPosition)
+     - Desaparece si sales del arco o del canvas
   ========================== */
-  function showTooltipForIndex(i){
+  function hideTooltip(){
     if (!tooltip) return;
-    const key = keys[i];
-    const s = skills[key];
+    tooltip.style.opacity = "0";
+  }
+
+  function showTooltipAtArc(index){
+    if (!tooltip || !wrapper) return;
+
+    const arc = chart.getDatasetMeta(0).data[index];
+    if (!arc) return;
+
+    const s = skills[keys[index]];
+    const p = arc.tooltipPosition(); // coords relativas al canvas
+
+    // Convertir coords canvas -> wrapper
+    const canvasRect = canvas.getBoundingClientRect();
+    const wrapRect = wrapper.getBoundingClientRect();
+
+    const left = (p.x + (canvasRect.left - wrapRect.left));
+    const top  = (p.y + (canvasRect.top  - wrapRect.top));
+
     tooltip.textContent = `${s.label} — ${s.value}%`;
     tooltip.style.background = s.color;
+
+    // Pegadito al segmento (arriba del punto)
+    tooltip.style.left = `${left}px`;
+    tooltip.style.top  = `${top}px`;
+    tooltip.style.transform = "translate(-50%, -120%)";
     tooltip.style.opacity = "1";
   }
 
-  function hideTooltip(){
-    if (tooltip) tooltip.style.opacity = "0";
-  }
+  // ✅ IMPORTANTE: se detecta el arco con Chart.js, no con wrapper mousemove
+  canvas.addEventListener("mousemove", (evt) => {
+    if (!tooltip) return;
 
-  // Posicionamiento tooltip
-  if (wrapper && tooltip) {
-    wrapper.addEventListener("mousemove", (e) => {
-      const rect = wrapper.getBoundingClientRect();
-      tooltip.style.left = (e.clientX - rect.left) + "px";
-      tooltip.style.top  = (e.clientY - rect.top) + "px";
-    });
-  }
+    const points = chart.getElementsAtEventForMode(
+      evt,
+      "nearest",
+      { intersect: true },
+      true
+    );
+
+    // Si NO está encima de un segmento de color, ocultar
+    if (!points.length) {
+      hideTooltip();
+      return;
+    }
+
+    // Está encima de un segmento
+    const index = points[0].index;
+    showTooltipAtArc(index);
+  });
+
+  // Al salir del canvas: ocultar
+  canvas.addEventListener("mouseleave", () => {
+    hideTooltip();
+  });
 
   /* ==========================
-     SELECCIÓN (BOTONES)
-     - Mantener todas
-     - Opacar otras
-     - Elevar seleccionada
-     - Mostrar %
+     SELECCIÓN POR BOTONES
+     - Mantiene todas visibles
+     - Opaca las demás
+     - Eleva la seleccionada
   ========================== */
   function selectIndex(i){
     selectedIndex = i;
-
-    // Resalta también “active element” para accesibilidad interna del chart
     chart.setActiveElements([{ datasetIndex: 0, index: i }]);
-
     chart.update();
-    showTooltipForIndex(i);
   }
 
   function clearSelection(){
@@ -150,28 +162,23 @@ document.addEventListener("DOMContentLoaded", () => {
     hideTooltip();
   }
 
-  // Botones (selección por key)
   document.querySelectorAll(".tech-btn[data-key]").forEach(btn => {
     btn.addEventListener("click", () => {
       document.querySelectorAll(".tech-btn").forEach(b => b.classList.remove("is-active"));
       btn.classList.add("is-active");
 
-      const key = btn.dataset.key;
-      const i = keys.indexOf(key);
+      const i = keys.indexOf(btn.dataset.key);
       if (i !== -1) selectIndex(i);
     });
   });
 
-  // Perfil completo = sin selección (todo normal)
-  document.getElementById("showAll")?.addEventListener("click", function() {
+  document.getElementById("showAll")?.addEventListener("click", function(){
     document.querySelectorAll(".tech-btn").forEach(b => b.classList.remove("is-active"));
     this.classList.add("is-active");
-    clearSelection();
+    clearSelection(); // perfil completo sin selección (pero tooltip funciona al hover)
   });
 
-  /* ==========================
-     (Opcional) Click en la dona también selecciona
-  ========================== */
+  /* (Opcional) Click en la dona para seleccionar */
   canvas.addEventListener("click", (evt) => {
     const points = chart.getElementsAtEventForMode(evt, "nearest", { intersect: true }, true);
     if (!points.length) return;
@@ -179,20 +186,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const i = points[0].index;
     selectIndex(i);
 
-    // sincronizar botones
+    // sincroniza botones
     document.querySelectorAll(".tech-btn").forEach(b => b.classList.remove("is-active"));
     const key = keys[i];
-    const btn = document.querySelector(`.tech-btn[data-key="${key}"]`);
-    btn?.classList.add("is-active");
-  });
-
-  canvas.addEventListener("mouseleave", () => {
-    // si quieres que el tooltip quede fijo cuando hay selección, NO lo ocultes:
-    if (selectedIndex === null) hideTooltip();
+    document.querySelector(`.tech-btn[data-key="${key}"]`)?.classList.add("is-active");
   });
 
   /* ==========================
-     ANIMACIÓN DE ENTRADA (CARDS)
+     ANIMACIÓN CARDS
   ========================== */
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -204,9 +205,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll(".card").forEach(card => observer.observe(card));
 
-  /* ==========================
-     INICIALIZACIÓN
-  ========================== */
-  clearSelection(); // inicia con todo normal (perfil completo)
+  /* INIT */
+  clearSelection();
 
 });
