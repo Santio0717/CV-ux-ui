@@ -27,13 +27,13 @@ body.case-page{
   align-items: start;
 }
 
-/* ===== Panel izquierdo (tipo Greenscape) ===== */
+/* ===== Panel izquierdo ===== */
 .case-card{
   background: var(--glass);
   padding: 38px 32px;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  min-height: 560px;        /* ✅ evita panel "mini" */
+  min-height: 560px;
   display: flex;
   flex-direction: column;
 }
@@ -79,10 +79,39 @@ body.case-page{
   border-color:#000;
 }
 
+/* ✅ Placeholder inicial */
+.case-placeholder{
+  margin-top: 18px;
+  padding: 22px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.35);
+  border: 1px solid rgba(0,0,0,.06);
+  text-align: center;
+}
+
+.case-placeholder h3{
+  margin: 0 0 8px;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.case-placeholder p{
+  margin: 0 auto 10px;
+  max-width: 52ch;
+  opacity: .9;
+  line-height: 1.7;
+}
+
+.mini-note{
+  display: inline-block;
+  font-size: .9rem;
+  opacity: .85;
+}
+
 /* Contenido cargado */
 .case-body{
   margin-top: 18px;
-  flex: 1;                 /* ✅ llena el espacio */
+  flex: 1;
   line-height: 1.7;
 }
 
@@ -98,14 +127,13 @@ body.case-page{
   padding-left: 18px;
 }
 
-/* ===== Panel derecho ===== */
+/* ===== Derecha ===== */
 .case-aside{
   display:flex;
   flex-direction: column;
   gap: 16px;
 }
 
-/* Preview card */
 .preview-card{
   background: var(--glass-2);
   border-radius: var(--radius);
@@ -124,7 +152,7 @@ body.case-page{
 
 .preview-link img{
   width: 100%;
-  height: 340px;      /* ✅ preview más grande */
+  height: 340px;
   object-fit: cover;
   display:block;
   border-radius: 12px;
@@ -133,25 +161,22 @@ body.case-page{
 
 .preview-link:hover img{ transform: scale(1.02); }
 
-.preview-title{
-  padding: 0 16px;
-  margin: 0;
-  font-weight: 800;
-}
-
 .preview-desc{
-  padding: 8px 16px 16px;
+  padding: 12px 16px 0;
   margin: 0;
   opacity: .85;
+  line-height: 1.6;
 }
 
-/* Botones debajo */
-.case-links{
-  display:flex;
+/* ✅ Botones dentro de la card */
+.preview-actions{
+  display: flex;
   gap: 14px;
   justify-content: center;
   flex-wrap: wrap;
-  margin-top: 6px;
+  padding: 16px;
+  margin-top: 10px;
+  border-top: 1px solid rgba(0,0,0,.06);
 }
 
 .btn{
