@@ -1,8 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
   const content = document.getElementById("case-content");
-  const tabs = document.querySelectorAll(".ux-tab");
+  const tabs = Array.from(document.querySelectorAll(".ux-tab[data-page]"));
 
-  function setActiveTab(activeBtn){
+  if (!content || !tabs.length) return;
+
+  // Base URL real del folder donde está index.html
+  const base = new URL("./", window.location.href);
+
+  function setActiveTab(activeBtn) {
     tabs.forEach(btn => {
       const isActive = btn === activeBtn;
       btn.classList.toggle("active", isActive);
@@ -10,29 +15,43 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  async function loadPage(page){
-    try{
-      const res = await fetch(page, { cache: "no-store" });
-      if(!res.ok) throw new Error("No se pudo cargar: " + page);
+  function showError(msg = "No se pudo cargar el contenido.") {
+    content.innerHTML = `
+      <div style="text-align:center; padding:18px; border-radius:12px; background:rgba(255,255,255,.45);">
+        <strong>${msg}</strong>
+      </div>
+    `;
+  }
+
+  async function loadPage(page) {
+    try {
+      const url = new URL(page, base);
+      const res = await fetch(url.toString(), { cache: "no-store" });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const html = await res.text();
       content.innerHTML = html;
-    }catch(err){
-      content.innerHTML = `<p style="text-align:center;">Error cargando el contenido.</p>`;
+    } catch (err) {
       console.error(err);
+      showError();
     }
   }
 
-  // Carga inicial (primera tab)
-  const first = document.querySelector(".ux-tab.active") || tabs[0];
-  if(first){
-    setActiveTab(first);
-    loadPage(first.dataset.page);
+  function activate(btn) {
+    setActiveTab(btn);
+    loadPage(btn.dataset.page);
   }
 
+  // Click en tabs
   tabs.forEach(btn => {
-    btn.addEventListener("click", () => {
-      setActiveTab(btn);
-      loadPage(btn.dataset.page);
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      activate(btn);
     });
   });
+
+  // Inicial: botón activo o el primero
+  const initial =
+    tabs.find(b => b.classList.contains("active")) || tabs[0];
+
+  activate(initial);
 });
