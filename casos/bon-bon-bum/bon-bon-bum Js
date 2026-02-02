@@ -4,54 +4,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!content || !tabs.length) return;
 
-  // Base URL real del folder donde está index.html
-  const base = new URL("./", window.location.href);
-
-  function setActiveTab(activeBtn) {
-    tabs.forEach(btn => {
-      const isActive = btn === activeBtn;
-      btn.classList.toggle("active", isActive);
-      btn.setAttribute("aria-selected", isActive ? "true" : "false");
-    });
-  }
-
-  function showError(msg = "No se pudo cargar el contenido.") {
-    content.innerHTML = `
-      <div style="text-align:center; padding:18px; border-radius:12px; background:rgba(255,255,255,.45);">
-        <strong>${msg}</strong>
-      </div>
-    `;
-  }
-
-  async function loadPage(page) {
-    try {
-      const url = new URL(page, base);
-      const res = await fetch(url.toString(), { cache: "no-store" });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const html = await res.text();
-      content.innerHTML = html;
-    } catch (err) {
-      console.error(err);
-      showError();
+  async function loadPage(page){
+    try{
+      const res = await fetch(page, { cache: "no-store" });
+      if(!res.ok) throw new Error("HTTP " + res.status);
+      content.innerHTML = await res.text();
+    }catch(e){
+      content.innerHTML = `<p style="text-align:center;">No se pudo cargar esta sección.</p>`;
+      console.error(e);
     }
   }
 
-  function activate(btn) {
-    setActiveTab(btn);
-    loadPage(btn.dataset.page);
+  function setActive(btn){
+    tabs.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
   }
 
-  // Click en tabs
   tabs.forEach(btn => {
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
-      activate(btn);
+    btn.addEventListener("click", () => {
+      setActive(btn);
+      loadPage(btn.dataset.page);
     });
   });
 
-  // Inicial: botón activo o el primero
-  const initial =
-    tabs.find(b => b.classList.contains("active")) || tabs[0];
-
-  activate(initial);
+  // carga inicial
+  setActive(tabs[0]);
+  loadPage(tabs[0].dataset.page);
 });
