@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bon Bon Bum · Estudio de Caso</title>
+
   <link rel="stylesheet" href="./style.css" />
 </head>
 
@@ -11,26 +12,41 @@
 
   <main class="case-layout">
 
+    <!-- ===== IZQUIERDA ===== -->
     <section class="case-main case-content">
       <h1 class="case-title">Bon Bon Bum</h1>
 
-      <div class="ux-tabs">
-        <button class="ux-tab active" type="button" data-page="ux-research.html">UX Research</button>
-        <button class="ux-tab" type="button" data-page="ux-design.html">UX Design</button>
-        <button class="ux-tab" type="button" data-page="prototipado.html">Prototipado</button>
-        <button class="ux-tab" type="button" data-page="product-design.html">Product Design</button>
-        <button class="ux-tab" type="button" data-page="accesibilidad.html">Accesibilidad</button>
-      </div>
+      <!-- Tabs (páginas completas) -->
+      <nav class="ux-tabs" aria-label="Fases del caso">
+        <a class="ux-tab active" href="ux-research.html" target="caseFrame">UX Research</a>
+        <a class="ux-tab" href="ux-design.html" target="caseFrame">UX Design</a>
+        <a class="ux-tab" href="prototipado.html" target="caseFrame">Prototipado</a>
+        <a class="ux-tab" href="product-design.html" target="caseFrame">Product Design</a>
+        <a class="ux-tab" href="accesibilidad.html" target="caseFrame">Accesibilidad</a>
+      </nav>
 
-      <p class="case-subtitle">Selecciona una categoría para explorar cada fase del proceso.</p>
+      <p class="case-subtitle">
+        Selecciona una categoría para explorar cada fase del proceso.
+      </p>
 
-      <div id="case-content"></div>
+      <!-- ✅ Aquí se carga la "página completa" sin perder el lado derecho -->
+      <iframe
+        class="case-frame"
+        name="caseFrame"
+        src="ux-research.html"
+        title="Contenido del caso Bon Bon Bum"
+        loading="lazy">
+      </iframe>
     </section>
 
+    <!-- ===== DERECHA (se conserva SIEMPRE) ===== -->
     <aside class="case-aside">
       <div class="case-preview">
-        <img src="../../../activos/Proyectos/Bon_Bon_Bum.png"
-             alt="Proyecto Bon Bon Bum" loading="lazy" />
+        <img
+          src="../../../activos/Proyectos/Bon_Bon_Bum.png"
+          alt="Vista previa del proyecto Bon Bon Bum"
+          loading="lazy"
+        />
       </div>
 
       <div class="case-links">
@@ -43,6 +59,16 @@
 
   </main>
 
-  <script src="./bon-bon-bum.js"></script>
+  <!-- Solo para activar visualmente el tab seleccionado -->
+  <script>
+    const tabs = document.querySelectorAll(".ux-tab");
+    tabs.forEach(t => {
+      t.addEventListener("click", () => {
+        tabs.forEach(x => x.classList.remove("active"));
+        t.classList.add("active");
+      });
+    });
+  </script>
+
 </body>
 </html>
