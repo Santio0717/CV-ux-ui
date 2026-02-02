@@ -1,6 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /* ==========================
+     AÑO FOOTER
+  ========================== */
+  const year = document.getElementById("year");
+  if (year) year.textContent = new Date().getFullYear();
+
+  /* ==========================
      CONFIGURACIÓN DE DATOS
   ========================== */
   const skills = {
@@ -12,18 +18,23 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const canvas = document.getElementById("skillsDonut");
+  const wrapper = canvas?.closest(".donut-wrapper");
+  const tooltip = document.getElementById("donutTooltip");
+
   const keys   = Object.keys(skills);
   const labels = keys.map(k => skills[k].label);
   const values = keys.map(k => skills[k].value);
   const colors = keys.map(k => skills[k].color);
 
-  let chart = null;
-  let mode = "all";
+  let mode = "all";        // all | single
   let selectedKey = null;
+  let chart = null;
 
-  // 12:00 PM es -90 grados. 
-  // Chart.js dibuja por defecto hacia ADELANTE (sentido horario).
-  const START_ANGLE = -90; 
+  // 🔒 CONSTANTES DE POSICIONAMIENTO
+  // -90 grados coloca el inicio a las 12:00. 
+  // Chart.js por defecto dibuja en sentido horario.
+  const ROTATION_12_PM = -90; 
+  const CIRCUMFERENCE_FULL = 360;
 
   /* ==========================
      CREACIÓN DEL CHART
@@ -38,60 +49,121 @@ document.addEventListener("DOMContentLoaded", () => {
         datasets: [{
           data: values,
           backgroundColor: colors,
-          borderWidth: 0
+          borderWidth: 0,
+          spacing: 2 // Pequeña separación estética
         }]
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        cutout: "75%",
-        rotation: START_ANGLE, 
-        circumference: 360,
+        cutout: "75%", // Grosor de la dona
+        rotation: ROTATION_12_PM,
+        circumference: CIRCUMFERENCE_FULL,
         animation: {
           animateRotate: true,
-          duration: 800
+          duration: 600,
+          easing: 'easeOutQuart'
         },
         plugins: {
           legend: { display: false },
-          tooltip: { enabled: false }
+          tooltip: { enabled: false } // Desactivamos el de fábrica para usar el tuyo
         }
       }
+    });
+
+    // Eventos de Tooltip
+    if (wrapper && tooltip) {
+      wrapper.addEventListener("mousemove", (e) => {
+        const rect = wrapper.getBoundingClientRect();
+        tooltip.style.left = (e.clientX - rect.left) + "px";
+        tooltip.style.top  = (e.clientY - rect.top) + "px";
+      });
+    }
+
+    canvas.addEventListener("mousemove", (evt) => {
+      if (!tooltip || !chart) return;
+
+      const points = chart.getElementsAtEventForMode(
+        evt,
+        "nearest",
+        { intersect: true },
+        true
+      );
+
+      if (!points.length) {
+        tooltip.style.opacity = "0";
+        return;
+      }
+
+      const idx = points[0].index;
+
+      // En modo single, ignoramos el "resto gris" (índice 1)
+      if (mode === "single" && idx === 1) {
+        tooltip.style.opacity = "0";
+        return;
+      }
+
+      if (mode === "all") {
+        const key = keys[idx];
+        const s = skills[key];
+        tooltip.textContent = `${s.label} — ${s.value}%`;
+        tooltip.style.background = s.color;
+      } else {
+        const s = skills[selectedKey];
+        tooltip.textContent = `${s.label} — ${s.value}%`;
+        tooltip.style.background = s.color;
+      }
+
+      tooltip.style.opacity = "1";
+    });
+
+    canvas.addEventListener("mouseleave", () => {
+      if (tooltip) tooltip.style.opacity = "0";
     });
   }
 
   /* ==========================
-     FUNCIONES DE ACTUALIZACIÓN
+     FUNCIONES DE FILTRADO
   ========================== */
+  function showAll(){
+    if (!chart) return;
+
+    mode = "all";
+    selectedKey = null;
+
+    chart.data.labels = labels;
+    chart.data.datasets[0].data = values;
+    chart.data.datasets[0].backgroundColor = colors;
+
+    // Aseguramos que se mantenga la orientación
+    chart.options.rotation = ROTATION_12_PM;
+    chart.update();
+  }
+
   function showSingle(key){
     if (!chart || !skills[key]) return;
 
     mode = "single";
     selectedKey = key;
-    const s = skills[key];
-    const rest = 100 - s.value;
 
-    // IMPORTANTE: El primer valor [0] siempre empieza en la rotación definida.
-    // Al poner s.value primero, se dibujará desde las 12:00 hacia la DERECHA.
+    const s = skills[key];
+    const rest = Math.max(0, 100 - s.value);
+
+    // Al ser el primer elemento del array, s.value iniciará 
+    // siempre en el punto definido por rotation (-90)
     chart.data.labels = [s.label, "Resto"];
     chart.data.datasets[0].data = [s.value, rest];
-    chart.data.datasets[0].backgroundColor = [s.color, "#e2e2e2"]; // Gris claro de fondo
-    
-    chart.options.rotation = START_ANGLE;
-    chart.update();
-  }
+    chart.data.datasets[0].backgroundColor = [
+      s.color,
+      "rgba(0,0,0,0.1)" // Color de fondo para el área vacía
+    ];
 
-  function showAll(){
-    if (!chart) return;
-    mode = "all";
-    chart.data.labels = labels;
-    chart.data.datasets[0].data = values;
-    chart.data.datasets[0].backgroundColor = colors;
-    chart.options.rotation = START_ANGLE;
+    chart.options.rotation = ROTATION_12_PM;
     chart.update();
   }
 
   /* ==========================
-     EVENTOS
+     INTERACCIONES (BOTONES)
   ========================== */
   document.querySelectorAll(".tech-btn[data-key]").forEach(btn => {
     btn.addEventListener("click", () => {
@@ -107,6 +179,24 @@ document.addEventListener("DOMContentLoaded", () => {
     showAll();
   });
 
+  /* ==========================
+     ANIMACIÓN DE ENTRADA (CARDS)
+  ========================== */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add("is-visible");
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll(".card").forEach(card => observer.observe(card));
+
+  /* ==========================
+     INICIALIZACIÓN
+  ========================== */
   createDonut();
+  // Iniciamos mostrando todo
   showAll();
+
 });
