@@ -24,20 +24,33 @@
 .case-preview img{
   width: 100%;
   height: auto;
-  border-radius: 12px;
   display: block;
+  border-radius: 12px;
   margin-bottom: 18px;
 }
 
 .case-subtitle{
   text-align:center;
   max-width: 600px;
-  margin: 0 auto 24px;
+  margin: 0 auto 18px;
+}
+
+/* ✅ IFRAME */
+.case-frame{
+  width: 100%;
+  height: 70vh;          /* ajusta si quieres más alto */
+  border: none;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(0,0,0,.06);
 }
 
 /* Responsive */
 @media (max-width: 900px){
   .case-layout{
     grid-template-columns: 1fr;
+  }
+  .case-frame{
+    height: 60vh;
   }
 }
