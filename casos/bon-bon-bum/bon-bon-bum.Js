@@ -19,9 +19,28 @@ document.addEventListener("DOMContentLoaded", () => {
     content.hidden = false;
   }
 
+  // ✅ Limpia duplicados si los archivos cargados vienen "sucios"
+  function sanitizeLoadedHTML(html){
+    const temp = document.createElement("div");
+    temp.innerHTML = html;
+
+    // elimina cosas que NUNCA deben entrar al panel izquierdo
+    temp.querySelectorAll("script, style, link, nav, header, footer").forEach(el => el.remove());
+    temp.querySelectorAll(".ux-tabs, .case-links, .preview-card, .case-title").forEach(el => el.remove());
+
+    // quita H1/H2 repetidos tipo "Bon Bon Bum"
+    temp.querySelectorAll("h1").forEach(el => el.remove());
+    temp.querySelectorAll("h2").forEach(el => {
+      if ((el.textContent || "").trim().toLowerCase() === "bon bon bum") el.remove();
+    });
+
+    // Si el archivo trae body/main, nos quedamos con el contenido útil
+    const main = temp.querySelector("main") || temp;
+    return main.innerHTML.trim();
+  }
+
   async function loadPage(page) {
     try {
-      // ⚠️ fetch falla en file://
       if (location.protocol === "file:") {
         showContent();
         content.innerHTML = `
@@ -35,15 +54,20 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
       const html = await res.text();
+      const clean = sanitizeLoadedHTML(html);
+
       showContent();
-      content.innerHTML = html;
+      content.innerHTML = clean || `
+        <p style="text-align:center; opacity:.85;">
+          Este apartado aún no tiene contenido.
+        </p>`;
 
     } catch (err) {
       console.error(err);
       showContent();
       content.innerHTML = `
         <p style="text-align:center; opacity:.85;">
-          No se pudo cargar <strong>${page}</strong>.
+          No se pudo cargar <strong>${page}</strong>. Revisa el nombre del archivo y la carpeta.
         </p>`;
     }
   }
@@ -61,7 +85,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // ✅ si el usuario hace click, cancelamos la sugerencia
   tabs.forEach(btn => {
     btn.addEventListener("click", () => {
       userInteracted = true;
@@ -70,16 +93,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // ✅ Inicio: vacío + mensaje
+  // Inicio: placeholder visible
   showPlaceholder();
 
-  // ✅ Auto-selección tras 15 segundos si no hubo interacción
+  // ✅ Auto-selección a los 15s SOLO si no hubo interacción
   suggestionTimer = setTimeout(() => {
     if (userInteracted) return;
 
-    const uxResearchBtn = tabs.find(b => (b.textContent || "").trim().toLowerCase() === "ux research") || tabs[0];
-    activate(uxResearchBtn);
+    const uxResearchBtn =
+      tabs.find(b => (b.textContent || "").trim().toLowerCase() === "ux research") || tabs[0];
 
+    activate(uxResearchBtn);
   }, 15000);
 });
-
