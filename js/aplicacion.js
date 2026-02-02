@@ -1,16 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* ==========================
-     1) Año footer
-  ========================== */
+  // Año footer
   const year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
 
-  /* ==========================
-     2) DONUT CHART ✅ FIX:
-     - No se corta: maintainAspectRatio:false + canvas 100%
-     - Al seleccionar: pinta SOLO porcentaje (valor + resto gris)
-  ========================== */
   const canvas = document.getElementById("skillsDonut");
   const wrapper = canvas?.closest(".donut-wrapper");
   const tooltip = document.getElementById("donutTooltip");
@@ -23,13 +16,19 @@ document.addEventListener("DOMContentLoaded", () => {
     prod:   { label: "Producción", value: 10, color: "#e74c3c" }
   };
 
-  const allLabels = Object.values(skills).map(s => s.label);
-  const allValues = Object.values(skills).map(s => s.value);
-  const allColors = Object.values(skills).map(s => s.color);
+  const allKeys = Object.keys(skills);
+  const allLabels = allKeys.map(k => skills[k].label);
+  const allValues = allKeys.map(k => skills[k].value);
+  const allColors = allKeys.map(k => skills[k].color);
 
-  let mode = "all";         // "all" | "single"
+  let mode = "all";
   let selectedKey = null;
   let chart = null;
+
+  // ✅ Punto fijo: arriba (12 en punto)
+  // -90° => inicia en la parte superior siempre
+  const FIXED_ROTATION = -90;
+  const FIXED_CIRCUMFERENCE = 360;
 
   function createDonut(){
     if (!canvas || typeof Chart === "undefined") return;
@@ -42,31 +41,33 @@ document.addEventListener("DOMContentLoaded", () => {
           data: allValues,
           backgroundColor: allColors,
           borderWidth: 0,
-          hoverOffset: 10
+          hoverOffset: 10,
+          // ✅ evita que Chart.js “acomode” arcos raro
+          spacing: 0
         }]
       },
       options: {
         responsive: true,
-        maintainAspectRatio: false, // ✅ clave anti-corte
+        maintainAspectRatio: false,
         cutout: "70%",
-        rotation: -90,
-        circumference: 360,
+        rotation: FIXED_ROTATION,
+        circumference: FIXED_CIRCUMFERENCE,
+        animation: { duration: 250 },
         plugins: {
           legend: { display: false },
-          tooltip: { enabled: false } // usamos tooltip custom
+          tooltip: { enabled: false }
         }
       }
     });
 
-    // Tooltip position (wrapper)
+    // Tooltip follow mouse (opcional)
     wrapper?.addEventListener("mousemove", (e) => {
+      if (!tooltip || !wrapper) return;
       const rect = wrapper.getBoundingClientRect();
-      if (!tooltip) return;
       tooltip.style.left = (e.clientX - rect.left) + "px";
       tooltip.style.top  = (e.clientY - rect.top) + "px";
     });
 
-    // Tooltip content
     canvas.addEventListener("mousemove", (evt) => {
       if (!tooltip || !chart) return;
 
@@ -78,14 +79,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const idx = points[0].index;
 
-      // Si está en single, idx 1 es el "resto gris" y no debe mostrar tooltip
+      // Si está en single, index 1 es el “resto gris”, no mostramos tooltip
       if (mode === "single" && idx === 1) {
         tooltip.style.opacity = "0";
         return;
       }
 
       if (mode === "all") {
-        const key = Object.keys(skills)[idx];
+        const key = allKeys[idx];
         const s = skills[key];
         tooltip.textContent = `${s.label} — ${s.value}%`;
         tooltip.style.background = s.color;
@@ -105,12 +106,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function showAll(){
     if (!chart) return;
+
     mode = "all";
     selectedKey = null;
+
+    chart.options.rotation = FIXED_ROTATION;
+    chart.options.circumference = FIXED_CIRCUMFERENCE;
 
     chart.data.labels = allLabels;
     chart.data.datasets[0].data = allValues;
     chart.data.datasets[0].backgroundColor = allColors;
+
     chart.update();
   }
 
@@ -124,14 +130,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const rest = Math.max(0, 100 - s.value);
 
-    // ✅ 2 segmentos: valor + resto gris
+    // ✅ SIEMPRE inicia en el mismo punto: fijamos rotation/circumference
+    chart.options.rotation = FIXED_ROTATION;
+    chart.options.circumference = FIXED_CIRCUMFERENCE;
+
+    // ✅ 2 segmentos: [valor, resto]
     chart.data.labels = [s.label, ""];
     chart.data.datasets[0].data = [s.value, rest];
     chart.data.datasets[0].backgroundColor = [s.color, "rgba(0,0,0,.12)"];
+
     chart.update();
   }
 
-  // Buttons
+  // Botones
   document.querySelectorAll(".tech-btn[data-key]").forEach(btn => {
     btn.addEventListener("click", () => {
       document.querySelectorAll(".tech-btn").forEach(b => b.classList.remove("is-active"));
@@ -146,21 +157,16 @@ document.addEventListener("DOMContentLoaded", () => {
     showAll();
   });
 
-  /* ==========================
-     3) Animación Cards
-  ========================== */
+  // Animación cards
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if(entry.isIntersecting){
-        entry.target.classList.add("is-visible");
-      }
+      if(entry.isIntersecting) entry.target.classList.add("is-visible");
     });
   }, { threshold: 0.1 });
 
   document.querySelectorAll(".card").forEach(card => observer.observe(card));
 
-  /* INIT */
+  // INIT
   createDonut();
   showAll();
-
 });
