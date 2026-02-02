@@ -1,32 +1,32 @@
 document.addEventListener("DOMContentLoaded", () => {
   const content = document.getElementById("case-content");
+  const placeholder = document.getElementById("case-placeholder");
   const tabs = Array.from(document.querySelectorAll(".ux-tab[data-page]"));
+
   if (!content || !tabs.length) return;
 
-  function sanitizeLoadedHTML(html){
-    const temp = document.createElement("div");
-    temp.innerHTML = html;
+  let userInteracted = false;
+  let suggestionTimer = null;
 
-    // ❌ elimina duplicados comunes
-    temp.querySelectorAll(".ux-tabs, .case-links, .case-title, h1").forEach(el => el.remove());
+  function showPlaceholder(){
+    if (placeholder) placeholder.hidden = false;
+    content.hidden = true;
+    content.innerHTML = "";
+  }
 
-    // si viene un contenedor tipo "case-content", deja solo lo de adentro
-    const innerCase = temp.querySelector(".case-content, .case-card");
-    if(innerCase) {
-      // intenta agarrar solo la sección informativa si existe
-      const section = innerCase.querySelector(".ux-section, .case-body") || innerCase;
-      return section.innerHTML;
-    }
-
-    return temp.innerHTML;
+  function showContent(){
+    if (placeholder) placeholder.hidden = true;
+    content.hidden = false;
   }
 
   async function loadPage(page) {
     try {
+      // ⚠️ fetch falla en file://
       if (location.protocol === "file:") {
+        showContent();
         content.innerHTML = `
           <p style="text-align:center; opacity:.85;">
-            Estás en <strong>file://</strong>. Abre con Live Server o Netlify.
+            Estás en <strong>file://</strong>. Abre con Live Server o Netlify para que funcionen las tabs.
           </p>`;
         return;
       }
@@ -35,10 +35,12 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
       const html = await res.text();
-      content.innerHTML = sanitizeLoadedHTML(html);
+      showContent();
+      content.innerHTML = html;
 
-    } catch (e) {
-      console.error(e);
+    } catch (err) {
+      console.error(err);
+      showContent();
       content.innerHTML = `
         <p style="text-align:center; opacity:.85;">
           No se pudo cargar <strong>${page}</strong>.
@@ -52,7 +54,32 @@ document.addEventListener("DOMContentLoaded", () => {
     loadPage(btn.dataset.page);
   }
 
-  tabs.forEach(btn => btn.addEventListener("click", () => activate(btn)));
+  function cancelSuggestion(){
+    if (suggestionTimer) {
+      clearTimeout(suggestionTimer);
+      suggestionTimer = null;
+    }
+  }
 
-  activate(tabs.find(b => b.classList.contains("active")) || tabs[0]);
+  // ✅ si el usuario hace click, cancelamos la sugerencia
+  tabs.forEach(btn => {
+    btn.addEventListener("click", () => {
+      userInteracted = true;
+      cancelSuggestion();
+      activate(btn);
+    });
+  });
+
+  // ✅ Inicio: vacío + mensaje
+  showPlaceholder();
+
+  // ✅ Auto-selección tras 15 segundos si no hubo interacción
+  suggestionTimer = setTimeout(() => {
+    if (userInteracted) return;
+
+    const uxResearchBtn = tabs.find(b => (b.textContent || "").trim().toLowerCase() === "ux research") || tabs[0];
+    activate(uxResearchBtn);
+
+  }, 15000);
 });
+
