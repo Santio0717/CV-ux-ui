@@ -1,8 +1,17 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+  /* ==========================
+     AÑO FOOTER
+  ========================== */
   const year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
 
+  /* ==========================
+     DONUT CHART
+     - Inicio fijo: 12 en punto
+     - Crece hacia la derecha (horario)
+     - Single: porcentaje + resto gris
+  ========================== */
   const canvas = document.getElementById("skillsDonut");
   const wrapper = canvas?.closest(".donut-wrapper");
   const tooltip = document.getElementById("donutTooltip");
@@ -20,44 +29,99 @@ document.addEventListener("DOMContentLoaded", () => {
   const values = keys.map(k => skills[k].value);
   const colors = keys.map(k => skills[k].color);
 
-  let mode = "all";
+  let mode = "all";        // all | single
   let selectedKey = null;
+  let chart = null;
 
-  // ✅ PUNTO FIJO REAL: 12 en punto
-  // Usamos grados como STRING para evitar interpretación en radianes
-  const ROTATION_FIXED = "-90deg";
-  const CIRC_FIXED     = "360deg"; // horario: hacia la derecha
+  // 🔒 PUNTO FIJO
+  const ROTATION_FIXED = -90;  // 12 en punto
+  const CIRC_FIXED     = 360;  // horario → derecha
 
-  const chart = new Chart(canvas, {
-    type: "doughnut",
-    data: {
-      labels,
-      datasets: [{
-        data: values,
-        backgroundColor: colors,
-        borderWidth: 0,
-        spacing: 0
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      cutout: "70%",
-      rotation: ROTATION_FIXED,
-      circumference: CIRC_FIXED,
-      animation: {
-        animateRotate: false,
-        animateScale: false,
-        duration: 0
+  function createDonut(){
+    if (!canvas || typeof Chart === "undefined") return;
+
+    chart = new Chart(canvas, {
+      type: "doughnut",
+      data: {
+        labels,
+        datasets: [{
+          data: values,
+          backgroundColor: colors,
+          borderWidth: 0,
+          spacing: 0
+        }]
       },
-      plugins: {
-        legend: { display: false },
-        tooltip: { enabled: false }
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: "70%",
+        rotation: ROTATION_FIXED,
+        circumference: CIRC_FIXED,
+        animation: {
+          animateRotate: false, // 🔑 evita saltos raros
+          duration: 200
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: { enabled: false }
+        }
       }
+    });
+
+    /* Tooltip personalizado (opcional) */
+    if (wrapper && tooltip) {
+      wrapper.addEventListener("mousemove", (e) => {
+        const rect = wrapper.getBoundingClientRect();
+        tooltip.style.left = (e.clientX - rect.left) + "px";
+        tooltip.style.top  = (e.clientY - rect.top) + "px";
+      });
     }
-  });
+
+    canvas.addEventListener("mousemove", (evt) => {
+      if (!tooltip || !chart) return;
+
+      const points = chart.getElementsAtEventForMode(
+        evt,
+        "nearest",
+        { intersect: true },
+        true
+      );
+
+      if (!points.length) {
+        tooltip.style.opacity = "0";
+        return;
+      }
+
+      const idx = points[0].index;
+
+      // En modo single, el índice 1 es el resto gris
+      if (mode === "single" && idx === 1) {
+        tooltip.style.opacity = "0";
+        return;
+      }
+
+      if (mode === "all") {
+        const key = keys[idx];
+        const s = skills[key];
+        tooltip.textContent = `${s.label} — ${s.value}%`;
+        tooltip.style.background = s.color;
+      } else {
+        const s = skills[selectedKey];
+        tooltip.textContent = `${s.label} — ${s.value}%`;
+        tooltip.style.background = s.color;
+      }
+
+      tooltip.style.opacity = "1";
+    });
+
+    canvas.addEventListener("mouseleave", () => {
+      if (tooltip) tooltip.style.opacity = "0";
+    });
+  }
 
   function showAll(){
+    if (!chart) return;
+
     mode = "all";
     selectedKey = null;
 
@@ -67,56 +131,36 @@ document.addEventListener("DOMContentLoaded", () => {
     chart.data.labels = labels;
     chart.data.datasets[0].data = values;
     chart.data.datasets[0].backgroundColor = colors;
+
     chart.update();
   }
 
   function showSingle(key){
-    const s = skills[key];
-    if (!s) return;
+    if (!chart || !skills[key]) return;
 
     mode = "single";
     selectedKey = key;
 
+    const s = skills[key];
     const rest = Math.max(0, 100 - s.value);
 
     chart.options.rotation = ROTATION_FIXED;
     chart.options.circumference = CIRC_FIXED;
 
-    // ✅ porcentaje + resto gris
+    // ✅ SOLO porcentaje + resto gris
     chart.data.labels = [s.label, ""];
     chart.data.datasets[0].data = [s.value, rest];
-    chart.data.datasets[0].backgroundColor = [s.color, "rgba(0,0,0,.15)"];
+    chart.data.datasets[0].backgroundColor = [
+      s.color,
+      "rgba(0,0,0,.15)"
+    ];
+
     chart.update();
   }
 
-  // Tooltip opcional
-  if (wrapper && tooltip) {
-    wrapper.addEventListener("mousemove", (e) => {
-      const rect = wrapper.getBoundingClientRect();
-      tooltip.style.left = (e.clientX - rect.left) + "px";
-      tooltip.style.top  = (e.clientY - rect.top) + "px";
-    });
-
-    canvas.addEventListener("mousemove", (evt) => {
-      const points = chart.getElementsAtEventForMode(evt, "nearest", { intersect: true }, true);
-      if (!points.length) { tooltip.style.opacity = "0"; return; }
-
-      const idx = points[0].index;
-      if (mode === "single" && idx === 1) { tooltip.style.opacity = "0"; return; }
-
-      const s = (mode === "all")
-        ? skills[keys[idx]]
-        : skills[selectedKey];
-
-      tooltip.textContent = `${s.label} — ${s.value}%`;
-      tooltip.style.background = s.color;
-      tooltip.style.opacity = "1";
-    });
-
-    canvas.addEventListener("mouseleave", () => tooltip.style.opacity = "0");
-  }
-
-  // Botones
+  /* ==========================
+     BOTONES
+  ========================== */
   document.querySelectorAll(".tech-btn[data-key]").forEach(btn => {
     btn.addEventListener("click", () => {
       document.querySelectorAll(".tech-btn").forEach(b => b.classList.remove("is-active"));
@@ -125,12 +169,29 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  document.getElementById("showAll")?.addEventListener("click", function(){
+  document.getElementById("showAll")?.addEventListener("click", function() {
     document.querySelectorAll(".tech-btn").forEach(b => b.classList.remove("is-active"));
     this.classList.add("is-active");
     showAll();
   });
 
-  // Init
+  /* ==========================
+     ANIMACIÓN CARDS
+  ========================== */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add("is-visible");
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll(".card").forEach(card => observer.observe(card));
+
+  /* ==========================
+     INIT
+  ========================== */
+  createDonut();
   showAll();
+
 });
