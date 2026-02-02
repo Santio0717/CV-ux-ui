@@ -1,14 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* ==========================
-     AÑO FOOTER
-  ========================== */
   const year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
 
-  /* ==========================
-     DATOS
-  ========================== */
   const skills = {
     uxui:   { label: "UX/UI", value: 35, color: "#f39c12" },
     docs:   { label: "Documentación", value: 20, color: "#2ecc71" },
@@ -26,12 +20,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const values = keys.map(k => skills[k].value);
   const baseColors = keys.map(k => skills[k].color);
 
-  // Inicio fijo 12 (arriba) y crece a la derecha (horario)
-  const ROTATION_12 = -90;
-  const CIRC_FULL = 360;
+  const ROTATION_12 = -90; // 12 en punto
+  const CIRC_FULL = 360;   // horario
 
-  // Selección (opacar/elevación)
-  let selectedIndex = null;
+  let selectedIndex = null; // null = perfil completo
 
   function hexToRgba(hex, a = 1){
     const h = hex.replace("#", "");
@@ -43,9 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return `rgba(${r},${g},${b},${a})`;
   }
 
-  /* ==========================
-     CHART
-  ========================== */
   const chart = new Chart(canvas, {
     type: "doughnut",
     data: {
@@ -79,12 +68,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  /* ==========================
-     TOOLTIP (SOLO SOBRE COLOR)
-     - Aparece solo si hay un arco debajo del mouse
-     - Se posiciona pegado al arco (tooltipPosition)
-     - Desaparece si sales del arco o del canvas
-  ========================== */
   function hideTooltip(){
     if (!tooltip) return;
     tooltip.style.opacity = "0";
@@ -99,7 +82,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const s = skills[keys[index]];
     const p = arc.tooltipPosition(); // coords relativas al canvas
 
-    // Convertir coords canvas -> wrapper
     const canvasRect = canvas.getBoundingClientRect();
     const wrapRect = wrapper.getBoundingClientRect();
 
@@ -109,14 +91,15 @@ document.addEventListener("DOMContentLoaded", () => {
     tooltip.textContent = `${s.label} — ${s.value}%`;
     tooltip.style.background = s.color;
 
-    // Pegadito al segmento (arriba del punto)
     tooltip.style.left = `${left}px`;
     tooltip.style.top  = `${top}px`;
     tooltip.style.transform = "translate(-50%, -120%)";
     tooltip.style.opacity = "1";
   }
 
-  // ✅ IMPORTANTE: se detecta el arco con Chart.js, no con wrapper mousemove
+  // ✅ Tooltip:
+  // - Perfil completo (selectedIndex === null): se muestra en cualquier segmento
+  // - Con selección: SOLO se muestra si el hover está en el segmento seleccionado
   canvas.addEventListener("mousemove", (evt) => {
     if (!tooltip) return;
 
@@ -127,32 +110,29 @@ document.addEventListener("DOMContentLoaded", () => {
       true
     );
 
-    // Si NO está encima de un segmento de color, ocultar
     if (!points.length) {
       hideTooltip();
       return;
     }
 
-    // Está encima de un segmento
-    const index = points[0].index;
-    showTooltipAtArc(index);
+    const hoverIndex = points[0].index;
+
+    // ✅ Si hay selección y no estás encima del seleccionado: ocultar
+    if (selectedIndex !== null && hoverIndex !== selectedIndex) {
+      hideTooltip();
+      return;
+    }
+
+    showTooltipAtArc(hoverIndex);
   });
 
-  // Al salir del canvas: ocultar
-  canvas.addEventListener("mouseleave", () => {
-    hideTooltip();
-  });
+  canvas.addEventListener("mouseleave", hideTooltip);
 
-  /* ==========================
-     SELECCIÓN POR BOTONES
-     - Mantiene todas visibles
-     - Opaca las demás
-     - Eleva la seleccionada
-  ========================== */
   function selectIndex(i){
     selectedIndex = i;
     chart.setActiveElements([{ datasetIndex: 0, index: i }]);
     chart.update();
+    hideTooltip(); // tooltip solo sale cuando pases por encima del seleccionado
   }
 
   function clearSelection(){
@@ -162,6 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
     hideTooltip();
   }
 
+  // Botones
   document.querySelectorAll(".tech-btn[data-key]").forEach(btn => {
     btn.addEventListener("click", () => {
       document.querySelectorAll(".tech-btn").forEach(b => b.classList.remove("is-active"));
@@ -175,10 +156,10 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("showAll")?.addEventListener("click", function(){
     document.querySelectorAll(".tech-btn").forEach(b => b.classList.remove("is-active"));
     this.classList.add("is-active");
-    clearSelection(); // perfil completo sin selección (pero tooltip funciona al hover)
+    clearSelection();
   });
 
-  /* (Opcional) Click en la dona para seleccionar */
+  // ✅ Click en la dona para cambiar selección también
   canvas.addEventListener("click", (evt) => {
     const points = chart.getElementsAtEventForMode(evt, "nearest", { intersect: true }, true);
     if (!points.length) return;
@@ -186,15 +167,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const i = points[0].index;
     selectIndex(i);
 
-    // sincroniza botones
     document.querySelectorAll(".tech-btn").forEach(b => b.classList.remove("is-active"));
-    const key = keys[i];
-    document.querySelector(`.tech-btn[data-key="${key}"]`)?.classList.add("is-active");
+    document.querySelector(`.tech-btn[data-key="${keys[i]}"]`)?.classList.add("is-active");
   });
 
-  /* ==========================
-     ANIMACIÓN CARDS
-  ========================== */
+  // Cards
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if(entry.isIntersecting){
@@ -205,7 +182,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll(".card").forEach(card => observer.observe(card));
 
-  /* INIT */
+  // Init
   clearSelection();
 
 });
