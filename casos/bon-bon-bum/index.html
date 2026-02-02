@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bon Bon Bum · Estudio de Caso</title>
 
-  <link rel="stylesheet" href="./style.css" />
+  <!-- ✅ Ajusta si tu style.css está en raíz (según tu estructura previa) -->
+  <link rel="stylesheet" href="../../../style.css" />
 </head>
 
 <body class="case-page">
@@ -17,15 +18,27 @@
       <h1 class="case-title">Bon Bon Bum</h1>
 
       <nav class="ux-tabs" aria-label="Fases del caso">
-        <button class="ux-tab active" type="button" data-page="ux-research.html">UX Research</button>
+        <button class="ux-tab" type="button" data-page="ux-research.html">UX Research</button>
         <button class="ux-tab" type="button" data-page="ux-design.html">UX Design</button>
         <button class="ux-tab" type="button" data-page="prototipado.html">Prototipado</button>
         <button class="ux-tab" type="button" data-page="product-design.html">Product Design</button>
         <button class="ux-tab" type="button" data-page="accesibilidad.html">Accesibilidad</button>
       </nav>
 
-      <!-- ✅ Aquí cambia la info -->
-      <div id="case-content" class="case-body"></div>
+      <p class="case-hint">Selecciona una categoría para explorar cada fase del proceso.</p>
+
+      <!-- ✅ Placeholder inicial -->
+      <div id="case-placeholder" class="case-placeholder">
+        <h3>Explora el proceso</h3>
+        <p>
+          Selecciona una categoría para ver cómo desarrollé este proyecto:
+          investigación, diseño, prototipado y decisiones clave.
+        </p>
+        <span class="mini-note">Sugerencia: empieza por <strong>UX Research</strong>.</span>
+      </div>
+
+      <!-- ✅ Aquí se inyecta el contenido -->
+      <div id="case-content" class="case-body" hidden></div>
     </section>
 
     <!-- ===== DERECHA ===== -->
@@ -40,28 +53,32 @@
              aria-label="Abrir prototipo en Figma (se abre en nueva pestaña)">
             <img
               src="../../../activos/Proyectos/Bon_Bon_Bum.png"
-              alt="Proyecto Bon Bon Bum"
+              alt="Vista previa del proyecto Bon Bon Bum"
               loading="lazy"
             />
           </a>
         </div>
 
-        <h3 class="preview-title">Bon Bon Bum</h3>
-      </article>
+        <!-- ✅ Sin título -->
+        <p class="preview-desc">
+          Diseño de wireframes de alta fidelidad para una plataforma de e-commerce,
+          enfocado en jerarquía visual y conversión.
+        </p>
 
-      <!-- Botones debajo del preview -->
-      <div class="case-links">
-        <a href="../../../index.html#proyectos" class="btn ghost">Volver al portafolio</a>
-        <a href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma"
-           target="_blank" rel="noopener noreferrer"
-           class="btn case">Ver prototipo en Figma</a>
-      </div>
+        <!-- ✅ Botones dentro de la card -->
+        <div class="preview-actions">
+          <a href="../../../index.html#proyectos" class="btn ghost">Volver al portafolio</a>
+          <a href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma"
+             target="_blank" rel="noopener noreferrer"
+             class="btn case">Ver prototipo en Figma</a>
+        </div>
+      </article>
 
     </aside>
 
   </main>
 
-  <!-- ✅ IMPORTANTE: defer asegura que el HTML cargue antes -->
+  <!-- ✅ JS del case en la MISMA carpeta que este index.html -->
   <script src="./bon-bon-bum.js" defer></script>
 </body>
 </html>
