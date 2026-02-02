@@ -1,38 +1,43 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const content = document.getElementById("case-content");
-  const tabs = document.querySelectorAll(".ux-tab");
+.case-layout{
+  width: min(1200px, 92%);
+  margin: 40px auto;
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
 
-  function setActiveTab(activeBtn){
-    tabs.forEach(btn => {
-      const isActive = btn === activeBtn;
-      btn.classList.toggle("active", isActive);
-      btn.setAttribute("aria-selected", isActive ? "true" : "false");
-    });
+.case-main{
+  background: rgba(255,255,255,0.35);
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.08);
+}
+
+.case-aside{
+  background: rgba(255,255,255,0.25);
+  padding: 22px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.08);
+}
+
+.case-preview img{
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+  margin-bottom: 18px;
+}
+
+.case-subtitle{
+  text-align:center;
+  max-width: 600px;
+  margin: 0 auto 24px;
+}
+
+/* Responsive */
+@media (max-width: 900px){
+  .case-layout{
+    grid-template-columns: 1fr;
   }
-
-  async function loadPage(page){
-    try{
-      const res = await fetch(page, { cache: "no-store" });
-      if(!res.ok) throw new Error("No se pudo cargar: " + page);
-      const html = await res.text();
-      content.innerHTML = html;
-    }catch(err){
-      content.innerHTML = `<p style="text-align:center;">Error cargando el contenido.</p>`;
-      console.error(err);
-    }
-  }
-
-  // Carga inicial (primera tab)
-  const first = document.querySelector(".ux-tab.active") || tabs[0];
-  if(first){
-    setActiveTab(first);
-    loadPage(first.dataset.page);
-  }
-
-  tabs.forEach(btn => {
-    btn.addEventListener("click", () => {
-      setActiveTab(btn);
-      loadPage(btn.dataset.page);
-    });
-  });
-});
+}
