@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bon Bon Bum · Estudio de Caso</title>
 
-  <!-- ✅ CSS local del case (recomendado) -->
   <link rel="stylesheet" href="./style.css" />
 </head>
 
@@ -13,50 +12,50 @@
 
   <main class="case-layout">
 
-    <!-- ===== IZQUIERDA ===== -->
+    <!-- ===== COLUMNA IZQUIERDA ===== -->
     <section class="case-card">
+
       <h1 class="case-title">Bon Bon Bum</h1>
 
-      <nav class="ux-tabs" aria-label="Fases del caso">
-        <button class="ux-tab" type="button" data-page="./ux-research.html">UX Research</button>
-        <button class="ux-tab" type="button" data-page="./ux-design.html">UX Design</button>
-        <button class="ux-tab" type="button" data-page="./prototipado.html">Prototipado</button>
-        <button class="ux-tab" type="button" data-page="./product-design.html">Product Design</button>
-        <button class="ux-tab" type="button" data-page="./accesibilidad.html">Accesibilidad</button>
+      <nav class="ux-tabs" aria-label="Fases del proyecto">
+        <button class="ux-tab" data-page="./ux-research.html">UX Research</button>
+        <button class="ux-tab" data-page="./ux-design.html">UX Design</button>
+        <button class="ux-tab" data-page="./prototipado.html">Prototipado</button>
+        <button class="ux-tab" data-page="./product-design.html">Product Design</button>
+        <button class="ux-tab" data-page="./accesibilidad.html">Accesibilidad</button>
       </nav>
 
-      <p class="case-hint">Selecciona una categoría para explorar cada fase del proceso.</p>
-
-      <!-- ✅ Placeholder inicial -->
+      <!-- Placeholder inicial -->
       <div id="case-placeholder" class="case-placeholder">
         <h3>Explora el proceso</h3>
         <p>
-          Elige una categoría para ver cómo desarrollé este proyecto:
+          Selecciona una categoría para conocer cómo desarrollé este proyecto:
           investigación, diseño, prototipado y decisiones clave.
         </p>
-        <span class="mini-note">Sugerencia: empieza por <strong>UX Research</strong>.</span>
+        <span class="mini-note">
+          Sugerencia: empieza por <strong>UX Research</strong>.
+        </span>
       </div>
 
-      <!-- ✅ Contenido inyectado -->
+      <!-- Contenido dinámico -->
       <div id="case-content" class="case-body" hidden></div>
+
     </section>
 
-    <!-- ===== DERECHA ===== -->
+    <!-- ===== COLUMNA DERECHA ===== -->
     <aside class="case-aside">
-
       <article class="preview-card">
-        <div class="preview-thumb">
-          <a class="preview-link"
-             href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma"
-             target="_blank" rel="noopener noreferrer"
-             aria-label="Abrir prototipo en Figma (nueva pestaña)">
-            <img
-              src="../../../activos/Proyectos/Bon_Bon_Bum.png"
-              alt="Vista previa del proyecto Bon Bon Bum"
-              loading="lazy"
-            />
-          </a>
-        </div>
+
+        <a class="preview-link"
+           href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma"
+           target="_blank"
+           rel="noopener noreferrer">
+          <img
+            src="../../../activos/Proyectos/Bon_Bon_Bum.png"
+            alt="Vista previa del proyecto Bon Bon Bum"
+            loading="lazy"
+          />
+        </a>
 
         <p class="preview-desc">
           Diseño de wireframes de alta fidelidad para una plataforma de e-commerce,
@@ -64,15 +63,26 @@
         </p>
 
         <div class="preview-actions">
-          <a href="../../../index.html#proyectos" class="btn ghost">Volver al portafolio</a>
+          <a href="../../../index.html#proyectos" class="btn ghost">
+            Volver al portafolio
+          </a>
           <a href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma"
-             target="_blank" rel="noopener noreferrer"
-             class="btn case">Ver prototipo en Figma</a>
+             target="_blank"
+             class="btn case">
+            Ver prototipo en Figma
+          </a>
         </div>
-      </article>
 
+      </article>
     </aside>
 
   </main>
 
-  <script src="./bon-bon-bum.js" defer></ual_S
+  <!-- ===== FOOTER ===== -->
+  <footer class="case-footer">
+    © <span id="year"></span> · Portafolio de Santiago Murillo
+  </footer>
+
+  <script src="./bon-bon-bum.js" defer></script>
+</body>
+</html>
