@@ -7,11 +7,15 @@ document.addEventListener("DOMContentLoaded", () => {
   async function loadPage(page){
     try{
       const res = await fetch(page, { cache: "no-store" });
-      if(!res.ok) throw new Error("HTTP " + res.status);
+      if(!res.ok) throw new Error(`HTTP ${res.status}`);
       content.innerHTML = await res.text();
     }catch(e){
       console.error(e);
-      content.innerHTML = `<p class="case-error">No se pudo cargar esta sección.</p>`;
+      content.innerHTML = `
+        <p style="text-align:center; opacity:.85;">
+          No se pudo cargar esta sección. Verifica que el archivo exista en la misma carpeta.
+        </p>
+      `;
     }
   }
 
