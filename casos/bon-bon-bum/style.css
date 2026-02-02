@@ -1,56 +1,146 @@
+/* ===== Layout 2 columnas ===== */
 .case-layout{
   width: min(1200px, 92%);
   margin: 40px auto;
   display: grid;
   grid-template-columns: 1.6fr 1fr;
-  gap: 32px;
+  gap: 28px;
   align-items: start;
 }
 
-.case-main{
+/* Card izquierda estilo Greenscape (imagen 2) */
+.case-card{
   background: rgba(255,255,255,0.35);
-  padding: 32px;
+  padding: 38px 32px;
   border-radius: 16px;
   box-shadow: 0 8px 20px rgba(0,0,0,.08);
 }
 
+.case-title{
+  font-size: 2rem;
+  font-weight: 800;
+  text-align: center;
+  margin: 0 0 18px;
+}
+
+.case-hint{
+  text-align:center;
+  max-width: 560px;
+  margin: 10px auto 24px;
+  opacity: .85;
+}
+
+/* Tabs */
+.ux-tabs{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  justify-content:center;
+  margin: 0 auto 10px;
+}
+
+.ux-tab{
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: #e8dfd2;
+  border: 1px solid #cfc4b4;
+  cursor: pointer;
+  font-weight: 700;
+  transition: .2s ease;
+}
+
+.ux-tab:hover{ transform: translateY(-1px); }
+.ux-tab.active{
+  background: #000;
+  color:#fff;
+  border-color:#000;
+}
+
+/* Contenido */
+.case-body{
+  margin-top: 8px;
+  padding-top: 8px;
+}
+
+.case-body h2{
+  font-size: 1.2rem;
+  margin: 10px 0 12px;
+}
+
+.case-body ul{
+  margin: 0 auto;
+  max-width: 650px;
+  line-height: 1.7;
+}
+
+/* Derecha: preview tipo tarjeta (imagen 3) */
 .case-aside{
-  background: rgba(255,255,255,0.25);
-  padding: 22px;
-  border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0,0,0,.08);
+  display:flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.case-preview img{
+.preview-card{
+  background: rgba(255,255,255,0.72);
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.08);
+  overflow: hidden;
+}
+
+.preview-thumb{
+  padding: 18px;
+}
+
+.preview-thumb img{
   width: 100%;
   height: auto;
   display: block;
   border-radius: 12px;
-  margin-bottom: 18px;
-}
-
-.case-subtitle{
-  text-align:center;
-  max-width: 600px;
-  margin: 0 auto 18px;
-}
-
-/* ✅ IFRAME */
-.case-frame{
-  width: 100%;
-  height: 70vh;          /* ajusta si quieres más alto */
-  border: none;
-  border-radius: 14px;
   background: #fff;
-  box-shadow: 0 8px 20px rgba(0,0,0,.06);
 }
+
+.preview-title{
+  padding: 0 18px;
+  margin: 0;
+  font-weight: 800;
+}
+
+.preview-desc{
+  padding: 8px 18px 18px;
+  margin: 0;
+  opacity: .85;
+}
+
+/* Botones debajo (como pediste) */
+.case-links{
+  display:flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn{
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: 700;
+  text-decoration:none;
+  display:inline-block;
+}
+
+.btn.ghost{
+  background: transparent;
+  border: 2px solid #333;
+  color: #333;
+}
+
+.btn.case{
+  background: #b85c38;
+  color: #fff;
+}
+
+.btn:hover{ opacity:.85; }
 
 /* Responsive */
 @media (max-width: 900px){
-  .case-layout{
-    grid-template-columns: 1fr;
-  }
-  .case-frame{
-    height: 60vh;
-  }
+  .case-layout{ grid-template-columns: 1fr; }
 }
