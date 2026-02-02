@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (year) year.textContent = new Date().getFullYear();
 
   /* ==========================
-     CONFIGURACIÓN DE DATOS
+     DATOS
   ========================== */
   const skills = {
     uxui:   { label: "UX/UI", value: 35, color: "#f39c12" },
@@ -24,159 +24,171 @@ document.addEventListener("DOMContentLoaded", () => {
   const keys   = Object.keys(skills);
   const labels = keys.map(k => skills[k].label);
   const values = keys.map(k => skills[k].value);
-  const colors = keys.map(k => skills[k].color);
+  const baseColors = keys.map(k => skills[k].color);
 
-  let mode = "all";        // all | single
-  let selectedKey = null;
-  let chart = null;
-
-  // 🔒 CONSTANTES DE POSICIONAMIENTO
-  // -90 grados coloca el inicio a las 12:00. 
-  // Chart.js por defecto dibuja en sentido horario.
-  const ROTATION_12_PM = -90; 
+  // Fijar inicio en 12 y dirección a la derecha (horario)
+  const ROTATION_12_PM = -90;
   const CIRCUMFERENCE_FULL = 360;
 
-  /* ==========================
-     CREACIÓN DEL CHART
-  ========================== */
-  function createDonut(){
-    if (!canvas || typeof Chart === "undefined") return;
+  // Estado de selección
+  let selectedIndex = null; // 0..n-1 o null
 
-    chart = new Chart(canvas, {
-      type: "doughnut",
-      data: {
-        labels: labels,
-        datasets: [{
-          data: values,
-          backgroundColor: colors,
-          borderWidth: 0,
-          spacing: 2 // Pequeña separación estética
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        cutout: "75%", // Grosor de la dona
-        rotation: ROTATION_12_PM,
-        circumference: CIRCUMFERENCE_FULL,
-        animation: {
-          animateRotate: true,
-          duration: 600,
-          easing: 'easeOutQuart'
+  // Helpers para opacidad
+  function hexToRgba(hex, a = 1){
+    const h = hex.replace("#", "");
+    const bigint = parseInt(h.length === 3 ? h.split("").map(c=>c+c).join("") : h, 16);
+    const r = (bigint >> 16) & 255;
+    const g = (bigint >> 8) & 255;
+    const b = bigint & 255;
+    return `rgba(${r},${g},${b},${a})`;
+  }
+
+  /* ==========================
+     CHART
+  ========================== */
+  const chart = new Chart(canvas, {
+    type: "doughnut",
+    data: {
+      labels,
+      datasets: [{
+        data: values,
+
+        // ✅ Colores “inteligentes” según selección (scriptable)
+        backgroundColor: (ctx) => {
+          const i = ctx.dataIndex;
+          const base = baseColors[i];
+
+          // Sin selección: normal
+          if (selectedIndex === null) return base;
+
+          // Seleccionado: 100% opacidad
+          if (i === selectedIndex) return base;
+
+          // No seleccionado: más opaco
+          return hexToRgba(base, 0.25);
         },
-        plugins: {
-          legend: { display: false },
-          tooltip: { enabled: false } // Desactivamos el de fábrica para usar el tuyo
-        }
-      }
-    });
 
-    // Eventos de Tooltip
-    if (wrapper && tooltip) {
-      wrapper.addEventListener("mousemove", (e) => {
-        const rect = wrapper.getBoundingClientRect();
-        tooltip.style.left = (e.clientX - rect.left) + "px";
-        tooltip.style.top  = (e.clientY - rect.top) + "px";
-      });
+        borderWidth: 0,
+
+        // ✅ “Elevación” del segmento seleccionado
+        offset: (ctx) => {
+          const i = ctx.dataIndex;
+          if (selectedIndex === null) return 0;
+          return (i === selectedIndex) ? 14 : 0;
+        },
+
+        // Separación estética (déjalo bajo para que no se “rompa” visualmente)
+        spacing: 2,
+
+        // Grosor del hover (por si pasa mouse)
+        hoverOffset: 10
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      cutout: "75%",
+      rotation: ROTATION_12_PM,
+      circumference: CIRCUMFERENCE_FULL,
+      animation: {
+        animateRotate: true,
+        duration: 450
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: { enabled: false }
+      }
     }
-
-    canvas.addEventListener("mousemove", (evt) => {
-      if (!tooltip || !chart) return;
-
-      const points = chart.getElementsAtEventForMode(
-        evt,
-        "nearest",
-        { intersect: true },
-        true
-      );
-
-      if (!points.length) {
-        tooltip.style.opacity = "0";
-        return;
-      }
-
-      const idx = points[0].index;
-
-      // En modo single, ignoramos el "resto gris" (índice 1)
-      if (mode === "single" && idx === 1) {
-        tooltip.style.opacity = "0";
-        return;
-      }
-
-      if (mode === "all") {
-        const key = keys[idx];
-        const s = skills[key];
-        tooltip.textContent = `${s.label} — ${s.value}%`;
-        tooltip.style.background = s.color;
-      } else {
-        const s = skills[selectedKey];
-        tooltip.textContent = `${s.label} — ${s.value}%`;
-        tooltip.style.background = s.color;
-      }
-
-      tooltip.style.opacity = "1";
-    });
-
-    canvas.addEventListener("mouseleave", () => {
-      if (tooltip) tooltip.style.opacity = "0";
-    });
-  }
+  });
 
   /* ==========================
-     FUNCIONES DE FILTRADO
+     TOOLTIP (mostrar %)
   ========================== */
-  function showAll(){
-    if (!chart) return;
-
-    mode = "all";
-    selectedKey = null;
-
-    chart.data.labels = labels;
-    chart.data.datasets[0].data = values;
-    chart.data.datasets[0].backgroundColor = colors;
-
-    // Aseguramos que se mantenga la orientación
-    chart.options.rotation = ROTATION_12_PM;
-    chart.update();
-  }
-
-  function showSingle(key){
-    if (!chart || !skills[key]) return;
-
-    mode = "single";
-    selectedKey = key;
-
+  function showTooltipForIndex(i){
+    if (!tooltip) return;
+    const key = keys[i];
     const s = skills[key];
-    const rest = Math.max(0, 100 - s.value);
+    tooltip.textContent = `${s.label} — ${s.value}%`;
+    tooltip.style.background = s.color;
+    tooltip.style.opacity = "1";
+  }
 
-    // Al ser el primer elemento del array, s.value iniciará 
-    // siempre en el punto definido por rotation (-90)
-    chart.data.labels = [s.label, "Resto"];
-    chart.data.datasets[0].data = [s.value, rest];
-    chart.data.datasets[0].backgroundColor = [
-      s.color,
-      "rgba(0,0,0,0.1)" // Color de fondo para el área vacía
-    ];
+  function hideTooltip(){
+    if (tooltip) tooltip.style.opacity = "0";
+  }
 
-    chart.options.rotation = ROTATION_12_PM;
-    chart.update();
+  // Posicionamiento tooltip
+  if (wrapper && tooltip) {
+    wrapper.addEventListener("mousemove", (e) => {
+      const rect = wrapper.getBoundingClientRect();
+      tooltip.style.left = (e.clientX - rect.left) + "px";
+      tooltip.style.top  = (e.clientY - rect.top) + "px";
+    });
   }
 
   /* ==========================
-     INTERACCIONES (BOTONES)
+     SELECCIÓN (BOTONES)
+     - Mantener todas
+     - Opacar otras
+     - Elevar seleccionada
+     - Mostrar %
   ========================== */
+  function selectIndex(i){
+    selectedIndex = i;
+
+    // Resalta también “active element” para accesibilidad interna del chart
+    chart.setActiveElements([{ datasetIndex: 0, index: i }]);
+
+    chart.update();
+    showTooltipForIndex(i);
+  }
+
+  function clearSelection(){
+    selectedIndex = null;
+    chart.setActiveElements([]);
+    chart.update();
+    hideTooltip();
+  }
+
+  // Botones (selección por key)
   document.querySelectorAll(".tech-btn[data-key]").forEach(btn => {
     btn.addEventListener("click", () => {
       document.querySelectorAll(".tech-btn").forEach(b => b.classList.remove("is-active"));
       btn.classList.add("is-active");
-      showSingle(btn.dataset.key);
+
+      const key = btn.dataset.key;
+      const i = keys.indexOf(key);
+      if (i !== -1) selectIndex(i);
     });
   });
 
+  // Perfil completo = sin selección (todo normal)
   document.getElementById("showAll")?.addEventListener("click", function() {
     document.querySelectorAll(".tech-btn").forEach(b => b.classList.remove("is-active"));
     this.classList.add("is-active");
-    showAll();
+    clearSelection();
+  });
+
+  /* ==========================
+     (Opcional) Click en la dona también selecciona
+  ========================== */
+  canvas.addEventListener("click", (evt) => {
+    const points = chart.getElementsAtEventForMode(evt, "nearest", { intersect: true }, true);
+    if (!points.length) return;
+
+    const i = points[0].index;
+    selectIndex(i);
+
+    // sincronizar botones
+    document.querySelectorAll(".tech-btn").forEach(b => b.classList.remove("is-active"));
+    const key = keys[i];
+    const btn = document.querySelector(`.tech-btn[data-key="${key}"]`);
+    btn?.classList.add("is-active");
+  });
+
+  canvas.addEventListener("mouseleave", () => {
+    // si quieres que el tooltip quede fijo cuando hay selección, NO lo ocultes:
+    if (selectedIndex === null) hideTooltip();
   });
 
   /* ==========================
@@ -195,8 +207,6 @@ document.addEventListener("DOMContentLoaded", () => {
   /* ==========================
      INICIALIZACIÓN
   ========================== */
-  createDonut();
-  // Iniciamos mostrando todo
-  showAll();
+  clearSelection(); // inicia con todo normal (perfil completo)
 
 });
