@@ -1,12 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
   /* ==========================
-     AÑO FOOTER
-  ========================== */
-  const year = document.getElementById("year");
-  if (year) year.textContent = new Date().getFullYear();
-
-  /* ==========================
      CONFIGURACIÓN DE DATOS
   ========================== */
   const skills = {
@@ -26,15 +20,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const values = keys.map(k => skills[k].value);
   const colors = keys.map(k => skills[k].color);
 
-  let mode = "all";        // all | single
-  let selectedKey = null;
   let chart = null;
+  let mode = "all";
+  let selectedKey = null;
 
-  // 🔒 CONSTANTES DE POSICIONAMIENTO
-  // -90 grados coloca el inicio a las 12:00. 
-  // Chart.js por defecto dibuja en sentido horario.
-  const ROTATION_12_PM = -90; 
-  const CIRCUMFERENCE_FULL = 360;
+  // 🔒 CONFIGURACIÓN DE POSICIÓN
+  // -90 grados es el estándar para mover el inicio de las 3:00 PM a las 12:00 PM.
+  const START_ANGLE = -90; 
 
   /* ==========================
      CREACIÓN DEL CHART
@@ -50,28 +42,28 @@ document.addEventListener("DOMContentLoaded", () => {
           data: values,
           backgroundColor: colors,
           borderWidth: 0,
-          spacing: 2 // Pequeña separación estética
+          spacing: 0
         }]
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
-        cutout: "75%", // Grosor de la dona
-        rotation: ROTATION_12_PM,
-        circumference: CIRCUMFERENCE_FULL,
+        cutout: "75%",
+        // Forzamos inicio a las 12 y rotación horaria (por defecto en Chart.js)
+        rotation: START_ANGLE,
+        circumference: 360,
         animation: {
           animateRotate: true,
-          duration: 600,
-          easing: 'easeOutQuart'
+          duration: 700
         },
         plugins: {
           legend: { display: false },
-          tooltip: { enabled: false } // Desactivamos el de fábrica para usar el tuyo
+          tooltip: { enabled: false }
         }
       }
     });
 
-    // Eventos de Tooltip
+    // Tooltip personalizado
     if (wrapper && tooltip) {
       wrapper.addEventListener("mousemove", (e) => {
         const rect = wrapper.getBoundingClientRect();
@@ -82,38 +74,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     canvas.addEventListener("mousemove", (evt) => {
       if (!tooltip || !chart) return;
-
-      const points = chart.getElementsAtEventForMode(
-        evt,
-        "nearest",
-        { intersect: true },
-        true
-      );
-
+      const points = chart.getElementsAtEventForMode(evt, "nearest", { intersect: true }, true);
+      
       if (!points.length) {
         tooltip.style.opacity = "0";
         return;
       }
 
       const idx = points[0].index;
-
-      // En modo single, ignoramos el "resto gris" (índice 1)
-      if (mode === "single" && idx === 1) {
+      if (mode === "single" && idx === 1) { // Ignorar el fondo gris
         tooltip.style.opacity = "0";
         return;
       }
 
-      if (mode === "all") {
-        const key = keys[idx];
-        const s = skills[key];
-        tooltip.textContent = `${s.label} — ${s.value}%`;
-        tooltip.style.background = s.color;
-      } else {
-        const s = skills[selectedKey];
-        tooltip.textContent = `${s.label} — ${s.value}%`;
-        tooltip.style.background = s.color;
-      }
-
+      const s = (mode === "all") ? skills[keys[idx]] : skills[selectedKey];
+      tooltip.textContent = `${s.label} — ${s.value}%`;
+      tooltip.style.background = s.color;
       tooltip.style.opacity = "1";
     });
 
@@ -123,47 +99,41 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* ==========================
-     FUNCIONES DE FILTRADO
+     LÓGICA DE ACTUALIZACIÓN
   ========================== */
+  function showSingle(key){
+    if (!chart || !skills[key]) return;
+
+    mode = "single";
+    selectedKey = key;
+    const s = skills[key];
+    const rest = 100 - s.value;
+
+    // ✅ Al poner s.value en el índice [0], garantizamos que empiece 
+    // en la rotación de las 12 PM y crezca hacia la derecha.
+    chart.data.labels = [s.label, "Resto"];
+    chart.data.datasets[0].data = [s.value, rest];
+    chart.data.datasets[0].backgroundColor = [s.color, "#e8e4db"]; // Fondo neutro
+    
+    chart.options.rotation = START_ANGLE;
+    chart.update();
+  }
+
   function showAll(){
     if (!chart) return;
-
     mode = "all";
     selectedKey = null;
 
     chart.data.labels = labels;
     chart.data.datasets[0].data = values;
     chart.data.datasets[0].backgroundColor = colors;
-
-    // Aseguramos que se mantenga la orientación
-    chart.options.rotation = ROTATION_12_PM;
-    chart.update();
-  }
-
-  function showSingle(key){
-    if (!chart || !skills[key]) return;
-
-    mode = "single";
-    selectedKey = key;
-
-    const s = skills[key];
-    const rest = Math.max(0, 100 - s.value);
-
-    // Al ser el primer elemento del array, s.value iniciará 
-    // siempre en el punto definido por rotation (-90)
-    chart.data.labels = [s.label, "Resto"];
-    chart.data.datasets[0].data = [s.value, rest];
-    chart.data.datasets[0].backgroundColor = [
-      s.color,
-      "rgba(0,0,0,0.1)" // Color de fondo para el área vacía
-    ];
-
-    chart.options.rotation = ROTATION_12_PM;
+    
+    chart.options.rotation = START_ANGLE;
     chart.update();
   }
 
   /* ==========================
-     INTERACCIONES (BOTONES)
+     EVENTOS Y BOTONES
   ========================== */
   document.querySelectorAll(".tech-btn[data-key]").forEach(btn => {
     btn.addEventListener("click", () => {
@@ -179,24 +149,7 @@ document.addEventListener("DOMContentLoaded", () => {
     showAll();
   });
 
-  /* ==========================
-     ANIMACIÓN DE ENTRADA (CARDS)
-  ========================== */
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting){
-        entry.target.classList.add("is-visible");
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll(".card").forEach(card => observer.observe(card));
-
-  /* ==========================
-     INICIALIZACIÓN
-  ========================== */
+  // Inicialización
   createDonut();
-  // Iniciamos mostrando todo
   showAll();
-
 });
