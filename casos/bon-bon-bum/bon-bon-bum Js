@@ -10,24 +10,19 @@ document.addEventListener("DOMContentLoaded", () => {
       if(!res.ok) throw new Error("HTTP " + res.status);
       content.innerHTML = await res.text();
     }catch(e){
-      content.innerHTML = `<p style="text-align:center;">No se pudo cargar esta sección.</p>`;
       console.error(e);
+      content.innerHTML = `<p class="case-error">No se pudo cargar esta sección.</p>`;
     }
   }
 
-  function setActive(btn){
+  function activate(btn){
     tabs.forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
+    loadPage(btn.dataset.page);
   }
 
-  tabs.forEach(btn => {
-    btn.addEventListener("click", () => {
-      setActive(btn);
-      loadPage(btn.dataset.page);
-    });
-  });
+  tabs.forEach(btn => btn.addEventListener("click", () => activate(btn)));
 
-  // carga inicial
-  setActive(tabs[0]);
-  loadPage(tabs[0].dataset.page);
+  // inicial
+  activate(tabs[0]);
 });
