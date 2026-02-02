@@ -17,16 +17,16 @@
       <h1 class="case-title">Bon Bon Bum</h1>
 
       <nav class="ux-tabs" aria-label="Fases del caso">
-        <button class="ux-tab active" type="button" data-page="./ux-research.html">UX Research</button>
-        <button class="ux-tab" type="button" data-page="./ux-design.html">UX Design</button>
-        <button class="ux-tab" type="button" data-page="./prototipado.html">Prototipado</button>
-        <button class="ux-tab" type="button" data-page="./product-design.html">Product Design</button>
-        <button class="ux-tab" type="button" data-page="./accesibilidad.html">Accesibilidad</button>
+        <button class="ux-tab active" type="button" data-page="ux-research.html">UX Research</button>
+        <button class="ux-tab" type="button" data-page="ux-design.html">UX Design</button>
+        <button class="ux-tab" type="button" data-page="prototipado.html">Prototipado</button>
+        <button class="ux-tab" type="button" data-page="product-design.html">Product Design</button>
+        <button class="ux-tab" type="button" data-page="accesibilidad.html">Accesibilidad</button>
       </nav>
 
       <p class="case-hint">Selecciona una categoría para explorar cada fase del proceso.</p>
 
-      <!-- Aquí cambia la info -->
+      <!-- ✅ Aquí cambia la info -->
       <div id="case-content" class="case-body"></div>
     </section>
 
@@ -40,9 +40,11 @@
              href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma"
              target="_blank" rel="noopener noreferrer"
              aria-label="Abrir prototipo en Figma (se abre en nueva pestaña)">
-            <img src="../../../activos/Proyectos/Bon_Bon_Bum.png"
-                 alt="Vista previa del proyecto Bon Bon Bum"
-                 loading="lazy">
+            <img
+              src="../../../activos/Proyectos/Bon_Bon_Bum.png"
+              alt="Proyecto Bon Bon Bum"
+              loading="lazy"
+            />
           </a>
         </div>
 
@@ -65,6 +67,7 @@
 
   </main>
 
-  <script src="./bon-bon-bum.js"></script>
+  <!-- ✅ IMPORTANTE: defer asegura que el HTML cargue antes -->
+  <script src="./bon-bon-bum.js" defer></script>
 </body>
 </html>
