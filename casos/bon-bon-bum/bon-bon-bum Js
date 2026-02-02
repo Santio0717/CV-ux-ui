@@ -4,22 +4,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!content || !tabs.length) return;
 
-  async function loadPage(page){
-    try{
+  async function loadPage(page) {
+    try {
+      // ✅ Si estás en file://, fetch suele fallar
+      if (location.protocol === "file:") {
+        content.innerHTML = `
+          <p style="text-align:center; opacity:.85;">
+            Estás abriendo esto en <strong>file://</strong>.<br>
+            Para que funcionen las tabs, abre con <strong>Live Server</strong> o súbelo a Netlify.
+          </p>
+        `;
+        return;
+      }
+
       const res = await fetch(page, { cache: "no-store" });
-      if(!res.ok) throw new Error(`HTTP ${res.status}`);
-      content.innerHTML = await res.text();
-    }catch(e){
-      console.error(e);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+      const html = await res.text();
+      content.innerHTML = html;
+
+    } catch (err) {
+      console.error(err);
       content.innerHTML = `
         <p style="text-align:center; opacity:.85;">
-          No se pudo cargar esta sección. Verifica que el archivo exista en la misma carpeta.
+          No se pudo cargar <strong>${page}</strong>.<br>
+          Verifica que el archivo exista en la misma carpeta del index.
         </p>
       `;
     }
   }
 
-  function activate(btn){
+  function activate(btn) {
     tabs.forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
     loadPage(btn.dataset.page);
@@ -27,6 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   tabs.forEach(btn => btn.addEventListener("click", () => activate(btn)));
 
-  // inicial
-  activate(tabs[0]);
+  // Inicial
+  const initial = tabs.find(b => b.classList.contains("active")) || tabs[0];
+  activate(initial);
 });
