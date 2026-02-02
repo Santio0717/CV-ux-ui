@@ -1,19 +1,33 @@
 document.addEventListener("DOMContentLoaded", () => {
   const content = document.getElementById("case-content");
   const tabs = Array.from(document.querySelectorAll(".ux-tab[data-page]"));
-
   if (!content || !tabs.length) return;
+
+  function sanitizeLoadedHTML(html){
+    const temp = document.createElement("div");
+    temp.innerHTML = html;
+
+    // ❌ elimina duplicados comunes
+    temp.querySelectorAll(".ux-tabs, .case-links, .case-title, h1").forEach(el => el.remove());
+
+    // si viene un contenedor tipo "case-content", deja solo lo de adentro
+    const innerCase = temp.querySelector(".case-content, .case-card");
+    if(innerCase) {
+      // intenta agarrar solo la sección informativa si existe
+      const section = innerCase.querySelector(".ux-section, .case-body") || innerCase;
+      return section.innerHTML;
+    }
+
+    return temp.innerHTML;
+  }
 
   async function loadPage(page) {
     try {
-      // ✅ Si estás en file://, fetch suele fallar
       if (location.protocol === "file:") {
         content.innerHTML = `
           <p style="text-align:center; opacity:.85;">
-            Estás abriendo esto en <strong>file://</strong>.<br>
-            Para que funcionen las tabs, abre con <strong>Live Server</strong> o súbelo a Netlify.
-          </p>
-        `;
+            Estás en <strong>file://</strong>. Abre con Live Server o Netlify.
+          </p>`;
         return;
       }
 
@@ -21,16 +35,14 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
       const html = await res.text();
-      content.innerHTML = html;
+      content.innerHTML = sanitizeLoadedHTML(html);
 
-    } catch (err) {
-      console.error(err);
+    } catch (e) {
+      console.error(e);
       content.innerHTML = `
         <p style="text-align:center; opacity:.85;">
-          No se pudo cargar <strong>${page}</strong>.<br>
-          Verifica que el archivo exista en la misma carpeta del index.
-        </p>
-      `;
+          No se pudo cargar <strong>${page}</strong>.
+        </p>`;
     }
   }
 
@@ -42,7 +54,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
   tabs.forEach(btn => btn.addEventListener("click", () => activate(btn)));
 
-  // Inicial
-  const initial = tabs.find(b => b.classList.contains("active")) || tabs[0];
-  activate(initial);
+  activate(tabs.find(b => b.classList.contains("active")) || tabs[0]);
 });
