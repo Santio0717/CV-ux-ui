@@ -1,35 +1,88 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Greenscape · Estudio de Caso</title>
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./style.css" />
 </head>
 
 <body class="case-page">
-  <main class="case-content">
 
-    <h1 class="case-title">Greenscape</h1>
+  <main class="case-layout">
 
-    <!-- Tabs -->
-    <nav class="ux-tabs">
-      <a class="ux-tab" href="ux-research.html">UX Research</a>
-      <a class="ux-tab" href="ux-design.html">UX Design</a>
-      <a class="ux-tab" href="prototipado.html">Prototipado</a>
-    </nav>
+    <!-- ===== COLUMNA IZQUIERDA ===== -->
+    <section class="case-card">
 
-    <p style="text-align:center; max-width:600px; margin:0 auto 24px;">
-      Selecciona una categoría para explorar cada fase del proceso.
-    </p>
+      <h1 class="case-title">Greenscape</h1>
 
-    <div class="case-links">
-      <a href="../../index.html#proyectos" class="btn ghost">Volver al portafolio</a>
-      <a href="https://www.figma.com/proto/iYuZ5f1XPOvGDWncfB739r/HCI"
-         target="_blank" class="btn case">Ver prototipo en Figma</a>
-    </div>
+      <nav class="ux-tabs" aria-label="Fases del proyecto">
+        <button class="ux-tab" type="button" data-page="./ux-research.html">UX Research</button>
+        <button class="ux-tab" type="button" data-page="./ux-design.html">UX Design</button>
+        <button class="ux-tab" type="button" data-page="./prototipado.html">Prototipado</button>
+      </nav>
+
+      <!-- Placeholder inicial -->
+      <div id="case-placeholder" class="case-placeholder">
+        <h3>Explora el proceso</h3>
+        <p>
+          Selecciona una categoría para conocer cómo desarrollé este proyecto:
+          investigación, diseño y prototipado.
+        </p>
+        <span class="mini-note">
+          Sugerencia: empieza por <strong>UX Research</strong>.
+        </span>
+      </div>
+
+      <!-- Contenido dinámico -->
+      <div id="case-content" class="case-body" hidden></div>
+
+    </section>
+
+    <!-- ===== COLUMNA DERECHA ===== -->
+    <aside class="case-aside">
+      <article class="preview-card">
+
+        <a class="preview-link"
+           href="https://www.figma.com/proto/iYuZ5f1XPOvGDWncfB739r/HCI"
+           target="_blank"
+           rel="noopener noreferrer">
+          <img
+            src="../../../activos/Proyectos/Greenscape.png"
+            alt="Vista previa del proyecto Greenscape"
+            loading="lazy"
+          />
+        </a>
+
+        <p class="preview-desc">
+          Prototipo móvil iOS diseñado con enfoque en usabilidad, navegación intuitiva
+          y experiencia mobile-first.
+        </p>
+
+        <div class="preview-actions">
+          <a href="../../../index.html#proyectos" class="btn ghost">
+            Volver al portafolio
+          </a>
+          <a href="https://www.figma.com/proto/iYuZ5f1XPOvGDWncfB739r/HCI"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="btn case">
+            Ver prototipo en Figma
+          </a>
+        </div>
+
+      </article>
+    </aside>
 
   </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="case-footer">
+    © <span id="year"></span> · Portafolio de Santiago Murillo
+  </footer>
+
+  <!-- ✅ Usa el MISMO J renómbralo a greenscape.js) -->
+  <script src="./greenscape.js" defer></script>
 </body>
 </html>
