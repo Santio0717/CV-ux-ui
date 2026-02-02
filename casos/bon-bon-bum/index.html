@@ -4,68 +4,45 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bon Bon Bum · Estudio de Caso</title>
-
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="./style.css" />
 </head>
 
 <body class="case-page">
 
   <main class="case-layout">
 
-    <!-- ===== COLUMNA IZQUIERDA ===== -->
     <section class="case-main case-content">
-
       <h1 class="case-title">Bon Bon Bum</h1>
 
-      <!-- Tabs -->
-      <nav class="ux-tabs" role="tablist" aria-label="Fases del caso">
-        <button class="ux-tab active" type="button" role="tab" aria-selected="true"
-          data-page="ux-research.html">UX Research</button>
-
-        <button class="ux-tab" type="button" role="tab" aria-selected="false"
-          data-page="ux-design.html">UX Design</button>
-
-        <button class="ux-tab" type="button" role="tab" aria-selected="false"
-          data-page="prototipado.html">Prototipado</button>
-
-        <button class="ux-tab" type="button" role="tab" aria-selected="false"
-          data-page="product-design.html">Product Design</button>
-
-        <button class="ux-tab" type="button" role="tab" aria-selected="false"
-          data-page="accesibilidad.html">Accesibilidad</button>
-      </nav>
-
-      <p class="case-subtitle">
-        Selecciona una categoría para explorar cada fase del proceso.
-      </p>
-
-      <!-- Aquí se inserta el contenido de cada fase -->
-      <section id="case-content" class="ux-section" aria-live="polite"></section>
-
-    </section>
-
-    <!-- ===== COLUMNA DERECHA ===== -->
-    <aside class="case-aside">
-
-      <!-- Preview / imagen del proyecto (opcional pero recomendado) -->
-      <div class="case-preview">
-        <!-- Cambia la ruta por tu imagen real -->
-        <img src="preview-bonbonbum.png" alt="Vista previa del proyecto Bon Bon Bum" />
+      <div class="ux-tabs">
+        <button class="ux-tab active" type="button" data-page="ux-research.html">UX Research</button>
+        <button class="ux-tab" type="button" data-page="ux-design.html">UX Design</button>
+        <button class="ux-tab" type="button" data-page="prototipado.html">Prototipado</button>
+        <button class="ux-tab" type="button" data-page="product-design.html">Product Design</button>
+        <button class="ux-tab" type="button" data-page="accesibilidad.html">Accesibilidad</button>
       </div>
 
-      <!-- Botones -->
+      <p class="case-subtitle">Selecciona una categoría para explorar cada fase del proceso.</p>
+
+      <div id="case-content"></div>
+    </section>
+
+    <aside class="case-aside">
+      <div class="case-preview">
+        <img src="../../../activos/Proyectos/Bon_Bon_Bum.png"
+             alt="Proyecto Bon Bon Bum" loading="lazy" />
+      </div>
+
       <div class="case-links">
-        <a href="../../index.html#proyectos" class="btn ghost">Volver al portafolio</a>
+        <a href="../../../index.html#proyectos" class="btn ghost">Volver al portafolio</a>
         <a href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma"
            target="_blank" rel="noopener noreferrer"
            class="btn case">Ver prototipo en Figma</a>
       </div>
-
     </aside>
 
   </main>
 
-  <!-- JS para cargar tabs sin recargar -->
-  <script src="bon-bon-bum.js"></script>
+  <script src="./bon-bon-bum.js"></script>
 </body>
 </html>
