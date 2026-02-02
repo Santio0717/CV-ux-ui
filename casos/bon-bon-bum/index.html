@@ -1,40 +1,71 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bon Bon Bum · Estudio de Caso</title>
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body class="case-page">
 
-  <main class="case-content container">
+  <main class="case-layout">
 
-    <h1 class="case-title">Bon Bon Bum</h1>
+    <!-- ===== COLUMNA IZQUIERDA ===== -->
+    <section class="case-main case-content">
 
-    <!-- SOLO LOS BOTONES -->
-    <!-- TABS -->
-    <div class="ux-tabs">
-      <a class="ux-tab" href="ux-research.html">UX Research</a>
-      <a class="ux-tab" href="ux-design.html">UX Design</a>
-      <a class="ux-tab" href="prototipado.html">Prototipado</a>
-      <a class="ux-tab" href="product-design.html">Product Design</a>
-      <a class="ux-tab" href="accesibilidad.html">Accesibilidad</a>
-    </div>
+      <h1 class="case-title">Bon Bon Bum</h1>
 
-    <!-- Tabs -->
-    <p style="text-align:center; max-width:600px; margin:0 auto 24px;">
-      Selecciona una categoría para explorar cada fase del proceso.
-    </p>
+      <!-- Tabs -->
+      <nav class="ux-tabs" role="tablist" aria-label="Fases del caso">
+        <button class="ux-tab active" type="button" role="tab" aria-selected="true"
+          data-page="ux-research.html">UX Research</button>
 
-    <!-- BOTONES INFERIORES -->
-    <div class="case-links">
-      <a href="../../index.html#proyectos" class="btn ghost">Volver al portafolio</a>
-      <a href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma"
-         target="_blank" class="btn case">Ver prototipo en Figma</a>
-    </div>
+        <button class="ux-tab" type="button" role="tab" aria-selected="false"
+          data-page="ux-design.html">UX Design</button>
+
+        <button class="ux-tab" type="button" role="tab" aria-selected="false"
+          data-page="prototipado.html">Prototipado</button>
+
+        <button class="ux-tab" type="button" role="tab" aria-selected="false"
+          data-page="product-design.html">Product Design</button>
+
+        <button class="ux-tab" type="button" role="tab" aria-selected="false"
+          data-page="accesibilidad.html">Accesibilidad</button>
+      </nav>
+
+      <p class="case-subtitle">
+        Selecciona una categoría para explorar cada fase del proceso.
+      </p>
+
+      <!-- Aquí se inserta el contenido de cada fase -->
+      <section id="case-content" class="ux-section" aria-live="polite"></section>
+
+    </section>
+
+    <!-- ===== COLUMNA DERECHA ===== -->
+    <aside class="case-aside">
+
+      <!-- Preview / imagen del proyecto (opcional pero recomendado) -->
+      <div class="case-preview">
+        <!-- Cambia la ruta por tu imagen real -->
+        <img src="preview-bonbonbum.png" alt="Vista previa del proyecto Bon Bon Bum" />
+      </div>
+
+      <!-- Botones -->
+      <div class="case-links">
+        <a href="../../index.html#proyectos" class="btn ghost">Volver al portafolio</a>
+        <a href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma"
+           target="_blank" rel="noopener noreferrer"
+           class="btn case">Ver prototipo en Figma</a>
+      </div>
+
+    </aside>
 
   </main>
+
+  <!-- JS para cargar tabs sin recargar -->
+  <script src="case.js"></script>
+</body>
+</html>
