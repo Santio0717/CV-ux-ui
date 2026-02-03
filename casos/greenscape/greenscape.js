@@ -1,9 +1,18 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // Año footer
+  const year = document.getElementById("year");
+  if (year) year.textContent = new Date().getFullYear();
+
   const content = document.getElementById("case-content");
   const placeholder = document.getElementById("case-placeholder");
   const tabs = Array.from(document.querySelectorAll(".ux-tab[data-page]"));
+  const pageTitleEl = document.querySelector(".case-title");
+  const CASE_TITLE = (pageTitleEl?.textContent || "").trim().toLowerCase();
 
-  if (!content || !tabs.length) return;
+  if (!content || !tabs.length) {
+    console.warn("No se encontró #case-content o .ux-tab[data-page].");
+    return;
+  }
 
   let userInteracted = false;
   let suggestionTimer = null;
@@ -19,22 +28,27 @@ document.addEventListener("DOMContentLoaded", () => {
     content.hidden = false;
   }
 
-  // ✅ Limpia duplicados si los archivos cargados vienen "sucios"
+  // Limpia duplicados si los HTML internos traen layout completo
   function sanitizeLoadedHTML(html){
     const temp = document.createElement("div");
     temp.innerHTML = html;
 
-    // elimina cosas que NUNCA deben entrar al panel izquierdo
+    // elimina cosas que no deben entrar al panel izquierdo
     temp.querySelectorAll("script, style, link, nav, header, footer").forEach(el => el.remove());
-    temp.querySelectorAll(".ux-tabs, .case-links, .preview-card, .case-title").forEach(el => el.remove());
 
-    // quita H1/H2 repetidos tipo "Bon Bon Bum"
+    // elimina componentes del layout principal si vinieran incluidos
+    temp.querySelectorAll(".ux-tabs, .case-links, .preview-card, .case-title, .case-footer, .case-layout, .case-aside").forEach(el => el.remove());
+
+    // elimina H1 siempre (evita repetir título)
     temp.querySelectorAll("h1").forEach(el => el.remove());
-    temp.querySelectorAll("h2").forEach(el => {
-      if ((el.textContent || "").trim().toLowerCase() === "bon bon bum") el.remove();
+
+    // elimina H2/H3 que repitan el nombre del caso
+    temp.querySelectorAll("h2, h3").forEach(el => {
+      const t = (el.textContent || "").trim().toLowerCase();
+      if (CASE_TITLE && t === CASE_TITLE) el.remove();
     });
 
-    // Si el archivo trae body/main, nos quedamos con el contenido útil
+    // si hay main, nos quedamos con eso
     const main = temp.querySelector("main") || temp;
     return main.innerHTML.trim();
   }
@@ -44,14 +58,15 @@ document.addEventListener("DOMContentLoaded", () => {
       if (location.protocol === "file:") {
         showContent();
         content.innerHTML = `
-          <p style="text-align:center; opacity:.85;">
-            Estás en <strong>file://</strong>. Abre con Live Server o Netlify para que funcionen las tabs.
+          <p style="text-align:center; opacity:.85; line-height:1.6;">
+            Estás abriendo esto en <strong>file://</strong>.<br>
+            Para que funcionen las tabs, usa <strong>Live Server</strong> o súbelo a Netlify/GitHub Pages.
           </p>`;
         return;
       }
 
       const res = await fetch(page, { cache: "no-store" });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      if (!res.ok) throw new Error(`HTTP ${res.status} — ${page}`);
 
       const html = await res.text();
       const clean = sanitizeLoadedHTML(html);
@@ -61,20 +76,24 @@ document.addEventListener("DOMContentLoaded", () => {
         <p style="text-align:center; opacity:.85;">
           Este apartado aún no tiene contenido.
         </p>`;
-
     } catch (err) {
       console.error(err);
       showContent();
       content.innerHTML = `
-        <p style="text-align:center; opacity:.85;">
-          No se pudo cargar <strong>${page}</strong>. Revisa el nombre del archivo y la carpeta.
+        <p style="text-align:center; opacity:.85; line-height:1.6;">
+          No se pudo cargar <strong>${page}</strong>.<br>
+          Revisa que el archivo exista y que el nombre coincida.
         </p>`;
     }
   }
 
-  function activate(btn) {
+  function setActiveTab(btn){
     tabs.forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
+  }
+
+  function activate(btn) {
+    setActiveTab(btn);
     loadPage(btn.dataset.page);
   }
 
@@ -96,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Inicio: placeholder visible
   showPlaceholder();
 
-  // ✅ Auto-selección a los 15s SOLO si no hubo interacción
+  // Auto-selección a los 15s SOLO si no hubo interacción
   suggestionTimer = setTimeout(() => {
     if (userInteracted) return;
 
