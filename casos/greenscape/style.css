@@ -3,19 +3,25 @@
 =========================== */
 *{ box-sizing:border-box; }
 
+html, body{ height:100%; }
+
 body{
   margin:0;
   font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   color:#1f2933;
 }
 
+/* ✅ Layout con footer pegado abajo */
 body.case-page{
   background:#f2dfc2;
-  padding:40px 0 70px;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  padding:40px 0 0; /* sin padding abajo */
 }
 
 /* ===========================
-   LAYOUT (2 columnas)
+   LAYOUT (2 columnas) — SIMÉTRICO
 =========================== */
 .case-layout{
   width:min(1200px,92%);
@@ -23,7 +29,11 @@ body.case-page{
   display:grid;
   grid-template-columns: 1fr 420px;
   gap:28px;
-  align-items:start;
+
+  /* ✅ claves para simetría */
+  align-items:stretch;     /* ambas columnas con misma altura visual */
+  flex:1;                  /* ocupa el espacio disponible antes del footer */
+  padding-bottom:28px;     /* aire antes del footer */
 }
 
 /* ===========================
@@ -34,6 +44,11 @@ body.case-page{
   border-radius:18px;
   padding:30px 28px;
   box-shadow:0 10px 26px rgba(0,0,0,.10);
+
+  /* ✅ para que no quede chiquita */
+  min-height:600px;
+  display:flex;
+  flex-direction:column;
 }
 
 .case-title{
@@ -44,7 +59,7 @@ body.case-page{
 }
 
 /* ===========================
-   TABS (3 botones o los que sean)
+   TABS
 =========================== */
 .ux-tabs{
   display:flex;
@@ -137,11 +152,12 @@ body.case-page{
 .case-body ul{ margin: 10px 0 0 18px; }
 
 /* ===========================
-   PREVIEW DERECHA
+   COLUMNA DERECHA / PREVIEW
 =========================== */
 .case-aside{
   position:sticky;
   top:40px;
+  align-self:start; /* no se estira raro con sticky */
 }
 
 .preview-card{
@@ -149,6 +165,11 @@ body.case-page{
   border-radius:18px;
   padding:18px;
   box-shadow:0 10px 26px rgba(0,0,0,.10);
+
+  /* ✅ misma altura base que la izquierda */
+  min-height:600px;
+  display:flex;
+  flex-direction:column;
 }
 
 .preview-link{
@@ -157,16 +178,19 @@ body.case-page{
   overflow:hidden;
 }
 
+/* ✅ preview proporcional (NO gigante, NO mini) */
 .preview-link img{
   width:100%;
-  height:auto;
+  height:340px;      /* ajusta el tamaño real visible */
+  object-fit:contain;/* si quieres que NO recorte: contain */
+  background:#fff;   /* fondo blanco por si sobra espacio */
   display:block;
   border-radius:14px;
   transition: transform .25s ease;
 }
 
 .preview-link:hover img{
-  transform:scale(1.02);
+  transform:scale(1.01);
 }
 
 .preview-desc{
@@ -177,9 +201,10 @@ body.case-page{
 }
 
 /* ===========================
-   BOTONES
+   BOTONES (abajo del card)
 =========================== */
 .preview-actions{
+  margin-top:auto; /* ✅ pega los botones abajo dentro del preview */
   display:flex;
   gap:12px;
   justify-content:space-between;
@@ -195,6 +220,7 @@ body.case-page{
   align-items:center;
   justify-content:center;
   transition:.2s ease;
+  white-space:nowrap;
 }
 
 .btn:hover{
@@ -215,10 +241,10 @@ body.case-page{
 }
 
 /* ===========================
-   FOOTER
+   FOOTER (pegado abajo)
 =========================== */
 .case-footer{
-  margin-top:60px;
+  margin-top:auto; /* ✅ clave para que quede abajo siempre */
   text-align:center;
   padding:18px 0;
   background:rgba(255,255,255,.82);
@@ -231,7 +257,20 @@ body.case-page{
    RESPONSIVE
 =========================== */
 @media (max-width: 950px){
-  .case-layout{ grid-template-columns: 1fr; }
+  body.case-page{ padding:28px 0 0; }
+
+  .case-layout{
+    grid-template-columns: 1fr;
+    gap:18px;
+    padding-bottom:18px;
+  }
+
   .case-aside{ position:static; }
+
+  .case-card,
+  .preview-card{ min-height:auto; }
+
+  .preview-link img{ height:260px; }
+
   .preview-actions{ justify-content:center; }
 }
