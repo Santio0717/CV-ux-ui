@@ -1,14 +1,58 @@
 /* ===========================
-   TABS / BOTONES (GREENSCRAPE)
-   Igual estilo Bon Bon Bum
+   BASE
 =========================== */
+*{ box-sizing:border-box; }
 
+body{
+  margin:0;
+  font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color:#1f2933;
+}
+
+body.case-page{
+  background:#f2dfc2;
+  padding:40px 0 70px;
+}
+
+/* ===========================
+   LAYOUT (2 columnas)
+=========================== */
+.case-layout{
+  width:min(1200px,92%);
+  margin:0 auto;
+  display:grid;
+  grid-template-columns: 1fr 420px;
+  gap:28px;
+  align-items:start;
+}
+
+/* ===========================
+   TARJETA IZQUIERDA
+=========================== */
+.case-card{
+  background:rgba(255,255,255,.35);
+  border-radius:18px;
+  padding:30px 28px;
+  box-shadow:0 10px 26px rgba(0,0,0,.10);
+}
+
+/* Título */
+.case-title{
+  margin:0 0 16px;
+  text-align:center;
+  font-size:2rem;
+  font-weight:800;
+}
+
+/* ===========================
+   TABS / BOTONES
+=========================== */
 .ux-tabs{
   display:flex;
+  justify-content:center;
   flex-wrap:wrap;
   gap:10px;
-  justify-content:center;
-  margin: 18px 0 8px;
+  margin: 8px 0 18px;
 }
 
 .ux-tab{
@@ -22,7 +66,6 @@
   font-size:.85rem;
   cursor:pointer;
   transition: all .25s ease;
-  text-decoration:none; /* por si usas <a> */
   display:inline-flex;
   align-items:center;
   justify-content:center;
@@ -42,4 +85,169 @@
 .ux-tab:focus-visible{
   outline:3px solid rgba(0,0,0,.35);
   outline-offset:2px;
+}
+
+/* ===========================
+   PLACEHOLDER
+=========================== */
+.case-placeholder{
+  margin-top:14px;
+  padding:22px 18px;
+  border-radius:14px;
+  background:rgba(255,255,255,.45);
+  text-align:center;
+}
+
+.case-placeholder h3{
+  margin:0 0 10px;
+  font-size:1.1rem;
+  font-weight:800;
+}
+
+.case-placeholder p{
+  margin:0 auto 8px;
+  max-width:520px;
+  font-size:.95rem;
+  opacity:.85;
+  line-height:1.6;
+}
+
+.mini-note{
+  display:inline-block;
+  margin-top:4px;
+  font-size:.8rem;
+  opacity:.65;
+}
+
+/* ===========================
+   CONTENIDO DINÁMICO
+=========================== */
+.case-body{
+  margin-top:14px;
+  line-height:1.65;
+  animation:fadeIn .35s ease;
+}
+
+@keyframes fadeIn{
+  from{ opacity:0; transform:translateY(8px); }
+  to{ opacity:1; transform:translateY(0); }
+}
+
+.case-body h2,
+.case-body h3{
+  margin: 0 0 10px;
+}
+
+.case-body p{
+  margin: 0 0 12px;
+}
+
+.case-body ul{
+  margin: 10px 0 0 18px;
+}
+
+/* ===========================
+   COLUMNA DERECHA (PREVIEW)
+=========================== */
+.case-aside{
+  position:sticky;
+  top:40px;
+}
+
+.preview-card{
+  background:rgba(255,255,255,.85);
+  border-radius:18px;
+  padding:18px;
+  box-shadow:0 10px 26px rgba(0,0,0,.10);
+}
+
+.preview-link{
+  display:block;
+  border-radius:14px;
+  overflow:hidden;
+}
+
+.preview-link img{
+  width:100%;
+  height:auto;
+  display:block;
+  border-radius:14px;
+  transition: transform .25s ease;
+}
+
+.preview-link:hover img{
+  transform:scale(1.02);
+}
+
+.preview-desc{
+  margin:14px 0 16px;
+  font-size:.92rem;
+  line-height:1.55;
+  opacity:.85;
+}
+
+/* ===========================
+   BOTONES
+=========================== */
+.preview-actions{
+  display:flex;
+  gap:12px;
+  justify-content:space-between;
+  flex-wrap:wrap;
+}
+
+.btn{
+  padding:12px 18px;
+  border-radius:10px;
+  font-weight:700;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  transition:.2s ease;
+}
+
+.btn:hover{
+  transform:translateY(-1px);
+  opacity:.92;
+}
+
+.btn.ghost{
+  background:transparent;
+  border:2px solid #333;
+  color:#333;
+}
+
+.btn.case{
+  background:#b85c38;
+  color:#fff;
+  border:2px solid #b85c38;
+}
+
+/* ===========================
+   FOOTER
+=========================== */
+.case-footer{
+  margin-top:60px;
+  text-align:center;
+  padding:18px 0;
+  background:rgba(255,255,255,.82);
+  border-top:1px solid rgba(0,0,0,.08);
+  font-size:.85rem;
+  opacity:.85;
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+@media (max-width: 950px){
+  .case-layout{
+    grid-template-columns: 1fr;
+  }
+  .case-aside{
+    position:static;
+  }
+  .preview-actions{
+    justify-content:center;
+  }
 }
