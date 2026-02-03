@@ -1,276 +1,40 @@
-/* ===========================
-   BASE
-=========================== */
-*{ box-sizing:border-box; }
-
-html, body{ height:100%; }
-
-body{
-  margin:0;
-  font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  color:#1f2933;
-}
-
-/* ✅ Layout con footer pegado abajo */
-body.case-page{
-  background:#f2dfc2;
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  padding:40px 0 0; /* sin padding abajo */
-}
-
-/* ===========================
-   LAYOUT (2 columnas) — SIMÉTRICO
-=========================== */
+/* ===== LAYOUT (2 columnas) — tamaños como la imagen ===== */
 .case-layout{
-  width:min(1200px,92%);
+  width:min(1260px,92%);
   margin:0 auto;
   display:grid;
-  grid-template-columns: 1fr 420px;
+
+  /* IZQ más grande / DER más pequeña */
+  grid-template-columns: 1.35fr 0.85fr;
+
   gap:28px;
-
-  /* ✅ claves para simetría */
-  align-items:stretch;     /* ambas columnas con misma altura visual */
-  flex:1;                  /* ocupa el espacio disponible antes del footer */
-  padding-bottom:28px;     /* aire antes del footer */
+  align-items:stretch;
+  flex:1;
+  padding-bottom:28px;
 }
 
-/* ===========================
-   TARJETA IZQUIERDA
-=========================== */
-.case-card{
-  background:rgba(255,255,255,.35);
-  border-radius:18px;
-  padding:30px 28px;
-  box-shadow:0 10px 26px rgba(0,0,0,.10);
-
-  /* ✅ para que no quede chiquita */
-  min-height:600px;
-  display:flex;
-  flex-direction:column;
-}
-
-.case-title{
-  margin:0 0 14px;
-  text-align:center;
-  font-size:2rem;
-  font-weight:800;
-}
-
-/* ===========================
-   TABS
-=========================== */
-.ux-tabs{
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:10px;
-  margin: 10px 0 18px;
-}
-
-.ux-tab{
-  appearance:none;
-  border:1px solid #cfc4b4;
-  background:#e8dfd2;
-  color:#000;
-  padding:10px 18px;
-  border-radius:999px;
-  font-weight:700;
-  font-size:.85rem;
-  cursor:pointer;
-  transition: all .25s ease;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.ux-tab:hover{
-  transform:translateY(-1px);
-  box-shadow:0 6px 14px rgba(0,0,0,.08);
-}
-
-.ux-tab.active{
-  background:#000;
-  color:#fff;
-  border-color:#000;
-}
-
-.ux-tab:focus-visible{
-  outline:3px solid rgba(0,0,0,.35);
-  outline-offset:2px;
-}
-
-/* ===========================
-   PLACEHOLDER / CONTENIDO
-=========================== */
-.case-placeholder{
-  margin-top:14px;
-  padding:22px 18px;
-  border-radius:14px;
-  background:rgba(255,255,255,.45);
-  text-align:center;
-}
-
-.case-placeholder h3{
-  margin:0 0 10px;
-  font-size:1.1rem;
-  font-weight:800;
-}
-
-.case-placeholder p{
-  margin:0 auto 8px;
-  max-width:520px;
-  font-size:.95rem;
-  opacity:.85;
-  line-height:1.6;
-}
-
-.mini-note{
-  display:inline-block;
-  margin-top:4px;
-  font-size:.8rem;
-  opacity:.65;
-}
-
-.case-body{
-  margin-top:14px;
-  line-height:1.65;
-  animation:fadeIn .35s ease;
-}
-
-@keyframes fadeIn{
-  from{ opacity:0; transform:translateY(8px); }
-  to{ opacity:1; transform:translateY(0); }
-}
-
-.case-body h2,
-.case-body h3{ margin: 0 0 10px; }
-
-.case-body p{ margin: 0 0 12px; }
-
-.case-body ul{ margin: 10px 0 0 18px; }
-
-/* ===========================
-   COLUMNA DERECHA / PREVIEW
-=========================== */
-.case-aside{
-  position:sticky;
-  top:40px;
-  align-self:start; /* no se estira raro con sticky */
-}
-
+/* ===== TARJETAS — misma altura visual ===== */
+.case-card,
 .preview-card{
-  background:rgba(255,255,255,.85);
-  border-radius:18px;
-  padding:18px;
-  box-shadow:0 10px 26px rgba(0,0,0,.10);
-
-  /* ✅ misma altura base que la izquierda */
-  min-height:600px;
-  display:flex;
-  flex-direction:column;
+  min-height:560px;  /* tamaño similar al de tu screenshot */
 }
 
-.preview-link{
-  display:block;
-  border-radius:14px;
-  overflow:hidden;
-}
-
-/* ✅ preview proporcional (NO gigante, NO mini) */
+/* ===== PREVIEW — tamaño y proporción como la imagen ===== */
 .preview-link img{
   width:100%;
-  height:340px;      /* ajusta el tamaño real visible */
-  object-fit:contain;/* si quieres que NO recorte: contain */
-  background:#fff;   /* fondo blanco por si sobra espacio */
+  height:320px;        /* más parecido a la captura */
+  object-fit:cover;    /* llena el contenedor como en la imagen */
+  object-position: top center;
+  background:#fff;
   display:block;
   border-radius:14px;
-  transition: transform .25s ease;
 }
 
-.preview-link:hover img{
-  transform:scale(1.01);
-}
-
-.preview-desc{
-  margin:14px 0 16px;
-  font-size:.92rem;
-  line-height:1.55;
-  opacity:.85;
-}
-
-/* ===========================
-   BOTONES (abajo del card)
-=========================== */
+/* ===== BOTONES EN LA DERECHA (centrados abajo como la imagen) ===== */
 .preview-actions{
-  margin-top:auto; /* ✅ pega los botones abajo dentro del preview */
+  margin-top:auto;
   display:flex;
   gap:12px;
-  justify-content:space-between;
+  justify-content:flex-start; /* se ven como la captura */
   flex-wrap:wrap;
-}
-
-.btn{
-  padding:12px 18px;
-  border-radius:10px;
-  font-weight:700;
-  text-decoration:none;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  transition:.2s ease;
-  white-space:nowrap;
-}
-
-.btn:hover{
-  transform:translateY(-1px);
-  opacity:.92;
-}
-
-.btn.ghost{
-  background:transparent;
-  border:2px solid #333;
-  color:#333;
-}
-
-.btn.case{
-  background:#b85c38;
-  color:#fff;
-  border:2px solid #b85c38;
-}
-
-/* ===========================
-   FOOTER (pegado abajo)
-=========================== */
-.case-footer{
-  margin-top:auto; /* ✅ clave para que quede abajo siempre */
-  text-align:center;
-  padding:18px 0;
-  background:rgba(255,255,255,.82);
-  border-top:1px solid rgba(0,0,0,.08);
-  font-size:.85rem;
-  opacity:.85;
-}
-
-/* ===========================
-   RESPONSIVE
-=========================== */
-@media (max-width: 950px){
-  body.case-page{ padding:28px 0 0; }
-
-  .case-layout{
-    grid-template-columns: 1fr;
-    gap:18px;
-    padding-bottom:18px;
-  }
-
-  .case-aside{ position:static; }
-
-  .case-card,
-  .preview-card{ min-height:auto; }
-
-  .preview-link img{ height:260px; }
-
-  .preview-actions{ justify-content:center; }
 }
