@@ -2,6 +2,7 @@
    BASE / FONDO
 =========================== */
 *{ box-sizing:border-box; }
+
 body{
   margin:0;
   font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -10,25 +11,27 @@ body{
 
 body.case-page{
   background:#f2dfc2;
-  padding:40px 0 70px; /* más aire arriba/abajo */
+  padding:32px 0 56px;
 }
 
 /* ===========================
-   CONTENEDOR (1 tarjeta centrada)
+   CONTENEDOR PRINCIPAL
 =========================== */
 .case-content{
-  width:min(1050px, 92%);       /* un poco más ancho que 900 */
+  width:min(820px, 92%);   /* 🔑 más estrecho que Bon Bon Bum */
   margin:0 auto;
   background:rgba(255,255,255,.35);
-  padding:32px 28px;
+  padding:28px 26px 30px;
   border-radius:18px;
-  box-shadow:0 10px 26px rgba(0,0,0,.10);
+  box-shadow:0 8px 20px rgba(0,0,0,.08);
+  text-align:center;
 }
 
-/* TÍTULO */
+/* ===========================
+   TÍTULO
+=========================== */
 .case-title{
-  margin:0 0 14px;
-  text-align:center;
+  margin:0 0 12px;
   font-size:2rem;
   font-weight:800;
   letter-spacing:.2px;
@@ -39,25 +42,22 @@ body.case-page{
 =========================== */
 .ux-tabs{
   display:flex;
-  flex-wrap:wrap;
   gap:10px;
   justify-content:center;
-  margin: 12px 0 18px;
+  margin: 12px 0 10px;
 }
 
-/* sirve para <a> o <button> */
 .ux-tab{
   appearance:none;
   border:1px solid #cfc4b4;
   background:#e8dfd2;
   color:#000;
-  padding:10px 18px;
+  padding:9px 16px;        /* 🔑 más pequeños */
   border-radius:999px;
   font-weight:700;
-  font-size:.85rem;
+  font-size:.8rem;
   cursor:pointer;
-  transition: all .25s ease;
-  text-decoration:none;
+  transition:.2s ease;
   display:inline-flex;
   align-items:center;
   justify-content:center;
@@ -65,7 +65,7 @@ body.case-page{
 
 .ux-tab:hover{
   transform:translateY(-1px);
-  box-shadow:0 6px 14px rgba(0,0,0,.08);
+  box-shadow:0 5px 12px rgba(0,0,0,.08);
 }
 
 .ux-tab.active{
@@ -74,44 +74,31 @@ body.case-page{
   border-color:#000;
 }
 
-.ux-tab:focus-visible{
-  outline:3px solid rgba(0,0,0,.35);
-  outline-offset:2px;
-}
-
 /* ===========================
-   CONTENIDO
+   TEXTO DESCRIPTIVO
 =========================== */
-.ux-section{
-  line-height:1.65;
-}
-
-/* Si dentro tienes títulos/listas */
-.ux-section h2, .ux-section h3{
-  margin: 0 0 10px;
-}
-.ux-section p{
-  margin: 0 0 12px;
-}
-.ux-section ul{
-  margin: 10px 0 0 18px;
+.case-content > p{
+  margin:10px auto 18px;
+  max-width:520px;
+  font-size:.9rem;
+  opacity:.85;
 }
 
 /* ===========================
    BOTONES INFERIORES
 =========================== */
 .case-links{
-  margin-top:26px;
+  margin-top:18px;
   display:flex;
   justify-content:center;
-  gap:12px;
-  flex-wrap:wrap;
+  gap:14px;
 }
 
 .btn{
-  padding:12px 18px;
+  padding:11px 18px;
   border-radius:10px;
   font-weight:700;
+  font-size:.85rem;
   text-decoration:none;
   display:inline-flex;
   align-items:center;
@@ -139,7 +126,16 @@ body.case-page{
 /* ===========================
    RESPONSIVE
 =========================== */
-@media (max-width: 720px){
-  .case-content{ padding:26px 18px; }
-  .case-title{ font-size:1.65rem; }
+@media (max-width: 640px){
+  .case-content{
+    padding:24px 18px;
+  }
+
+  .case-title{
+    font-size:1.6rem;
+  }
+
+  .ux-tabs{
+    gap:8px;
+  }
 }
