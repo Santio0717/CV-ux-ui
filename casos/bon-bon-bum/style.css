@@ -3,21 +3,17 @@
 =========================== */
 *{
   box-sizing:border-box;
-  margin:0;
-  padding:0;
 }
 
 body{
+  margin:0;
   font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   color:#1f2933;
 }
 
-/* Fondo + layout general */
+/* Fondo general */
 body.case-page{
   background:#f2dfc2;
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
 }
 
 /* ===========================
@@ -25,34 +21,27 @@ body.case-page{
 =========================== */
 .case-layout{
   width:min(1200px, 92%);
-  margin:40px auto 40px;
+  margin:40px auto 60px;
   display:grid;
-
-  /* ✅ simetría perfecta */
-  grid-template-columns: 1fr 1fr;
-
+  grid-template-columns: 1fr 1fr; /* ✅ iguales */
   gap:28px;
   align-items:start;
-  flex:1;
 }
 
 /* ===========================
-   TARJETA IZQUIERDA
+   TARJETAS (IZQ / DER)
 =========================== */
-.case-card{
+.case-card,
+.preview-card{
   background:rgba(255,255,255,.35);
-  padding:38px 32px;
   border-radius:16px;
+  padding:34px 30px;
   box-shadow:0 8px 20px rgba(0,0,0,.10);
-
-  /* ✅ para que el contenido no quede perdido abajo */
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-start;
-  min-height:520px;
 }
 
-/* Título */
+/* ===========================
+   TITULO
+=========================== */
 .case-title{
   margin:0 0 14px;
   text-align:center;
@@ -68,7 +57,7 @@ body.case-page{
   flex-wrap:wrap;
   gap:10px;
   justify-content:center;
-  margin:12px 0 20px;
+  margin:12px 0 18px;
 }
 
 .ux-tab{
@@ -76,16 +65,13 @@ body.case-page{
   min-width:132px;
   padding:10px 14px;
   border-radius:999px;
-
   border:1px solid #cfc4b4;
   background:#e8dfd2;
   color:#000;
-
   font-weight:700;
   font-size:.85rem;
   cursor:pointer;
-
-  transition:transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease;
+  transition: all .25s ease;
   display:inline-flex;
   align-items:center;
   justify-content:center;
@@ -111,8 +97,8 @@ body.case-page{
    PLACEHOLDER / CONTENIDO
 =========================== */
 .case-placeholder{
-  margin-top:0px;
-  padding:22px;
+  margin-top:14px;
+  padding:18px; /* ✅ menos alto */
   border-radius:14px;
   background:rgba(255,255,255,.45);
   text-align:center;
@@ -139,7 +125,6 @@ body.case-page{
   opacity:.65;
 }
 
-/* Contenido dinámico */
 .case-body{
   margin-top:14px;
   line-height:1.65;
@@ -165,25 +150,19 @@ body.case-page{
 }
 
 /* ===========================
-   TARJETA DERECHA (PREVIEW)
+   PREVIEW DERECHA
 =========================== */
 .case-aside{
   align-self:start;
 }
 
+/* preview card más sólido */
 .preview-card{
   background:rgba(255,255,255,.85);
-  border-radius:16px;
   padding:16px;
-  box-shadow:0 8px 20px rgba(0,0,0,.10);
-
-  /* ✅ para que no quede ese espacio vacío gigante */
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-start;
-  min-height:520px;
 }
 
+/* Imagen */
 .preview-link{
   display:block;
   border-radius:14px;
@@ -204,22 +183,24 @@ body.case-page{
   transform:scale(1.02);
 }
 
+/* Descripción */
 .preview-desc{
-  margin:14px 0 16px;
+  margin:12px 0 12px; /* ✅ menos espacio */
   font-size:.92rem;
   line-height:1.55;
   opacity:.85;
 }
 
 /* ===========================
-   BOTONES
+   BOTONES DERECHA
 =========================== */
 .preview-actions{
-  margin-top:auto; /* ✅ empuja los botones abajo pero sin dejar huecos raros */
   display:flex;
   gap:12px;
   justify-content:space-between;
   flex-wrap:wrap;
+
+  margin-top:10px; /* ✅ sube botones */
 }
 
 .btn{
@@ -251,16 +232,16 @@ body.case-page{
 }
 
 /* ===========================
-   FOOTER (SIEMPRE ABAJO)
+   FOOTER
 =========================== */
 .case-footer{
-  margin-top:auto;
   text-align:center;
   padding:18px 0;
   background:rgba(255,255,255,.82);
   border-top:1px solid rgba(0,0,0,.08);
   font-size:.85rem;
   opacity:.85;
+  margin-top:40px;
 }
 
 /* ===========================
