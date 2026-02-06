@@ -1,7 +1,9 @@
 /* ===========================
    BASE
 =========================== */
-*{ box-sizing:border-box; }
+*{
+  box-sizing:border-box;
+}
 
 body{
   margin:0;
@@ -9,32 +11,38 @@ body{
   color:#1f2933;
 }
 
-/* Fondo + espaciado general */
+/* ===========================
+   BODY + FOOTER ABAJO
+=========================== */
 body.case-page{
   background:#f2dfc2;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
 }
 
 /* ===========================
    CONTENEDOR PRINCIPAL
 =========================== */
 .case-layout{
+  flex:1; /* empuja el footer hacia abajo */
   width:min(1200px, 92%);
-  margin:40px auto 60px;
+  margin:40px auto 40px;
   display:grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr; /* simétrico */
   gap:28px;
   align-items:start;
 }
 
 /* ===========================
-   BLOQUE IZQUIERDO (.case-card)
+   BLOQUE IZQUIERDO
 =========================== */
 .case-card{
   background:rgba(255,255,255,.35);
   padding:38px 32px;
   border-radius:16px;
   box-shadow:0 8px 20px rgba(0,0,0,.10);
-  min-height:520px;
+  min-height: 520px; /* evita que se vea vacío muy raro */
 }
 
 .case-title{
@@ -45,7 +53,7 @@ body.case-page{
 }
 
 /* ===========================
-   TABS (.ux-tab)
+   TABS
 =========================== */
 .ux-tabs{
   display:flex;
@@ -138,27 +146,33 @@ body.case-page{
 }
 
 .case-body h2,
-.case-body h3{ margin:0 0 10px; }
+.case-body h3{
+  margin:0 0 10px;
+}
 
-.case-body p{ margin:0 0 12px; }
+.case-body p{
+  margin:0 0 12px;
+}
 
-.case-body ul{ margin:10px 0 0 18px; }
+.case-body ul{
+  margin:10px 0 0 18px;
+}
 
 /* ===========================
-   BLOQUE DERECHO (.case-aside)
+   BLOQUE DERECHO
 =========================== */
 .case-aside{
   align-self:start;
 }
 
-/* ===========================
-   TARJETA PREVIEW
-=========================== */
 .preview-card{
   background:rgba(255,255,255,.85);
   border-radius:16px;
   padding:16px;
   box-shadow:0 8px 20px rgba(0,0,0,.10);
+  min-height: 520px; /* mismo alto visual que la izquierda */
+  display:flex;
+  flex-direction:column;
 }
 
 .preview-link{
@@ -171,10 +185,10 @@ body.case-page{
   width:100%;
   height:320px;
   object-fit:cover;
-  object-position:center;
+  object-position:top center;
   display:block;
   border-radius:14px;
-  transition:transform .25s ease;
+  transition: transform .25s ease;
 }
 
 .preview-link:hover img{
@@ -189,12 +203,13 @@ body.case-page{
 }
 
 /* ===========================
-   BOTONES DERECHA
+   BOTONES
 =========================== */
 .preview-actions{
+  margin-top:auto; /* empuja botones hacia abajo dentro de la tarjeta */
   display:flex;
-  gap:5px; /* ✅ CAMBIADO de 10px a 5px */
-  justify-content:space-between;
+  gap:5px; /* ✅ como pediste */
+  justify-content:flex-start; /* ❌ NO space-between */
   flex-wrap:wrap;
 }
 
@@ -226,10 +241,17 @@ body.case-page{
   border:2px solid #b85c38;
 }
 
+/* Para que se vean simétricos */
+.preview-actions .btn{
+  flex:1;
+  min-width: 190px;
+}
+
 /* ===========================
    FOOTER
 =========================== */
 .case-footer{
+  margin-top:0;
   text-align:center;
   padding:18px 0;
   background:rgba(255,255,255,.82);
@@ -239,11 +261,12 @@ body.case-page{
 }
 
 /* ===========================
-   RESPONSIVE (<=900px)
+   RESPONSIVE
 =========================== */
 @media (max-width: 900px){
   .case-layout{
     grid-template-columns:1fr;
+    margin:30px auto 30px;
   }
 
   .preview-link img{
@@ -256,5 +279,15 @@ body.case-page{
 
   .preview-actions{
     justify-content:center;
+  }
+
+  .preview-actions .btn{
+    min-width: 200px;
+    flex:1;
+  }
+
+  .case-card,
+  .preview-card{
+    min-height:auto;
   }
 }
