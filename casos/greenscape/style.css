@@ -11,7 +11,6 @@ body{
   color:#1f2933;
 }
 
-/* Fondo + layout para empujar footer abajo */
 body.case-page{
   background:#f2dfc2;
   min-height:100vh;
@@ -29,7 +28,8 @@ body.case-page{
   display:grid;
   grid-template-columns: 1.35fr 1fr;
   gap:28px;
-  align-items:start; /* ✅ clave: NO stretch */
+
+  align-items:stretch; /* ✅ hace que ambas columnas se igualen */
 }
 
 /* ===========================
@@ -40,6 +40,8 @@ body.case-page{
   padding:38px 32px;
   border-radius:16px;
   box-shadow:0 8px 20px rgba(0,0,0,.10);
+
+  height:100%; /* ✅ misma altura que la derecha */
 }
 
 .case-title{
@@ -62,7 +64,6 @@ body.case-page{
 
 .ux-tab{
   appearance:none;
-  width: min(170px, 32%);
   min-width:132px;
   padding:10px 14px;
   border-radius:999px;
@@ -79,8 +80,6 @@ body.case-page{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  text-align:center;
-  white-space:nowrap;
 }
 
 .ux-tab:hover{
@@ -157,7 +156,7 @@ body.case-page{
    BLOQUE DERECHO
 =========================== */
 .case-aside{
-  align-self:start;
+  align-self:stretch;
 }
 
 .preview-card{
@@ -165,6 +164,8 @@ body.case-page{
   border-radius:16px;
   padding:16px;
   box-shadow:0 8px 20px rgba(0,0,0,.10);
+
+  height:100%; /* ✅ misma altura que la izquierda */
   display:flex;
   flex-direction:column;
 }
@@ -195,11 +196,12 @@ body.case-page{
   opacity:.85;
 }
 
-/* Botones más arriba como Bon Bon Bum */
+/* Acciones al fondo */
 .preview-actions{
+  margin-top:auto;
   display:flex;
-  gap:8px;
-  justify-content:flex-start;
+  gap:5px; /* ✅ espacio reducido entre botones */
+  justify-content:space-between;
   flex-wrap:wrap;
 }
 
@@ -261,9 +263,7 @@ body.case-page{
   }
 
   .ux-tab{
-    width:auto;
     min-width:46%;
-    white-space:normal;
   }
 
   .preview-actions{
