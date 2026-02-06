@@ -3,26 +3,34 @@
 =========================== */
 *{ box-sizing:border-box; }
 
+html, body{ height:100%; }
+
 body{
   margin:0;
   font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   color:#1f2933;
 }
 
+/* Sticky footer real */
 body.case-page{
   background:#f2dfc2;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
 }
 
 /* ===========================
    CONTENEDOR PRINCIPAL
+   (ocupa el alto disponible)
 =========================== */
 .case-layout{
   width:min(1200px, 92%);
-  margin:40px auto 60px;
+  margin:40px auto 24px;          /* 👈 menos bottom para que no quede hueco */
   display:grid;
   grid-template-columns: 1.35fr 1fr;
   gap:28px;
-  align-items:start;
+  align-items:stretch;            /* 👈 tarjetas misma altura */
+  flex:1;                         /* 👈 empuja footer abajo */
 }
 
 /* ===========================
@@ -33,6 +41,8 @@ body.case-page{
   padding:38px 32px;
   border-radius:16px;
   box-shadow:0 8px 20px rgba(0,0,0,.10);
+  display:flex;                   /* 👈 para controlar el “espacio” interno */
+  flex-direction:column;
 }
 
 .case-title{
@@ -57,16 +67,13 @@ body.case-page{
   appearance:none;
   min-width:132px;
   padding:10px 14px;
-
   border-radius:999px;
   border:1px solid #cfc4b4;
   background:#e8dfd2;
   color:#000;
-
   font-weight:700;
   font-size:.85rem;
   cursor:pointer;
-
   transition:transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease, border-color .25s ease;
   display:inline-flex;
   align-items:center;
@@ -90,7 +97,7 @@ body.case-page{
 }
 
 /* ===========================
-   PLACEHOLDER
+   PLACEHOLDER / CONTENIDO
 =========================== */
 .case-placeholder{
   margin-top:14px;
@@ -121,9 +128,6 @@ body.case-page{
   opacity:.65;
 }
 
-/* ===========================
-   CONTENIDO DINÁMICO
-=========================== */
 .case-body{
   margin-top:14px;
   line-height:1.65;
@@ -137,16 +141,14 @@ body.case-page{
 
 .case-body h2,
 .case-body h3{ margin:0 0 10px; }
-
 .case-body p{ margin:0 0 12px; }
-
 .case-body ul{ margin:10px 0 0 18px; }
 
 /* ===========================
    BLOQUE DERECHO
 =========================== */
 .case-aside{
-  align-self:start;
+  align-self:stretch;
 }
 
 .preview-card{
@@ -154,6 +156,9 @@ body.case-page{
   border-radius:16px;
   padding:16px;
   box-shadow:0 8px 20px rgba(0,0,0,.10);
+  display:flex;                   /* 👈 clave */
+  flex-direction:column;
+  height:100%;                    /* 👈 se estira igual que izquierda */
 }
 
 .preview-link{
@@ -184,9 +189,10 @@ body.case-page{
 }
 
 /* ===========================
-   BOTONES
+   BOTONES (alineados y sin hueco raro)
 =========================== */
 .preview-actions{
+  margin-top:auto;                /* 👈 empuja los botones al fondo de la tarjeta */
   display:flex;
   gap:12px;
   justify-content:space-between;
@@ -222,9 +228,10 @@ body.case-page{
 }
 
 /* ===========================
-   FOOTER
+   FOOTER (pegado abajo)
 =========================== */
 .case-footer{
+  margin-top:auto;                /* 👈 sticky footer */
   text-align:center;
   padding:18px 0;
   background:rgba(255,255,255,.82);
@@ -239,6 +246,7 @@ body.case-page{
 @media (max-width: 900px){
   .case-layout{
     grid-template-columns:1fr;
+    margin:24px auto 16px;
   }
 
   .preview-link img{
