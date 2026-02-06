@@ -3,15 +3,16 @@
 =========================== */
 *{
   box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
 body{
-  margin:0;
   font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   color:#1f2933;
 }
 
-/* Fondo general */
+/* Fondo + layout general */
 body.case-page{
   background:#f2dfc2;
   min-height:100vh;
@@ -26,9 +27,12 @@ body.case-page{
   width:min(1200px, 92%);
   margin:40px auto 40px;
   display:grid;
-  grid-template-columns: 1.35fr 1fr;
+
+  /* ✅ simetría perfecta */
+  grid-template-columns: 1fr 1fr;
+
   gap:28px;
-  align-items:start; /* ✅ ya no se estiran */
+  align-items:start;
   flex:1;
 }
 
@@ -40,8 +44,15 @@ body.case-page{
   padding:38px 32px;
   border-radius:16px;
   box-shadow:0 8px 20px rgba(0,0,0,.10);
+
+  /* ✅ para que el contenido no quede perdido abajo */
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  min-height:520px;
 }
 
+/* Título */
 .case-title{
   margin:0 0 14px;
   text-align:center;
@@ -57,7 +68,7 @@ body.case-page{
   flex-wrap:wrap;
   gap:10px;
   justify-content:center;
-  margin:12px 0 18px;
+  margin:12px 0 20px;
 }
 
 .ux-tab{
@@ -65,13 +76,16 @@ body.case-page{
   min-width:132px;
   padding:10px 14px;
   border-radius:999px;
+
   border:1px solid #cfc4b4;
   background:#e8dfd2;
   color:#000;
+
   font-weight:700;
   font-size:.85rem;
   cursor:pointer;
-  transition:all .25s ease;
+
+  transition:transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease;
   display:inline-flex;
   align-items:center;
   justify-content:center;
@@ -94,10 +108,10 @@ body.case-page{
 }
 
 /* ===========================
-   PLACEHOLDER
+   PLACEHOLDER / CONTENIDO
 =========================== */
 .case-placeholder{
-  margin-top:14px;
+  margin-top:0px;
   padding:22px;
   border-radius:14px;
   background:rgba(255,255,255,.45);
@@ -125,9 +139,7 @@ body.case-page{
   opacity:.65;
 }
 
-/* ===========================
-   CONTENIDO DINÁMICO
-=========================== */
+/* Contenido dinámico */
 .case-body{
   margin-top:14px;
   line-height:1.65;
@@ -164,9 +176,14 @@ body.case-page{
   border-radius:16px;
   padding:16px;
   box-shadow:0 8px 20px rgba(0,0,0,.10);
+
+  /* ✅ para que no quede ese espacio vacío gigante */
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  min-height:520px;
 }
 
-/* Imagen */
 .preview-link{
   display:block;
   border-radius:14px;
@@ -180,14 +197,13 @@ body.case-page{
   object-position:top center;
   display:block;
   border-radius:14px;
-  transition:transform .25s ease;
+  transition: transform .25s ease;
 }
 
 .preview-link:hover img{
   transform:scale(1.02);
 }
 
-/* Texto */
 .preview-desc{
   margin:14px 0 16px;
   font-size:.92rem;
@@ -199,6 +215,7 @@ body.case-page{
    BOTONES
 =========================== */
 .preview-actions{
+  margin-top:auto; /* ✅ empuja los botones abajo pero sin dejar huecos raros */
   display:flex;
   gap:12px;
   justify-content:space-between;
@@ -234,7 +251,7 @@ body.case-page{
 }
 
 /* ===========================
-   FOOTER (PEGADO ABAJO)
+   FOOTER (SIEMPRE ABAJO)
 =========================== */
 .case-footer{
   margin-top:auto;
