@@ -1,9 +1,9 @@
 /* ===========================
-   BASE
+   BASE + PAGE LAYOUT (footer abajo)
 =========================== */
-*{
-  box-sizing:border-box;
-}
+*{ box-sizing:border-box; }
+
+html, body{ height:100%; }
 
 body{
   margin:0;
@@ -11,32 +11,58 @@ body{
   color:#1f2933;
 }
 
-/* Fondo general */
 body.case-page{
   background:#f2dfc2;
+
+  /* ✅ esto fija el footer abajo sin dañar nada */
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
 }
 
-/* ===========================
-   CONTENEDOR PRINCIPAL
-=========================== */
-.case-layout{
+/* El main ocupa el espacio disponible */
+main.case-layout{
   width:min(1200px, 92%);
-  margin:40px auto 60px;
+  margin:40px auto 0;         /* ✅ sin margin-bottom aquí */
   display:grid;
-  grid-template-columns: 1fr 1fr; /* ✅ iguales */
+  grid-template-columns: 1fr 1fr; /* ✅ simétrico */
   gap:28px;
-  align-items:start;
+
+  /* ✅ hace que ambas tarjetas se estiren igual */
+  align-items:stretch;
+
+  /* ✅ aire antes del footer */
+  padding-bottom:40px;
 }
 
 /* ===========================
-   TARJETAS (IZQ / DER)
+   TARJETAS (izq/der)
 =========================== */
-.case-card,
-.preview-card{
+.case-card{
   background:rgba(255,255,255,.35);
   border-radius:16px;
-  padding:34px 30px;
+  padding:38px 32px;
   box-shadow:0 8px 20px rgba(0,0,0,.10);
+
+  /* ✅ para que el contenido “arriba” y no se vayan cosas al fondo */
+  display:flex;
+  flex-direction:column;
+}
+
+.case-aside{
+  align-self:stretch;
+}
+
+.preview-card{
+  background:rgba(255,255,255,.85);
+  border-radius:16px;
+  padding:16px;
+  box-shadow:0 8px 20px rgba(0,0,0,.10);
+
+  /* ✅ layout interno para controlar acciones */
+  display:flex;
+  flex-direction:column;
+  height:100%;
 }
 
 /* ===========================
@@ -71,7 +97,7 @@ body.case-page{
   font-weight:700;
   font-size:.85rem;
   cursor:pointer;
-  transition: all .25s ease;
+  transition:transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease, border-color .25s ease;
   display:inline-flex;
   align-items:center;
   justify-content:center;
@@ -94,11 +120,11 @@ body.case-page{
 }
 
 /* ===========================
-   PLACEHOLDER / CONTENIDO
+   PLACEHOLDER / CONTENIDO (izquierda)
 =========================== */
 .case-placeholder{
   margin-top:14px;
-  padding:18px; /* ✅ menos alto */
+  padding:22px;
   border-radius:14px;
   background:rgba(255,255,255,.45);
   text-align:center;
@@ -136,33 +162,9 @@ body.case-page{
   to{ opacity:1; transform:translateY(0); }
 }
 
-.case-body h2,
-.case-body h3{
-  margin:0 0 10px;
-}
-
-.case-body p{
-  margin:0 0 12px;
-}
-
-.case-body ul{
-  margin:10px 0 0 18px;
-}
-
 /* ===========================
-   PREVIEW DERECHA
+   PREVIEW (derecha)
 =========================== */
-.case-aside{
-  align-self:start;
-}
-
-/* preview card más sólido */
-.preview-card{
-  background:rgba(255,255,255,.85);
-  padding:16px;
-}
-
-/* Imagen */
 .preview-link{
   display:block;
   border-radius:14px;
@@ -183,26 +185,27 @@ body.case-page{
   transform:scale(1.02);
 }
 
-/* Descripción */
 .preview-desc{
-  margin:12px 0 12px; /* ✅ menos espacio */
+  margin:14px 0 14px;
   font-size:.92rem;
   line-height:1.55;
   opacity:.85;
 }
 
-/* ===========================
-   BOTONES DERECHA
-=========================== */
+/* ✅ subimos los botones sin “mandarlos al piso” */
 .preview-actions{
   display:flex;
   gap:12px;
   justify-content:space-between;
   flex-wrap:wrap;
 
-  margin-top:10px; /* ✅ sube botones */
+  margin-top:0;      /* ✅ arriba */
+  padding-top:0;
 }
 
+/* ===========================
+   BOTONES
+=========================== */
 .btn{
   padding:12px 20px;
   border-radius:10px;
@@ -232,24 +235,25 @@ body.case-page{
 }
 
 /* ===========================
-   FOOTER
+   FOOTER (pegado abajo)
 =========================== */
 .case-footer{
+  margin-top:auto; /* ✅ clave: lo empuja al fondo */
   text-align:center;
   padding:18px 0;
   background:rgba(255,255,255,.82);
   border-top:1px solid rgba(0,0,0,.08);
   font-size:.85rem;
   opacity:.85;
-  margin-top:40px;
 }
 
 /* ===========================
    RESPONSIVE
 =========================== */
 @media (max-width: 900px){
-  .case-layout{
+  main.case-layout{
     grid-template-columns:1fr;
+    padding-bottom:24px;
   }
 
   .preview-link img{
