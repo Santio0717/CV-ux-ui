@@ -1,7 +1,10 @@
 /* ===========================
-   BASE
+   BASE + "sticky footer"
+   (footer siempre abajo)
 =========================== */
 *{ box-sizing:border-box; }
+
+html, body{ height:100%; }
 
 body{
   margin:0;
@@ -9,18 +12,25 @@ body{
   color:#1f2933;
 }
 
-/* Fondo + espaciado general */
+/* Fondo + layout para empujar footer abajo */
 body.case-page{
   background:#f2dfc2;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+/* El <main class="case-layout"> ocupa el alto disponible */
+.case-layout{
+  flex:1;
 }
 
 /* ===========================
    CONTENEDOR PRINCIPAL
-   (.case-layout)
    - max 1200px
    - 92% fluido
-   - margin top 40px / bottom 60px
-   - gap 28px
+   - margin top 40 / bottom 60
+   - gap 28
 =========================== */
 .case-layout{
   width:min(1200px, 92%);
@@ -28,7 +38,7 @@ body.case-page{
   display:grid;
   grid-template-columns: 1.35fr 1fr; /* 57% / 43% aprox */
   gap:28px;
-  align-items:start;
+  align-items:stretch; /* ✅ simetría: ambas columnas "crecen" parejo */
 }
 
 /* ===========================
@@ -41,9 +51,9 @@ body.case-page{
   padding:38px 32px;
   border-radius:16px;
   box-shadow:0 8px 20px rgba(0,0,0,.10);
+  min-height:100%; /* ✅ iguala altura visual con la derecha */
 }
 
-/* Título */
 .case-title{
   margin:0 0 14px;
   text-align:center;
@@ -52,7 +62,7 @@ body.case-page{
 }
 
 /* ===========================
-   TABS (.ux-tab)
+   TABS
    - min-width 132px
    - padding 10/14
 =========================== */
@@ -68,8 +78,8 @@ body.case-page{
   appearance:none;
   min-width:132px;
   padding:10px 14px;
-
   border-radius:999px;
+
   border:1px solid #cfc4b4;
   background:#e8dfd2;
   color:#000;
@@ -101,9 +111,7 @@ body.case-page{
 }
 
 /* ===========================
-   PLACEHOLDER
-   - padding 22px
-   - p max 56ch
+   PLACEHOLDER / CONTENIDO
 =========================== */
 .case-placeholder{
   margin-top:14px;
@@ -121,7 +129,7 @@ body.case-page{
 
 .case-placeholder p{
   margin:0 auto 8px;
-  max-width:56ch;      /* ✅ 56ch */
+  max-width:56ch;
   font-size:.95rem;
   opacity:.85;
   line-height:1.6;
@@ -134,7 +142,6 @@ body.case-page{
   opacity:.65;
 }
 
-/* Contenido dinámico */
 .case-body{
   margin-top:14px;
   line-height:1.65;
@@ -146,8 +153,15 @@ body.case-page{
   to{ opacity:1; transform:translateY(0); }
 }
 
-.case-body h2,
-.case-body h3{ margin:0 0 10px; }
+/* ✅ Para que el contenido cargado NO rompa el diseño */
+.case-body img{
+  max-width:100%;
+  height:auto;
+  display:block;
+  border-radius:12px;
+}
+
+.case-body h2, .case-body h3{ margin:0 0 10px; }
 .case-body p{ margin:0 0 12px; }
 .case-body ul{ margin:10px 0 0 18px; }
 
@@ -155,18 +169,21 @@ body.case-page{
    BLOQUE DERECHO (.case-aside)
 =========================== */
 .case-aside{
-  align-self:start;
+  align-self:stretch; /* ✅ misma altura lógica */
 }
 
-/* Tarjeta preview - padding 16px */
+/* Preview card */
 .preview-card{
   background:rgba(255,255,255,.85);
   border-radius:16px;
-  padding:16px; /* ✅ */
+  padding:16px;
   box-shadow:0 8px 20px rgba(0,0,0,.10);
+  height:100%;              /* ✅ iguala visualmente */
+  display:flex;
+  flex-direction:column;    /* ✅ acciones siempre abajo */
 }
 
-/* Imagen preview - altura fija 320px */
+/* Imagen preview (altura fija) */
 .preview-link{
   display:block;
   border-radius:14px;
@@ -175,11 +192,10 @@ body.case-page{
 
 .preview-link img{
   width:100%;
-  height:320px;     /* ✅ */
+  height:320px;
   object-fit:cover;
   object-position: top center;
   display:block;
-  border-radius:14px;
   transition: transform .25s ease;
 }
 
@@ -194,20 +210,20 @@ body.case-page{
   opacity:.85;
 }
 
-/* ===========================
-   BOTONES (.btn)
-   - padding 12/20
-   - ghost border 2px
-=========================== */
+/* Acciones siempre al fondo del card */
 .preview-actions{
+  margin-top:auto; /* ✅ empuja botones al final para simetría */
   display:flex;
   gap:12px;
   justify-content:space-between;
   flex-wrap:wrap;
 }
 
+/* ===========================
+   BOTONES
+=========================== */
 .btn{
-  padding:12px 20px; /* ✅ */
+  padding:12px 20px;
   border-radius:10px;
   font-weight:700;
   text-decoration:none;
@@ -224,7 +240,7 @@ body.case-page{
 
 .btn.ghost{
   background:transparent;
-  border:2px solid #333; /* ✅ */
+  border:2px solid #333;
   color:#333;
 }
 
@@ -235,9 +251,10 @@ body.case-page{
 }
 
 /* ===========================
-   FOOTER
+   FOOTER (pegado abajo)
 =========================== */
 .case-footer{
+  margin-top:auto; /* ✅ clave: footer al fondo */
   text-align:center;
   padding:18px 0;
   background:rgba(255,255,255,.82);
@@ -248,21 +265,19 @@ body.case-page{
 
 /* ===========================
    RESPONSIVE (<=900px)
-   - 1 columna
-   - imagen 260px
-   - tabs min-width 46%
 =========================== */
 @media (max-width: 900px){
   .case-layout{
     grid-template-columns:1fr;
+    margin:28px auto 40px;
   }
 
   .preview-link img{
-    height:260px; /* ✅ */
+    height:260px;
   }
 
   .ux-tab{
-    min-width:46%; /* ✅ 2 por fila aprox */
+    min-width:46%;
   }
 
   .preview-actions{
