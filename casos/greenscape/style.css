@@ -1,6 +1,5 @@
 /* ===========================
    BASE + "sticky footer"
-   (footer siempre abajo)
 =========================== */
 *{ box-sizing:border-box; }
 
@@ -20,38 +19,28 @@ body.case-page{
   flex-direction:column;
 }
 
-/* El <main class="case-layout"> ocupa el alto disponible */
-.case-layout{
-  flex:1;
-}
-
 /* ===========================
    CONTENEDOR PRINCIPAL
-   - max 1200px
-   - 92% fluido
-   - margin top 40 / bottom 60
-   - gap 28
 =========================== */
 .case-layout{
+  flex:1;
   width:min(1200px, 92%);
   margin:40px auto 60px;
   display:grid;
-  grid-template-columns: 1.35fr 1fr; /* 57% / 43% aprox */
+  grid-template-columns: 1.35fr 1fr; /* 57% / 43% */
   gap:28px;
-  align-items:stretch; /* ✅ simetría: ambas columnas "crecen" parejo */
+  align-items:stretch;
 }
 
 /* ===========================
-   BLOQUE IZQUIERDO (.case-card)
-   - padding 38/32
-   - radius 16px
+   BLOQUE IZQUIERDO
 =========================== */
 .case-card{
   background:rgba(255,255,255,.35);
   padding:38px 32px;
   border-radius:16px;
   box-shadow:0 8px 20px rgba(0,0,0,.10);
-  min-height:100%; /* ✅ iguala altura visual con la derecha */
+  min-height:100%;
 }
 
 .case-title{
@@ -62,9 +51,7 @@ body.case-page{
 }
 
 /* ===========================
-   TABS
-   - min-width 132px
-   - padding 10/14
+   TABS (optimizado para 3)
 =========================== */
 .ux-tabs{
   display:flex;
@@ -74,8 +61,10 @@ body.case-page{
   margin:12px 0 18px;
 }
 
+/* ✅ En desktop: mismo ancho para que se vean simétricos */
 .ux-tab{
   appearance:none;
+  width: min(170px, 32%); /* 👈 clave: 3 tabs quedan iguales */
   min-width:132px;
   padding:10px 14px;
   border-radius:999px;
@@ -92,6 +81,8 @@ body.case-page{
   display:inline-flex;
   align-items:center;
   justify-content:center;
+  text-align:center;
+  white-space:nowrap;
 }
 
 .ux-tab:hover{
@@ -153,7 +144,6 @@ body.case-page{
   to{ opacity:1; transform:translateY(0); }
 }
 
-/* ✅ Para que el contenido cargado NO rompa el diseño */
 .case-body img{
   max-width:100%;
   height:auto;
@@ -166,24 +156,22 @@ body.case-page{
 .case-body ul{ margin:10px 0 0 18px; }
 
 /* ===========================
-   BLOQUE DERECHO (.case-aside)
+   BLOQUE DERECHO
 =========================== */
 .case-aside{
-  align-self:stretch; /* ✅ misma altura lógica */
+  align-self:stretch;
 }
 
-/* Preview card */
 .preview-card{
   background:rgba(255,255,255,.85);
   border-radius:16px;
   padding:16px;
   box-shadow:0 8px 20px rgba(0,0,0,.10);
-  height:100%;              /* ✅ iguala visualmente */
+  height:100%;
   display:flex;
-  flex-direction:column;    /* ✅ acciones siempre abajo */
+  flex-direction:column;
 }
 
-/* Imagen preview (altura fija) */
 .preview-link{
   display:block;
   border-radius:14px;
@@ -210,12 +198,12 @@ body.case-page{
   opacity:.85;
 }
 
-/* Acciones siempre al fondo del card */
+/* ✅ Botones más “pegados” y sin separarse tanto */
 .preview-actions{
-  margin-top:auto; /* ✅ empuja botones al final para simetría */
+  margin-top:16px;          /* antes: auto (los mandaba al fondo) */
   display:flex;
-  gap:12px;
-  justify-content:space-between;
+  gap:8px;                  /* 👈 menos separación */
+  justify-content:flex-start;
   flex-wrap:wrap;
 }
 
@@ -251,10 +239,10 @@ body.case-page{
 }
 
 /* ===========================
-   FOOTER (pegado abajo)
+   FOOTER
 =========================== */
 .case-footer{
-  margin-top:auto; /* ✅ clave: footer al fondo */
+  margin-top:auto;
   text-align:center;
   padding:18px 0;
   background:rgba(255,255,255,.82);
@@ -276,8 +264,11 @@ body.case-page{
     height:260px;
   }
 
+  /* ✅ en móvil: 2 por fila aprox */
   .ux-tab{
+    width:auto;
     min-width:46%;
+    white-space:normal;
   }
 
   .preview-actions{
