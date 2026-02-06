@@ -1,127 +1,255 @@
-document.addEventListener("DOMContentLoaded", () => {
-  // Año footer
-  const year = document.getElementById("year");
-  if (year) year.textContent = new Date().getFullYear();
+/* ===========================
+   BASE
+=========================== */
+*{ box-sizing:border-box; }
 
-  const content = document.getElementById("case-content");
-  const placeholder = document.getElementById("case-placeholder");
-  const tabs = Array.from(document.querySelectorAll(".ux-tab[data-page]"));
-  const pageTitleEl = document.querySelector(".case-title");
-  const CASE_TITLE = (pageTitleEl?.textContent || "").trim().toLowerCase();
+body{
+  margin:0;
+  font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color:#1f2933;
+}
 
-  if (!content || !tabs.length) {
-    console.warn("No se encontró #case-content o .ux-tab[data-page].");
-    return;
+body.case-page{
+  background:#f2dfc2;
+}
+
+/* ===========================
+   CONTENEDOR PRINCIPAL
+=========================== */
+.case-layout{
+  width:min(1200px, 92%);
+  margin:40px auto 60px;
+  display:grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap:28px;
+  align-items:start;
+}
+
+/* ===========================
+   BLOQUE IZQUIERDO
+=========================== */
+.case-card{
+  background:rgba(255,255,255,.35);
+  padding:38px 32px;
+  border-radius:16px;
+  box-shadow:0 8px 20px rgba(0,0,0,.10);
+}
+
+.case-title{
+  margin:0 0 14px;
+  text-align:center;
+  font-size:2rem;
+  font-weight:800;
+}
+
+/* ===========================
+   TABS
+=========================== */
+.ux-tabs{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  justify-content:center;
+  margin:12px 0 18px;
+}
+
+.ux-tab{
+  appearance:none;
+  min-width:132px;
+  padding:10px 14px;
+
+  border-radius:999px;
+  border:1px solid #cfc4b4;
+  background:#e8dfd2;
+  color:#000;
+
+  font-weight:700;
+  font-size:.85rem;
+  cursor:pointer;
+
+  transition:transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease, border-color .25s ease;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.ux-tab:hover{
+  transform:translateY(-1px);
+  box-shadow:0 6px 14px rgba(0,0,0,.08);
+}
+
+.ux-tab.active{
+  background:#000;
+  color:#fff;
+  border-color:#000;
+}
+
+.ux-tab:focus-visible{
+  outline:3px solid rgba(0,0,0,.35);
+  outline-offset:2px;
+}
+
+/* ===========================
+   PLACEHOLDER
+=========================== */
+.case-placeholder{
+  margin-top:14px;
+  padding:22px;
+  border-radius:14px;
+  background:rgba(255,255,255,.45);
+  text-align:center;
+}
+
+.case-placeholder h3{
+  margin:0 0 10px;
+  font-size:1.1rem;
+  font-weight:800;
+}
+
+.case-placeholder p{
+  margin:0 auto 8px;
+  max-width:56ch;
+  font-size:.95rem;
+  opacity:.85;
+  line-height:1.6;
+}
+
+.mini-note{
+  display:inline-block;
+  margin-top:4px;
+  font-size:.8rem;
+  opacity:.65;
+}
+
+/* ===========================
+   CONTENIDO DINÁMICO
+=========================== */
+.case-body{
+  margin-top:14px;
+  line-height:1.65;
+  animation:fadeIn .35s ease;
+}
+
+@keyframes fadeIn{
+  from{ opacity:0; transform:translateY(8px); }
+  to{ opacity:1; transform:translateY(0); }
+}
+
+.case-body h2,
+.case-body h3{ margin:0 0 10px; }
+
+.case-body p{ margin:0 0 12px; }
+
+.case-body ul{ margin:10px 0 0 18px; }
+
+/* ===========================
+   BLOQUE DERECHO
+=========================== */
+.case-aside{
+  align-self:start;
+}
+
+.preview-card{
+  background:rgba(255,255,255,.85);
+  border-radius:16px;
+  padding:16px;
+  box-shadow:0 8px 20px rgba(0,0,0,.10);
+}
+
+.preview-link{
+  display:block;
+  border-radius:14px;
+  overflow:hidden;
+}
+
+.preview-link img{
+  width:100%;
+  height:320px;
+  object-fit:cover;
+  object-position: top center;
+  display:block;
+  border-radius:14px;
+  transition: transform .25s ease;
+}
+
+.preview-link:hover img{
+  transform:scale(1.02);
+}
+
+.preview-desc{
+  margin:14px 0 16px;
+  font-size:.92rem;
+  line-height:1.55;
+  opacity:.85;
+}
+
+/* ===========================
+   BOTONES
+=========================== */
+.preview-actions{
+  display:flex;
+  gap:12px;
+  justify-content:space-between;
+  flex-wrap:wrap;
+}
+
+.btn{
+  padding:12px 20px;
+  border-radius:10px;
+  font-weight:700;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  transition:.2s ease;
+}
+
+.btn:hover{
+  transform:translateY(-1px);
+  opacity:.92;
+}
+
+.btn.ghost{
+  background:transparent;
+  border:2px solid #333;
+  color:#333;
+}
+
+.btn.case{
+  background:#b85c38;
+  color:#fff;
+  border:2px solid #b85c38;
+}
+
+/* ===========================
+   FOOTER
+=========================== */
+.case-footer{
+  text-align:center;
+  padding:18px 0;
+  background:rgba(255,255,255,.82);
+  border-top:1px solid rgba(0,0,0,.08);
+  font-size:.85rem;
+  opacity:.85;
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+@media (max-width: 900px){
+  .case-layout{
+    grid-template-columns:1fr;
   }
 
-  let userInteracted = false;
-  let suggestionTimer = null;
-
-  function showPlaceholder(){
-    if (placeholder) placeholder.hidden = false;
-    content.hidden = true;
-    content.innerHTML = "";
+  .preview-link img{
+    height:260px;
   }
 
-  function showContent(){
-    if (placeholder) placeholder.hidden = true;
-    content.hidden = false;
+  .ux-tab{
+    min-width:46%;
   }
 
-  // Limpia duplicados si los HTML internos traen layout completo
-  function sanitizeLoadedHTML(html){
-    const temp = document.createElement("div");
-    temp.innerHTML = html;
-
-    // elimina cosas que no deben entrar al panel izquierdo
-    temp.querySelectorAll("script, style, link, nav, header, footer").forEach(el => el.remove());
-
-    // elimina componentes del layout principal si vinieran incluidos
-    temp.querySelectorAll(".ux-tabs, .case-links, .preview-card, .case-title, .case-footer, .case-layout, .case-aside").forEach(el => el.remove());
-
-    // elimina H1 siempre (evita repetir título)
-    temp.querySelectorAll("h1").forEach(el => el.remove());
-
-    // elimina H2/H3 que repitan el nombre del caso
-    temp.querySelectorAll("h2, h3").forEach(el => {
-      const t = (el.textContent || "").trim().toLowerCase();
-      if (CASE_TITLE && t === CASE_TITLE) el.remove();
-    });
-
-    // si hay main, nos quedamos con eso
-    const main = temp.querySelector("main") || temp;
-    return main.innerHTML.trim();
+  .preview-actions{
+    justify-content:center;
   }
-
-  async function loadPage(page) {
-    try {
-      if (location.protocol === "file:") {
-        showContent();
-        content.innerHTML = `
-          <p style="text-align:center; opacity:.85; line-height:1.6;">
-            Estás abriendo esto en <strong>file://</strong>.<br>
-            Para que funcionen las tabs, usa <strong>Live Server</strong> o súbelo a Netlify/GitHub Pages.
-          </p>`;
-        return;
-      }
-
-      const res = await fetch(page, { cache: "no-store" });
-      if (!res.ok) throw new Error(`HTTP ${res.status} — ${page}`);
-
-      const html = await res.text();
-      const clean = sanitizeLoadedHTML(html);
-
-      showContent();
-      content.innerHTML = clean || `
-        <p style="text-align:center; opacity:.85;">
-          Este apartado aún no tiene contenido.
-        </p>`;
-    } catch (err) {
-      console.error(err);
-      showContent();
-      content.innerHTML = `
-        <p style="text-align:center; opacity:.85; line-height:1.6;">
-          No se pudo cargar <strong>${page}</strong>.<br>
-          Revisa que el archivo exista y que el nombre coincida.
-        </p>`;
-    }
-  }
-
-  function setActiveTab(btn){
-    tabs.forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-  }
-
-  function activate(btn) {
-    setActiveTab(btn);
-    loadPage(btn.dataset.page);
-  }
-
-  function cancelSuggestion(){
-    if (suggestionTimer) {
-      clearTimeout(suggestionTimer);
-      suggestionTimer = null;
-    }
-  }
-
-  tabs.forEach(btn => {
-    btn.addEventListener("click", () => {
-      userInteracted = true;
-      cancelSuggestion();
-      activate(btn);
-    });
-  });
-
-  // Inicio: placeholder visible
-  showPlaceholder();
-
-  // Auto-selección a los 15s SOLO si no hubo interacción
-  suggestionTimer = setTimeout(() => {
-    if (userInteracted) return;
-
-    const uxResearchBtn =
-      tabs.find(b => (b.textContent || "").trim().toLowerCase() === "ux research") || tabs[0];
-
-    activate(uxResearchBtn);
-  }, 15000);
-});
+}
