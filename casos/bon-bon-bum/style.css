@@ -1,9 +1,7 @@
 /* ===========================
-   BASE + PAGE LAYOUT (footer abajo)
+   BASE
 =========================== */
 *{ box-sizing:border-box; }
-
-html, body{ height:100%; }
 
 body{
   margin:0;
@@ -11,63 +9,34 @@ body{
   color:#1f2933;
 }
 
+/* Fondo + espaciado general */
 body.case-page{
   background:#f2dfc2;
-
-  /* ✅ esto fija el footer abajo sin dañar nada */
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-}
-
-/* El main ocupa el espacio disponible */
-main.case-layout{
-  width:min(1200px, 92%);
-  margin:40px auto 0;         /* ✅ sin margin-bottom aquí */
-  display:grid;
-  grid-template-columns: 1fr 1fr; /* ✅ simétrico */
-  gap:28px;
-
-  /* ✅ hace que ambas tarjetas se estiren igual */
-  align-items:stretch;
-
-  /* ✅ aire antes del footer */
-  padding-bottom:40px;
 }
 
 /* ===========================
-   TARJETAS (izq/der)
+   CONTENEDOR PRINCIPAL
+=========================== */
+.case-layout{
+  width:min(1200px, 92%);
+  margin:40px auto 60px;
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:28px;
+  align-items:start;
+}
+
+/* ===========================
+   BLOQUE IZQUIERDO (.case-card)
 =========================== */
 .case-card{
   background:rgba(255,255,255,.35);
-  border-radius:16px;
   padding:38px 32px;
-  box-shadow:0 8px 20px rgba(0,0,0,.10);
-
-  /* ✅ para que el contenido “arriba” y no se vayan cosas al fondo */
-  display:flex;
-  flex-direction:column;
-}
-
-.case-aside{
-  align-self:stretch;
-}
-
-.preview-card{
-  background:rgba(255,255,255,.85);
   border-radius:16px;
-  padding:16px;
   box-shadow:0 8px 20px rgba(0,0,0,.10);
-
-  /* ✅ layout interno para controlar acciones */
-  display:flex;
-  flex-direction:column;
-  height:100%;
+  min-height:520px;
 }
 
-/* ===========================
-   TITULO
-=========================== */
 .case-title{
   margin:0 0 14px;
   text-align:center;
@@ -76,7 +45,7 @@ main.case-layout{
 }
 
 /* ===========================
-   TABS
+   TABS (.ux-tab)
 =========================== */
 .ux-tabs{
   display:flex;
@@ -90,13 +59,16 @@ main.case-layout{
   appearance:none;
   min-width:132px;
   padding:10px 14px;
+
   border-radius:999px;
   border:1px solid #cfc4b4;
   background:#e8dfd2;
   color:#000;
+
   font-weight:700;
   font-size:.85rem;
   cursor:pointer;
+
   transition:transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease, border-color .25s ease;
   display:inline-flex;
   align-items:center;
@@ -120,7 +92,7 @@ main.case-layout{
 }
 
 /* ===========================
-   PLACEHOLDER / CONTENIDO (izquierda)
+   PLACEHOLDER
 =========================== */
 .case-placeholder{
   margin-top:14px;
@@ -151,6 +123,9 @@ main.case-layout{
   opacity:.65;
 }
 
+/* ===========================
+   CONTENIDO DINÁMICO
+=========================== */
 .case-body{
   margin-top:14px;
   line-height:1.65;
@@ -162,9 +137,30 @@ main.case-layout{
   to{ opacity:1; transform:translateY(0); }
 }
 
+.case-body h2,
+.case-body h3{ margin:0 0 10px; }
+
+.case-body p{ margin:0 0 12px; }
+
+.case-body ul{ margin:10px 0 0 18px; }
+
 /* ===========================
-   PREVIEW (derecha)
+   BLOQUE DERECHO (.case-aside)
 =========================== */
+.case-aside{
+  align-self:start;
+}
+
+/* ===========================
+   TARJETA PREVIEW
+=========================== */
+.preview-card{
+  background:rgba(255,255,255,.85);
+  border-radius:16px;
+  padding:16px;
+  box-shadow:0 8px 20px rgba(0,0,0,.10);
+}
+
 .preview-link{
   display:block;
   border-radius:14px;
@@ -175,10 +171,10 @@ main.case-layout{
   width:100%;
   height:320px;
   object-fit:cover;
-  object-position:top center;
+  object-position:center;
   display:block;
   border-radius:14px;
-  transition: transform .25s ease;
+  transition:transform .25s ease;
 }
 
 .preview-link:hover img{
@@ -186,26 +182,22 @@ main.case-layout{
 }
 
 .preview-desc{
-  margin:14px 0 14px;
+  margin:14px 0 16px;
   font-size:.92rem;
   line-height:1.55;
   opacity:.85;
 }
 
-/* ✅ subimos los botones sin “mandarlos al piso” */
+/* ===========================
+   BOTONES DERECHA
+=========================== */
 .preview-actions{
   display:flex;
-  gap:12px;
+  gap:5px; /* ✅ CAMBIADO de 10px a 5px */
   justify-content:space-between;
   flex-wrap:wrap;
-
-  margin-top:0;      /* ✅ arriba */
-  padding-top:0;
 }
 
-/* ===========================
-   BOTONES
-=========================== */
 .btn{
   padding:12px 20px;
   border-radius:10px;
@@ -235,10 +227,9 @@ main.case-layout{
 }
 
 /* ===========================
-   FOOTER (pegado abajo)
+   FOOTER
 =========================== */
 .case-footer{
-  margin-top:auto; /* ✅ clave: lo empuja al fondo */
   text-align:center;
   padding:18px 0;
   background:rgba(255,255,255,.82);
@@ -248,12 +239,11 @@ main.case-layout{
 }
 
 /* ===========================
-   RESPONSIVE
+   RESPONSIVE (<=900px)
 =========================== */
 @media (max-width: 900px){
-  main.case-layout{
+  .case-layout{
     grid-template-columns:1fr;
-    padding-bottom:24px;
   }
 
   .preview-link img{
