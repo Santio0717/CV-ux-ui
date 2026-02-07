@@ -1,5 +1,5 @@
 /* ===========================
-   BASE + sticky footer
+   BASE + "sticky footer"
 =========================== */
 *{ box-sizing:border-box; }
 
@@ -20,16 +20,23 @@ body.case-page{
 
 /* ===========================
    CONTENEDOR PRINCIPAL
+   - mantiene footer abajo
+   - NO estira cards por vacío
 =========================== */
 .case-layout{
   flex:1;
   width:min(1200px, 92%);
   margin:40px auto 40px;
+
   display:grid;
   grid-template-columns: 1.35fr 1fr;
   gap:28px;
 
-  align-items:stretch; /* ✅ iguala alturas por fila */
+  /* ✅ ambos lados misma altura (la del más alto) */
+  align-items:stretch;
+
+  /* ✅ CLAVE: evita que el grid “rellene” altura extra del flex:1 */
+  align-content:start;
 }
 
 /* ===========================
@@ -40,9 +47,6 @@ body.case-page{
   padding:38px 32px;
   border-radius:16px;
   box-shadow:0 8px 20px rgba(0,0,0,.10);
-
-  height:100%;   /* ✅ se estira hasta la altura del lado derecho */
-  min-height:0;
 }
 
 .case-title{
@@ -157,8 +161,7 @@ body.case-page{
    BLOQUE DERECHO
 =========================== */
 .case-aside{
-  height:100%;
-  min-height:0;
+  align-self:stretch; /* ✅ iguala altura con el lado izquierdo */
 }
 
 .preview-card{
@@ -166,15 +169,9 @@ body.case-page{
   border-radius:16px;
   padding:16px;
   box-shadow:0 8px 20px rgba(0,0,0,.10);
-
-  height:100%;    /* ✅ define la altura “referencia” */
-  min-height:0;
-
-  /* ❌ NO flex-column aquí para NO empujar botones abajo */
-  display:block;
 }
 
-/* Imagen */
+/* Imagen preview */
 .preview-link{
   display:block;
   border-radius:14px;
@@ -195,19 +192,20 @@ body.case-page{
 }
 
 .preview-desc{
-  margin:12px 0 10px;
+  margin:12px 0 8px;
   font-size:.92rem;
   line-height:1.55;
   opacity:.85;
 }
 
 /* ===========================
-   BOTONES DERECHA (arriba, pegados)
+   BOTONES DERECHA
+   (arriba, juntos)
 =========================== */
 .preview-actions{
-  margin-top:8px;   /* ✅ quedan cerca del texto */
+  margin-top:6px;
   display:flex;
-  gap:5px;          /* ✅ más juntos */
+  gap:5px;                 /* ✅ más juntos */
   justify-content:flex-start;
   flex-wrap:wrap;
 }
@@ -262,6 +260,7 @@ body.case-page{
     grid-template-columns:1fr;
     margin:28px auto 32px;
     align-items:start;
+    align-content:start;
   }
 
   .preview-link img{
@@ -274,10 +273,5 @@ body.case-page{
 
   .preview-actions{
     justify-content:center;
-  }
-
-  /* en móvil no forzamos igualar alturas */
-  .case-card, .preview-card, .case-aside{
-    height:auto;
   }
 }
