@@ -29,7 +29,7 @@ body.case-page{
   grid-template-columns: 1.35fr 1fr;
   gap:28px;
 
-  align-items:stretch; /* ✅ ESTIRA ambas columnas igual */
+  align-items:stretch; /* ✅ mismas alturas sin empujar botones */
 }
 
 /* ===========================
@@ -148,24 +148,15 @@ body.case-page{
   border-radius:12px;
 }
 
-.case-body h2, 
-.case-body h3{ 
-  margin:0 0 10px; 
-}
-
-.case-body p{ 
-  margin:0 0 12px; 
-}
-
-.case-body ul{ 
-  margin:10px 0 0 18px; 
-}
+.case-body h2, .case-body h3{ margin:0 0 10px; }
+.case-body p{ margin:0 0 12px; }
+.case-body ul{ margin:10px 0 0 18px; }
 
 /* ===========================
    BLOQUE DERECHO
 =========================== */
 .case-aside{
-  align-self:stretch; /* ✅ se estira igual que la izquierda */
+  align-self:stretch;
 }
 
 .preview-card{
@@ -174,9 +165,8 @@ body.case-page{
   padding:16px;
   box-shadow:0 8px 20px rgba(0,0,0,.10);
 
-  height:100%; /* ✅ iguala altura */
-  display:flex;
-  flex-direction:column;
+  height:100%; /* ✅ iguala altura con la izquierda */
+  display:block; /* ✅ NO flex para que NO empuje botones abajo */
 }
 
 /* Imagen preview */
@@ -200,19 +190,19 @@ body.case-page{
 }
 
 .preview-desc{
-  margin:14px 0 10px;
+  margin:12px 0 10px; /* ✅ más compacto */
   font-size:.92rem;
   line-height:1.55;
   opacity:.85;
 }
 
 /* ===========================
-   BOTONES DERECHA
+   BOTONES DERECHA (arriba y juntos)
 =========================== */
 .preview-actions{
-  margin-top:auto; /* ✅ empuja botones al fondo pero sin sobrantes raros */
+  margin-top:6px;     /* ✅ pegados arriba */
   display:flex;
-  gap:5px; /* ✅ más juntos */
+  gap:5px;            /* ✅ juntos */
   justify-content:flex-start;
   flex-wrap:wrap;
 }
