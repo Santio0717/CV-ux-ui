@@ -1,7 +1,13 @@
 /* ===========================
    BASE
 =========================== */
-*{ box-sizing:border-box; }
+*{
+  box-sizing:border-box;
+}
+
+html, body{
+  height:100%;
+}
 
 body{
   margin:0;
@@ -29,7 +35,7 @@ body.case-page{
   display:grid;
   grid-template-columns: 1fr 1fr; /* simétrico */
   gap:28px;
-  align-items:start;
+  align-items:stretch; /* ✅ misma altura siempre */
 }
 
 /* ===========================
@@ -40,13 +46,16 @@ body.case-page{
   padding:38px 32px;
   border-radius:16px;
   box-shadow:0 8px 20px rgba(0,0,0,.10);
-  min-height:520px; /* igual altura visual */
+
+  /* ✅ asegura que iguale la altura del lado derecho */
+  height:100%;
 }
 
+/* Título */
 .case-title{
   margin:0 0 14px;
   text-align:center;
-  font-size:2rem;
+  font-size:2.1rem;
   font-weight:800;
 }
 
@@ -72,7 +81,7 @@ body.case-page{
   color:#000;
 
   font-weight:700;
-  font-size:.85rem;
+  font-size:.9rem;
   cursor:pointer;
 
   transition:transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease, border-color .25s ease;
@@ -110,39 +119,66 @@ body.case-page{
 
 .case-placeholder h3{
   margin:0 0 10px;
-  font-size:1.1rem;
+  font-size:1.25rem;
   font-weight:800;
 }
 
 .case-placeholder p{
   margin:0 auto 8px;
-  max-width:56ch;
-  font-size:.95rem;
+  max-width:60ch;
+  font-size:1.05rem;
   opacity:.85;
-  line-height:1.6;
+  line-height:1.7;
 }
 
 .mini-note{
   display:inline-block;
   margin-top:4px;
-  font-size:.8rem;
+  font-size:.9rem;
   opacity:.65;
 }
 
 /* ===========================
-   CONTENIDO DINÁMICO (MEJOR DISTRIBUCIÓN)
+   CONTENIDO DINÁMICO (MÁS GRANDE)
 =========================== */
 .case-body{
   margin-top:14px;
-  line-height:1.75;   /* ✅ más aire */
-  font-size:1rem;     /* ✅ más grande */
-  max-width:65ch;     /* ✅ mejor lectura */
+  line-height:1.85;
+  font-size:1.08rem;       /* ✅ más grande */
+  max-width:68ch;
   animation:fadeIn .35s ease;
+  letter-spacing:.1px;
 }
 
 @keyframes fadeIn{
   from{ opacity:0; transform:translateY(8px); }
   to{ opacity:1; transform:translateY(0); }
+}
+
+.case-body h2{
+  margin:0 0 12px;
+  font-size:1.55rem;
+  font-weight:800;
+}
+
+.case-body h3{
+  margin:0 0 10px;
+  font-size:1.22rem;
+  font-weight:700;
+}
+
+.case-body p,
+.case-body li{
+  font-size:1.08rem;
+  line-height:1.85;
+}
+
+.case-body ul{
+  margin:14px 0 0 22px;
+}
+
+.case-body li{
+  margin:0 0 10px;
 }
 
 .case-body img{
@@ -152,46 +188,26 @@ body.case-page{
   border-radius:12px;
 }
 
-/* Títulos dentro del contenido */
-.case-body h2{
-  margin:0 0 10px;
-  font-size:1.4rem;
-  font-weight:800;
-}
-
-.case-body h3{
-  margin:0 0 10px;
-  font-size:1.15rem;
-  font-weight:700;
-}
-
-/* Texto */
-.case-body p,
-.case-body li{
-  font-size:1rem;
-  line-height:1.75;
-}
-
-.case-body p{ margin:0 0 12px; }
-.case-body ul{ margin:10px 0 0 18px; }
-
 /* ===========================
    BLOQUE DERECHO
 =========================== */
 .case-aside{
-  align-self:start;
+  align-self:stretch;
 }
 
+/* Preview card */
 .preview-card{
   background:rgba(255,255,255,.85);
   border-radius:16px;
   padding:16px;
   box-shadow:0 8px 20px rgba(0,0,0,.10);
-  min-height:520px; /* igual altura visual */
+
+  height:100%; /* ✅ igual altura que izquierda */
   display:flex;
   flex-direction:column;
 }
 
+/* Imagen preview */
 .preview-link{
   display:block;
   border-radius:14px;
@@ -205,7 +221,7 @@ body.case-page{
   object-position:top center;
   display:block;
   border-radius:14px;
-  transition: transform .25s ease;
+  transition:transform .25s ease;
 }
 
 .preview-link:hover img{
@@ -213,19 +229,19 @@ body.case-page{
 }
 
 .preview-desc{
-  margin:14px 0 16px;
-  font-size:.95rem;
-  line-height:1.6;
+  margin:14px 0 10px;
+  font-size:1.02rem;  /* ✅ más grande */
+  line-height:1.7;
   opacity:.85;
 }
 
 /* ===========================
-   BOTONES DERECHA (JUNTOS + ARRIBA)
+   BOTONES
 =========================== */
 .preview-actions{
-  margin-top:12px;         /* ✅ NO los manda al fondo */
+  margin-top:10px;       /* ✅ sube los botones */
   display:flex;
-  gap:5px;                 /* ✅ como pediste */
+  gap:5px;               /* ✅ más juntos */
   justify-content:flex-start;
   flex-wrap:wrap;
 }
@@ -239,6 +255,7 @@ body.case-page{
   align-items:center;
   justify-content:center;
   transition:.2s ease;
+  font-size:1rem;
 }
 
 .btn:hover{
@@ -258,8 +275,9 @@ body.case-page{
   border:2px solid #b85c38;
 }
 
-/* Para que se vean parejos */
+/* Botones iguales visualmente */
 .preview-actions .btn{
+  flex:1;
   min-width:190px;
 }
 
@@ -272,7 +290,7 @@ body.case-page{
   padding:18px 0;
   background:rgba(255,255,255,.82);
   border-top:1px solid rgba(0,0,0,.08);
-  font-size:.85rem;
+  font-size:.9rem;
   opacity:.85;
 }
 
@@ -304,10 +322,6 @@ body.case-page{
 
   .case-card,
   .preview-card{
-    min-height:auto;
-  }
-
-  .case-body{
-    max-width:unset;
+    height:auto;
   }
 }
