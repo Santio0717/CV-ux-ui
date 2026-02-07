@@ -24,12 +24,12 @@ body.case-page{
 .case-layout{
   flex:1;
   width:min(1200px, 92%);
-  margin:40px auto 40px; /* ⬅️ menos margen abajo */
+  margin:40px auto 40px;
   display:grid;
   grid-template-columns: 1.35fr 1fr;
   gap:28px;
 
-  align-items:start; /* ⬅️ evita que se estiren y dejen “sobrante” */
+  align-items:stretch; /* ✅ ESTIRA ambas columnas igual */
 }
 
 /* ===========================
@@ -41,8 +41,7 @@ body.case-page{
   border-radius:16px;
   box-shadow:0 8px 20px rgba(0,0,0,.10);
 
-  /* ⬇️ QUITAMOS altura forzada para que no cree espacio vacío */
-  height:auto;
+  height:100%; /* ✅ iguala altura con la derecha */
 }
 
 .case-title{
@@ -149,15 +148,24 @@ body.case-page{
   border-radius:12px;
 }
 
-.case-body h2, .case-body h3{ margin:0 0 10px; }
-.case-body p{ margin:0 0 12px; }
-.case-body ul{ margin:10px 0 0 18px; }
+.case-body h2, 
+.case-body h3{ 
+  margin:0 0 10px; 
+}
+
+.case-body p{ 
+  margin:0 0 12px; 
+}
+
+.case-body ul{ 
+  margin:10px 0 0 18px; 
+}
 
 /* ===========================
    BLOQUE DERECHO
 =========================== */
 .case-aside{
-  align-self:start;
+  align-self:stretch; /* ✅ se estira igual que la izquierda */
 }
 
 .preview-card{
@@ -166,7 +174,7 @@ body.case-page{
   padding:16px;
   box-shadow:0 8px 20px rgba(0,0,0,.10);
 
-  height:auto; /* ⬅️ sin estirar */
+  height:100%; /* ✅ iguala altura */
   display:flex;
   flex-direction:column;
 }
@@ -192,7 +200,7 @@ body.case-page{
 }
 
 .preview-desc{
-  margin:14px 0 10px; /* ⬅️ menos margen abajo para subir botones */
+  margin:14px 0 10px;
   font-size:.92rem;
   line-height:1.55;
   opacity:.85;
@@ -200,13 +208,12 @@ body.case-page{
 
 /* ===========================
    BOTONES DERECHA
-   (más juntos y más arriba)
 =========================== */
 .preview-actions{
-  margin-top:6px;      /* ⬅️ sube */
+  margin-top:auto; /* ✅ empuja botones al fondo pero sin sobrantes raros */
   display:flex;
-  gap:5px;             /* ✅ más juntos */
-  justify-content:flex-start; /* ⬅️ evita separación exagerada */
+  gap:5px; /* ✅ más juntos */
+  justify-content:flex-start;
   flex-wrap:wrap;
 }
 
@@ -259,6 +266,7 @@ body.case-page{
   .case-layout{
     grid-template-columns:1fr;
     margin:28px auto 32px;
+    align-items:stretch;
   }
 
   .preview-link img{
