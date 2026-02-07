@@ -29,7 +29,7 @@ body.case-page{
   grid-template-columns: 1.35fr 1fr;
   gap:28px;
 
-  align-items:start; /* ✅ CLAVE: no estira y elimina “sobrantes” */
+  align-items:stretch; /* ✅ CLAVE: estira ambas columnas al mismo alto */
 }
 
 /* ===========================
@@ -37,12 +37,12 @@ body.case-page{
 =========================== */
 .case-card{
   background:rgba(255,255,255,.35);
-  padding:38px 32px 22px; /* ✅ menos padding abajo = menos “aire” */
+  padding:38px 32px;
   border-radius:16px;
   box-shadow:0 8px 20px rgba(0,0,0,.10);
 
-  height:auto;   /* ✅ no forzar alturas */
-  min-height:0;  /* ✅ evita estiramientos raros */
+  height:100%;     /* ✅ CLAVE: iguala altura con la derecha */
+  min-height:0;
 }
 
 .case-title{
@@ -60,7 +60,7 @@ body.case-page{
   flex-wrap:wrap;
   gap:10px;
   justify-content:center;
-  margin:12px 0 16px; /* ✅ un poco más compacto */
+  margin:12px 0 16px;
 }
 
 .ux-tab{
@@ -157,17 +157,20 @@ body.case-page{
    BLOQUE DERECHO
 =========================== */
 .case-aside{
-  align-self:start;
+  height:100%;     /* ✅ acompaña el estiramiento del grid */
+  min-height:0;
 }
 
 .preview-card{
   background:rgba(255,255,255,.85);
   border-radius:16px;
-  padding:16px 16px 18px; /* ✅ menos padding abajo */
+  padding:16px;
   box-shadow:0 8px 20px rgba(0,0,0,.10);
 
-  height:auto;   /* ✅ no forzar altura */
-  min-height:0;  /* ✅ evita sobras */
+  height:100%;               /* ✅ CLAVE: define alto para igualar */
+  display:flex;
+  flex-direction:column;     /* ✅ permite controlar bloque inferior */
+  min-height:0;
 }
 
 /* Imagen preview */
@@ -191,7 +194,7 @@ body.case-page{
 }
 
 .preview-desc{
-  margin:12px 0 10px; /* ✅ compacto */
+  margin:12px 0 10px;
   font-size:.92rem;
   line-height:1.55;
   opacity:.85;
@@ -201,9 +204,9 @@ body.case-page{
    BOTONES DERECHA (juntos)
 =========================== */
 .preview-actions{
-  margin-top:6px;
+  margin-top:auto;  /* ✅ mantiene acciones abajo SIN crear “sobrante” raro */
   display:flex;
-  gap:5px;                 /* ✅ más juntos */
+  gap:5px;          /* ✅ más juntos */
   justify-content:flex-start;
   flex-wrap:wrap;
 }
@@ -257,6 +260,7 @@ body.case-page{
   .case-layout{
     grid-template-columns:1fr;
     margin:28px auto 32px;
+    align-items:start;
   }
 
   .preview-link img{
@@ -269,5 +273,10 @@ body.case-page{
 
   .preview-actions{
     justify-content:center;
+    margin-top:10px;
+  }
+
+  .case-card, .preview-card, .case-aside{
+    height:auto; /* en móvil no forzamos igualar alturas */
   }
 }
