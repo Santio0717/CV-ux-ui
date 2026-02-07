@@ -1,5 +1,5 @@
 /* ===========================
-   BASE + "sticky footer"
+   BASE + sticky footer
 =========================== */
 *{ box-sizing:border-box; }
 
@@ -29,7 +29,7 @@ body.case-page{
   grid-template-columns: 1.35fr 1fr;
   gap:28px;
 
-  align-items:stretch; /* ✅ CLAVE: estira ambas columnas al mismo alto */
+  align-items:stretch; /* ✅ iguala alturas por fila */
 }
 
 /* ===========================
@@ -41,7 +41,7 @@ body.case-page{
   border-radius:16px;
   box-shadow:0 8px 20px rgba(0,0,0,.10);
 
-  height:100%;     /* ✅ CLAVE: iguala altura con la derecha */
+  height:100%;   /* ✅ se estira hasta la altura del lado derecho */
   min-height:0;
 }
 
@@ -157,7 +157,7 @@ body.case-page{
    BLOQUE DERECHO
 =========================== */
 .case-aside{
-  height:100%;     /* ✅ acompaña el estiramiento del grid */
+  height:100%;
   min-height:0;
 }
 
@@ -167,13 +167,14 @@ body.case-page{
   padding:16px;
   box-shadow:0 8px 20px rgba(0,0,0,.10);
 
-  height:100%;               /* ✅ CLAVE: define alto para igualar */
-  display:flex;
-  flex-direction:column;     /* ✅ permite controlar bloque inferior */
+  height:100%;    /* ✅ define la altura “referencia” */
   min-height:0;
+
+  /* ❌ NO flex-column aquí para NO empujar botones abajo */
+  display:block;
 }
 
-/* Imagen preview */
+/* Imagen */
 .preview-link{
   display:block;
   border-radius:14px;
@@ -201,10 +202,10 @@ body.case-page{
 }
 
 /* ===========================
-   BOTONES DERECHA (juntos)
+   BOTONES DERECHA (arriba, pegados)
 =========================== */
 .preview-actions{
-  margin-top:auto;  /* ✅ mantiene acciones abajo SIN crear “sobrante” raro */
+  margin-top:8px;   /* ✅ quedan cerca del texto */
   display:flex;
   gap:5px;          /* ✅ más juntos */
   justify-content:flex-start;
@@ -273,10 +274,10 @@ body.case-page{
 
   .preview-actions{
     justify-content:center;
-    margin-top:10px;
   }
 
+  /* en móvil no forzamos igualar alturas */
   .case-card, .preview-card, .case-aside{
-    height:auto; /* en móvil no forzamos igualar alturas */
+    height:auto;
   }
 }
