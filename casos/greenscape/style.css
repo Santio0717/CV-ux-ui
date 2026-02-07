@@ -29,7 +29,7 @@ body.case-page{
   grid-template-columns: 1.35fr 1fr;
   gap:28px;
 
-  align-items:stretch; /* ✅ mismas alturas sin empujar botones */
+  align-items:start; /* ✅ CLAVE: no estira y elimina “sobrantes” */
 }
 
 /* ===========================
@@ -37,11 +37,12 @@ body.case-page{
 =========================== */
 .case-card{
   background:rgba(255,255,255,.35);
-  padding:38px 32px;
+  padding:38px 32px 22px; /* ✅ menos padding abajo = menos “aire” */
   border-radius:16px;
   box-shadow:0 8px 20px rgba(0,0,0,.10);
 
-  height:100%; /* ✅ iguala altura con la derecha */
+  height:auto;   /* ✅ no forzar alturas */
+  min-height:0;  /* ✅ evita estiramientos raros */
 }
 
 .case-title{
@@ -59,7 +60,7 @@ body.case-page{
   flex-wrap:wrap;
   gap:10px;
   justify-content:center;
-  margin:12px 0 18px;
+  margin:12px 0 16px; /* ✅ un poco más compacto */
 }
 
 .ux-tab{
@@ -102,7 +103,7 @@ body.case-page{
    PLACEHOLDER / CONTENIDO
 =========================== */
 .case-placeholder{
-  margin-top:14px;
+  margin-top:12px;
   padding:22px;
   border-radius:14px;
   background:rgba(255,255,255,.45);
@@ -131,7 +132,7 @@ body.case-page{
 }
 
 .case-body{
-  margin-top:14px;
+  margin-top:12px;
   line-height:1.65;
   animation:fadeIn .35s ease;
 }
@@ -156,17 +157,17 @@ body.case-page{
    BLOQUE DERECHO
 =========================== */
 .case-aside{
-  align-self:stretch;
+  align-self:start;
 }
 
 .preview-card{
   background:rgba(255,255,255,.85);
   border-radius:16px;
-  padding:16px;
+  padding:16px 16px 18px; /* ✅ menos padding abajo */
   box-shadow:0 8px 20px rgba(0,0,0,.10);
 
-  height:100%; /* ✅ iguala altura con la izquierda */
-  display:block; /* ✅ NO flex para que NO empuje botones abajo */
+  height:auto;   /* ✅ no forzar altura */
+  min-height:0;  /* ✅ evita sobras */
 }
 
 /* Imagen preview */
@@ -190,19 +191,19 @@ body.case-page{
 }
 
 .preview-desc{
-  margin:12px 0 10px; /* ✅ más compacto */
+  margin:12px 0 10px; /* ✅ compacto */
   font-size:.92rem;
   line-height:1.55;
   opacity:.85;
 }
 
 /* ===========================
-   BOTONES DERECHA (arriba y juntos)
+   BOTONES DERECHA (juntos)
 =========================== */
 .preview-actions{
-  margin-top:6px;     /* ✅ pegados arriba */
+  margin-top:6px;
   display:flex;
-  gap:5px;            /* ✅ juntos */
+  gap:5px;                 /* ✅ más juntos */
   justify-content:flex-start;
   flex-wrap:wrap;
 }
@@ -256,7 +257,6 @@ body.case-page{
   .case-layout{
     grid-template-columns:1fr;
     margin:28px auto 32px;
-    align-items:stretch;
   }
 
   .preview-link img{
