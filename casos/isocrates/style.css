@@ -1,107 +1,168 @@
 /* ================================
    FONDO Y LAYOUT GENERAL
 ================================ */
-body.case-page {
-  background: #f2dfc2;
-  padding-top: 40px;
-  font-family: 'Inter', sans-serif;
+*{ box-sizing:border-box; }
+
+html, body{
+  height:100%;
 }
 
-.case-content {
-  background: rgba(255, 255, 255, 0.35);
-  padding: 32px;
-  border-radius: 16px;
-  max-width: 900px;
-  margin: auto;
-  box-shadow: 0 8px 20px rgba(0,0,0,.08);
+body.case-page{
+  margin:0;
+  background:#f2dfc2;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  font-family:'Inter', sans-serif;
+  color:#1f2933;
 }
 
-.case-title {
-  font-size: 2rem;
-  margin-bottom: 18px;
-  text-align: center;
-  font-weight: 700;
+.case-content{
+  background:rgba(255,255,255,.35);
+  padding:38px 32px;
+  border-radius:16px;
+  max-width:900px;
+  width:min(900px, 92%);
+  margin:40px auto;
+  box-shadow:0 8px 20px rgba(0,0,0,.10);
+}
+
+.case-title{
+  margin:0 0 14px;
+  text-align:center;
+  font-size:2rem;
+  font-weight:800;
 }
 
 /* ================================
    TABS
 ================================ */
-.ux-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin: 25px auto 35px;
-  justify-content: center;
+.ux-tabs{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  justify-content:center;
+  margin:12px 0 16px;
 }
 
-.ux-tab {
-  padding: 10px 18px;
-  border-radius: 40px;
-  background: #e8dfd2;
-  border: 1px solid #cfc4b4;
-  cursor: pointer;
-  font-weight: 600;
-  transition: .25s;
-  text-decoration: none;
-  color: #000;
+.ux-tab{
+  appearance:none;
+  min-width:132px;
+  padding:10px 14px;
+  border-radius:999px;
+  border:1px solid #cfc4b4;
+  background:#e8dfd2;
+  color:#000;
+  font-weight:700;
+  font-size:.85rem;
+  cursor:pointer;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  transition:transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease, border-color .25s ease;
 }
 
-.ux-tab:hover {
-  transform: scale(1.05);
+.ux-tab:hover{
+  transform:translateY(-1px);
+  box-shadow:0 6px 14px rgba(0,0,0,.08);
 }
 
-/* ======== TAB ACTIVO (CORREGIDO) ========= */
-.ux-tab.active {
-  background: #000 !important;
-  color: #fff !important;
-  border-color: #000 !important;
-  transform: scale(1.05);
+.ux-tab.active{
+  background:#000;
+  color:#fff;
+  border-color:#000;
+}
+
+.ux-tab:focus-visible{
+  outline:3px solid rgba(0,0,0,.35);
+  outline-offset:2px;
 }
 
 /* ================================
    SECCIONES
 ================================ */
-.case-section {
-  margin-top: 22px;
+.case-section{
+  margin-top:22px;
+  line-height:1.65;
+  animation:fadeIn .35s ease;
 }
 
-.case-section h2 {
-  margin-bottom: 12px;
+.case-section h2,
+.case-section h3{
+  margin:0 0 10px;
 }
 
-.case-section ul {
-  margin-left: 18px;
-  margin-top: 10px;
+.case-section p{
+  margin:0 0 12px;
+}
+
+.case-section ul{
+  margin:10px 0 0 18px;
+}
+
+.case-section li{
+  margin-bottom:8px;
+}
+
+@keyframes fadeIn{
+  from{ opacity:0; transform:translateY(8px); }
+  to{ opacity:1; transform:translateY(0); }
 }
 
 /* ================================
    BOTONES FINALES
 ================================ */
-.case-links {
-  margin-top: 38px;
-  display: flex;
-  justify-content: center;
-  gap: 18px;
+.case-links{
+  margin-top:32px;
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
 }
 
-.btn {
-  padding: 12px 20px;
-  border-radius: 10px;
-  color: #fff;
-  font-weight: 600;
-  text-decoration: none;
+.btn{
+  padding:12px 20px;
+  border-radius:10px;
+  font-weight:700;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  transition:.2s ease;
 }
 
-.btn.ghost {
-  background: transparent;
-  border: 2px solid #333;
-  color: #333;
+.btn:hover{
+  transform:translateY(-1px);
+  opacity:.92;
 }
 
-.btn.case {
-  background: #8f4428;
+.btn.ghost{
+  background:transparent;
+  border:2px solid #333;
+  color:#333;
 }
 
-.btn:hover {
-  opacity: .8;
+.btn.case{
+  background:#b85c38;
+  color:#fff;
+  border:2px solid #b85c38;
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+@media (max-width: 900px){
+  .case-content{
+    margin:28px auto 32px;
+    padding:30px 20px;
+  }
+
+  .ux-tab{
+    min-width:46%;
+  }
+
+  .case-links{
+    justify-content:center;
+  }
 }
