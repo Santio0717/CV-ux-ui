@@ -28,11 +28,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const temp = document.createElement("div");
     temp.innerHTML = html;
 
-    // Elimina elementos que no deben duplicarse dentro del panel izquierdo
     temp.querySelectorAll("script, style, link, nav, header, footer").forEach(el => el.remove());
     temp.querySelectorAll(".ux-tabs, .case-links, .preview-card, .case-title").forEach(el => el.remove());
 
-    // Elimina títulos repetidos del archivo cargado
     temp.querySelectorAll("h1").forEach(el => el.remove());
     temp.querySelectorAll("h2").forEach(el => {
       const text = (el.textContent || "").trim().toLowerCase();
@@ -41,7 +39,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // Si viene envuelto en main, usar solo su contenido útil
     const main = temp.querySelector("main") || temp;
     return main.innerHTML.trim();
   }
@@ -59,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       const res = await fetch(page, { cache: "no-store" });
-      if (!res.ok) throw new Error(\`HTTP \${res.status}\`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
       const html = await res.text();
       const clean = sanitizeLoadedHTML(html);
@@ -102,10 +99,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Estado inicial
   showPlaceholder();
 
-  // Auto-selección a los 15s solo si no hubo interacción
   suggestionTimer = setTimeout(() => {
     if (userInteracted) return;
 
