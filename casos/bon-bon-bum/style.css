@@ -1,13 +1,9 @@
 /* ===========================
-   BASE
+   BASE + "sticky footer"
 =========================== */
-*{
-  box-sizing:border-box;
-}
+*{ box-sizing:border-box; }
 
-html, body{
-  height:100%;
-}
+html, body{ height:100%; }
 
 body{
   margin:0;
@@ -15,9 +11,6 @@ body{
   color:#1f2933;
 }
 
-/* ===========================
-   BODY + FOOTER ABAJO
-=========================== */
 body.case-page{
   background:#f2dfc2;
   min-height:100vh;
@@ -27,15 +20,20 @@ body.case-page{
 
 /* ===========================
    CONTENEDOR PRINCIPAL
+   - mantiene footer abajo
+   - NO estira cards por vacío
 =========================== */
 .case-layout{
   flex:1;
   width:min(1200px, 92%);
   margin:40px auto 40px;
+
   display:grid;
-  grid-template-columns: 1fr 1fr; /* simétrico */
+  grid-template-columns: 1.35fr 1fr;
   gap:28px;
-  align-items:stretch; /* ✅ misma altura siempre */
+
+  align-items:stretch;
+  align-content:start;
 }
 
 /* ===========================
@@ -46,16 +44,12 @@ body.case-page{
   padding:38px 32px;
   border-radius:16px;
   box-shadow:0 8px 20px rgba(0,0,0,.10);
-
-  /* ✅ asegura que iguale la altura del lado derecho */
-  height:100%;
 }
 
-/* Título */
 .case-title{
   margin:0 0 14px;
   text-align:center;
-  font-size:2.1rem;
+  font-size:2rem;
   font-weight:800;
 }
 
@@ -67,7 +61,7 @@ body.case-page{
   flex-wrap:wrap;
   gap:10px;
   justify-content:center;
-  margin:12px 0 18px;
+  margin:12px 0 16px;
 }
 
 .ux-tab{
@@ -81,7 +75,7 @@ body.case-page{
   color:#000;
 
   font-weight:700;
-  font-size:.9rem;
+  font-size:.85rem;
   cursor:pointer;
 
   transition:transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease, border-color .25s ease;
@@ -107,10 +101,10 @@ body.case-page{
 }
 
 /* ===========================
-   PLACEHOLDER
+   PLACEHOLDER / CONTENIDO
 =========================== */
 .case-placeholder{
-  margin-top:14px;
+  margin-top:12px;
   padding:22px;
   border-radius:14px;
   background:rgba(255,255,255,.45);
@@ -119,66 +113,34 @@ body.case-page{
 
 .case-placeholder h3{
   margin:0 0 10px;
-  font-size:1.25rem;
+  font-size:1.1rem;
   font-weight:800;
 }
 
 .case-placeholder p{
   margin:0 auto 8px;
-  max-width:60ch;
-  font-size:1.05rem;
+  max-width:56ch;
+  font-size:.95rem;
   opacity:.85;
-  line-height:1.7;
+  line-height:1.6;
 }
 
 .mini-note{
   display:inline-block;
   margin-top:4px;
-  font-size:.9rem;
+  font-size:.8rem;
   opacity:.65;
 }
 
-/* ===========================
-   CONTENIDO DINÁMICO (MÁS GRANDE)
-=========================== */
 .case-body{
-  margin-top:14px;
-  line-height:1.85;
-  font-size:1.08rem;       /* ✅ más grande */
-  max-width:68ch;
+  margin-top:12px;
+  line-height:1.65;
   animation:fadeIn .35s ease;
-  letter-spacing:.1px;
 }
 
 @keyframes fadeIn{
   from{ opacity:0; transform:translateY(8px); }
   to{ opacity:1; transform:translateY(0); }
-}
-
-.case-body h2{
-  margin:0 0 12px;
-  font-size:1.55rem;
-  font-weight:800;
-}
-
-.case-body h3{
-  margin:0 0 10px;
-  font-size:1.22rem;
-  font-weight:700;
-}
-
-.case-body p,
-.case-body li{
-  font-size:1.08rem;
-  line-height:1.85;
-}
-
-.case-body ul{
-  margin:14px 0 0 22px;
-}
-
-.case-body li{
-  margin:0 0 10px;
 }
 
 .case-body img{
@@ -188,6 +150,10 @@ body.case-page{
   border-radius:12px;
 }
 
+.case-body h2, .case-body h3{ margin:0 0 10px; }
+.case-body p{ margin:0 0 12px; }
+.case-body ul{ margin:10px 0 0 18px; }
+
 /* ===========================
    BLOQUE DERECHO
 =========================== */
@@ -195,16 +161,11 @@ body.case-page{
   align-self:stretch;
 }
 
-/* Preview card */
 .preview-card{
   background:rgba(255,255,255,.85);
   border-radius:16px;
   padding:16px;
   box-shadow:0 8px 20px rgba(0,0,0,.10);
-
-  height:100%; /* ✅ igual altura que izquierda */
-  display:flex;
-  flex-direction:column;
 }
 
 /* Imagen preview */
@@ -218,10 +179,9 @@ body.case-page{
   width:100%;
   height:320px;
   object-fit:cover;
-  object-position:top center;
+  object-position: top center;
   display:block;
-  border-radius:14px;
-  transition:transform .25s ease;
+  transition: transform .25s ease;
 }
 
 .preview-link:hover img{
@@ -229,19 +189,19 @@ body.case-page{
 }
 
 .preview-desc{
-  margin:14px 0 10px;
-  font-size:1.02rem;  /* ✅ más grande */
-  line-height:1.7;
+  margin:12px 0 8px;
+  font-size:.92rem;
+  line-height:1.55;
   opacity:.85;
 }
 
 /* ===========================
-   BOTONES
+   BOTONES DERECHA
 =========================== */
 .preview-actions{
-  margin-top:10px;       /* ✅ sube los botones */
+  margin-top:6px;
   display:flex;
-  gap:5px;               /* ✅ más juntos */
+  gap:5px;
   justify-content:flex-start;
   flex-wrap:wrap;
 }
@@ -255,7 +215,6 @@ body.case-page{
   align-items:center;
   justify-content:center;
   transition:.2s ease;
-  font-size:1rem;
 }
 
 .btn:hover{
@@ -275,12 +234,6 @@ body.case-page{
   border:2px solid #b85c38;
 }
 
-/* Botones iguales visualmente */
-.preview-actions .btn{
-  flex:1;
-  min-width:190px;
-}
-
 /* ===========================
    FOOTER
 =========================== */
@@ -290,7 +243,7 @@ body.case-page{
   padding:18px 0;
   background:rgba(255,255,255,.82);
   border-top:1px solid rgba(0,0,0,.08);
-  font-size:.9rem;
+  font-size:.85rem;
   opacity:.85;
 }
 
@@ -300,7 +253,9 @@ body.case-page{
 @media (max-width: 900px){
   .case-layout{
     grid-template-columns:1fr;
-    margin:30px auto 30px;
+    margin:28px auto 32px;
+    align-items:start;
+    align-content:start;
   }
 
   .preview-link img{
@@ -313,15 +268,5 @@ body.case-page{
 
   .preview-actions{
     justify-content:center;
-  }
-
-  .preview-actions .btn{
-    min-width:200px;
-    flex:1;
-  }
-
-  .case-card,
-  .preview-card{
-    height:auto;
   }
 }
