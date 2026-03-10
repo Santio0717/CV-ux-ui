@@ -23,9 +23,6 @@
   --shadow-glow:0 10px 30px rgba(0,0,0,.08);
 }
 
-/* =========================
-   RESET
-========================= */
 *{
   margin:0;
   padding:0;
@@ -62,9 +59,6 @@ textarea{
   margin-inline:auto;
 }
 
-/* =========================
-   BASE SECCIONES
-========================= */
 .section{
   padding:64px 0;
 }
@@ -92,9 +86,6 @@ textarea{
   border:1px solid rgba(255,255,255,.35);
 }
 
-/* =========================
-   FOCUS
-========================= */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
@@ -104,9 +95,7 @@ textarea:focus-visible{
   border-radius:10px;
 }
 
-/* =========================
-   HEADER
-========================= */
+/* HEADER */
 .site-header{
   position:sticky;
   top:0;
@@ -166,19 +155,17 @@ textarea:focus-visible{
   opacity:.78;
 }
 
-/* =========================
-   HERO
-========================= */
+/* HERO */
 .hero{
-  padding-top:88px;
+  padding-top:72px;
 }
 
 .hero-card{
   display:grid;
-  grid-template-columns:140px 1fr;
-  gap:32px;
-  padding:48px;
-  background:linear-gradient(135deg, rgba(255,255,255,.78), rgba(255,255,255,.58));
+  grid-template-columns:120px 1fr;
+  gap:34px;
+  padding:34px 40px;
+  background:linear-gradient(135deg, rgba(255,255,255,.80), rgba(255,255,255,.62));
   border-radius:var(--radius-xl);
   box-shadow:var(--shadow-lg);
   border:1px solid rgba(255,255,255,.55);
@@ -189,10 +176,10 @@ textarea:focus-visible{
 .hero-card::after{
   content:"";
   position:absolute;
-  inset:auto -80px -80px auto;
-  width:240px;
-  height:240px;
-  background:radial-gradient(circle, rgba(215,38,56,.12), transparent 68%);
+  inset:auto -70px -70px auto;
+  width:220px;
+  height:220px;
+  background:radial-gradient(circle, rgba(215,38,56,.10), transparent 70%);
   pointer-events:none;
 }
 
@@ -203,93 +190,75 @@ textarea:focus-visible{
 }
 
 .avatar{
-  width:124px;
-  height:124px;
-  border-radius:20px;
+  width:96px;
+  height:96px;
+  border-radius:18px;
   object-fit:cover;
   box-shadow:0 14px 30px rgba(0,0,0,.12);
-  border:3px solid rgba(255,255,255,.7);
+  border:3px solid rgba(255,255,255,.75);
 }
 
 .hero-copy{
   display:flex;
   flex-direction:column;
-  gap:14px;
-}
-
-.kicker{
-  font-size:.75rem;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-  opacity:.68;
-  font-weight:700;
+  gap:16px;
+  min-width:0;
 }
 
 .display{
-  font-size:clamp(2rem, 4vw, 3.4rem);
-  line-height:1.04;
-  max-width:12ch;
-  margin-bottom:0;
+  font-size:clamp(2.4rem, 5vw, 4.1rem);
+  line-height:0.98;
   font-weight:800;
+  max-width:8ch;
 }
 
-.sub{
-  max-width:52ch;
-  font-size:1.05rem;
-  line-height:1.65;
-  margin-bottom:0;
-}
-
-.hero-detail{
-  max-width:60ch;
-  opacity:.82;
-  font-size:.98rem;
+.hero-brief{
+  max-width:56ch;
+  font-size:1.04rem;
   line-height:1.75;
+  opacity:.88;
 }
 
-.hero-highlights{
+.hero-bottom{
   display:flex;
   flex-wrap:wrap;
-  gap:10px;
-  margin-top:2px;
+  align-items:center;
+  gap:24px;
+  margin-top:4px;
 }
 
 .hero-actions{
   display:flex;
   flex-wrap:wrap;
   gap:12px;
-  margin-top:6px;
 }
 
 .hero-stats{
   display:flex;
   flex-wrap:wrap;
-  gap:18px;
-  margin-top:10px;
-  padding-top:12px;
+  gap:22px;
 }
 
 .stat-item{
-  min-width:92px;
   display:flex;
   flex-direction:column;
   gap:2px;
+  min-width:88px;
 }
 
 .stat-item strong{
-  font-size:1.35rem;
+  font-size:1.5rem;
   line-height:1;
   font-weight:800;
 }
 
 .stat-item span{
-  font-size:.82rem;
+  font-size:.85rem;
   opacity:.72;
+  line-height:1.2;
 }
 
-/* =========================
-   BOTONES
-========================= */
+/* BOTONES */
 .btn{
   display:inline-flex;
   align-items:center;
@@ -311,25 +280,11 @@ textarea:focus-visible{
   box-shadow:var(--shadow-sm);
 }
 
-.btn.red{
-  background:var(--primary);
-}
-
-.btn.case{
-  background:var(--accent);
-}
-
-.btn.primary{
-  background:var(--blue);
-}
-
-.btn.whatsapp{
-  background:var(--whatsapp);
-}
-
-.btn.linkedin{
-  background:var(--linkedin);
-}
+.btn.red{ background:var(--primary); }
+.btn.case{ background:var(--accent); }
+.btn.primary{ background:var(--blue); }
+.btn.whatsapp{ background:var(--whatsapp); }
+.btn.linkedin{ background:var(--linkedin); }
 
 .btn.ghost{
   background:transparent;
@@ -341,9 +296,7 @@ textarea:focus-visible{
   padding:16px 30px;
 }
 
-/* =========================
-   GRIDS Y CARDS
-========================= */
+/* GRIDS Y CARDS */
 .grid.cards{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
@@ -364,34 +317,7 @@ textarea:focus-visible{
   box-shadow:var(--shadow-glow);
 }
 
-/* =========================
-   ENFOQUE
-========================= */
-.approach-grid{
-  grid-template-columns:repeat(4, minmax(0, 1fr));
-}
-
-.mini-card{
-  min-height:190px;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-start;
-  gap:10px;
-}
-
-.mini-card h3{
-  font-size:1.05rem;
-  line-height:1.3;
-}
-
-.mini-card p{
-  font-size:.96rem;
-  opacity:.82;
-}
-
-/* =========================
-   PROYECTOS
-========================= */
+/* PROYECTOS */
 .project{
   display:flex;
   flex-direction:column;
@@ -479,9 +405,7 @@ textarea:focus-visible{
   row-gap:14px;
 }
 
-/* =========================
-   TECNOLOGÍAS
-========================= */
+/* TECNOLOGÍAS */
 .tech-layout{
   display:grid;
   grid-template-columns:300px 1fr;
@@ -572,13 +496,7 @@ textarea:focus-visible{
   line-height:1.7;
 }
 
-#techTags{
-  margin-top:2px;
-}
-
-/* =========================
-   CERTIFICADOS
-========================= */
+/* CERTIFICADOS */
 .diploma-card{
   display:flex;
   flex-direction:column;
@@ -588,7 +506,6 @@ textarea:focus-visible{
 
 .diploma-card h3{
   line-height:1.35;
-  margin-bottom:0;
   font-size:1.18rem;
   font-weight:800;
 }
@@ -598,9 +515,7 @@ textarea:focus-visible{
   margin-bottom:8px;
 }
 
-/* =========================
-   CONTACTO
-========================= */
+/* CONTACTO */
 .contact-wrapper{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -667,9 +582,7 @@ textarea:focus-visible{
   width:100%;
 }
 
-/* =========================
-   FOOTER
-========================= */
+/* FOOTER */
 .new-footer{
   text-align:center;
   padding:28px 0;
@@ -677,9 +590,6 @@ textarea:focus-visible{
   border-top:1px solid rgba(0,0,0,.08);
 }
 
-/* =========================
-   REDUCED MOTION
-========================= */
 @media (prefers-reduced-motion: reduce){
   html{
     scroll-behavior:auto;
@@ -691,14 +601,11 @@ textarea:focus-visible{
   }
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
 @media(max-width:900px){
   .hero-card{
     grid-template-columns:1fr;
     text-align:center;
-    padding:34px 26px;
+    padding:30px 24px;
   }
 
   .hero-visual{
@@ -710,20 +617,15 @@ textarea:focus-visible{
   }
 
   .display,
-  .sub,
-  .hero-detail,
+  .hero-brief,
   .section-intro{
     max-width:none;
   }
 
-  .hero-highlights,
+  .hero-bottom,
   .hero-actions,
   .hero-stats{
     justify-content:center;
-  }
-
-  .approach-grid{
-    grid-template-columns:repeat(2, minmax(0, 1fr));
   }
 
   .contact-wrapper{
@@ -756,11 +658,7 @@ textarea:focus-visible{
   }
 
   .display{
-    font-size:clamp(1.8rem, 8vw, 2.5rem);
-  }
-
-  .approach-grid{
-    grid-template-columns:1fr;
+    font-size:clamp(2rem, 10vw, 3rem);
   }
 
   .hero-actions .btn,
@@ -770,11 +668,11 @@ textarea:focus-visible{
   }
 
   .hero-stats{
-    gap:12px;
+    gap:14px;
   }
 
   .stat-item{
-    min-width:80px;
+    min-width:78px;
   }
 
   .main-nav{
