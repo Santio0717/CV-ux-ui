@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const tabs = Array.from(document.querySelectorAll(".ux-tab[data-page]"));
   const year = document.getElementById("year");
   const progressBar = document.getElementById("tab-progress-bar");
+  const progressWrap = document.getElementById("tab-progress");
 
   if (year) {
     year.textContent = new Date().getFullYear();
@@ -18,8 +19,16 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentRequest = 0;
   let autoIndex = 0;
 
-  const INITIAL_DELAY = 10000; // 10s
-  const ROTATION_DELAY = 7000; // 7s
+  const INITIAL_DELAY = 10000;
+  const ROTATION_DELAY = 7000;
+
+  function showProgress() {
+    if (progressWrap) progressWrap.classList.remove("hidden");
+  }
+
+  function hideProgress() {
+    if (progressWrap) progressWrap.classList.add("hidden");
+  }
 
   function resetProgress() {
     if (progressBar) {
@@ -164,10 +173,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     resetProgress();
+    hideProgress();
   }
 
   function startAutoplay() {
-    stopAutoplay();
+    showProgress();
+    resetProgress();
     animateProgress(INITIAL_DELAY);
 
     suggestionTimer = setTimeout(() => {
@@ -193,7 +204,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   tabs.forEach((btn, index) => {
-    btn.addEventListener("click", () => {
+    btn.addEventListener("click", (event) => {
+      event.preventDefault();
       userInteracted = true;
       stopAutoplay();
       activate(btn);
