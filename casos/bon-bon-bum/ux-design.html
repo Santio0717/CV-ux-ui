@@ -1,44 +1,114 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bon Bon Bum · UX Design</title>
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="./style.css" />
 </head>
 
 <body class="case-page">
 
-  <main class="case-content container">
+  <main class="case-layout">
 
-    <h1 class="case-title">Bon Bon Bum</h1>
+    <section class="case-card">
+      <div class="case-header">
+        <span class="case-eyebrow">Caso de estudio · UX/UI</span>
+        <h1 class="case-title">Bon Bon Bum</h1>
+        <p class="case-intro">
+          Explora el proceso detrás del diseño: investigación, decisiones visuales,
+          prototipado y accesibilidad para una experiencia e-commerce más clara y atractiva.
+        </p>
+      </div>
 
-    <div class="ux-tabs">
-      <a class="ux-tab" href="ux-research.html">UX Research</a>
-      <a class="ux-tab active" href="ux-design.html">UX Design</a>
-      <a class="ux-tab" href="prototipado.html">Prototipado</a>
-      <a class="ux-tab" href="product-design.html">Product Design</a>
-      <a class="ux-tab" href="accesibilidad.html">Accesibilidad</a>
-    </div>
+      <nav class="ux-tabs" aria-label="Fases del proyecto">
+        <a class="ux-tab" href="./ux-research.html">UX Research</a>
+        <a class="ux-tab active" href="./ux-design.html">UX Design</a>
+        <a class="ux-tab" href="./prototipado.html">Prototipado</a>
+        <a class="ux-tab" href="./product-design.html">Product Design</a>
+        <a class="ux-tab" href="./accesibilidad.html">Accesibilidad</a>
+      </nav>
 
-    <section>
-      <ul>
-        <li><strong>Organización del contenido:</strong> Sabores, Historia, Curiosidades y Contacto.</li>
-        <li><strong>Identidad visual:</strong> Colores fieles a la marca Bon Bon Bum.</li>
-        <li><strong>Jerarquía visual:</strong> Secciones divididas en bloques amplios para mejor lectura.</li>
-        <li><strong>Navegación optimizada:</strong> Footer con acciones esenciales (inicio, redes, contacto).</li>
-      </ul>
+      <section class="case-body">
+        <h2>UX Design</h2>
+
+        <p>
+          La propuesta de diseño se estructuró para comunicar la marca de forma clara,
+          atractiva y fácil de recorrer, manteniendo una narrativa visual coherente con
+          la identidad de Bon Bon Bum.
+        </p>
+
+        <ul>
+          <li><strong>Organización del contenido:</strong> sabores, historia, curiosidades y contacto.</li>
+          <li><strong>Identidad visual:</strong> colores y recursos alineados con la marca Bon Bon Bum.</li>
+          <li><strong>Jerarquía visual:</strong> bloques amplios para facilitar lectura y exploración.</li>
+          <li><strong>Navegación optimizada:</strong> estructura clara con acciones esenciales visibles.</li>
+        </ul>
+      </section>
     </section>
 
-    <div class="case-links">
-      <a href="../../index.html#proyectos" class="btn ghost">Volver al portafolio</a>
-      <a href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma"
-         target="_blank" class="btn case">Ver prototipo en Figma</a>
-    </div>
+    <aside class="case-aside">
+      <article class="preview-card">
+        <div class="preview-top">
+          <span class="preview-chip">Preview del proyecto</span>
+        </div>
+
+        <a
+          class="preview-link"
+          href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            src="../../../activos/Proyectos/Bon_Bon_Bum.png"
+            alt="Vista previa del proyecto Bon Bon Bum"
+            loading="lazy"
+          />
+        </a>
+
+        <div class="preview-meta">
+          <h2 class="preview-title">Wireframes de alta fidelidad</h2>
+          <p class="preview-desc">
+            Propuesta visual enfocada en jerarquía, narrativa de marca y conversión
+            para una plataforma de e-commerce más clara y memorable.
+          </p>
+
+          <div class="preview-tags">
+            <span>Figma</span>
+            <span>E-commerce</span>
+            <span>UX/UI</span>
+            <span>Conversión</span>
+          </div>
+        </div>
+
+        <div class="preview-actions">
+          <a href="../../../index.html#proyectos" class="btn ghost">Volver al portafolio</a>
+          <a
+            href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn case"
+          >
+            Ver prototipo en Figma
+          </a>
+        </div>
+      </article>
+    </aside>
 
   </main>
 
+  <footer class="case-footer">
+    © <span id="year"></span> · Portafolio de Santiago Murillo
+  </footer>
+
+  <script src="./bon-bon-bum.js" defer></script>
 </body>
 </html>
