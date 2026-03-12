@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const placeholder = document.getElementById("case-placeholder");
   const tabs = Array.from(document.querySelectorAll(".ux-tab[data-page]"));
   const year = document.getElementById("year");
+  const progressBar = document.getElementById("tab-progress-bar");
 
   if (year) {
     year.textContent = new Date().getFullYear();
@@ -12,7 +13,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let userInteracted = false;
   let suggestionTimer = null;
+  let autoplayInterval = null;
+  let progressInterval = null;
   let currentRequest = 0;
+  let autoIndex = 0;
+
+  const INITIAL_DELAY = 10000; // 10s
+  const ROTATION_DELAY = 7000; // 7s
+
+  function resetProgress() {
+    if (progressBar) {
+      progressBar.style.width = "0%";
+    }
+  }
+
+  function animateProgress(duration) {
+    if (!progressBar) return;
+
+    clearInterval(progressInterval);
+    progressBar.style.width = "0%";
+
+    const start = Date.now();
+
+    progressInterval = setInterval(() => {
+      const elapsed = Date.now() - start;
+      const percent = Math.min((elapsed / duration) * 100, 100);
+      progressBar.style.width = `${percent}%`;
+
+      if (percent >= 100) {
+        clearInterval(progressInterval);
+      }
+    }, 50);
+  }
 
   function showPlaceholder() {
     if (placeholder) placeholder.hidden = false;
@@ -112,19 +144,58 @@ document.addEventListener("DOMContentLoaded", () => {
     tabs.forEach(tab => tab.classList.remove("active"));
     btn.classList.add("active");
     loadPage(btn.dataset.page);
+    autoIndex = tabs.indexOf(btn);
   }
 
-  function cancelSuggestion() {
+  function stopAutoplay() {
     if (suggestionTimer) {
       clearTimeout(suggestionTimer);
       suggestionTimer = null;
     }
+
+    if (autoplayInterval) {
+      clearInterval(autoplayInterval);
+      autoplayInterval = null;
+    }
+
+    if (progressInterval) {
+      clearInterval(progressInterval);
+      progressInterval = null;
+    }
+
+    resetProgress();
+  }
+
+  function startAutoplay() {
+    stopAutoplay();
+    animateProgress(INITIAL_DELAY);
+
+    suggestionTimer = setTimeout(() => {
+      if (userInteracted) return;
+
+      const uxResearchBtn =
+        tabs.find(tab => (tab.textContent || "").trim().toLowerCase() === "ux research") || tabs[0];
+
+      activate(uxResearchBtn);
+      animateProgress(ROTATION_DELAY);
+
+      autoplayInterval = setInterval(() => {
+        if (userInteracted) {
+          stopAutoplay();
+          return;
+        }
+
+        autoIndex = (autoIndex + 1) % tabs.length;
+        activate(tabs[autoIndex]);
+        animateProgress(ROTATION_DELAY);
+      }, ROTATION_DELAY);
+    }, INITIAL_DELAY);
   }
 
   tabs.forEach((btn, index) => {
     btn.addEventListener("click", () => {
       userInteracted = true;
-      cancelSuggestion();
+      stopAutoplay();
       activate(btn);
     });
 
@@ -146,20 +217,12 @@ document.addEventListener("DOMContentLoaded", () => {
       if (key === "Enter" || key === " ") {
         event.preventDefault();
         userInteracted = true;
-        cancelSuggestion();
+        stopAutoplay();
         activate(btn);
       }
     });
   });
 
   showPlaceholder();
-
-  suggestionTimer = setTimeout(() => {
-    if (userInteracted) return;
-
-    const uxResearchBtn =
-      tabs.find(tab => (tab.textContent || "").trim().toLowerCase() === "ux research") || tabs[0];
-
-    activate(uxResearchBtn);
-  }, 15000);
+  startAutoplay();
 });
