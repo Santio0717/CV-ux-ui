@@ -30,14 +30,18 @@
       </div>
 
       <nav class="ux-tabs" aria-label="Fases del proyecto">
-        <a class="ux-tab" href="./ux-research.html">UX Research</a>
-        <a class="ux-tab" href="./ux-design.html">UX Design</a>
-        <a class="ux-tab" href="./prototipado.html">Prototipado</a>
-        <a class="ux-tab" href="./product-design.html">Product Design</a>
-        <a class="ux-tab" href="./accesibilidad.html">Accesibilidad</a>
+        <a class="ux-tab" href="./ux-research.html" data-page="./ux-research.html">UX Research</a>
+        <a class="ux-tab" href="./ux-design.html" data-page="./ux-design.html">UX Design</a>
+        <a class="ux-tab" href="./prototipado.html" data-page="./prototipado.html">Prototipado</a>
+        <a class="ux-tab" href="./product-design.html" data-page="./product-design.html">Product Design</a>
+        <a class="ux-tab" href="./accesibilidad.html" data-page="./accesibilidad.html">Accesibilidad</a>
       </nav>
 
-      <section class="case-placeholder">
+      <div id="tab-progress" class="tab-progress" aria-hidden="true">
+        <span id="tab-progress-bar"></span>
+      </div>
+
+      <div id="case-placeholder" class="case-placeholder">
         <div class="placeholder-badge">Empieza aquí</div>
         <h2>Explora el proceso de diseño</h2>
         <p>
@@ -47,7 +51,9 @@
         <span class="mini-note">
           Sugerencia: empieza por <strong>UX Research</strong>.
         </span>
-      </section>
+      </div>
+
+      <div id="case-content" class="case-body" hidden></div>
     </section>
 
     <aside class="case-aside">
@@ -82,20 +88,20 @@
             <span>UX/UI</span>
             <span>Conversión</span>
           </div>
-        </div>
 
-        <div class="preview-actions">
-          <a href="../../../index.html#proyectos" class="btn ghost">
-            Volver al portafolio
-          </a>
-          <a
-            href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn case"
-          >
-            Ver prototipo en Figma
-          </a>
+          <div class="preview-actions">
+            <a href="../../../index.html#proyectos" class="btn ghost">
+              Volver al portafolio
+            </a>
+            <a
+              href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn case"
+            >
+              Ver prototipo en Figma
+            </a>
+          </div>
         </div>
       </article>
     </aside>
