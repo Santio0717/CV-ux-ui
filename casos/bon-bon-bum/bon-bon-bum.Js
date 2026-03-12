@@ -2,53 +2,76 @@ document.addEventListener("DOMContentLoaded", () => {
   const content = document.getElementById("case-content");
   const placeholder = document.getElementById("case-placeholder");
   const tabs = Array.from(document.querySelectorAll(".ux-tab[data-page]"));
+  const year = document.getElementById("year");
+
+  if (year) {
+    year.textContent = new Date().getFullYear();
+  }
 
   if (!content || !tabs.length) return;
 
   let userInteracted = false;
   let suggestionTimer = null;
+  let currentRequest = 0;
 
-  function showPlaceholder(){
+  function showPlaceholder() {
     if (placeholder) placeholder.hidden = false;
     content.hidden = true;
     content.innerHTML = "";
   }
 
-  function showContent(){
+  function showContent() {
     if (placeholder) placeholder.hidden = true;
     content.hidden = false;
   }
 
-  // ✅ Limpia duplicados si los archivos cargados vienen "sucios"
-  function sanitizeLoadedHTML(html){
+  function setLoadingState() {
+    showContent();
+    content.innerHTML = `
+      <div class="case-placeholder" style="margin-top:0;">
+        <div class="placeholder-badge">Cargando</div>
+        <h3>Abriendo sección</h3>
+        <p>Estamos cargando el contenido seleccionado para mostrarte el proceso del proyecto.</p>
+      </div>
+    `;
+  }
+
+  function sanitizeLoadedHTML(html) {
     const temp = document.createElement("div");
     temp.innerHTML = html;
 
-    // elimina cosas que NUNCA deben entrar al panel izquierdo
     temp.querySelectorAll("script, style, link, nav, header, footer").forEach(el => el.remove());
-    temp.querySelectorAll(".ux-tabs, .case-links, .preview-card, .case-title").forEach(el => el.remove());
+    temp.querySelectorAll(".ux-tabs, .case-links, .preview-card, .case-title, .case-header").forEach(el => el.remove());
 
-    // quita H1/H2 repetidos tipo "Bon Bon Bum"
     temp.querySelectorAll("h1").forEach(el => el.remove());
     temp.querySelectorAll("h2").forEach(el => {
       if ((el.textContent || "").trim().toLowerCase() === "bon bon bum") el.remove();
     });
 
-    // Si el archivo trae body/main, nos quedamos con el contenido útil
     const main = temp.querySelector("main") || temp;
     return main.innerHTML.trim();
   }
 
   async function loadPage(page) {
+    const requestId = ++currentRequest;
+
     try {
       if (location.protocol === "file:") {
         showContent();
         content.innerHTML = `
-          <p style="text-align:center; opacity:.85;">
-            Estás en <strong>file://</strong>. Abre con Live Server o Netlify para que funcionen las tabs.
-          </p>`;
+          <div class="case-placeholder" style="margin-top:0;">
+            <div class="placeholder-badge">Atención</div>
+            <h3>No se pueden cargar las tabs así</h3>
+            <p>
+              Estás en <strong>file://</strong>. Abre el proyecto con <strong>Live Server</strong>,
+              Netlify o un servidor local para que funcionen correctamente.
+            </p>
+          </div>
+        `;
         return;
       }
+
+      setLoadingState();
 
       const res = await fetch(page, { cache: "no-store" });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -56,52 +79,86 @@ document.addEventListener("DOMContentLoaded", () => {
       const html = await res.text();
       const clean = sanitizeLoadedHTML(html);
 
+      if (requestId !== currentRequest) return;
+
       showContent();
       content.innerHTML = clean || `
-        <p style="text-align:center; opacity:.85;">
-          Este apartado aún no tiene contenido.
-        </p>`;
-
+        <div class="case-placeholder" style="margin-top:0;">
+          <div class="placeholder-badge">Vacío</div>
+          <h3>Este apartado aún no tiene contenido</h3>
+          <p>Agrega información a este archivo para completar la fase del proyecto.</p>
+        </div>
+      `;
     } catch (err) {
       console.error(err);
+
+      if (requestId !== currentRequest) return;
+
       showContent();
       content.innerHTML = `
-        <p style="text-align:center; opacity:.85;">
-          No se pudo cargar <strong>${page}</strong>. Revisa el nombre del archivo y la carpeta.
-        </p>`;
+        <div class="case-placeholder" style="margin-top:0;">
+          <div class="placeholder-badge">Error</div>
+          <h3>No se pudo cargar la sección</h3>
+          <p>
+            No se pudo cargar <strong>${page}</strong>. Revisa el nombre del archivo,
+            la carpeta o si existe correctamente.
+          </p>
+        </div>
+      `;
     }
   }
 
   function activate(btn) {
-    tabs.forEach(b => b.classList.remove("active"));
+    tabs.forEach(tab => tab.classList.remove("active"));
     btn.classList.add("active");
     loadPage(btn.dataset.page);
   }
 
-  function cancelSuggestion(){
+  function cancelSuggestion() {
     if (suggestionTimer) {
       clearTimeout(suggestionTimer);
       suggestionTimer = null;
     }
   }
 
-  tabs.forEach(btn => {
+  tabs.forEach((btn, index) => {
     btn.addEventListener("click", () => {
       userInteracted = true;
       cancelSuggestion();
       activate(btn);
     });
+
+    btn.addEventListener("keydown", (event) => {
+      const key = event.key;
+
+      if (key === "ArrowRight" || key === "ArrowDown") {
+        event.preventDefault();
+        const next = tabs[(index + 1) % tabs.length];
+        next.focus();
+      }
+
+      if (key === "ArrowLeft" || key === "ArrowUp") {
+        event.preventDefault();
+        const prev = tabs[(index - 1 + tabs.length) % tabs.length];
+        prev.focus();
+      }
+
+      if (key === "Enter" || key === " ") {
+        event.preventDefault();
+        userInteracted = true;
+        cancelSuggestion();
+        activate(btn);
+      }
+    });
   });
 
-  // Inicio: placeholder visible
   showPlaceholder();
 
-  // ✅ Auto-selección a los 15s SOLO si no hubo interacción
   suggestionTimer = setTimeout(() => {
     if (userInteracted) return;
 
     const uxResearchBtn =
-      tabs.find(b => (b.textContent || "").trim().toLowerCase() === "ux research") || tabs[0];
+      tabs.find(tab => (tab.textContent || "").trim().toLowerCase() === "ux research") || tabs[0];
 
     activate(uxResearchBtn);
   }, 15000);
