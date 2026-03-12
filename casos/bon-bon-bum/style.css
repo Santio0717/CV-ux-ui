@@ -130,7 +130,7 @@ body.case-page{
   display:flex;
   flex-wrap:wrap;
   gap:10px;
-  margin:16px 0 18px;
+  margin:16px 0 10px;
 }
 
 .ux-tab{
@@ -171,6 +171,29 @@ body.case-page{
 .ux-tab:focus-visible{
   outline:3px solid rgba(20,37,61,.25);
   outline-offset:3px;
+}
+
+/* PROGRESO */
+.tab-progress{
+  width:100%;
+  height:5px;
+  border-radius:999px;
+  background:rgba(20,37,61,.08);
+  overflow:hidden;
+  margin:0 0 18px;
+}
+
+.tab-progress.hidden{
+  display:none;
+}
+
+.tab-progress span{
+  display:block;
+  width:0%;
+  height:100%;
+  border-radius:999px;
+  background:linear-gradient(90deg, var(--accent), var(--accent-dark));
+  transition:width .2s linear;
 }
 
 /* PLACEHOLDER / CONTENIDO */
@@ -331,6 +354,8 @@ body.case-page{
 .preview-meta{
   padding:14px 4px 4px;
   flex:1;
+  display:flex;
+  flex-direction:column;
 }
 
 .preview-title{
@@ -352,6 +377,7 @@ body.case-page{
   display:flex;
   flex-wrap:wrap;
   gap:8px;
+  margin-bottom:16px;
 }
 
 .preview-tags span{
@@ -366,10 +392,10 @@ body.case-page{
 
 /* BOTONES */
 .preview-actions{
-  margin-top:14px;
   display:flex;
   gap:10px;
   flex-wrap:wrap;
+  margin-top:auto;
 }
 
 .btn{
