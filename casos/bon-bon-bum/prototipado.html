@@ -1,43 +1,120 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bon Bon Bum · Prototipado</title>
 
-  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="./style.css" />
 </head>
 
 <body class="case-page">
 
-  <main class="case-content container">
+  <main class="case-layout">
 
-    <h1 class="case-title">Bon Bon Bum</h1>
+    <section class="case-card">
+      <div class="case-header">
+        <span class="case-eyebrow">Caso de estudio · UX/UI</span>
+        <h1 class="case-title">Bon Bon Bum</h1>
+        <p class="case-intro">
+          Explora el proceso detrás del diseño: investigación, decisiones visuales,
+          prototipado y accesibilidad para una experiencia e-commerce más clara y atractiva.
+        </p>
+      </div>
 
-    <div class="ux-tabs">
-      <a class="ux-tab" href="ux-research.html">UX Research</a>
-      <a class="ux-tab" href="ux-design.html">UX Design</a>
-      <a class="ux-tab active" href="prototipado.html">Prototipado</a>
-      <a class="ux-tab" href="product-design.html">Product Design</a>
-      <a class="ux-tab" href="accesibilidad.html">Accesibilidad</a>
-    </div>
+      <nav class="ux-tabs" aria-label="Fases del proyecto">
+        <a class="ux-tab" href="./ux-research.html">UX Research</a>
+        <a class="ux-tab" href="./ux-design.html">UX Design</a>
+        <a class="ux-tab active" href="./prototipado.html">Prototipado</a>
+        <a class="ux-tab" href="./product-design.html">Product Design</a>
+        <a class="ux-tab" href="./accesibilidad.html">Accesibilidad</a>
+      </nav>
 
-    <section>
-      <p>
-        Se prototipó en Figma bajo un modelo de MacBook Pro 16",
-        utilizando wireframes de alta fidelidad, carruseles animados
-        y microinteracciones que refuerzan la navegación fluida.
-      </p>
+      <section class="case-body">
+        <h2>Prototipado</h2>
+
+        <p>
+          Se prototipó en Figma bajo un modelo de MacBook Pro 16", utilizando
+          wireframes de alta fidelidad, carruseles animados y microinteracciones
+          que refuerzan la navegación fluida.
+        </p>
+
+        <p>
+          El prototipo permitió validar la estructura visual del e-commerce,
+          revisar la jerarquía de contenidos y simular una experiencia de navegación
+          cercana al comportamiento esperado del producto final.
+        </p>
+
+        <ul>
+          <li>Wireframes de alta fidelidad en Figma</li>
+          <li>Simulación de carruseles y navegación</li>
+          <li>Pruebas de claridad visual y flujo</li>
+          <li>Validación de interacción antes del desarrollo</li>
+        </ul>
+      </section>
     </section>
 
-    <div class="case-links">
-      <a href="../../index.html#proyectos" class="btn ghost">Volver al portafolio</a>
-      <a href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma"
-         target="_blank" class="btn case">Ver prototipo en Figma</a>
-    </div>
+    <aside class="case-aside">
+      <article class="preview-card">
+        <div class="preview-top">
+          <span class="preview-chip">Preview del proyecto</span>
+        </div>
+
+        <a
+          class="preview-link"
+          href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            src="../../../activos/Proyectos/Bon_Bon_Bum.png"
+            alt="Vista previa del proyecto Bon Bon Bum"
+            loading="lazy"
+          />
+        </a>
+
+        <div class="preview-meta">
+          <h2 class="preview-title">Wireframes de alta fidelidad</h2>
+          <p class="preview-desc">
+            Propuesta visual enfocada en jerarquía, narrativa de marca y conversión
+            para una plataforma de e-commerce más clara y memorable.
+          </p>
+
+          <div class="preview-tags">
+            <span>Figma</span>
+            <span>E-commerce</span>
+            <span>UX/UI</span>
+            <span>Conversión</span>
+          </div>
+        </div>
+
+        <div class="preview-actions">
+          <a href="../../../index.html#proyectos" class="btn ghost">Volver al portafolio</a>
+          <a
+            href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn case"
+          >
+            Ver prototipo en Figma
+          </a>
+        </div>
+      </article>
+    </aside>
 
   </main>
 
+  <footer class="case-footer">
+    © <span id="year"></span> · Portafolio de Santiago Murillo
+  </footer>
+
+  <script src="./bon-bon-bum.js" defer></script>
 </body>
 </html>
