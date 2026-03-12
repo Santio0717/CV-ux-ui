@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Greenscape · Estudio de Caso</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
   <link rel="stylesheet" href="./style.css" />
 </head>
 
@@ -15,7 +22,14 @@
     <!-- ===== COLUMNA IZQUIERDA ===== -->
     <section class="case-card">
 
-      <h1 class="case-title">Greenscape</h1>
+      <div class="case-header">
+        <span class="case-eyebrow">Caso de estudio · UX/UI</span>
+        <h1 class="case-title">Greenscape</h1>
+        <p class="case-intro">
+          Proyecto enfocado en conectar productores y compradores con una experiencia
+          mobile-first, navegación intuitiva y una estructura clara para dos tipos de usuario.
+        </p>
+      </div>
 
       <nav class="ux-tabs" aria-label="Fases del proyecto">
         <button class="ux-tab" type="button" data-page="./ux-research.html">UX Research</button>
@@ -23,8 +37,13 @@
         <button class="ux-tab" type="button" data-page="./prototipado.html">Prototipado</button>
       </nav>
 
+      <div id="tab-progress" class="tab-progress">
+        <span id="tab-progress-bar"></span>
+      </div>
+
       <!-- Placeholder inicial -->
       <div id="case-placeholder" class="case-placeholder">
+        <div class="placeholder-badge">Empieza aquí</div>
         <h3>Explora el proceso</h3>
         <p>
           Selecciona una categoría para conocer cómo desarrollé este proyecto:
@@ -55,21 +74,31 @@
           />
         </a>
 
-        <p class="preview-desc">
-          Prototipo móvil iOS diseñado con enfoque en usabilidad, navegación intuitiva
-          y experiencia mobile-first.
-        </p>
+        <div class="preview-meta">
+          <h2 class="preview-title">Prototipo móvil iOS</h2>
+          <p class="preview-desc">
+            Diseñado con enfoque en usabilidad, navegación intuitiva
+            y experiencia mobile-first para vendedores y compradores.
+          </p>
 
-        <div class="preview-actions">
-          <a href="../../../index.html#proyectos" class="btn ghost">
-            Volver al portafolio
-          </a>
-          <a href="https://www.figma.com/proto/iYuZ5f1XPOvGDWncfB739r/HCI"
-             target="_blank"
-             rel="noopener noreferrer"
-             class="btn case">
-            Ver prototipo en Figma
-          </a>
+          <div class="preview-tags">
+            <span>iOS</span>
+            <span>Figma</span>
+            <span>UX/UI</span>
+            <span>Mobile-first</span>
+          </div>
+
+          <div class="preview-actions">
+            <a href="../../../index.html#proyectos" class="btn ghost">
+              Volver al portafolio
+            </a>
+            <a href="https://www.figma.com/proto/iYuZ5f1XPOvGDWncfB739r/HCI"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="btn case">
+              Ver prototipo en Figma
+            </a>
+          </div>
         </div>
 
       </article>
@@ -77,12 +106,10 @@
 
   </main>
 
-  <!-- ===== FOOTER ===== -->
   <footer class="case-footer">
     © <span id="year"></span> · Portafolio de Santiago Murillo
   </footer>
 
-  <!-- ✅ Usa el MISMO J renómbralo a greenscape.js) -->
   <script src="./greenscape.js" defer></script>
 </body>
 </html>
