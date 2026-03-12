@@ -19,9 +19,7 @@
 
   <main class="case-layout">
 
-    <!-- ===== COLUMNA IZQUIERDA ===== -->
     <section class="case-card">
-
       <div class="case-header">
         <span class="case-eyebrow">Caso de estudio · UX/UI</span>
         <h1 class="case-title">Bon Bon Bum</h1>
@@ -32,21 +30,16 @@
       </div>
 
       <nav class="ux-tabs" aria-label="Fases del proyecto">
-        <button type="button" class="ux-tab" data-page="./ux-research.html">UX Research</button>
-        <button type="button" class="ux-tab" data-page="./ux-design.html">UX Design</button>
-        <button type="button" class="ux-tab" data-page="./prototipado.html">Prototipado</button>
-        <button type="button" class="ux-tab" data-page="./product-design.html">Product Design</button>
-        <button type="button" class="ux-tab" data-page="./accesibilidad.html">Accesibilidad</button>
+        <a class="ux-tab" href="./ux-research.html">UX Research</a>
+        <a class="ux-tab" href="./ux-design.html">UX Design</a>
+        <a class="ux-tab" href="./prototipado.html">Prototipado</a>
+        <a class="ux-tab" href="./product-design.html">Product Design</a>
+        <a class="ux-tab" href="./accesibilidad.html">Accesibilidad</a>
       </nav>
 
-      <div class="tab-progress" aria-hidden="true">
-        <span id="tab-progress-bar"></span>
-      </div>
-
-      <!-- Placeholder inicial -->
-      <div id="case-placeholder" class="case-placeholder">
+      <section class="case-placeholder">
         <div class="placeholder-badge">Empieza aquí</div>
-        <h3>Explora el proceso de diseño</h3>
+        <h2>Explora el proceso de diseño</h2>
         <p>
           Selecciona una categoría para conocer cómo desarrollé este proyecto:
           investigación, diseño, prototipado y decisiones clave.
@@ -54,25 +47,21 @@
         <span class="mini-note">
           Sugerencia: empieza por <strong>UX Research</strong>.
         </span>
-      </div>
-
-      <!-- Contenido dinámico -->
-      <div id="case-content" class="case-body" hidden></div>
-
+      </section>
     </section>
 
-    <!-- ===== COLUMNA DERECHA ===== -->
     <aside class="case-aside">
       <article class="preview-card">
-
         <div class="preview-top">
           <span class="preview-chip">Preview del proyecto</span>
         </div>
 
-        <a class="preview-link"
-           href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma"
-           target="_blank"
-           rel="noopener noreferrer">
+        <a
+          class="preview-link"
+          href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img
             src="../../../activos/Proyectos/Bon_Bon_Bum.png"
             alt="Vista previa del proyecto Bon Bon Bum"
@@ -99,14 +88,15 @@
           <a href="../../../index.html#proyectos" class="btn ghost">
             Volver al portafolio
           </a>
-          <a href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma"
-             target="_blank"
-             rel="noopener noreferrer"
-             class="btn case">
+          <a
+            href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn case"
+          >
             Ver prototipo en Figma
           </a>
         </div>
-
       </article>
     </aside>
 
