@@ -1,108 +1,117 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const content = document.getElementById("case-content");
-  const placeholder = document.getElementById("case-placeholder");
-  const tabs = Array.from(document.querySelectorAll(".ux-tab[data-page]"));
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bon Bon Bum · Estudio de Caso</title>
 
-  if (!content || !tabs.length) return;
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
 
-  let userInteracted = false;
-  let suggestionTimer = null;
+  <link rel="stylesheet" href="./style.css" />
+</head>
 
-  function showPlaceholder(){
-    if (placeholder) placeholder.hidden = false;
-    content.hidden = true;
-    content.innerHTML = "";
-  }
+<body class="case-page">
 
-  function showContent(){
-    if (placeholder) placeholder.hidden = true;
-    content.hidden = false;
-  }
+  <main class="case-layout">
 
-  // ✅ Limpia duplicados si los archivos cargados vienen "sucios"
-  function sanitizeLoadedHTML(html){
-    const temp = document.createElement("div");
-    temp.innerHTML = html;
+    <!-- ===== COLUMNA IZQUIERDA ===== -->
+    <section class="case-card">
 
-    // elimina cosas que NUNCA deben entrar al panel izquierdo
-    temp.querySelectorAll("script, style, link, nav, header, footer").forEach(el => el.remove());
-    temp.querySelectorAll(".ux-tabs, .case-links, .preview-card, .case-title").forEach(el => el.remove());
+      <div class="case-header">
+        <span class="case-eyebrow">Caso de estudio · UX/UI</span>
+        <h1 class="case-title">Bon Bon Bum</h1>
+        <p class="case-intro">
+          Explora el proceso detrás del diseño: investigación, decisiones visuales,
+          prototipado y accesibilidad para una experiencia e-commerce más clara y atractiva.
+        </p>
+      </div>
 
-    // quita H1/H2 repetidos tipo "Bon Bon Bum"
-    temp.querySelectorAll("h1").forEach(el => el.remove());
-    temp.querySelectorAll("h2").forEach(el => {
-      if ((el.textContent || "").trim().toLowerCase() === "bon bon bum") el.remove();
-    });
+      <nav class="ux-tabs" aria-label="Fases del proyecto">
+        <button type="button" class="ux-tab" data-page="./ux-research.html">UX Research</button>
+        <button type="button" class="ux-tab" data-page="./ux-design.html">UX Design</button>
+        <button type="button" class="ux-tab" data-page="./prototipado.html">Prototipado</button>
+        <button type="button" class="ux-tab" data-page="./product-design.html">Product Design</button>
+        <button type="button" class="ux-tab" data-page="./accesibilidad.html">Accesibilidad</button>
+      </nav>
 
-    // Si el archivo trae body/main, nos quedamos con el contenido útil
-    const main = temp.querySelector("main") || temp;
-    return main.innerHTML.trim();
-  }
+      <!-- Placeholder inicial -->
+      <div id="case-placeholder" class="case-placeholder">
+        <div class="placeholder-badge">Empieza aquí</div>
+        <h3>Explora el proceso de diseño</h3>
+        <p>
+          Selecciona una categoría para conocer cómo desarrollé este proyecto:
+          investigación, diseño, prototipado y decisiones clave.
+        </p>
+        <span class="mini-note">
+          Sugerencia: empieza por <strong>UX Research</strong>.
+        </span>
+      </div>
 
-  async function loadPage(page) {
-    try {
-      if (location.protocol === "file:") {
-        showContent();
-        content.innerHTML = `
-          <p style="text-align:center; opacity:.85;">
-            Estás en <strong>file://</strong>. Abre con Live Server o Netlify para que funcionen las tabs.
-          </p>`;
-        return;
-      }
+      <!-- Contenido dinámico -->
+      <div id="case-content" class="case-body" hidden></div>
 
-      const res = await fetch(page, { cache: "no-store" });
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    </section>
 
-      const html = await res.text();
-      const clean = sanitizeLoadedHTML(html);
+    <!-- ===== COLUMNA DERECHA ===== -->
+    <aside class="case-aside">
+      <article class="preview-card">
 
-      showContent();
-      content.innerHTML = clean || `
-        <p style="text-align:center; opacity:.85;">
-          Este apartado aún no tiene contenido.
-        </p>`;
+        <div class="preview-top">
+          <span class="preview-chip">Preview del proyecto</span>
+        </div>
 
-    } catch (err) {
-      console.error(err);
-      showContent();
-      content.innerHTML = `
-        <p style="text-align:center; opacity:.85;">
-          No se pudo cargar <strong>${page}</strong>. Revisa el nombre del archivo y la carpeta.
-        </p>`;
-    }
-  }
+        <a class="preview-link"
+           href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma"
+           target="_blank"
+           rel="noopener noreferrer">
+          <img
+            src="../../../activos/Proyectos/Bon_Bon_Bum.png"
+            alt="Vista previa del proyecto Bon Bon Bum"
+            loading="lazy"
+          />
+        </a>
 
-  function activate(btn) {
-    tabs.forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-    loadPage(btn.dataset.page);
-  }
+        <div class="preview-meta">
+          <h2 class="preview-title">Wireframes de alta fidelidad</h2>
+          <p class="preview-desc">
+            Propuesta visual enfocada en jerarquía, narrativa de marca y conversión
+            para una plataforma de e-commerce más clara y memorable.
+          </p>
 
-  function cancelSuggestion(){
-    if (suggestionTimer) {
-      clearTimeout(suggestionTimer);
-      suggestionTimer = null;
-    }
-  }
+          <div class="preview-tags">
+            <span>Figma</span>
+            <span>E-commerce</span>
+            <span>UX/UI</span>
+            <span>Conversión</span>
+          </div>
+        </div>
 
-  tabs.forEach(btn => {
-    btn.addEventListener("click", () => {
-      userInteracted = true;
-      cancelSuggestion();
-      activate(btn);
-    });
-  });
+        <div class="preview-actions">
+          <a href="../../../index.html#proyectos" class="btn ghost">
+            Volver al portafolio
+          </a>
+          <a href="https://www.figma.com/proto/C09Cx9hzMYJ72q597DdMNY/Wireframing-in-Figma"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="btn case">
+            Ver prototipo en Figma
+          </a>
+        </div>
 
-  // Inicio: placeholder visible
-  showPlaceholder();
+      </article>
+    </aside>
 
-  // ✅ Auto-selección a los 15s SOLO si no hubo interacción
-  suggestionTimer = setTimeout(() => {
-    if (userInteracted) return;
+  </main>
 
-    const uxResearchBtn =
-      tabs.find(b => (b.textContent || "").trim().toLowerCase() === "ux research") || tabs[0];
+  <footer class="case-footer">
+    © <span id="year"></span> · Portafolio de Santiago Murillo
+  </footer>
 
-    activate(uxResearchBtn);
-  }, 15000);
-});
+  <script src="./bon-bon-bum.js" defer></script>
+</body>
+</html>
