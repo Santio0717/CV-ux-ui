@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NutriCampus · Estudio de Caso</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
   <link rel="stylesheet" href="./style.css" />
 </head>
 
@@ -15,7 +22,14 @@
     <!-- ===== COLUMNA IZQUIERDA ===== -->
     <section class="case-card">
 
-      <h1 class="case-title">NutriCampus</h1>
+      <div class="case-header">
+        <span class="case-eyebrow">Caso de estudio · UX/UI</span>
+        <h1 class="case-title">NutriCampus</h1>
+        <p class="case-intro">
+          Plataforma enfocada en mejorar la gestión nutricional en entornos universitarios
+          mediante una experiencia clara, dinámica y centrada en el usuario.
+        </p>
+      </div>
 
       <nav class="ux-tabs" aria-label="Fases del proyecto">
         <button type="button" class="ux-tab" data-page="./ux-research.html">UX Research</button>
@@ -23,8 +37,13 @@
         <button type="button" class="ux-tab" data-page="./prototipado.html">Prototipado</button>
       </nav>
 
+      <div id="tab-progress" class="tab-progress">
+        <span id="tab-progress-bar"></span>
+      </div>
+
       <!-- Placeholder -->
       <div id="case-placeholder" class="case-placeholder">
+        <div class="placeholder-badge">Empieza aquí</div>
         <h3>Explora el proceso</h3>
         <p>
           Selecciona una categoría para conocer cómo se desarrolló NutriCampus:
@@ -39,7 +58,6 @@
       <div id="case-content" class="case-body" hidden></div>
 
     </section>
-
 
     <!-- ===== COLUMNA DERECHA ===== -->
     <aside class="case-aside">
@@ -58,25 +76,34 @@
 
         </a>
 
-        <p class="preview-desc">
-          NutriCampus es una propuesta de plataforma digital enfocada en mejorar
-          la gestión nutricional en entornos universitarios mediante una experiencia
-          clara y centrada en el usuario.
-        </p>
+        <div class="preview-meta">
+          <h2 class="preview-title">Propuesta de plataforma nutricional</h2>
 
-        <div class="preview-actions">
+          <p class="preview-desc">
+            NutriCampus busca mejorar la gestión nutricional en entornos universitarios
+            mediante una experiencia clara, acompañamiento visual y navegación centrada
+            en el usuario.
+          </p>
 
-          <a href="../../../index.html#proyectos" class="btn ghost">
-            Volver al portafolio
-          </a>
+          <div class="preview-tags">
+            <span>Figma</span>
+            <span>Nutrición</span>
+            <span>UX/UI</span>
+            <span>Universitario</span>
+          </div>
 
-          <a href="https://www.figma.com/proto/riKsfkN37qsKX4NbQn5zOh/Nutricampus-V2"
-             target="_blank"
-             rel="noopener noreferrer"
-             class="btn case">
-            Ver prototipo en Figma
-          </a>
+          <div class="preview-actions">
+            <a href="../../../index.html#proyectos" class="btn ghost">
+              Volver al portafolio
+            </a>
 
+            <a href="https://www.figma.com/proto/riKsfkN37qsKX4NbQn5zOh/Nutricampus-V2"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="btn case">
+              Ver prototipo en Figma
+            </a>
+          </div>
         </div>
 
       </article>
@@ -84,14 +111,12 @@
 
   </main>
 
-
   <!-- ===== FOOTER ===== -->
   <footer class="case-footer">
     © <span id="year"></span> · Portafolio de Santiago Murillo
   </footer>
 
-
   <script src="./nutricampus.js" defer></script>
-
 </body>
 </html>
+
