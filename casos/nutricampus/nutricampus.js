@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Año footer
   const year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
 
@@ -7,6 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const placeholder = document.getElementById("case-placeholder");
   const tabs = Array.from(document.querySelectorAll(".ux-tab[data-page]"));
   const pageTitleEl = document.querySelector(".case-title");
+  const progressBar = document.getElementById("tab-progress-bar");
+  const progressWrap = document.getElementById("tab-progress");
   const CASE_TITLE = (pageTitleEl?.textContent || "").trim().toLowerCase();
 
   if (!content || !tabs.length) {
@@ -16,44 +17,90 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let userInteracted = false;
   let suggestionTimer = null;
+  let autoplayInterval = null;
+  let progressInterval = null;
+  let currentRequest = 0;
+  let autoIndex = 0;
 
-  function showPlaceholder(){
+  const INITIAL_DELAY = 10000;
+  const ROTATION_DELAY = 7000;
+
+  function showProgress() {
+    if (progressWrap) progressWrap.hidden = false;
+  }
+
+  function hideProgress() {
+    if (progressWrap) progressWrap.hidden = true;
+  }
+
+  function resetProgress() {
+    if (progressBar) {
+      progressBar.style.width = "0%";
+    }
+  }
+
+  function animateProgress(duration) {
+    if (!progressBar) return;
+
+    clearInterval(progressInterval);
+    progressBar.style.width = "0%";
+
+    const start = Date.now();
+
+    progressInterval = setInterval(() => {
+      const elapsed = Date.now() - start;
+      const percent = Math.min((elapsed / duration) * 100, 100);
+      progressBar.style.width = `${percent}%`;
+
+      if (percent >= 100) {
+        clearInterval(progressInterval);
+      }
+    }, 50);
+  }
+
+  function showPlaceholder() {
     if (placeholder) placeholder.hidden = false;
     content.hidden = true;
     content.innerHTML = "";
   }
 
-  function showContent(){
+  function showContent() {
     if (placeholder) placeholder.hidden = true;
     content.hidden = false;
   }
 
-  // Limpia duplicados si los HTML internos traen layout completo
-  function sanitizeLoadedHTML(html){
+  function setLoadingState() {
+    showContent();
+    content.innerHTML = `
+      <div class="case-placeholder" style="margin-top:0;">
+        <div class="placeholder-badge">Cargando</div>
+        <h3>Abriendo sección</h3>
+        <p>Estamos cargando el contenido seleccionado para mostrarte el proceso del proyecto.</p>
+      </div>
+    `;
+  }
+
+  function sanitizeLoadedHTML(html) {
     const temp = document.createElement("div");
     temp.innerHTML = html;
 
-    // elimina cosas que no deben entrar al panel izquierdo
     temp.querySelectorAll("script, style, link, nav, header, footer").forEach(el => el.remove());
-
-    // elimina componentes del layout principal si vinieran incluidos
     temp.querySelectorAll(".ux-tabs, .case-links, .preview-card, .case-title, .case-footer, .case-layout, .case-aside").forEach(el => el.remove());
 
-    // elimina H1 siempre (evita repetir título)
     temp.querySelectorAll("h1").forEach(el => el.remove());
 
-    // elimina H2/H3 que repitan el nombre del caso
     temp.querySelectorAll("h2, h3").forEach(el => {
       const t = (el.textContent || "").trim().toLowerCase();
       if (CASE_TITLE && t === CASE_TITLE) el.remove();
     });
 
-    // si hay main, nos quedamos con eso
     const main = temp.querySelector("main") || temp;
     return main.innerHTML.trim();
   }
 
   async function loadPage(page) {
+    const requestId = ++currentRequest;
+
     try {
       if (location.protocol === "file:") {
         showContent();
@@ -65,11 +112,15 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
+      setLoadingState();
+
       const res = await fetch(page, { cache: "no-store" });
-      if (!res.ok) throw new Error(`HTTP ${res.status} — ${page}`);
+      if (!res.ok) throw new Error(\`HTTP \${res.status} — \${page}\`);
 
       const html = await res.text();
       const clean = sanitizeLoadedHTML(html);
+
+      if (requestId !== currentRequest) return;
 
       showContent();
       content.innerHTML = clean || `
@@ -87,7 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function setActiveTab(btn){
+  function setActiveTab(btn) {
     tabs.forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
   }
@@ -95,33 +146,87 @@ document.addEventListener("DOMContentLoaded", () => {
   function activate(btn) {
     setActiveTab(btn);
     loadPage(btn.dataset.page);
+    autoIndex = tabs.indexOf(btn);
   }
 
-  function cancelSuggestion(){
+  function stopAutoplay() {
     if (suggestionTimer) {
       clearTimeout(suggestionTimer);
       suggestionTimer = null;
     }
+
+    if (autoplayInterval) {
+      clearInterval(autoplayInterval);
+      autoplayInterval = null;
+    }
+
+    if (progressInterval) {
+      clearInterval(progressInterval);
+      progressInterval = null;
+    }
+
+    resetProgress();
+    hideProgress();
   }
 
-  tabs.forEach(btn => {
+  function startAutoplay() {
+    showProgress();
+    resetProgress();
+    animateProgress(INITIAL_DELAY);
+
+    suggestionTimer = setTimeout(() => {
+      if (userInteracted) return;
+
+      const uxResearchBtn =
+        tabs.find(b => (b.textContent || "").trim().toLowerCase() === "ux research") || tabs[0];
+
+      activate(uxResearchBtn);
+      animateProgress(ROTATION_DELAY);
+
+      autoplayInterval = setInterval(() => {
+        if (userInteracted) {
+          stopAutoplay();
+          return;
+        }
+
+        autoIndex = (autoIndex + 1) % tabs.length;
+        activate(tabs[autoIndex]);
+        animateProgress(ROTATION_DELAY);
+      }, ROTATION_DELAY);
+    }, INITIAL_DELAY);
+  }
+
+  tabs.forEach((btn, index) => {
     btn.addEventListener("click", () => {
       userInteracted = true;
-      cancelSuggestion();
+      stopAutoplay();
       activate(btn);
+    });
+
+    btn.addEventListener("keydown", (event) => {
+      const key = event.key;
+
+      if (key === "ArrowRight" || key === "ArrowDown") {
+        event.preventDefault();
+        const next = tabs[(index + 1) % tabs.length];
+        next.focus();
+      }
+
+      if (key === "ArrowLeft" || key === "ArrowUp") {
+        event.preventDefault();
+        const prev = tabs[(index - 1 + tabs.length) % tabs.length];
+        prev.focus();
+      }
+
+      if (key === "Enter" || key === " ") {
+        event.preventDefault();
+        userInteracted = true;
+        stopAutoplay();
+        activate(btn);
+      }
     });
   });
 
-  // Inicio: placeholder visible
   showPlaceholder();
-
-  // Auto-selección a los 15s SOLO si no hubo interacción
-  suggestionTimer = setTimeout(() => {
-    if (userInteracted) return;
-
-    const uxResearchBtn =
-      tabs.find(b => (b.textContent || "").trim().toLowerCase() === "ux research") || tabs[0];
-
-    activate(uxResearchBtn);
-  }, 15000);
+  startAutoplay();
 });
