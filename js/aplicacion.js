@@ -3,60 +3,59 @@ document.addEventListener("DOMContentLoaded", () => {
   if (year) year.textContent = new Date().getFullYear();
 
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
   const skills = {
     uxui: {
       label: "UX/UI",
       value: 35,
-      color: "#3B82F6",
+      color: "#8B5CF6",
       title: "UX/UI",
       description:
         "Diseño experiencias claras, intuitivas y accesibles, trabajando flujos, jerarquía visual, wireframes y prototipos centrados en el usuario.",
-      tags: ["Figma", "Wireframes", "Prototipado", "Arquitectura IA", "UI", "Usabilidad"]
+      tags: ["Figma", "Wireframes", "Prototipado", "UI", "Usabilidad"]
     },
     docs: {
       label: "Documentación",
       value: 20,
-      color: "#8B5CF6",
+      color: "#C47D3B",
       title: "Documentación",
       description:
         "Organizo procesos, decisiones y hallazgos para dar claridad al proyecto y facilitar la comunicación entre diseño, producto y desarrollo.",
-      tags: ["Benchmark", "Insights", "Briefs", "Requisitos", "Casos de estudio", "Research notes"]
+      tags: ["Benchmark", "Insights", "Briefs", "Requisitos", "Casos de estudio"]
     },
     front: {
       label: "Frontend",
       value: 15,
-      color: "#14B8A6",
+      color: "#2F9C95",
       title: "Frontend",
       description:
         "Cuento con bases para construir interfaces web funcionales y comprender mejor la relación entre diseño, interacción y desarrollo.",
-      tags: ["HTML", "CSS", "JavaScript", "Responsive", "Interacción", "UI implementation"]
+      tags: ["HTML", "CSS", "JavaScript", "Responsive", "Interacción"]
     },
     motion: {
       label: "Motion",
       value: 20,
-      color: "#F97316",
+      color: "#7AA95C",
       title: "Motion",
       description:
-        "Utilizo movimiento para reforzar narrativa visual, feedback y continuidad, cuidando que cada animación tenga intención y no distraiga.",
-      tags: ["After Effects", "Microinteracciones", "Narrativa visual", "Timing", "Feedback"]
+        "Utilizo movimiento para reforzar narrativa visual, feedback y continuidad, cuidando que cada animación tenga intención.",
+      tags: ["After Effects", "Microinteracciones", "Narrativa visual", "Timing"]
     },
     prod: {
       label: "Producción",
       value: 10,
-      color: "#22C55E",
+      color: "#323232",
       title: "Producción",
       description:
-        "Complemento el diseño con herramientas visuales y de contenido para presentar proyectos de forma coherente, atractiva y mejor comunicada.",
-      tags: ["Photoshop", "Illustrator", "Premiere", "Contenido visual", "Edición"]
+        "Complemento el diseño con herramientas visuales y de contenido para presentar proyectos de forma coherente y atractiva.",
+      tags: ["Photoshop", "Illustrator", "Premiere", "Edición"]
     }
   };
 
   const fullProfile = {
     title: "Perfil completo",
     description:
-      "Un vistazo rápido a las áreas que conectan estrategia, diseño, interacción y ejecución dentro de mi trabajo.",
+      "Un vistazo a las áreas que conectan estrategia, diseño, interacción y ejecución dentro de mi trabajo.",
     tags: ["UX/UI", "Documentación", "Frontend", "Motion", "Producción"]
   };
 
@@ -71,11 +70,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (techTags) {
       techTags.innerHTML = "";
-      data.tags.forEach((tag, index) => {
+      data.tags.forEach((tag) => {
         const span = document.createElement("span");
-        span.className = "tag tag-enter";
+        span.className = "tag";
         span.textContent = tag;
-        span.style.setProperty("--tag-delay", `${index * 45}ms`);
         techTags.appendChild(span);
       });
     }
@@ -279,11 +277,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const revealItems = [
-    ...document.querySelectorAll(".card, .section-title, .section-intro, .hero-presentation, .process-node")
+    ...document.querySelectorAll(".card, .section-title, .section-intro, .hero-focus-panel, .process-node")
   ];
 
   revealItems.forEach((item, index) => {
-    item.style.setProperty("--reveal-delay", `${Math.min(index * 35, 260)}ms`);
+    item.style.setProperty("--reveal-delay", `${Math.min(index * 35, 240)}ms`);
   });
 
   const revealObserver = new IntersectionObserver(
@@ -358,30 +356,5 @@ document.addEventListener("DOMContentLoaded", () => {
     heroCard?.classList.add("hero-ready");
     heroVisual?.classList.add("hero-part-visible");
     heroCopy?.classList.add("hero-part-visible");
-  }
-
-  if (canHover) {
-    const hoverCards = document.querySelectorAll(".card, .hero-card");
-
-    hoverCards.forEach((card) => {
-      card.addEventListener("mouseenter", () => {
-        card.classList.add("is-hovered");
-      });
-
-      card.addEventListener("mouseleave", () => {
-        card.classList.remove("is-hovered");
-        card.style.removeProperty("--mx");
-        card.style.removeProperty("--my");
-      });
-
-      card.addEventListener("mousemove", (event) => {
-        const rect = card.getBoundingClientRect();
-        const x = ((event.clientX - rect.left) / rect.width) * 100;
-        const y = ((event.clientY - rect.top) / rect.height) * 100;
-
-        card.style.setProperty("--mx", `${x}%`);
-        card.style.setProperty("--my", `${y}%`);
-      });
-    });
   }
 });
