@@ -32,10 +32,10 @@
 <body>
   <header class="site-header">
     <div class="container nav-wrap">
-      <a href="#inicio" class="brand">SM·UX</a>
+      <a href="#hero" class="brand">SM·UX</a>
 
       <nav class="main-nav" aria-label="Navegación principal">
-        <a href="#presentacion">Presentación</a>
+        <a href="#hero">Presentación</a>
         <a href="#proceso">Proceso</a>
         <a href="#proyectos">Proyectos</a>
         <a href="#tecnologias">Tecnologías</a>
@@ -46,7 +46,7 @@
   </header>
 
   <main id="inicio">
-    <!-- HERO -->
+    <!-- HERO / PRESENTACIÓN -->
     <section class="section hero" id="hero">
       <div class="container">
         <article class="hero-card" id="heroCard">
@@ -62,7 +62,7 @@
             <p class="hero-kicker">Santiago Murillo · UX/UI Designer</p>
 
             <h1 class="display">
-              Diseño experiencias digitales claras, accesibles y centradas en el usuario
+              Diseño experiencias digitales centradas en el usuario
             </h1>
 
             <p class="hero-brief">
@@ -77,55 +77,16 @@
               </a>
             </div>
 
-            <div class="hero-focus">
-              <h2 class="focus-title">Mi enfoque</h2>
-              <ul class="focus-list">
-                <li>Investigo necesidades reales antes de diseñar.</li>
-                <li>Construyo flujos intuitivos y jerarquías claras.</li>
-                <li>Integro accesibilidad y usabilidad desde el proceso.</li>
-                <li>Prototipo soluciones visuales listas para validar e iterar.</li>
-              </ul>
+            <div class="hero-presentation">
+              <h2 class="hero-subtitle">Presentación</h2>
+              <p class="hero-presentation-copy">
+                Diseñador UX/UI con interés en crear experiencias únicas, accesibles y visualmente claras.
+                Me enfoco en comprender problemas reales, estructurar soluciones intuitivas y convertirlas
+                en productos digitales que aporten valor a las personas.
+              </p>
             </div>
           </div>
         </article>
-      </div>
-    </section>
-
-    <!-- PRESENTACIÓN -->
-    <section id="presentacion" class="section">
-      <div class="container section-surface">
-        <h2 class="section-title">Presentación</h2>
-        <p class="section-intro">
-          Diseñador UX/UI con interés en crear experiencias útiles, accesibles y visualmente claras.
-          Me enfoco en comprender problemas reales, estructurar soluciones intuitivas y convertirlas
-          en productos digitales que aporten valor a las personas.
-        </p>
-
-        <div class="grid cards">
-          <article class="card">
-            <h3>Mi enfoque</h3>
-            <p>
-              Trabajo desde una lógica centrada en el usuario: entender contexto, identificar necesidades,
-              organizar información, diseñar flujos claros y validar soluciones antes de iterar.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>Lo que me interesa</h3>
-            <p>
-              Me atraen los proyectos donde la experiencia, la accesibilidad y la claridad visual tienen
-              un papel importante en la forma en que las personas interactúan con la tecnología.
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>Cómo aporto</h3>
-            <p>
-              Conecto investigación, estructura y prototipado para diseñar interfaces más comprensibles,
-              consistentes y alineadas con objetivos reales de producto.
-            </p>
-          </article>
-        </div>
       </div>
     </section>
 
@@ -140,30 +101,35 @@
 
         <div class="process-line" aria-label="Línea del proceso de diseño">
           <article class="process-node">
+            <span class="process-icon" aria-hidden="true">🔎</span>
             <span class="process-step-number">01</span>
             <h3>Investigación</h3>
             <p>Analizo el contexto, necesidades y oportunidades antes de tomar decisiones de diseño.</p>
           </article>
 
           <article class="process-node">
+            <span class="process-icon" aria-hidden="true">🧩</span>
             <span class="process-step-number">02</span>
             <h3>Estructura</h3>
             <p>Organizo contenidos, jerarquías y flujos para hacer la experiencia clara e intuitiva.</p>
           </article>
 
           <article class="process-node">
+            <span class="process-icon" aria-hidden="true">🎨</span>
             <span class="process-step-number">03</span>
             <h3>Diseño</h3>
             <p>Desarrollo interfaces cuidando consistencia visual, legibilidad y propósito.</p>
           </article>
 
           <article class="process-node">
+            <span class="process-icon" aria-hidden="true">📱</span>
             <span class="process-step-number">04</span>
             <h3>Prototipado</h3>
             <p>Convierto ideas en experiencias navegables para evaluar interacción y narrativa.</p>
           </article>
 
           <article class="process-node">
+            <span class="process-icon" aria-hidden="true">✅</span>
             <span class="process-step-number">05</span>
             <h3>Validación</h3>
             <p>Reviso usabilidad, accesibilidad y coherencia para detectar mejoras e iterar.</p>
@@ -182,14 +148,15 @@
         </p>
 
         <div class="grid cards projects-grid">
+          <!-- 1. BON BON BUM -->
           <article class="card project featured-project featured-large">
-            <figure class="thumb">
+            <a class="project-image-link thumb" href="casos/bon-bon-bum/" aria-label="Abrir caso de estudio Bon Bon Bum">
               <img
                 src="activos/Proyectos/Bon_Bon_Bum.png"
                 alt="Proyecto Bon Bon Bum"
                 loading="lazy"
               />
-            </figure>
+            </a>
 
             <div class="project-badge">Caso destacado</div>
 
@@ -234,14 +201,15 @@
             </div>
           </article>
 
+          <!-- 2. GREENSCAPE -->
           <article class="card project">
-            <figure class="thumb">
+            <a class="project-image-link thumb" href="casos/greenscape/" aria-label="Abrir caso de estudio Greenscape">
               <img
                 src="activos/Proyectos/Greenscape.png"
                 alt="Proyecto Greenscape"
                 loading="lazy"
               />
-            </figure>
+            </a>
 
             <div class="project-content">
               <h3>Greenscape</h3>
@@ -284,14 +252,65 @@
             </div>
           </article>
 
+          <!-- 3. ISOCRATES -->
           <article class="card project">
-            <figure class="thumb">
+            <a class="project-image-link thumb" href="casos/isocrates/" aria-label="Abrir caso de estudio Isócrates">
+              <img
+                src="activos/Proyectos/Isocrates.png"
+                alt="Proyecto Isócrates"
+                loading="lazy"
+              />
+            </a>
+
+            <div class="project-content">
+              <h3>Isócrates</h3>
+
+              <div class="project-meta">
+                <span>Rol: UX/UI</span>
+                <span>Plataforma: Desktop</span>
+                <span>Enfoque: Accesibilidad</span>
+              </div>
+
+              <p>
+                Prototipo desktop enfocado en accesibilidad, lectura clara y navegación
+                inclusiva para usuarios con diferentes capacidades.
+              </p>
+
+              <p class="project-metric">
+                Enfoque: mejorar legibilidad, estructura y acceso inclusivo.
+              </p>
+
+              <div class="tag-row">
+                <span class="tag">Desktop</span>
+                <span class="tag">Accesibilidad</span>
+                <span class="tag">UX</span>
+              </div>
+            </div>
+
+            <div class="card-ctas">
+              <a
+                class="btn ghost"
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://www.figma.com/proto/bCCXBOMkOQKVUB0emfQIb5"
+              >
+                Ver prototipo
+              </a>
+              <a class="btn accent-solid" href="casos/isocrates/">
+                Caso de estudio
+              </a>
+            </div>
+          </article>
+
+          <!-- 4. NUTRICAMPUS -->
+          <article class="card project">
+            <a class="project-image-link thumb" href="casos/nutricampus/" aria-label="Abrir caso de estudio NutriCampus">
               <img
                 src="activos/Proyectos/NutriCampus.png"
                 alt="Proyecto NutriCampus"
                 loading="lazy"
               />
-            </figure>
+            </a>
 
             <div class="project-content">
               <h3>NutriCampus</h3>
@@ -333,55 +352,6 @@
               </a>
             </div>
           </article>
-
-          <article class="card project">
-            <figure class="thumb">
-              <img
-                src="activos/Proyectos/Isocrates.png"
-                alt="Proyecto Isócrates"
-                loading="lazy"
-              />
-            </figure>
-
-            <div class="project-content">
-              <h3>Isócrates</h3>
-
-              <div class="project-meta">
-                <span>Rol: UX/UI</span>
-                <span>Plataforma: Desktop</span>
-                <span>Enfoque: Accesibilidad</span>
-              </div>
-
-              <p>
-                Prototipo desktop enfocado en accesibilidad, lectura clara y navegación
-                inclusiva para usuarios con diferentes capacidades.
-              </p>
-
-              <p class="project-metric">
-                Enfoque: mejorar legibilidad, estructura y acceso inclusivo.
-              </p>
-
-              <div class="tag-row">
-                <span class="tag">Desktop</span>
-                <span class="tag">Accesibilidad</span>
-                <span class="tag">UX</span>
-              </div>
-            </div>
-
-            <div class="card-ctas">
-              <a
-                class="btn ghost"
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://www.figma.com/proto/bCCXBOMkOQKVUB0emfQIb5"
-              >
-                Ver prototipo
-              </a>
-              <a class="btn accent-solid" href="casos/isocrates/">
-                Caso de estudio
-              </a>
-            </div>
-          </article>
         </div>
       </div>
     </section>
@@ -390,10 +360,6 @@
     <section id="tecnologias" class="section">
       <div class="container section-surface">
         <h2 class="section-title">Tecnologías y habilidades</h2>
-        <p class="section-intro">
-          Explora mis habilidades por áreas. Haz clic en cada categoría o en la rueda
-          para descubrir herramientas, enfoque y fortalezas que construyen mi perfil.
-        </p>
 
         <div class="tech-layout">
           <div class="donut-wrapper">
@@ -427,13 +393,10 @@
     <section id="certificados" class="section">
       <div class="container section-surface">
         <h2 class="section-title">Certificados</h2>
-        <p class="section-intro">
-          Formación complementaria en idiomas, diseño, programación e innovación
-          aplicada a experiencias y productos digitales.
-        </p>
 
         <div class="grid cards diplomas-grid">
           <article class="card diploma-card">
+            <p class="certificate-type">Certificación de idioma</p>
             <h3>Certificado EF SET</h3>
             <div class="tag-row">
               <span class="tag">Inglés</span>
@@ -443,6 +406,7 @@
           </article>
 
           <article class="card diploma-card">
+            <p class="certificate-type">Certificación en diseño web</p>
             <h3>Diseño Web con Adobe Dreamweaver</h3>
             <div class="tag-row">
               <span class="tag">Diseño web</span>
@@ -453,6 +417,7 @@
           </article>
 
           <article class="card diploma-card">
+            <p class="certificate-type">Certificación en programación</p>
             <h3>Fundamentos de Programación</h3>
             <div class="tag-row">
               <span class="tag">Java</span>
@@ -464,6 +429,7 @@
           </article>
 
           <article class="card diploma-card">
+            <p class="certificate-type">Certificación en innovación</p>
             <h3>Generación de Ideas Innovadoras</h3>
             <div class="tag-row">
               <span class="tag">Design Thinking</span>
@@ -473,6 +439,7 @@
           </article>
 
           <article class="card diploma-card">
+            <p class="certificate-type">Certificación en validación</p>
             <h3>Validación de Ideas y Prototipos</h3>
             <div class="tag-row">
               <span class="tag">Design Thinking</span>
@@ -483,6 +450,7 @@
           </article>
 
           <article class="card diploma-card">
+            <p class="certificate-type">Certificación en diseño gráfico</p>
             <h3>Manejo Adobe Illustrator</h3>
             <div class="tag-row">
               <span class="tag">Diseño gráfico</span>
@@ -492,6 +460,7 @@
           </article>
 
           <article class="card diploma-card">
+            <p class="certificate-type">Certificación en edición visual</p>
             <h3>Manejo Adobe Photoshop</h3>
             <div class="tag-row">
               <span class="tag">Edición</span>
@@ -509,8 +478,8 @@
         <div class="contact-info">
           <h2 class="section-title">Contacto</h2>
           <p class="contact-copy">
-            Estoy abierto a prácticas, colaboraciones y oportunidades donde pueda aportar
-            desde UX research, diseño de interfaces y prototipado.
+            Estoy abierto a nuevas oportunidades donde pueda aportar desde el diseño,
+            la investigación, la accesibilidad y las distintas habilidades que he construido en mi proceso.
           </p>
           <p class="contact-line"><strong>Email:</strong> santiagomr2003@gmail.com</p>
 
