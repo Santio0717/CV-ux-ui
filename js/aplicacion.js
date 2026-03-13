@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     uxui: {
       label: "UX/UI",
       value: 35,
-      color: "#2563eb",
+      color: "#3B82F6",
       title: "UX/UI",
       description:
         "Diseño experiencias claras, intuitivas y accesibles, trabajando flujos, jerarquía visual, wireframes y prototipos centrados en el usuario.",
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     docs: {
       label: "Documentación",
       value: 20,
-      color: "#22c55e",
+      color: "#8B5CF6",
       title: "Documentación",
       description:
         "Organizo procesos, decisiones y hallazgos para dar claridad al proyecto y facilitar la comunicación entre diseño, producto y desarrollo.",
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     front: {
       label: "Frontend",
       value: 15,
-      color: "#0ea5e9",
+      color: "#14B8A6",
       title: "Frontend",
       description:
         "Cuento con bases para construir interfaces web funcionales y comprender mejor la relación entre diseño, interacción y desarrollo.",
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     motion: {
       label: "Motion",
       value: 20,
-      color: "#a855f7",
+      color: "#F97316",
       title: "Motion",
       description:
         "Utilizo movimiento para reforzar narrativa visual, feedback y continuidad, cuidando que cada animación tenga intención y no distraiga.",
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
     prod: {
       label: "Producción",
       value: 10,
-      color: "#f97316",
+      color: "#22C55E",
       title: "Producción",
       description:
         "Complemento el diseño con herramientas visuales y de contenido para presentar proyectos de forma coherente, atractiva y mejor comunicada.",
@@ -156,7 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
         rotation: -90,
         circumference: 360,
         animation: {
-          duration: prefersReducedMotion ? 0 : 520,
+          duration: prefersReducedMotion ? 0 : 560,
           easing: "easeOutCubic",
           animateRotate: true,
           animateScale: false
@@ -279,7 +279,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const revealItems = [
-    ...document.querySelectorAll(".card, .section-title, .section-intro, .hero-focus, .process-node")
+    ...document.querySelectorAll(".card, .section-title, .section-intro, .hero-presentation, .process-node")
   ];
 
   revealItems.forEach((item, index) => {
@@ -304,15 +304,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const processObserver = new IntersectionObserver(
     (entries, observer) => {
-      entries.forEach((entry, entryIndex) => {
+      entries.forEach((entry, index) => {
         if (!entry.isIntersecting) return;
 
-        const target = entry.target;
         window.setTimeout(() => {
-          target.classList.add("is-visible");
-        }, entryIndex * 90);
+          entry.target.classList.add("is-visible");
+        }, index * 90);
 
-        observer.unobserve(target);
+        observer.unobserve(entry.target);
       });
     },
     {
