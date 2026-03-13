@@ -3,12 +3,13 @@ document.addEventListener("DOMContentLoaded", () => {
   if (year) year.textContent = new Date().getFullYear();
 
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
   const skills = {
     uxui: {
       label: "UX/UI",
       value: 35,
-      color: "#f39c12",
+      color: "#2563eb",
       title: "UX/UI",
       description:
         "Diseño experiencias claras, intuitivas y accesibles, trabajando flujos, jerarquía visual, wireframes y prototipos centrados en el usuario.",
@@ -17,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     docs: {
       label: "Documentación",
       value: 20,
-      color: "#2ecc71",
+      color: "#22c55e",
       title: "Documentación",
       description:
         "Organizo procesos, decisiones y hallazgos para dar claridad al proyecto y facilitar la comunicación entre diseño, producto y desarrollo.",
@@ -26,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     front: {
       label: "Frontend",
       value: 15,
-      color: "#3498db",
+      color: "#0ea5e9",
       title: "Frontend",
       description:
         "Cuento con bases para construir interfaces web funcionales y comprender mejor la relación entre diseño, interacción y desarrollo.",
@@ -35,19 +36,19 @@ document.addEventListener("DOMContentLoaded", () => {
     motion: {
       label: "Motion",
       value: 20,
-      color: "#9b59b6",
+      color: "#a855f7",
       title: "Motion",
       description:
-        "Utilizo movimiento para mejorar narrativa visual, feedback e impacto, cuidando que cada animación tenga intención y no distraiga.",
+        "Utilizo movimiento para reforzar narrativa visual, feedback y continuidad, cuidando que cada animación tenga intención y no distraiga.",
       tags: ["After Effects", "Microinteracciones", "Narrativa visual", "Timing", "Feedback"]
     },
     prod: {
       label: "Producción",
       value: 10,
-      color: "#e74c3c",
+      color: "#f97316",
       title: "Producción",
       description:
-        "Complemento el diseño con herramientas visuales y de contenido para presentar proyectos de forma coherente y atractiva.",
+        "Complemento el diseño con herramientas visuales y de contenido para presentar proyectos de forma coherente, atractiva y mejor comunicada.",
       tags: ["Photoshop", "Illustrator", "Premiere", "Contenido visual", "Edición"]
     }
   };
@@ -55,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const fullProfile = {
     title: "Perfil completo",
     description:
-      "Selecciona un área para explorar herramientas, enfoque y fortalezas relacionadas con mi perfil.",
+      "Un vistazo rápido a las áreas que conectan estrategia, diseño, interacción y ejecución dentro de mi trabajo.",
     tags: ["UX/UI", "Documentación", "Frontend", "Motion", "Producción"]
   };
 
@@ -224,7 +225,6 @@ document.addEventListener("DOMContentLoaded", () => {
       chart.setActiveElements([]);
       chart.update();
       hideTooltip();
-
       animateTechPanelUpdate(fullProfile);
       setActiveButton(null);
     }
@@ -279,11 +279,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const revealItems = [
-    ...document.querySelectorAll(".card, .section-title, .section-intro, .hero-focus")
+    ...document.querySelectorAll(".card, .section-title, .section-intro, .hero-focus, .process-node")
   ];
 
   revealItems.forEach((item, index) => {
-    item.style.setProperty("--reveal-delay", `${Math.min(index * 35, 240)}ms`);
+    item.style.setProperty("--reveal-delay", `${Math.min(index * 35, 260)}ms`);
   });
 
   const revealObserver = new IntersectionObserver(
@@ -301,6 +301,27 @@ document.addEventListener("DOMContentLoaded", () => {
   );
 
   revealItems.forEach((item) => revealObserver.observe(item));
+
+  const processObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry, entryIndex) => {
+        if (!entry.isIntersecting) return;
+
+        const target = entry.target;
+        window.setTimeout(() => {
+          target.classList.add("is-visible");
+        }, entryIndex * 90);
+
+        observer.unobserve(target);
+      });
+    },
+    {
+      threshold: 0.2,
+      rootMargin: "0px 0px -8% 0px"
+    }
+  );
+
+  document.querySelectorAll(".process-node").forEach((node) => processObserver.observe(node));
 
   const sections = [...document.querySelectorAll("main section[id], section[id]")];
   const navLinks = [...document.querySelectorAll(".main-nav a")];
@@ -339,8 +360,6 @@ document.addEventListener("DOMContentLoaded", () => {
     heroVisual?.classList.add("hero-part-visible");
     heroCopy?.classList.add("hero-part-visible");
   }
-
-  const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
   if (canHover) {
     const hoverCards = document.querySelectorAll(".card, .hero-card");
