@@ -277,11 +277,20 @@ textarea:focus-visible{
   border:3px solid rgba(255,255,255,.75);
 }
 
+.hero-kicker{
+  font-size:.9rem;
+  font-weight:700;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  color:var(--primary);
+  opacity:.9;
+}
+
 .display{
   font-size:clamp(2.6rem, 5vw, 4.1rem);
   line-height:.96;
   font-weight:800;
-  max-width:7ch;
+  max-width:12ch;
   letter-spacing:-.03em;
 }
 
@@ -441,6 +450,11 @@ textarea:focus-visible{
   border-color:rgba(15,23,42,.08);
 }
 
+/* SOBRE MI / PROCESO */
+.process-step h3{
+  margin-bottom:8px;
+}
+
 /* PROYECTOS */
 .project{
   display:flex;
@@ -458,6 +472,24 @@ textarea:focus-visible{
 .project p{
   opacity:.88;
   color:var(--muted);
+}
+
+.project-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:-2px;
+  margin-bottom:2px;
+}
+
+.project-meta span{
+  font-size:.8rem;
+  font-weight:600;
+  color:var(--muted);
+  background:rgba(255,255,255,.45);
+  border:1px solid rgba(0,0,0,.06);
+  padding:5px 9px;
+  border-radius:999px;
 }
 
 .project-metric{
@@ -750,33 +782,10 @@ textarea:focus-visible{
   border-top:1px solid rgba(0,0,0,.08);
 }
 
-/* REDUCED MOTION */
-@media (prefers-reduced-motion: reduce){
-  html{
-    scroll-behavior:auto;
-  }
-
-  *{
-    transition:none !important;
-    animation:none !important;
-  }
-
-  .hero-card,
-  .hero-visual,
-  .hero-copy,
-  .card,
-  .section-title,
-  .section-intro,
-  .hero-focus,
-  .tag-enter,
-  .tech-panel{
-    opacity:1 !important;
-    transform:none !important;
-  }
-
-  .hero-card::after,
-  .card::after{
-    display:none !important;
+/* RESPONSIVE */
+@media(min-width:901px){
+  .featured-large{
+    grid-column:span 2;
   }
 }
 
@@ -819,6 +828,11 @@ textarea:focus-visible{
     align-items:flex-start;
   }
 
+  .main-nav{
+    flex-wrap:wrap;
+    gap:12px 16px;
+  }
+
   .tech-layout{
     grid-template-columns:1fr;
   }
@@ -848,8 +862,37 @@ textarea:focus-visible{
     width:100%;
   }
 
-  .main-nav{
-    flex-wrap:wrap;
-    gap:14px;
+  .project-meta{
+    gap:8px;
+  }
+}
+
+/* REDUCED MOTION */
+@media (prefers-reduced-motion: reduce){
+  html{
+    scroll-behavior:auto;
+  }
+
+  *{
+    transition:none !important;
+    animation:none !important;
+  }
+
+  .hero-card,
+  .hero-visual,
+  .hero-copy,
+  .card,
+  .section-title,
+  .section-intro,
+  .hero-focus,
+  .tag-enter,
+  .tech-panel{
+    opacity:1 !important;
+    transform:none !important;
+  }
+
+  .hero-card::after,
+  .card::after{
+    display:none !important;
   }
 }
