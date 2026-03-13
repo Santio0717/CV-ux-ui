@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Isócrates · Estudio de Caso</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
   <link rel="stylesheet" href="./style.css" />
 </head>
 
@@ -13,7 +20,14 @@
   <main class="case-layout">
 
     <section class="case-card">
-      <h1 class="case-title">Isócrates</h1>
+      <div class="case-header">
+        <span class="case-eyebrow">Caso de estudio · UX/UI</span>
+        <h1 class="case-title">Isócrates</h1>
+        <p class="case-intro">
+          Proyecto enfocado en accesibilidad, navegación clara y una experiencia de lectura
+          más comprensible para distintos tipos de usuario.
+        </p>
+      </div>
 
       <nav class="ux-tabs" aria-label="Fases del proyecto">
         <button type="button" class="ux-tab" data-page="./ux-research.html">UX Research</button>
@@ -22,10 +36,16 @@
         <button type="button" class="ux-tab" data-page="./accesibilidad.html">Accesibilidad</button>
       </nav>
 
+      <div id="tab-progress" class="tab-progress">
+        <span id="tab-progress-bar"></span>
+      </div>
+
       <div id="case-placeholder" class="case-placeholder">
+        <div class="placeholder-badge">Empieza aquí</div>
         <h3>Explora el proceso</h3>
         <p>
-          Selecciona una categoría para explorar cada fase del proceso.
+          Selecciona una categoría para explorar cada fase del proceso:
+          investigación, diseño, prototipado y accesibilidad.
         </p>
         <span class="mini-note">
           Sugerencia: empieza por <strong>UX Research</strong>.
@@ -37,6 +57,7 @@
 
     <aside class="case-aside">
       <article class="preview-card">
+
         <a class="preview-link"
            href="https://www.figma.com/proto/bCCXBOMkOQKVUB0emfQIb5"
            target="_blank"
@@ -48,22 +69,33 @@
           />
         </a>
 
-        <p class="preview-desc">
-          Proyecto Isócrates enfocado en experiencia de usuario, navegación clara
-          y exploración estructurada del proceso de diseño.
-        </p>
+        <div class="preview-meta">
+          <h2 class="preview-title">Experiencia de lectura accesible</h2>
+          <p class="preview-desc">
+            Propuesta enfocada en navegación clara, legibilidad y estructura accesible
+            para usuarios lectores y administradores.
+          </p>
 
-        <div class="preview-actions">
-          <a href="../../../index.html#proyectos" class="btn ghost">
-            Volver al portafolio
-          </a>
-          <a href="https://www.figma.com/proto/bCCXBOMkOQKVUB0emfQIb5"
-             target="_blank"
-             rel="noopener noreferrer"
-             class="btn case">
-            Ver prototipo en Figma
-          </a>
+          <div class="preview-tags">
+            <span>Figma</span>
+            <span>Accesibilidad</span>
+            <span>UX/UI</span>
+            <span>Desktop</span>
+          </div>
+
+          <div class="preview-actions">
+            <a href="../../../index.html#proyectos" class="btn ghost">
+              Volver al portafolio
+            </a>
+            <a href="https://www.figma.com/proto/bCCXBOMkOQKVUB0emfQIb5"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="btn case">
+              Ver en Figma
+            </a>
+          </div>
         </div>
+
       </article>
     </aside>
 
