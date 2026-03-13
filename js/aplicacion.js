@@ -64,22 +64,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const techTags = document.getElementById("techTags");
   const techPanel = document.querySelector(".tech-panel");
 
-  function animateTechPanelUpdate(data) {
-    if (!techPanel) {
-      renderTechPanel(data);
-      return;
-    }
-
-    techPanel.classList.remove("panel-anim-in");
-    techPanel.classList.add("panel-anim-out");
-
-    window.setTimeout(() => {
-      renderTechPanel(data);
-      techPanel.classList.remove("panel-anim-out");
-      techPanel.classList.add("panel-anim-in");
-    }, prefersReducedMotion ? 0 : 160);
-  }
-
   function renderTechPanel(data) {
     if (techTitle) techTitle.textContent = data.title;
     if (techDescription) techDescription.textContent = data.description;
@@ -96,6 +80,22 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  function animateTechPanelUpdate(data) {
+    if (!techPanel || prefersReducedMotion) {
+      renderTechPanel(data);
+      return;
+    }
+
+    techPanel.classList.remove("panel-anim-in");
+    techPanel.classList.add("panel-anim-out");
+
+    window.setTimeout(() => {
+      renderTechPanel(data);
+      techPanel.classList.remove("panel-anim-out");
+      techPanel.classList.add("panel-anim-in");
+    }, 160);
+  }
+
   renderTechPanel(fullProfile);
 
   const canvas = document.getElementById("skillsDonut");
@@ -104,16 +104,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (canvas && window.Chart) {
     const keys = Object.keys(skills);
-    const labels = keys.map((k) => skills[k].label);
-    const values = keys.map((k) => skills[k].value);
-    const baseColors = keys.map((k) => skills[k].color);
+    const labels = keys.map((key) => skills[key].label);
+    const values = keys.map((key) => skills[key].value);
+    const baseColors = keys.map((key) => skills[key].color);
 
     let selectedIndex = null;
 
     function hexToRgba(hex, alpha = 1) {
       const clean = hex.replace("#", "");
       const full = clean.length === 3
-        ? clean.split("").map((c) => c + c).join("")
+        ? clean.split("").map((char) => char + char).join("")
         : clean;
 
       const num = parseInt(full, 16);
@@ -131,18 +131,18 @@ document.addEventListener("DOMContentLoaded", () => {
         datasets: [
           {
             data: values,
-            backgroundColor: (ctx) => {
-              const i = ctx.dataIndex;
-              const base = baseColors[i];
+            backgroundColor: (context) => {
+              const index = context.dataIndex;
+              const base = baseColors[index];
               if (selectedIndex === null) return base;
-              return i === selectedIndex ? base : hexToRgba(base, 0.18);
+              return index === selectedIndex ? base : hexToRgba(base, 0.18);
             },
             borderWidth: 0,
             spacing: 4,
-            offset: (ctx) => {
-              const i = ctx.dataIndex;
+            offset: (context) => {
+              const index = context.dataIndex;
               if (selectedIndex === null) return 0;
-              return i === selectedIndex ? 10 : 0;
+              return index === selectedIndex ? 10 : 0;
             },
             hoverOffset: 6
           }
@@ -197,8 +197,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function setActiveButton(key = null) {
-      document.querySelectorAll(".tech-btn").forEach((btn) => {
-        btn.classList.remove("is-active");
+      document.querySelectorAll(".tech-btn").forEach((button) => {
+        button.classList.remove("is-active");
       });
 
       if (key) {
@@ -266,9 +266,9 @@ document.addEventListener("DOMContentLoaded", () => {
       selectIndex(points[0].index);
     });
 
-    document.querySelectorAll(".tech-btn[data-key]").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const index = keys.indexOf(btn.dataset.key);
+    document.querySelectorAll(".tech-btn[data-key]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const index = keys.indexOf(button.dataset.key);
         if (index !== -1) selectIndex(index);
       });
     });
@@ -278,10 +278,12 @@ document.addEventListener("DOMContentLoaded", () => {
     clearSelection();
   }
 
-  const revealItems = [...document.querySelectorAll(".card, .section-title, .section-intro, .hero-focus")];
+  const revealItems = [
+    ...document.querySelectorAll(".card, .section-title, .section-intro, .hero-focus")
+  ];
 
   revealItems.forEach((item, index) => {
-    item.style.setProperty("--reveal-delay", `${Math.min(index * 40, 240)}ms`);
+    item.style.setProperty("--reveal-delay", `${Math.min(index * 35, 240)}ms`);
   });
 
   const revealObserver = new IntersectionObserver(
@@ -307,8 +309,8 @@ document.addEventListener("DOMContentLoaded", () => {
     (entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
-        const id = entry.target.id;
 
+        const id = entry.target.id;
         navLinks.forEach((link) => {
           link.classList.toggle("is-current", link.getAttribute("href") === `#${id}`);
         });
@@ -338,26 +340,30 @@ document.addEventListener("DOMContentLoaded", () => {
     heroCopy?.classList.add("hero-part-visible");
   }
 
-  const hoverCards = document.querySelectorAll(".card, .hero-card");
+  const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
-  hoverCards.forEach((card) => {
-    card.addEventListener("mouseenter", () => {
-      card.classList.add("is-hovered");
+  if (canHover) {
+    const hoverCards = document.querySelectorAll(".card, .hero-card");
+
+    hoverCards.forEach((card) => {
+      card.addEventListener("mouseenter", () => {
+        card.classList.add("is-hovered");
+      });
+
+      card.addEventListener("mouseleave", () => {
+        card.classList.remove("is-hovered");
+        card.style.removeProperty("--mx");
+        card.style.removeProperty("--my");
+      });
+
+      card.addEventListener("mousemove", (event) => {
+        const rect = card.getBoundingClientRect();
+        const x = ((event.clientX - rect.left) / rect.width) * 100;
+        const y = ((event.clientY - rect.top) / rect.height) * 100;
+
+        card.style.setProperty("--mx", `${x}%`);
+        card.style.setProperty("--my", `${y}%`);
+      });
     });
-
-    card.addEventListener("mouseleave", () => {
-      card.classList.remove("is-hovered");
-      card.style.removeProperty("--mx");
-      card.style.removeProperty("--my");
-    });
-
-    card.addEventListener("mousemove", (event) => {
-      const rect = card.getBoundingClientRect();
-      const x = ((event.clientX - rect.left) / rect.width) * 100;
-      const y = ((event.clientY - rect.top) / rect.height) * 100;
-
-      card.style.setProperty("--mx", `${x}%`);
-      card.style.setProperty("--my", `${y}%`);
-    });
-  });
+  }
 });
