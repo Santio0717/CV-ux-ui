@@ -99,8 +99,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   async function loadPage(page) {
-    const requestId = ++currentRequest;
-
     try {
       if (location.protocol === "file:") {
         showContent();
@@ -112,10 +110,11 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
+      const requestId = ++currentRequest;
       setLoadingState();
 
       const res = await fetch(page, { cache: "no-store" });
-      if (!res.ok) throw new Error(\`HTTP \${res.status} — \${page}\`);
+      if (!res.ok) throw new Error(`HTTP ${res.status} — ${page}`);
 
       const html = await res.text();
       const clean = sanitizeLoadedHTML(html);
