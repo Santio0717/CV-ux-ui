@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   />
 
@@ -35,9 +35,9 @@
       <a href="#inicio" class="brand">SM·UX</a>
 
       <nav class="main-nav" aria-label="Navegación principal">
-        <a href="#proyectos">Proyectos</a>
-        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#presentacion">Presentación</a>
         <a href="#proceso">Proceso</a>
+        <a href="#proyectos">Proyectos</a>
         <a href="#tecnologias">Tecnologías</a>
         <a href="#certificados">Certificados</a>
         <a href="#contacto">Contacto</a>
@@ -71,8 +71,14 @@
               las personas.
             </p>
 
+            <div class="hero-actions">
+              <a class="btn primary-solid" href="CV_Santiago_Murillo.pdf" download>
+                Descargar CV
+              </a>
+            </div>
+
             <div class="hero-focus">
-              <h2 class="focus-title">Cómo transformo ideas en experiencias</h2>
+              <h2 class="focus-title">Mi enfoque</h2>
               <ul class="focus-list">
                 <li>Investigo necesidades reales antes de diseñar.</li>
                 <li>Construyo flujos intuitivos y jerarquías claras.</li>
@@ -80,24 +86,15 @@
                 <li>Prototipo soluciones visuales listas para validar e iterar.</li>
               </ul>
             </div>
-
-            <div class="hero-actions">
-              <a class="btn red" href="CV_Santiago_Murillo.pdf" download>
-                Descargar CV
-              </a>
-              <a class="btn ghost" href="#proyectos">
-                Ver proyectos
-              </a>
-            </div>
           </div>
         </article>
       </div>
     </section>
 
-    <!-- SOBRE MI -->
-    <section id="sobre-mi" class="section">
+    <!-- PRESENTACIÓN -->
+    <section id="presentacion" class="section">
       <div class="container section-surface">
-        <h2 class="section-title">Sobre mí</h2>
+        <h2 class="section-title">Presentación</h2>
         <p class="section-intro">
           Diseñador UX/UI con interés en crear experiencias útiles, accesibles y visualmente claras.
           Me enfoco en comprender problemas reales, estructurar soluciones intuitivas y convertirlas
@@ -132,6 +129,49 @@
       </div>
     </section>
 
+    <!-- PROCESO -->
+    <section id="proceso" class="section">
+      <div class="container section-surface">
+        <h2 class="section-title">Proceso de diseño</h2>
+        <p class="section-intro">
+          Mi forma de trabajo conecta análisis, claridad visual y validación para construir
+          soluciones más sólidas, entendibles y útiles.
+        </p>
+
+        <div class="process-line" aria-label="Línea del proceso de diseño">
+          <article class="process-node">
+            <span class="process-step-number">01</span>
+            <h3>Investigación</h3>
+            <p>Analizo el contexto, necesidades y oportunidades antes de tomar decisiones de diseño.</p>
+          </article>
+
+          <article class="process-node">
+            <span class="process-step-number">02</span>
+            <h3>Estructura</h3>
+            <p>Organizo contenidos, jerarquías y flujos para hacer la experiencia clara e intuitiva.</p>
+          </article>
+
+          <article class="process-node">
+            <span class="process-step-number">03</span>
+            <h3>Diseño</h3>
+            <p>Desarrollo interfaces cuidando consistencia visual, legibilidad y propósito.</p>
+          </article>
+
+          <article class="process-node">
+            <span class="process-step-number">04</span>
+            <h3>Prototipado</h3>
+            <p>Convierto ideas en experiencias navegables para evaluar interacción y narrativa.</p>
+          </article>
+
+          <article class="process-node">
+            <span class="process-step-number">05</span>
+            <h3>Validación</h3>
+            <p>Reviso usabilidad, accesibilidad y coherencia para detectar mejoras e iterar.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <!-- PROYECTOS -->
     <section id="proyectos" class="section alt">
       <div class="container section-surface">
@@ -141,7 +181,7 @@
           y enfoque centrado en el usuario para resolver problemas concretos.
         </p>
 
-        <div class="grid cards projects">
+        <div class="grid cards projects-grid">
           <article class="card project featured-project featured-large">
             <figure class="thumb">
               <img
@@ -153,28 +193,30 @@
 
             <div class="project-badge">Caso destacado</div>
 
-            <h3>Bon Bon Bum</h3>
+            <div class="project-content">
+              <h3>Bon Bon Bum</h3>
 
-            <div class="project-meta">
-              <span>Rol: UX/UI</span>
-              <span>Plataforma: Web</span>
-              <span>Entregable: Caso de estudio</span>
-            </div>
+              <div class="project-meta">
+                <span>Rol: UX/UI</span>
+                <span>Plataforma: Web</span>
+                <span>Entregable: Caso de estudio</span>
+              </div>
 
-            <p>
-              Diseño de wireframes de alta fidelidad para una plataforma de e-commerce,
-              enfocado en jerarquía visual, comunicación de marca y conversión.
-            </p>
+              <p>
+                Diseño de wireframes de alta fidelidad para una plataforma de e-commerce,
+                enfocado en jerarquía visual, comunicación de marca y conversión.
+              </p>
 
-            <p class="project-metric">
-              Enfoque: comunicar producto e identidad sin saturar la navegación.
-            </p>
+              <p class="project-metric">
+                Enfoque: comunicar producto e identidad sin saturar la navegación.
+              </p>
 
-            <div class="tag-row">
-              <span class="tag">Wireframes</span>
-              <span class="tag">E-commerce</span>
-              <span class="tag">UX/UI</span>
-              <span class="tag">Figma</span>
+              <div class="tag-row">
+                <span class="tag">Wireframes</span>
+                <span class="tag">E-commerce</span>
+                <span class="tag">UX/UI</span>
+                <span class="tag">Figma</span>
+              </div>
             </div>
 
             <div class="card-ctas">
@@ -186,7 +228,7 @@
               >
                 Ver prototipo
               </a>
-              <a class="btn case" href="casos/bon-bon-bum/">
+              <a class="btn accent-solid" href="casos/bon-bon-bum/">
                 Caso de estudio
               </a>
             </div>
@@ -201,28 +243,30 @@
               />
             </figure>
 
-            <h3>Greenscape</h3>
+            <div class="project-content">
+              <h3>Greenscape</h3>
 
-            <div class="project-meta">
-              <span>Rol: UX/UI</span>
-              <span>Plataforma: iOS</span>
-              <span>Entregable: Prototipo</span>
-            </div>
+              <div class="project-meta">
+                <span>Rol: UX/UI</span>
+                <span>Plataforma: iOS</span>
+                <span>Entregable: Prototipo</span>
+              </div>
 
-            <p>
-              Prototipo móvil iOS diseñado a partir de principios de usabilidad,
-              navegación intuitiva y experiencia mobile-first.
-            </p>
+              <p>
+                Prototipo móvil iOS diseñado a partir de principios de usabilidad,
+                navegación intuitiva y experiencia mobile-first.
+              </p>
 
-            <p class="project-metric">
-              Enfoque: facilitar la conexión entre productores y compradores.
-            </p>
+              <p class="project-metric">
+                Enfoque: facilitar la conexión entre productores y compradores.
+              </p>
 
-            <div class="tag-row">
-              <span class="tag">iOS</span>
-              <span class="tag">Prototipado</span>
-              <span class="tag">UX/UI</span>
-              <span class="tag">Figma</span>
+              <div class="tag-row">
+                <span class="tag">iOS</span>
+                <span class="tag">Prototipado</span>
+                <span class="tag">UX/UI</span>
+                <span class="tag">Figma</span>
+              </div>
             </div>
 
             <div class="card-ctas">
@@ -234,7 +278,7 @@
               >
                 Ver prototipo
               </a>
-              <a class="btn case" href="casos/greenscape/">
+              <a class="btn accent-solid" href="casos/greenscape/">
                 Caso de estudio
               </a>
             </div>
@@ -249,28 +293,30 @@
               />
             </figure>
 
-            <h3>NutriCampus</h3>
+            <div class="project-content">
+              <h3>NutriCampus</h3>
 
-            <div class="project-meta">
-              <span>Rol: UX Designer</span>
-              <span>Plataforma: VR</span>
-              <span>Entregable: Prototipo</span>
-            </div>
+              <div class="project-meta">
+                <span>Rol: UX Designer</span>
+                <span>Plataforma: VR</span>
+                <span>Entregable: Prototipo</span>
+              </div>
 
-            <p>
-              Diseño de experiencia para un entorno de realidad virtual enfocado
-              en educación nutricional e interacción inmersiva.
-            </p>
+              <p>
+                Diseño de experiencia para un entorno de realidad virtual enfocado
+                en educación nutricional e interacción inmersiva.
+              </p>
 
-            <p class="project-metric">
-              Enfoque: aprendizaje activo mediante experiencia inmersiva.
-            </p>
+              <p class="project-metric">
+                Enfoque: aprendizaje activo mediante experiencia inmersiva.
+              </p>
 
-            <div class="tag-row">
-              <span class="tag">VR</span>
-              <span class="tag">UX</span>
-              <span class="tag">Prototipo</span>
-              <span class="tag">Figma</span>
+              <div class="tag-row">
+                <span class="tag">VR</span>
+                <span class="tag">UX</span>
+                <span class="tag">Prototipo</span>
+                <span class="tag">Figma</span>
+              </div>
             </div>
 
             <div class="card-ctas">
@@ -282,7 +328,7 @@
               >
                 Ver prototipo
               </a>
-              <a class="btn case" href="casos/nutricampus/">
+              <a class="btn accent-solid" href="casos/nutricampus/">
                 Caso de estudio
               </a>
             </div>
@@ -297,27 +343,29 @@
               />
             </figure>
 
-            <h3>Isócrates</h3>
+            <div class="project-content">
+              <h3>Isócrates</h3>
 
-            <div class="project-meta">
-              <span>Rol: UX/UI</span>
-              <span>Plataforma: Desktop</span>
-              <span>Enfoque: Accesibilidad</span>
-            </div>
+              <div class="project-meta">
+                <span>Rol: UX/UI</span>
+                <span>Plataforma: Desktop</span>
+                <span>Enfoque: Accesibilidad</span>
+              </div>
 
-            <p>
-              Prototipo desktop enfocado en accesibilidad, lectura clara y navegación
-              inclusiva para usuarios con diferentes capacidades.
-            </p>
+              <p>
+                Prototipo desktop enfocado en accesibilidad, lectura clara y navegación
+                inclusiva para usuarios con diferentes capacidades.
+              </p>
 
-            <p class="project-metric">
-              Enfoque: mejorar legibilidad, estructura y acceso inclusivo.
-            </p>
+              <p class="project-metric">
+                Enfoque: mejorar legibilidad, estructura y acceso inclusivo.
+              </p>
 
-            <div class="tag-row">
-              <span class="tag">Desktop</span>
-              <span class="tag">Accesibilidad</span>
-              <span class="tag">UX</span>
+              <div class="tag-row">
+                <span class="tag">Desktop</span>
+                <span class="tag">Accesibilidad</span>
+                <span class="tag">UX</span>
+              </div>
             </div>
 
             <div class="card-ctas">
@@ -329,63 +377,10 @@
               >
                 Ver prototipo
               </a>
-              <a class="btn case" href="casos/isocrates/">
+              <a class="btn accent-solid" href="casos/isocrates/">
                 Caso de estudio
               </a>
             </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROCESO -->
-    <section id="proceso" class="section">
-      <div class="container section-surface">
-        <h2 class="section-title">Proceso de diseño</h2>
-        <p class="section-intro">
-          Mi forma de trabajo busca conectar análisis, claridad visual y validación para
-          construir soluciones con una base más sólida.
-        </p>
-
-        <div class="grid cards">
-          <article class="card process-step">
-            <h3>1. Investigación</h3>
-            <p>
-              Analizo el contexto, las necesidades y los problemas del usuario antes de tomar
-              decisiones visuales o estructurales.
-            </p>
-          </article>
-
-          <article class="card process-step">
-            <h3>2. Estructura</h3>
-            <p>
-              Organizo contenidos, jerarquías y flujos para que la experiencia sea comprensible,
-              intuitiva y fácil de recorrer.
-            </p>
-          </article>
-
-          <article class="card process-step">
-            <h3>3. Diseño</h3>
-            <p>
-              Desarrollo wireframes e interfaces cuidando claridad visual, consistencia, legibilidad
-              y propósito en cada componente.
-            </p>
-          </article>
-
-          <article class="card process-step">
-            <h3>4. Prototipado</h3>
-            <p>
-              Transformo ideas en experiencias navegables que permiten evaluar interacción,
-              narrativa y comportamiento antes de iterar.
-            </p>
-          </article>
-
-          <article class="card process-step">
-            <h3>5. Validación</h3>
-            <p>
-              Reviso usabilidad, accesibilidad y coherencia general para detectar mejoras y fortalecer
-              la solución final.
-            </p>
           </article>
         </div>
       </div>
@@ -397,7 +392,7 @@
         <h2 class="section-title">Tecnologías y habilidades</h2>
         <p class="section-intro">
           Explora mis habilidades por áreas. Haz clic en cada categoría o en la rueda
-          para ver herramientas y fortalezas relacionadas.
+          para descubrir herramientas, enfoque y fortalezas que construyen mi perfil.
         </p>
 
         <div class="tech-layout">
@@ -419,7 +414,7 @@
             <div class="tech-panel card">
               <h3 id="techTitle">Perfil completo</h3>
               <p id="techDescription">
-                Selecciona un área para explorar herramientas, enfoque y fortalezas relacionadas con mi perfil.
+                Un vistazo rápido a las áreas que conectan estrategia, diseño, interacción y ejecución dentro de mi trabajo.
               </p>
               <div id="techTags" class="tag-row"></div>
             </div>
@@ -444,14 +439,7 @@
               <span class="tag">Inglés</span>
               <span class="tag">B2</span>
             </div>
-            <a
-              class="btn primary"
-              href="activos/diplomas/Certificado_EF_SET.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Ver certificado
-            </a>
+            <a class="btn primary-solid" href="activos/diplomas/Certificado_EF_SET.pdf" target="_blank" rel="noopener noreferrer">Ver certificado</a>
           </article>
 
           <article class="card diploma-card">
@@ -461,14 +449,7 @@
               <span class="tag">Prototipado</span>
               <span class="tag">Requisitos</span>
             </div>
-            <a
-              class="btn primary"
-              href="activos/diplomas/Diseño_Web_Con_Adobe_Dreamweaver.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Ver certificado
-            </a>
+            <a class="btn primary-solid" href="activos/diplomas/Diseño_Web_Con_Adobe_Dreamweaver.pdf" target="_blank" rel="noopener noreferrer">Ver certificado</a>
           </article>
 
           <article class="card diploma-card">
@@ -479,14 +460,7 @@
               <span class="tag">JavaScript</span>
               <span class="tag">C++</span>
             </div>
-            <a
-              class="btn primary"
-              href="activos/diplomas/Fundamentos_de_programacion.jpeg"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Ver certificado
-            </a>
+            <a class="btn primary-solid" href="activos/diplomas/Fundamentos_de_programacion.jpeg" target="_blank" rel="noopener noreferrer">Ver certificado</a>
           </article>
 
           <article class="card diploma-card">
@@ -495,14 +469,7 @@
               <span class="tag">Design Thinking</span>
               <span class="tag">Innovación</span>
             </div>
-            <a
-              class="btn primary"
-              href="activos/diplomas/Generacion_De_Ideas_Innovadoras_Con_Desing_Thinking.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Ver certificado
-            </a>
+            <a class="btn primary-solid" href="activos/diplomas/Generacion_De_Ideas_Innovadoras_Con_Desing_Thinking.pdf" target="_blank" rel="noopener noreferrer">Ver certificado</a>
           </article>
 
           <article class="card diploma-card">
@@ -512,14 +479,7 @@
               <span class="tag">Validación</span>
               <span class="tag">Prototipos</span>
             </div>
-            <a
-              class="btn primary"
-              href="activos/diplomas/Validacion_De_Ideas_y_Prototipos_Con_Desing_Thinking.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Ver certificado
-            </a>
+            <a class="btn primary-solid" href="activos/diplomas/Validacion_De_Ideas_y_Prototipos_Con_Desing_Thinking.pdf" target="_blank" rel="noopener noreferrer">Ver certificado</a>
           </article>
 
           <article class="card diploma-card">
@@ -528,14 +488,7 @@
               <span class="tag">Diseño gráfico</span>
               <span class="tag">Ilustración</span>
             </div>
-            <a
-              class="btn primary"
-              href="activos/diplomas/Manejo_Adobe_Illustrator.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Ver certificado
-            </a>
+            <a class="btn primary-solid" href="activos/diplomas/Manejo_Adobe_Illustrator.pdf" target="_blank" rel="noopener noreferrer">Ver certificado</a>
           </article>
 
           <article class="card diploma-card">
@@ -544,14 +497,7 @@
               <span class="tag">Edición</span>
               <span class="tag">Retoque</span>
             </div>
-            <a
-              class="btn primary"
-              href="activos/diplomas/Manejo_Adobe_Photoshop.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Ver certificado
-            </a>
+            <a class="btn primary-solid" href="activos/diplomas/Manejo_Adobe_Photoshop.pdf" target="_blank" rel="noopener noreferrer">Ver certificado</a>
           </article>
         </div>
       </div>
@@ -566,60 +512,20 @@
             Estoy abierto a prácticas, colaboraciones y oportunidades donde pueda aportar
             desde UX research, diseño de interfaces y prototipado.
           </p>
-          <p class="contact-line">
-            <strong>Email:</strong> santiagomr2003@gmail.com
-          </p>
+          <p class="contact-line"><strong>Email:</strong> santiagomr2003@gmail.com</p>
 
           <div class="botones-contacto">
-            <a
-              class="btn whatsapp big"
-              href="https://wa.me/573228182311"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              WhatsApp
-            </a>
-            <a
-              class="btn linkedin big"
-              href="https://www.linkedin.com/in/santiago-murillo-ramírez-795447235"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              LinkedIn
-            </a>
+            <a class="btn whatsapp big" href="https://wa.me/573228182311" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            <a class="btn linkedin big" href="https://www.linkedin.com/in/santiago-murillo-ramírez-795447235" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           </div>
         </div>
 
-        <form
-          class="card contact-form"
-          action="https://formspree.io/f/myznakow"
-          method="POST"
-        >
+        <form class="card contact-form" action="https://formspree.io/f/myznakow" method="POST">
           <h3>Escríbeme</h3>
-          <input
-            class="input-field full"
-            type="text"
-            name="nombre"
-            placeholder="Nombre"
-            required
-          />
-          <input
-            class="input-field full"
-            type="email"
-            name="email"
-            placeholder="Email"
-            required
-          />
-          <textarea
-            class="input-field full"
-            name="mensaje"
-            rows="4"
-            placeholder="Mensaje"
-            required
-          ></textarea>
-          <button class="btn primary full-btn" type="submit">
-            Enviar
-          </button>
+          <input class="input-field full" type="text" name="nombre" placeholder="Nombre" required />
+          <input class="input-field full" type="email" name="email" placeholder="Email" required />
+          <textarea class="input-field full" name="mensaje" rows="4" placeholder="Mensaje" required></textarea>
+          <button class="btn primary-solid full-btn" type="submit">Enviar</button>
         </form>
       </div>
     </section>
