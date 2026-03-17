@@ -23,17 +23,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const ROTATION_DELAY = 7000;
 
   function showProgress() {
-    if (progressWrap) progressWrap.classList.remove("hidden");
+    progressWrap?.classList.remove("hidden");
   }
 
   function hideProgress() {
-    if (progressWrap) progressWrap.classList.add("hidden");
+    progressWrap?.classList.add("hidden");
   }
 
   function resetProgress() {
-    if (progressBar) {
-      progressBar.style.width = "0%";
-    }
+    if (progressBar) progressBar.style.width = "0%";
   }
 
   function animateProgress(duration) {
@@ -81,12 +79,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const temp = document.createElement("div");
     temp.innerHTML = html;
 
-    temp.querySelectorAll("script, style, link, nav, header, footer").forEach(el => el.remove());
-    temp.querySelectorAll(".ux-tabs, .case-links, .preview-card, .case-title, .case-header").forEach(el => el.remove());
+    temp
+      .querySelectorAll("script, style, link, nav, header, footer")
+      .forEach((el) => el.remove());
 
-    temp.querySelectorAll("h1").forEach(el => el.remove());
-    temp.querySelectorAll("h2").forEach(el => {
-      if ((el.textContent || "").trim().toLowerCase() === "bon bon bum") el.remove();
+    temp
+      .querySelectorAll(".ux-tabs, .case-links, .preview-card, .case-title, .case-header")
+      .forEach((el) => el.remove());
+
+    temp.querySelectorAll("h1").forEach((el) => el.remove());
+
+    temp.querySelectorAll("h2").forEach((el) => {
+      const text = (el.textContent || "").trim().toLowerCase();
+      if (text === "bon bon bum") el.remove();
     });
 
     const main = temp.querySelector("main") || temp;
@@ -123,13 +128,15 @@ document.addEventListener("DOMContentLoaded", () => {
       if (requestId !== currentRequest) return;
 
       showContent();
-      content.innerHTML = clean || `
-        <div class="case-placeholder" style="margin-top:0;">
-          <div class="placeholder-badge">Vacío</div>
-          <h3>Este apartado aún no tiene contenido</h3>
-          <p>Agrega información a este archivo para completar la fase del proyecto.</p>
-        </div>
-      `;
+      content.innerHTML =
+        clean ||
+        `
+          <div class="case-placeholder" style="margin-top:0;">
+            <div class="placeholder-badge">Vacío</div>
+            <h3>Este apartado aún no tiene contenido</h3>
+            <p>Agrega información a este archivo para completar la fase del proyecto.</p>
+          </div>
+        `;
     } catch (err) {
       console.error(err);
 
@@ -150,27 +157,20 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function activate(btn) {
-    tabs.forEach(tab => tab.classList.remove("active"));
+    tabs.forEach((tab) => tab.classList.remove("active"));
     btn.classList.add("active");
     loadPage(btn.dataset.page);
     autoIndex = tabs.indexOf(btn);
   }
 
   function stopAutoplay() {
-    if (suggestionTimer) {
-      clearTimeout(suggestionTimer);
-      suggestionTimer = null;
-    }
+    clearTimeout(suggestionTimer);
+    clearInterval(autoplayInterval);
+    clearInterval(progressInterval);
 
-    if (autoplayInterval) {
-      clearInterval(autoplayInterval);
-      autoplayInterval = null;
-    }
-
-    if (progressInterval) {
-      clearInterval(progressInterval);
-      progressInterval = null;
-    }
+    suggestionTimer = null;
+    autoplayInterval = null;
+    progressInterval = null;
 
     resetProgress();
     hideProgress();
@@ -185,7 +185,9 @@ document.addEventListener("DOMContentLoaded", () => {
       if (userInteracted) return;
 
       const uxResearchBtn =
-        tabs.find(tab => (tab.textContent || "").trim().toLowerCase() === "ux research") || tabs[0];
+        tabs.find(
+          (tab) => (tab.textContent || "").trim().toLowerCase() === "ux research"
+        ) || tabs[0];
 
       activate(uxResearchBtn);
       animateProgress(ROTATION_DELAY);
@@ -216,14 +218,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (key === "ArrowRight" || key === "ArrowDown") {
         event.preventDefault();
-        const next = tabs[(index + 1) % tabs.length];
-        next.focus();
+        tabs[(index + 1) % tabs.length].focus();
       }
 
       if (key === "ArrowLeft" || key === "ArrowUp") {
         event.preventDefault();
-        const prev = tabs[(index - 1 + tabs.length) % tabs.length];
-        prev.focus();
+        tabs[(index - 1 + tabs.length) % tabs.length].focus();
       }
 
       if (key === "Enter" || key === " ") {
