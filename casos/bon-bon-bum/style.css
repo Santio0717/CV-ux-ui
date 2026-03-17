@@ -21,12 +21,12 @@
 }
 
 /* RESET */
-
 *{
   box-sizing:border-box;
 }
 
-html,body{
+html,
+body{
   height:100%;
 }
 
@@ -40,25 +40,20 @@ body.case-page{
   min-height:100vh;
   display:flex;
   flex-direction:column;
-
   background:
-  radial-gradient(circle at top left,rgba(255,255,255,.45),transparent 30%),
-  radial-gradient(circle at bottom right,rgba(184,92,56,.10),transparent 28%),
-  linear-gradient(180deg,#f4e4ca 0%,var(--bg) 100%);
+    radial-gradient(circle at top left,rgba(255,255,255,.45),transparent 30%),
+    radial-gradient(circle at bottom right,rgba(184,92,56,.10),transparent 28%),
+    linear-gradient(180deg,#f4e4ca 0%,var(--bg) 100%);
 }
 
 /* LAYOUT */
-
 .case-layout{
   flex:1;
-
   width:min(1240px,92%);
   margin:34px auto 28px;
-
   display:grid;
   grid-template-columns:1.35fr 1fr;
   gap:28px;
-
   align-items:stretch;
 }
 
@@ -72,18 +67,13 @@ body.case-page{
 }
 
 /* IZQUIERDA */
-
 .case-card{
   background:var(--surface);
   backdrop-filter:blur(8px);
-
   border-radius:var(--radius-lg);
   border:1px solid rgba(255,255,255,.35);
-
   padding:34px 30px 28px;
-
   box-shadow:var(--shadow-md);
-
   display:flex;
   flex-direction:column;
 }
@@ -91,64 +81,49 @@ body.case-page{
 .case-eyebrow{
   display:inline-block;
   margin-bottom:8px;
-
   font-size:.76rem;
   font-weight:700;
-
   letter-spacing:.12em;
   text-transform:uppercase;
-
   color:var(--accent-dark);
 }
 
 .case-title{
   margin:0 0 10px;
-
   font-size:clamp(2rem,4vw,3rem);
   font-weight:800;
-
   color:var(--dark);
 }
 
 .case-intro{
   margin:0;
   max-width:62ch;
-
   color:var(--muted);
   line-height:1.7;
 }
 
 /* TABS */
-
 .ux-tabs{
   display:flex;
   flex-wrap:wrap;
   gap:10px;
-
   margin:16px 0 10px;
 }
 
 .ux-tab{
   text-decoration:none;
-
   border:1px solid rgba(0,0,0,.10);
   background:rgba(255,255,255,.55);
-
   min-width:134px;
   padding:11px 15px;
-
   border-radius:999px;
-
   font-weight:700;
   font-size:.85rem;
-
   color:var(--dark);
-
   display:flex;
   align-items:center;
   justify-content:center;
-
-  transition:.2s;
+  transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
 }
 
 .ux-tab:hover{
@@ -163,17 +138,12 @@ body.case-page{
 }
 
 /* PROGRESS */
-
 .tab-progress{
   width:100%;
   height:5px;
-
   background:rgba(20,37,61,.08);
-
   border-radius:999px;
-
   margin-bottom:18px;
-
   overflow:hidden;
 }
 
@@ -181,9 +151,7 @@ body.case-page{
   display:block;
   height:100%;
   width:0%;
-
   background:linear-gradient(90deg,var(--accent),var(--accent-dark));
-
   transition:width .2s linear;
 }
 
@@ -192,41 +160,32 @@ body.case-page{
 }
 
 /* PLACEHOLDER */
-
 .case-placeholder{
   padding:28px 24px;
-
   border-radius:20px;
-
   background:linear-gradient(
-  180deg,
-  rgba(255,255,255,.66),
-  rgba(255,255,255,.46)
+    180deg,
+    rgba(255,255,255,.66),
+    rgba(255,255,255,.46)
   );
-
   border:1px solid rgba(255,255,255,.42);
-
   text-align:center;
 }
 
 .placeholder-badge{
   display:inline-block;
-
   padding:7px 12px;
   margin-bottom:12px;
-
   border-radius:999px;
-
   background:rgba(184,92,56,.12);
-
   color:var(--accent-dark);
-
   font-size:.76rem;
   font-weight:800;
   letter-spacing:.04em;
 }
 
-.case-placeholder h2{
+.case-placeholder h2,
+.case-placeholder h3{
   margin:0 0 10px;
 }
 
@@ -241,7 +200,6 @@ body.case-page{
 }
 
 /* CONTENT */
-
 .case-body{
   animation:fadeInUp .35s ease;
 }
@@ -264,6 +222,7 @@ body.case-page{
 
 .case-body p{
   margin:0 0 14px;
+  line-height:1.75;
 }
 
 .case-body ul{
@@ -272,51 +231,45 @@ body.case-page{
 
 .case-body li{
   margin-bottom:8px;
+  line-height:1.7;
 }
 
 /* DERECHA */
-
 .preview-card{
   background:var(--surface-strong);
-
   border-radius:var(--radius-lg);
-
   padding:14px;
-
   border:1px solid rgba(255,255,255,.5);
-
   box-shadow:var(--shadow-lg);
-
   display:flex;
   flex-direction:column;
 }
 
 .preview-chip{
   padding:6px 10px;
-
   border-radius:999px;
-
   background:rgba(20,37,61,.08);
-
   font-size:.76rem;
   font-weight:700;
+  width:max-content;
 }
 
 .preview-link{
   display:block;
-
   border-radius:18px;
-
   overflow:hidden;
-
   margin-top:10px;
 }
 
 .preview-link img{
   width:100%;
   height:330px;
-
   object-fit:cover;
+  transition:transform .4s ease;
+}
+
+.preview-link:hover img{
+  transform:scale(1.03);
 }
 
 .preview-meta{
@@ -326,43 +279,36 @@ body.case-page{
 .preview-title{
   margin:0 0 8px;
   font-size:1.2rem;
+  color:var(--dark);
 }
 
 .preview-desc{
   margin:0 0 14px;
-
   color:var(--muted);
   line-height:1.6;
 }
 
 /* TAGS */
-
 .preview-tags{
   display:flex;
   flex-wrap:wrap;
   gap:8px;
-
   margin-bottom:14px;
 }
 
 .preview-tags span{
   padding:6px 10px;
-
   border-radius:999px;
-
   background:rgba(0,0,0,.06);
-
   font-size:.76rem;
   font-weight:700;
 }
 
 /* BOTONES */
-
 .preview-actions{
   display:flex;
   gap:10px;
   flex-wrap:wrap;
-
   margin-top:10px;
 }
 
@@ -373,18 +319,13 @@ body.case-page{
 
 .btn{
   padding:12px 18px;
-
   border-radius:12px;
-
   font-weight:800;
-
   text-decoration:none;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
-  transition:.2s;
+  transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
 }
 
 .btn:hover{
@@ -394,6 +335,7 @@ body.case-page{
 .btn.ghost{
   border:2px solid rgba(20,37,61,.72);
   color:var(--dark);
+  background:transparent;
 }
 
 .btn.case{
@@ -402,53 +344,43 @@ body.case-page{
 }
 
 /* FOOTER */
-
 .case-footer{
   margin-top:auto;
-
   text-align:center;
-
   padding:16px 0;
-
   background:rgba(255,255,255,.72);
-
   font-size:.84rem;
 }
 
 /* RESPONSIVE */
-
 @media (max-width:980px){
+  .case-layout{
+    grid-template-columns:1fr;
+  }
 
-.case-layout{
-grid-template-columns:1fr;
-}
-
-.preview-link img{
-height:280px;
-}
-
+  .preview-link img{
+    height:280px;
+  }
 }
 
 @media (max-width:720px){
+  .case-card{
+    padding:26px 20px;
+  }
 
-.case-card{
-padding:26px 20px;
-}
+  .case-title{
+    font-size:2.1rem;
+  }
 
-.case-title{
-font-size:2.1rem;
-}
+  .ux-tab{
+    min-width:46%;
+  }
 
-.ux-tab{
-min-width:46%;
-}
+  .preview-actions{
+    justify-content:center;
+  }
 
-.preview-actions{
-justify-content:center;
-}
-
-.btn{
-width:100%;
-}
-
+  .btn{
+    width:100%;
+  }
 }
