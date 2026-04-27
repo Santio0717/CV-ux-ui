@@ -3,7 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Bon Bon Bum · Accesibilidad</title>
+
+  <!-- ✅ AÑADIDO (SEO) -->
+  <meta name="description" content="Caso de accesibilidad del proyecto Bon Bon Bum, enfocado en UX/UI, jerarquía visual y experiencia de usuario.">
+
+  <!-- ✅ AÑADIDO (preload imagen principal) -->
+  <link rel="preload" as="image" href="../../../activos/Proyectos/Bon_Bon_Bum.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -65,10 +72,13 @@
           target="_blank"
           rel="noopener noreferrer"
         >
+          <!-- ✅ CORREGIDO (CLS + rendimiento) -->
           <img
             src="../../../activos/Proyectos/Bon_Bon_Bum.png"
             alt="Vista previa del proyecto Bon Bon Bum"
             loading="lazy"
+            width="600"
+            height="400"
           />
         </a>
 
