@@ -1,4 +1,5 @@
 <!doctype html>
+<html lang="es">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -10,10 +11,8 @@
     content="Portafolio de Santiago Murillo, diseñador UX/UI enfocado en accesibilidad, prototipado, investigación y diseño centrado en el usuario."
   />
 
-  <!-- 🔥 PRELOAD CORRECTO -->
   <link rel="preload" as="image" href="activos/imagen/foto de perfil.webp">
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -21,12 +20,99 @@
     rel="stylesheet"
   />
 
-  <!-- CSS -->
   <link rel="stylesheet" href="CSS/estilos.css" />
-
-  <!-- JS -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="#hero" class="brand">SM·UX</a>
+
+      <nav class="main-nav" aria-label="Navegación principal">
+        <a href="#hero">Presentación</a>
+        <a href="#proceso">Proceso</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#tecnologias">Tecnologías</a>
+        <a href="#certificados">Certificados</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="section hero" id="hero">
+      <div class="container">
+        <article class="hero-card" id="heroCard">
+          <div class="hero-visual">
+            <img
+              class="avatar"
+              src="activos/imagen/foto de perfil.webp"
+              alt="Foto de Santiago Murillo, diseñador UX/UI"
+              loading="eager"
+              fetchpriority="high"
+              width="300"
+              height="300"
+            />
+          </div>
+
+          <div class="hero-copy">
+            <p class="hero-kicker">Santiago Murillo · UX/UI Designer</p>
+
+            <h1 class="display">
+              Diseño experiencias digitales centradas en el usuario
+            </h1>
+
+            <p class="hero-brief">
+              Combino investigación, prototipado y diseño visual para construir
+              productos digitales funcionales, intuitivos y con impacto real para las personas.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn btn-dark" href="CV_Santiago_Murillo.pdf" download>
+                Descargar CV
+              </a>
+            </div>
+
+            <div class="hero-focus-panel">
+              <div class="hero-focus-head">
+                <h2 class="hero-subtitle">Mi enfoque</h2>
+                <p class="hero-focus-intro">
+                  Así convierto necesidades reales en experiencias más claras, accesibles y útiles.
+                </p>
+              </div>
+
+              <div class="hero-focus-grid">
+                <article class="focus-item">
+                  <span class="focus-icon" aria-hidden="true">🔎</span>
+                  <h3>Investigo</h3>
+                  <p>Entiendo necesidades reales antes de empezar a diseñar.</p>
+                </article>
+
+                <article class="focus-item">
+                  <span class="focus-icon" aria-hidden="true">🧭</span>
+                  <h3>Estructuro</h3>
+                  <p>Construyo flujos intuitivos y jerarquías visuales claras.</p>
+                </article>
+
+                <article class="focus-item">
+                  <span class="focus-icon" aria-hidden="true">♿</span>
+                  <h3>Integro</h3>
+                  <p>Incorporo accesibilidad y usabilidad desde el proceso.</p>
+                </article>
+
+                <article class="focus-item">
+                  <span class="focus-icon" aria-hidden="true">✨</span>
+                  <h3>Prototipo</h3>
+                  <p>Creo soluciones visuales listas para validar e iterar.</p>
+                </article>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
     <!-- PROCESO -->
     <section id="proceso" class="section">
       <div class="container section-surface">
