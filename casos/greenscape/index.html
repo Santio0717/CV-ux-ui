@@ -3,7 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Greenscape · Estudio de Caso</title>
+
+  <meta name="description" content="Caso de estudio Greenscape enfocado en UX/UI, investigación, diseño y prototipado mobile-first.">
+
+  <link rel="preload" as="image" href="../../../activos/Proyectos/Greenscape.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -19,9 +24,7 @@
 
   <main class="case-layout">
 
-    <!-- ===== COLUMNA IZQUIERDA ===== -->
     <section class="case-card">
-
       <div class="case-header">
         <span class="case-eyebrow">Caso de estudio · UX/UI</span>
         <h1 class="case-title">Greenscape</h1>
@@ -32,45 +35,50 @@
       </div>
 
       <nav class="ux-tabs" aria-label="Fases del proyecto">
-        <button class="ux-tab" type="button" data-page="./ux-research.html">UX Research</button>
-        <button class="ux-tab" type="button" data-page="./ux-design.html">UX Design</button>
-        <button class="ux-tab" type="button" data-page="./prototipado.html">Prototipado</button>
+        <a class="ux-tab" href="./ux-research.html" data-page="./ux-research.html">UX Research</a>
+        <a class="ux-tab" href="./ux-design.html" data-page="./ux-design.html">UX Design</a>
+        <a class="ux-tab" href="./prototipado.html" data-page="./prototipado.html">Prototipado</a>
+        <a class="ux-tab" href="./product-design.html" data-page="./product-design.html">Product Design</a>
+        <a class="ux-tab" href="./accesibilidad.html" data-page="./accesibilidad.html">Accesibilidad</a>
       </nav>
 
-      <div id="tab-progress" class="tab-progress">
+      <div id="tab-progress" class="tab-progress" aria-hidden="true">
         <span id="tab-progress-bar"></span>
       </div>
 
-      <!-- Placeholder inicial -->
       <div id="case-placeholder" class="case-placeholder">
         <div class="placeholder-badge">Empieza aquí</div>
-        <h3>Explora el proceso</h3>
+        <h2>Explora el proceso de diseño</h2>
         <p>
           Selecciona una categoría para conocer cómo desarrollé este proyecto:
-          investigación, diseño y prototipado.
+          investigación, diseño, prototipado y decisiones clave.
         </p>
         <span class="mini-note">
           Sugerencia: empieza por <strong>UX Research</strong>.
         </span>
       </div>
 
-      <!-- Contenido dinámico -->
       <div id="case-content" class="case-body" hidden></div>
-
     </section>
 
-    <!-- ===== COLUMNA DERECHA ===== -->
     <aside class="case-aside">
       <article class="preview-card">
+        <div class="preview-top">
+          <span class="preview-chip">Preview del proyecto</span>
+        </div>
 
-        <a class="preview-link"
-           href="https://www.figma.com/proto/iYuZ5f1XPOvGDWncfB739r/HCI"
-           target="_blank"
-           rel="noopener noreferrer">
+        <a
+          class="preview-link"
+          href="https://www.figma.com/proto/iYuZ5f1XPOvGDWncfB739r/HCI"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img
             src="../../../activos/Proyectos/Greenscape.png"
             alt="Vista previa del proyecto Greenscape"
             loading="lazy"
+            width="600"
+            height="400"
           />
         </a>
 
@@ -92,15 +100,16 @@
             <a href="../../../index.html#proyectos" class="btn ghost">
               Volver al portafolio
             </a>
-            <a href="https://www.figma.com/proto/iYuZ5f1XPOvGDWncfB739r/HCI"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="btn case">
+            <a
+              href="https://www.figma.com/proto/iYuZ5f1XPOvGDWncfB739r/HCI"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn case"
+            >
               Ver prototipo en Figma
             </a>
           </div>
         </div>
-
       </article>
     </aside>
 
