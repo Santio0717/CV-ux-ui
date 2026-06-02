@@ -1,27 +1,100 @@
-<section>
-  <h2>UX Design</h2>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <p>
-    La propuesta de diseño fue desarrollada para responder a dos perfiles principales de usuario: productores y compradores. 
-    La estructura de la interfaz se organizó para facilitar la navegación, priorizar las acciones más relevantes de cada perfil 
-    y mantener una experiencia clara e intuitiva durante todo el recorrido.
-  </p>
+  <title>Greenscape · UX Design</title>
+  <meta name="description" content="Diseño UX del caso de estudio Greenscape.">
 
-  <p>
-    A nivel visual, se trabajó una jerarquía de información que permite identificar rápidamente productos, promociones y acciones clave. 
-    Además, se diseñaron flujos específicos para la gestión de publicaciones, compras y seguimiento de pedidos, garantizando coherencia 
-    entre las necesidades de ambos tipos de usuario dentro de la plataforma.
-  </p>
+  <link rel="preload" as="image" href="../../../activos/Proyectos/Greenscape.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
 
-  <ul>
-    <li>Flujos diferenciados para productores y compradores.</li>
-    <li>Gestión de productos, publicación de contenido y sistema de recompensas GREENPOINTS.</li>
-    <li>Funciones de compra como carrito, favoritos y acceso a descuentos personalizados.</li>
-    <li>Canal de soporte y seguimiento del estado de los pedidos.</li>
-    <li>Diseño optimizado para dispositivos iOS con enfoque mobile-first.</li>
-  </ul>
+<body class="case-page">
+  <main class="case-layout">
+    <section class="case-card">
+      <div class="case-header">
+        <span class="case-eyebrow">Caso de estudio · UX/UI</span>
+        <h1 class="case-title">Greenscape</h1>
+        <p class="case-intro">
+          Proyecto enfocado en conectar productores y compradores con una experiencia
+          mobile-first, navegación intuitiva y una estructura clara para dos tipos de usuario.
+        </p>
+      </div>
 
-  <p class="mini-note">
-    Resultado: una experiencia intuitiva, organizada y adaptada a las necesidades de cada tipo de usuario.
-  </p>
-</section>
+      <nav class="ux-tabs" aria-label="Fases del proyecto">
+        <a class="ux-tab" href="./ux-research.html">UX Research</a>
+        <a class="ux-tab active" href="./ux-design.html">UX Design</a>
+        <a class="ux-tab" href="./prototipado.html">Prototipado</a>
+        <a class="ux-tab" href="./product-design.html">Product Design</a>
+        <a class="ux-tab" href="./accesibilidad.html">Accesibilidad</a>
+      </nav>
+
+      <section class="case-body">
+        <h2>UX Design</h2>
+
+        <p>
+          La propuesta de diseño fue desarrollada para responder a dos perfiles principales de usuario: productores y compradores.
+          La estructura de la interfaz se organizó para facilitar la navegación, priorizar las acciones más relevantes de cada perfil
+          y mantener una experiencia clara e intuitiva durante todo el recorrido.
+        </p>
+
+        <p>
+          A nivel visual, se trabajó una jerarquía de información que permite identificar rápidamente productos, promociones y acciones clave.
+          Además, se diseñaron flujos específicos para la gestión de publicaciones, compras y seguimiento de pedidos.
+        </p>
+
+        <ul>
+          <li>Flujos diferenciados para productores y compradores.</li>
+          <li>Gestión de productos, publicación de contenido y sistema de recompensas GREENPOINTS.</li>
+          <li>Funciones de compra como carrito, favoritos y acceso a descuentos personalizados.</li>
+          <li>Canal de soporte y seguimiento del estado de los pedidos.</li>
+          <li>Diseño optimizado para dispositivos iOS con enfoque mobile-first.</li>
+        </ul>
+
+        <p class="mini-note">
+          Resultado: una experiencia intuitiva, organizada y adaptada a las necesidades de cada tipo de usuario.
+        </p>
+      </section>
+    </section>
+
+    <aside class="case-aside">
+      <article class="preview-card">
+        <div class="preview-top">
+          <span class="preview-chip">Preview del proyecto</span>
+        </div>
+
+        <a class="preview-link" href="https://www.figma.com/proto/iYuZ5f1XPOvGDWncfB739r/HCI" target="_blank" rel="noopener noreferrer">
+          <img src="../../../activos/Proyectos/Greenscape.png" alt="Vista previa del proyecto Greenscape" loading="lazy" width="600" height="400" />
+        </a>
+
+        <div class="preview-meta">
+          <h2 class="preview-title">Prototipo móvil iOS</h2>
+          <p class="preview-desc">
+            Diseñado con enfoque en usabilidad, navegación intuitiva y experiencia mobile-first para vendedores y compradores.
+          </p>
+
+          <div class="preview-tags">
+            <span>iOS</span>
+            <span>Figma</span>
+            <span>UX/UI</span>
+            <span>Mobile-first</span>
+          </div>
+
+          <div class="preview-actions">
+            <a href="../../../index.html#proyectos" class="btn ghost">Volver al portafolio</a>
+            <a href="https://www.figma.com/proto/iYuZ5f1XPOvGDWncfB739r/HCI" target="_blank" rel="noopener noreferrer" class="btn case">Ver prototipo en Figma</a>
+          </div>
+        </div>
+      </article>
+    </aside>
+  </main>
+
+  <footer class="case-footer">© <span id="year"></span> · Portafolio de Santiago Murillo</footer>
+  <script src="./greenscape.js" defer></script>
+</body>
+</html>
