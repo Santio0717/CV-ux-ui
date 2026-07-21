@@ -6,6 +6,11 @@ html, body {
   height: 100%;
 }
 
+body {
+  font-family: "Inter", sans-serif;
+  color: var(--ink);
+}
+
 :root {
   --bg: #f3f4f6;
   --bg-soft: #e5e7eb;
@@ -154,6 +159,58 @@ body.case-page {
 /* ---------- Cuerpo del contenido de cada pestaña ---------- */
 .case-body {
   animation: fadeInUp .35s ease;
+  font-family: "Inter", sans-serif;
+}
+
+.case-body h2 {
+  margin: 0 0 24px;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--navy-dark);
+}
+
+.case-body h3 {
+  margin: 34px 0 16px;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--navy-dark);
+}
+
+.case-body p {
+  margin: 0 0 24px;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  font-weight: 400;
+  color: #4b5563;
+}
+
+.case-body ul {
+  margin: 0 0 28px 24px;
+}
+
+.case-body li {
+  margin-bottom: 10px;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #4b5563;
+}
+
+.case-body strong {
+  font-weight: 600;
+  color: #374151;
+}
+
+.case-result {
+  margin-top: 28px;
+  font-size: .95rem !important;
+  line-height: 1.7;
+  color: #6b7280 !important;
+}
+
+.case-result span {
+  font-weight: 600;
+  color: #4b5563;
 }
 
 @keyframes fadeInUp {
