@@ -202,14 +202,16 @@ body.case-page {
   color: #374151;
 }
 
-.case-result {
-  margin: 0 0 14px;
+/* ---------- Resultado ---------- */
+.case-body p.case-result {
+  margin: 4px 0 0;
   font-size: .82rem;
-  line-height: 1.75;
-  color: #4b5563;
+  line-height: 1.6;
+  color: #6b7280;
+  font-weight: 400;
 }
 
-.case-result strong {
+.case-body p.case-result strong {
   font-weight: 600;
   color: #374151;
 }
