@@ -250,7 +250,6 @@ body.case-page {
 .preview-meta {
   display: flex;
   flex-direction: column;
-  flex: 1;
   padding: 14px 4px 4px;
 }
 
@@ -284,7 +283,7 @@ body.case-page {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-  margin-top: auto;
+  margin-top: 6px;
 }
 
 .preview-actions .btn {
