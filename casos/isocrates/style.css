@@ -204,9 +204,9 @@ body.case-page {
 
 .case-result {
   margin: 0 0 14px;
-  font-size: .82rem;
-  line-height: 1.75;
-  color: var(--ink);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #4b5563;
 }
 
 .case-result strong {
