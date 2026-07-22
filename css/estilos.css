@@ -446,6 +446,7 @@ textarea:focus-visible{
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:22px;
+  align-items:start;
 }
 
 .project-card{
@@ -456,8 +457,6 @@ textarea:focus-visible{
   overflow:hidden;
   border:1px solid rgba(0,0,0,.06);
   box-shadow:0 10px 24px rgba(0,0,0,.05);
-  min-height:620px;
-  height:100%;
 }
 
 .project-thumb{
@@ -484,7 +483,6 @@ textarea:focus-visible{
   display:flex;
   flex-direction:column;
   gap:10px;
-  flex:1;
 }
 
 .project-content h3{
@@ -523,7 +521,6 @@ textarea:focus-visible{
   display:flex;
   flex-wrap:wrap;
   gap:6px;
-  margin-top:auto;
   padding-top:4px;
 }
 
@@ -540,7 +537,6 @@ textarea:focus-visible{
   display:flex;
   gap:10px;
   padding:18px;
-  margin-top:auto;
 }
 
 .btn-primary{
@@ -895,10 +891,6 @@ textarea:focus-visible{
 
   .projects-grid{
     grid-template-columns:1fr;
-  }
-
-  .project-card{
-    min-height:auto;
   }
 
   .certificates-grid{
