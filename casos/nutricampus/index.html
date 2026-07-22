@@ -1,145 +1,185 @@
-:root{
-  --bg:#f3f4f6;
-  --bg-soft:#e5e7eb;
-  --card:#f8fafc;
-  --card-strong:#ffffff;
-  --ink:#1f2937;
-  --ink-strong:#111827;
-  --muted:#6b7280;
-  --line:#d1d5db;
-  --accent:#8b5cf6;
-  --accent-dark:#7c3aed;
-  --accent-soft:rgba(139,92,246,.10);
-  --navy:#1e3a5f;
-  --navy-dark:#14253d;
-  --shadow-sm:0 8px 20px rgba(15,23,42,.06);
-  --shadow-md:0 18px 36px rgba(15,23,42,.08);
-  --shadow-lg:0 24px 52px rgba(15,23,42,.10);
-  --radius-sm:12px;
-  --radius-md:18px;
-  --radius-lg:24px;
-  --radius-pill:999px;
-}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-*,*::before,*::after{box-sizing:border-box}
-html,body{height:100%}
-body{
-margin:0;
-font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-color:var(--ink);
-}
-body.case-page{
-min-height:100vh;
-display:flex;
-flex-direction:column;
-background:
-radial-gradient(circle at top left,rgba(255,255,255,.60),transparent 28%),
-radial-gradient(circle at bottom right,rgba(139,92,246,.08),transparent 24%),
-linear-gradient(180deg,#f8fafc 0%,var(--bg) 100%);
-}
+  <title>NutriCampus · Estudio de Caso</title>
 
-.case-layout{
-flex:1;
-width:min(1240px,92%);
-margin:34px auto 28px;
-display:grid;
-grid-template-columns:1.35fr 1fr;
-gap:28px;
-align-items:stretch;
-}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-.case-card{
-background:rgba(255,255,255,.66);
-backdrop-filter:blur(8px);
--webkit-backdrop-filter:blur(8px);
-border-radius:var(--radius-lg);
-border:1px solid rgba(255,255,255,.65);
-padding:34px 30px 28px;
-box-shadow:var(--shadow-md);
-display:flex;
-flex-direction:column;
-height:100%;
-}
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
 
-.case-eyebrow{
-display:inline-block;
-margin-bottom:8px;
-font-size:.76rem;
-font-weight:700;
-letter-spacing:.12em;
-text-transform:uppercase;
-color:var(--accent-dark);
-}
+  <link rel="stylesheet" href="./style.css">
+</head>
 
-.case-title{
-margin:0 0 10px;
-font-size:clamp(2rem,4vw,3rem);
-font-weight:800;
-letter-spacing:-.03em;
-color:var(--navy-dark);
-}
+<body class="case-page">
 
-.case-intro{margin:0;max-width:62ch;color:var(--muted);line-height:1.75}
+  <main class="case-layout">
 
-.ux-tabs{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 10px}
-.ux-tab{
-text-decoration:none;
-border:1px solid var(--line);
-background:rgba(255,255,255,.78);
-min-width:134px;
-padding:11px 15px;
-border-radius:999px;
-font-weight:700;
-font-size:.85rem;
-color:var(--navy-dark);
-display:flex;align-items:center;justify-content:center;
-transition:.2s;
-}
-.ux-tab:hover{transform:translateY(-1px);box-shadow:var(--shadow-sm);background:#fff}
-.ux-tab.active{background:linear-gradient(135deg,var(--navy-dark),var(--navy));color:#fff;border-color:transparent}
+    <!-- ===================== -->
+    <!-- COLUMNA IZQUIERDA -->
+    <!-- ===================== -->
 
-.tab-progress{height:5px;background:rgba(30,58,95,.08);border-radius:999px;overflow:hidden;margin-bottom:18px}
-.tab-progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent-dark));transition:width .2s}
+    <section class="case-card">
 
-.case-body{animation:fade .35s}
-@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-.case-body h2,.case-body h3{color:var(--navy-dark)}
-.case-body p,.case-body li{line-height:1.75;color:var(--muted)}
+      <header class="case-header">
+        <span class="case-eyebrow">Caso de estudio · UX/UI</span>
 
-.preview-card{
-background:rgba(255,255,255,.86);
-border-radius:var(--radius-lg);
-padding:14px;
-border:1px solid rgba(255,255,255,.7);
-box-shadow:var(--shadow-lg);
-display:flex;
-flex-direction:column;
-}
-.preview-chip{padding:6px 10px;border-radius:999px;background:rgba(30,58,95,.08);font-size:.76rem;font-weight:700;width:max-content}
-.preview-link{display:block;border-radius:18px;overflow:hidden;margin-top:10px}
-.preview-link img{width:100%;height:330px;object-fit:cover;transition:transform .4s}
-.preview-link:hover img{transform:scale(1.03)}
-.preview-meta{padding:14px 4px 4px}
-.preview-title{margin:0 0 8px;color:var(--navy-dark)}
-.preview-desc{color:var(--muted);line-height:1.65}
-.preview-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
-.preview-tags span{padding:6px 10px;border-radius:999px;background:#eef2f7;border:1px solid rgba(15,23,42,.06)}
+        <h1 class="case-title">
+          NutriCampus
+        </h1>
 
-.preview-actions{display:flex;gap:10px;flex-wrap:wrap}
-.btn{padding:12px 18px;border-radius:12px;font-weight:800;text-decoration:none;display:flex;justify-content:center;align-items:center;transition:.2s}
-.btn.case{background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:#fff;box-shadow:0 10px 20px rgba(139,92,246,.18)}
-.btn.ghost{border:2px solid rgba(20,37,61,.72);color:var(--navy-dark)}
+        <p class="case-intro">
+          Plataforma enfocada en mejorar la gestión nutricional en entornos
+          universitarios mediante una experiencia clara, dinámica y centrada
+          en el usuario.
+        </p>
+      </header>
 
-.case-footer{margin-top:auto;text-align:center;padding:16px;background:rgba(255,255,255,.62);color:var(--muted)}
+      <!-- Tabs -->
 
-@media(max-width:980px){
-.case-layout{grid-template-columns:1fr}
-.preview-link img{height:280px}
-}
-@media(max-width:720px){
-.case-card{padding:26px 20px}
-.case-title{font-size:2.1rem}
-.ux-tab{min-width:46%}
-.preview-actions{flex-direction:column}
-.btn{width:100%}
-}
+      <nav class="ux-tabs" aria-label="Fases del proyecto">
+
+        <button
+          type="button"
+          class="ux-tab"
+          data-page="./ux-research.html">
+          UX Research
+        </button>
+
+        <button
+          type="button"
+          class="ux-tab"
+          data-page="./ux-design.html">
+          UX Design
+        </button>
+
+        <button
+          type="button"
+          class="ux-tab"
+          data-page="./prototipado.html">
+          Prototipado
+        </button>
+
+      </nav>
+
+      <!-- Barra -->
+
+      <div id="tab-progress" class="tab-progress">
+        <span id="tab-progress-bar"></span>
+      </div>
+
+      <!-- Placeholder -->
+
+      <div id="case-placeholder" class="case-placeholder">
+
+        <div class="placeholder-badge">
+          Empieza aquí
+        </div>
+
+        <h3>Explora el proceso</h3>
+
+        <p>
+          Selecciona una categoría para conocer cómo se desarrolló
+          NutriCampus: investigación, diseño y prototipado.
+        </p>
+
+        <span class="mini-note">
+          Sugerencia: empieza por <strong>UX Research</strong>.
+        </span>
+
+      </div>
+
+      <!-- Contenido dinámico -->
+
+      <div
+        id="case-content"
+        class="case-body"
+        hidden>
+      </div>
+
+    </section>
+
+    <!-- ===================== -->
+    <!-- COLUMNA DERECHA -->
+    <!-- ===================== -->
+
+    <aside class="case-aside">
+
+      <article class="preview-card">
+
+        <span class="preview-chip">
+          Caso de estudio
+        </span>
+
+        <a
+          class="preview-link"
+          href="https://www.figma.com/proto/riKsfkN37qsKX4NbQn5zOh/Nutricampus-V2"
+          target="_blank"
+          rel="noopener noreferrer">
+
+          <img
+            src="../../../activos/Proyectos/nutricampus.png"
+            alt="Vista previa del proyecto NutriCampus"
+            loading="lazy">
+
+        </a>
+
+        <div class="preview-meta">
+
+          <h2 class="preview-title">
+            Plataforma de Gestión Nutricional
+          </h2>
+
+          <p class="preview-desc">
+            NutriCampus busca mejorar la gestión nutricional en entornos
+            universitarios mediante una experiencia clara, acompañamiento
+            visual y navegación centrada en el usuario.
+          </p>
+
+          <div class="preview-tags">
+            <span>Figma</span>
+            <span>UX/UI</span>
+            <span>Nutrición</span>
+            <span>Case Study</span>
+          </div>
+
+          <div class="preview-actions">
+
+            <a
+              href="../../../index.html#proyectos"
+              class="btn ghost">
+              ← Volver al portafolio
+            </a>
+
+            <a
+              href="https://www.figma.com/proto/riKsfkN37qsKX4NbQn5zOh/Nutricampus-V2"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn case">
+              Ver prototipo en Figma
+            </a>
+
+          </div>
+
+        </div>
+
+      </article>
+
+    </aside>
+
+  </main>
+
+  <footer class="case-footer">
+    © <span id="year"></span> · Portafolio de Santiago Murillo
+  </footer>
+
+  <script src="./nutricampus.js" defer></script>
+
+</body>
+</html>
